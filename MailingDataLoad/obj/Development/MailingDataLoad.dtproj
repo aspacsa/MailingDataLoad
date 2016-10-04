@@ -26,11 +26,12 @@
           <SSIS:Property SSIS:Name="CreatorComputerName">WINDOWSDEV</SSIS:Property>
           <SSIS:Property SSIS:Name="Description">
           </SSIS:Property>
-          <SSIS:Property SSIS:Name="PasswordVerifier" SSIS:Sensitive="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAPXQ7jZTnV0GKV9nuEcqtfwAAAAACAAAAAAAQZgAAAAEAACAAAABnBYj8eoms57NA28mTNEMwHaX0sqBgS5n35WRHUj5i2gAAAAAOgAAAAAIAACAAAABZDqsmUQdNa3xqeL9LkDAXwxHAs6ntAymDgNAhzQKMr5AAAAB+EQZrMH/NRnlRnwzXfmeT1KjiZxaidz3GeDlvvfc8SBq6omYDejsPuluVo/CwXGaKL6eNHPDEnh3N9tqP+LlJzAEa6Fm5zqqfVg1MC805erE7fVhEwv3+fqa8v4SEWk8/cLbLOxOrpadefWSscJjC8vQT270WydgDqWId5RCD1g47JAzo/m1bKqRlcqwRh3lAAAAA5EVIZfDbTKOM18oQR9+qCsoQMG0gG00B6GzPyFuIMID0RBqWaJ95Z53WqdSh+GavaRprMhC1kKpF7S1/hO+Nsw==</SSIS:Property>
+          <SSIS:Property SSIS:Name="PasswordVerifier" SSIS:Sensitive="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAPXQ7jZTnV0GKV9nuEcqtfwAAAAACAAAAAAAQZgAAAAEAACAAAAAmBzbVw05vzCLQo1IfRgMHCMmpmyW/DzfkkFEB+4hLowAAAAAOgAAAAAIAACAAAAAu8y1cwpdk5u59U1zUwpllhq2pPxOunKriLTELtejDfpAAAAD9EgxIy000zStD72JcL/CYFO08GPGY2A/udGn5JVRRWUXmgvX2xDU3gErl9LzrJygxsBeCAIfUyD8XjiwlpISj5rIsMPnNWEj0AApoFo6oJN7iB3hDpbPcom/tXJYpMESY3lM0mrmdL1kil05dlM3LAb0T1FEhxNJVZ6HUVLUcIfh+bkj9npsfTRTUHeSQTCtAAAAA1fef9OH8cSBhHyVLuL4SclNUCLrRi48NiLrxOk2DIBA8cVeJq++E6CwR8beRKoHSdN7u2zxBjYkCXu8zJKOYrg==</SSIS:Property>
           <SSIS:Property SSIS:Name="FormatVersion">1</SSIS:Property>
         </SSIS:Properties>
         <SSIS:Packages>
           <SSIS:Package SSIS:Name="ETL_Letter_Mailing_Data_Load.dtsx" SSIS:EntryPoint="1" />
+          <SSIS:Package SSIS:Name="ETL_Mailing_Data_Adjudicator.dtsx" SSIS:EntryPoint="1" />
         </SSIS:Packages>
         <SSIS:ConnectionManagers />
         <SSIS:DeploymentInfo>
@@ -42,10 +43,10 @@
                 <SSIS:Property SSIS:Name="Name">ETL_Letter_Mailing_Data_Load</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMajor">1</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMinor">0</SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionBuild">255</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionBuild">263</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionComments">
                 </SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionGUID">{D844D058-7243-413B-8F32-AB698D61E152}</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionGUID">{AF783C4F-8046-4860-A548-BA88BABB72FA}</SSIS:Property>
                 <SSIS:Property SSIS:Name="PackageFormatVersion">6</SSIS:Property>
                 <SSIS:Property SSIS:Name="Description">
                 </SSIS:Property>
@@ -309,6 +310,23 @@
                   </SSIS:Properties>
                 </SSIS:Parameter>
               </SSIS:Parameters>
+            </SSIS:PackageMetaData>
+            <SSIS:PackageMetaData SSIS:Name="ETL_Mailing_Data_Adjudicator.dtsx">
+              <SSIS:Properties>
+                <SSIS:Property SSIS:Name="ID">{4552AB16-89A6-4714-8C38-0703B45CEA0E}</SSIS:Property>
+                <SSIS:Property SSIS:Name="Name">ETL_Mailing_Data_Adjudicator</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionMajor">1</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionMinor">0</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionBuild">1</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionComments">
+                </SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionGUID">{EEC49FE5-6972-4CFE-836B-D3C1F5D80B5C}</SSIS:Property>
+                <SSIS:Property SSIS:Name="PackageFormatVersion">6</SSIS:Property>
+                <SSIS:Property SSIS:Name="Description">
+                </SSIS:Property>
+                <SSIS:Property SSIS:Name="ProtectionLevel">1</SSIS:Property>
+              </SSIS:Properties>
+              <SSIS:Parameters />
             </SSIS:PackageMetaData>
           </SSIS:PackageInfo>
         </SSIS:DeploymentInfo>
