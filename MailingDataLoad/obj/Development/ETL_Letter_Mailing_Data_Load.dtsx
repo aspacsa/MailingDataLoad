@@ -11,8 +11,8 @@
   DTS:LocaleID="1033"
   DTS:ObjectName="ETL_Letter_Mailing_Data_Load"
   DTS:PackageType="5"
-  DTS:VersionBuild="305"
-  DTS:VersionGUID="{0EE0067B-4B3D-402F-B37E-A84BDA5E51D8}">
+  DTS:VersionBuild="324"
+  DTS:VersionGUID="{AF89B02D-5456-46DD-A441-6927AE8B71BE}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">6</DTS:Property>
   <DTS:ConnectionManagers>
@@ -121,7 +121,7 @@
           <DTS:Password
             DTS:Name="Password"
             Sensitive="1"
-            Encrypted="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAPXQ7jZTnV0GKV9nuEcqtfwAAAAAIAAAARABUAFMAAAAQZgAAAAEAACAAAAB49Ni7/X3WHJq+TYnhrSCO8ia3SJpwymtdG530kPzavgAAAAAOgAAAAAIAACAAAAAakycSRMShlxsS1s+fSuGzSpBn0OjEQKGOUEiTWVOYJBAAAACMPaUg0C1FBdU0rdunrD19QAAAAMHL9gc0DguJWFwxI9h/Bm0MKQ1i1nOBpzkpXPGN0DvH2MNt9yrerkqNx5bEGF8EkJ4vT46ZRVxfPEYAnLP/XwQ</DTS:Password>
+            Encrypted="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAPXQ7jZTnV0GKV9nuEcqtfwAAAAAIAAAARABUAFMAAAAQZgAAAAEAACAAAAB0jS94ZbZINi3tBGpUtJr52onNMbn/R/UDYum/ycHqzAAAAAAOgAAAAAIAACAAAABWDtJVHJbAxKp5whTWog76Vt0drGNu+AqdBgCaKjq9iRAAAAB/2UwUY/cO2Y5Zn+wb8y/SQAAAAAiMy8tIm30Ug9fvAzXAe9rA06S//rar8Y+RSZ9An457r0MF9kCvQBZrcdRRN4ukhM8ZlGu38rui/tST2P86D/A</DTS:Password>
         </DTS:ConnectionManager>
       </DTS:ObjectData>
     </DTS:ConnectionManager>
@@ -163,7 +163,7 @@
       DTS:Namespace="User"
       DTS:ObjectName="execution_log_id">
       <DTS:VariableValue
-        DTS:DataType="3">9999249</DTS:VariableValue>
+        DTS:DataType="3">9999255</DTS:VariableValue>
     </DTS:Variable>
     <DTS:Variable
       DTS:CreationName=""
@@ -642,9 +642,10 @@ namespace ST_a9ea80740c3f46a1aa0a77f3ed026ad1
 
 
 		/// <summary>
-        /// This method is called when this script task executes in the control flow.
-        /// Before returning from this method, set the value of Dts.TaskResult to indicate success or failure.
-        /// To open Help, press F1.
+        /// This method is called to verify if a manifest file
+        /// must be moved to the next stage of the process.
+        /// Only those files that where found in LetterControl and 
+        /// loaded can be moved.
         /// </summary>
 		public void Main()
 		{
@@ -679,15 +680,15 @@ namespace ST_a9ea80740c3f46a1aa0a77f3ed026ad1
                 Encoding="UTF16LE"><![CDATA[<?xml version="1.0" encoding="UTF-16" standalone="yes"?>
 <c:Project xmlns:c="http://schemas.microsoft.com/codeprojectml/2010/08/main" xmlns:msb="http://schemas.microsoft.com/developer/msbuild/2003" runtimeVersion="3.0" schemaVersion="1.0">
 	<msb:PropertyGroup>
-		<msb:Language>msBuild</msb:Language>
 		<msb:CodeName>ST_a9ea80740c3f46a1aa0a77f3ed026ad1</msb:CodeName>
+		<msb:Language>msBuild</msb:Language>
 		<msb:DisplayName>ST_a9ea80740c3f46a1aa0a77f3ed026ad1</msb:DisplayName>
 		<msb:ProjectId>{5E5E272E-1F31-4F0B-9CCF-B78499EC2B49}</msb:ProjectId>
 	</msb:PropertyGroup>
 	<msb:ItemGroup>
 		<msb:Project Include="ST_a9ea80740c3f46a1aa0a77f3ed026ad1.csproj"/>
-		<msb:File Include="Properties\Settings.settings"/>
 		<msb:File Include="Properties\AssemblyInfo.cs"/>
+		<msb:File Include="Properties\Settings.settings"/>
 		<msb:File Include="Properties\Resources.resx"/>
 		<msb:File Include="Properties\Resources.Designer.cs"/>
 		<msb:File Include="Properties\Settings.Designer.cs"/>
@@ -824,7 +825,7 @@ namespace ST_a9ea80740c3f46a1aa0a77f3ed026ad1.Properties {
               <BinaryItem
                 Name="ST_a9ea80740c3f46a1aa0a77f3ed026ad1.dll">TVqQAAMAAAAEAAAA//8AALgAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 AAAAgAAAAA4fug4AtAnNIbgBTM0hVGhpcyBwcm9ncmFtIGNhbm5vdCBiZSBydW4gaW4gRE9TIG1v
-ZGUuDQ0KJAAAAAAAAABQRQAATAEDAFAS9VcAAAAAAAAAAOAAAiELAQsAABIAAAAIAAAAAAAA/i8A
+ZGUuDQ0KJAAAAAAAAABQRQAATAEDALkU9VcAAAAAAAAAAOAAAiELAQsAABIAAAAIAAAAAAAA/i8A
 AAAgAAAAQAAAAAAAEAAgAAAAAgAABAAAAAAAAAAEAAAAAAAAAACAAAAAAgAAAAAAAAMAQIUAABAA
 ABAAAAAAEAAAEAAAAAAAABAAAAAAAAAAAAAAAKwvAABPAAAAAEAAAAgEAAAAAAAAAAAAAAAAAAAA
 AAAAAGAAAAwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
@@ -859,7 +860,7 @@ AXoAyQC8ARsAEQC8ARsA0QC8ARsA2QD4BJUAGQAWBZsA4QBnBaAA6QB+BaUA8QCHBasACQCRBa8A
 +QCpBbMAFAC8AcYADADjBcwA4QDqBV0AGQC8ARsACAAUAE4ACAAYAFMAKQCTAIAALgATACoBLgAb
 AFMBLgAjAFMBLgBjAHkBLgALAOIALgAzACoBLgBbAHABLgArAFMBLgA7AFkBLgBDAFMBQwBrAFMA
 SQCTAIAAYQCbAFMAgwCrAFMAwwCbAFMAdQDXAAIAAQADAAMAAABvAS8AAADuATQAAAASAkIAAgAC
-AAMAAgADAAUAAQAEAAUAAgAFAAcAuAC/AASAAAABAAAA6hfISwAAAAAAAH8AAAAEAAAAAAAAAAAA
+AAMAAgADAAUAAQAEAAUAAgAFAAcAuAC/AASAAAABAAAA6hf8TAAAAAAAAH8AAAAEAAAAAAAAAAAA
 AAABALEAAAAAAAQAAAAAAAAAAAAAAAEAugAAAAAACwAAAAAAAAAAAAAACgD1AAAAAAALAAAAAAAA
 AAAAAAAKAB4FAAAAAAAAAAABAAAA+QUAAAUABAAGAAQAAAAAAAA8TW9kdWxlPgBTVF9hOWVhODA3
 NDBjM2Y0NmExYWEwYTc3ZjNlZDAyNmFkMS5kbGwAUmVzb3VyY2VzAFNUX2E5ZWE4MDc0MGMzZjQ2
@@ -893,8 +894,8 @@ MjZhZDEuUHJvcGVydGllcy5SZXNvdXJjZXMucmVzb3VyY2VzAABxUwBUAF8AYQA5AGUAYQA4ADAA
 NwA0ADAAYwAzAGYANAA2AGEAMQBhAGEAMABhADcANwBmADMAZQBkADAAMgA2AGEAZAAxAC4AUABy
 AG8AcABlAHIAdABpAGUAcwAuAFIAZQBzAG8AdQByAGMAZQBzAAAtVQBzAGUAcgA6ADoAZgBpAGwA
 ZQBfAHQAbwBfAGIAZQBfAG0AbwB2AGUAZAAAT1UAcwBlAHIAOgA6AHIAZQBnAGkAcwB0AGUAcgBl
-AGQAXwBsAG8AYQBkAGUAZABfAGEAbgBkAF8AZgBvAHUAbgBkAF8AZgBpAGwAZQBzAAAAAAAzXgJr
-aYPIQI+bvCFq+Of6AAi3elxWGTTgiQiJhF3NgIDMkQMGEhUDBhIZAyAAAQQAABIVBAAAEhkFAAEB
+AGQAXwBsAG8AYQBkAGUAZABfAGEAbgBkAF8AZgBvAHUAbgBkAF8AZgBpAGwAZQBzAAAAAADspnbg
+e/oERKsOtEmObq+5AAi3elxWGTTgiQiJhF3NgIDMkQMGEhUDBhIZAyAAAQQAABIVBAAAEhkFAAEB
 EhkECAASFQQIABIZAwYSDAQAABIMBAgAEgwCBggDBhEUBAAAAAAEAQAAAAQgAQEOBCABAQgGAAES
 URFVBCAAElkGIAIBDhJZBAcBEhUFIAEBEWEIAQACAAAAAAADAAABAgYOBCABAg4FAAICDg4EIAAS
 cQQgABJ1BSABEnkcAyAAHAMgAA4EAAEODgYVEoCBAQ4GFRKAhQEOBSACARwYCiABAhUSgIUBEwAK
@@ -914,13 +915,13 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 AAAAAAEAEAAAABgAAIAAAAAAAAAAAAAAAAAAAAEAAQAAADAAAIAAAAAAAAAAAAAAAAAAAAEAAAAA
 AEgAAABYQAAAsAMAAAAAAAAAAAAAsAM0AAAAVgBTAF8AVgBFAFIAUwBJAE8ATgBfAEkATgBGAE8A
-AAAAAL0E7/4AAAEAAAABAMhL6hcAAAEAyEvqFz8AAAAAAAAABAAAAAIAAAAAAAAAAAAAAAAAAABE
+AAAAAL0E7/4AAAEAAAABAPxM6hcAAAEA/EzqFz8AAAAAAAAABAAAAAIAAAAAAAAAAAAAAAAAAABE
 AAAAAQBWAGEAcgBGAGkAbABlAEkAbgBmAG8AAAAAACQABAAAAFQAcgBhAG4AcwBsAGEAdABpAG8A
 bgAAAAAAAACwBBADAAABAFMAdAByAGkAbgBnAEYAaQBsAGUASQBuAGYAbwAAAOwCAAABADAAMAAw
 ADAAMAA0AGIAMAAAAHAAJAABAEYAaQBsAGUARABlAHMAYwByAGkAcAB0AGkAbwBuAAAAAABTAFQA
 XwBhADkAZQBhADgAMAA3ADQAMABjADMAZgA0ADYAYQAxAGEAYQAwAGEANwA3AGYAMwBlAGQAMAAy
 ADYAYQBkADEAAABAAA8AAQBGAGkAbABlAFYAZQByAHMAaQBvAG4AAAAAADEALgAwAC4ANgAxADIA
-MgAuADEAOQA0ADAAMAAAAAAAcAAoAAEASQBuAHQAZQByAG4AYQBsAE4AYQBtAGUAAABTAFQAXwBh
+MgAuADEAOQA3ADAAOAAAAAAAcAAoAAEASQBuAHQAZQByAG4AYQBsAE4AYQBtAGUAAABTAFQAXwBh
 ADkAZQBhADgAMAA3ADQAMABjADMAZgA0ADYAYQAxAGEAYQAwAGEANwA3AGYAMwBlAGQAMAAyADYA
 YQBkADEALgBkAGwAbAAAAEgAEgABAEwAZQBnAGEAbABDAG8AcAB5AHIAaQBnAGgAdAAAAEMAbwBw
 AHkAcgBpAGcAaAB0ACAAQAAgACAAMgAwADEANgAAAHgAKAABAE8AcgBpAGcAaQBuAGEAbABGAGkA
@@ -928,8 +929,8 @@ bABlAG4AYQBtAGUAAABTAFQAXwBhADkAZQBhADgAMAA3ADQAMABjADMAZgA0ADYAYQAxAGEAYQAw
 AGEANwA3AGYAMwBlAGQAMAAyADYAYQBkADEALgBkAGwAbAAAAGgAJAABAFAAcgBvAGQAdQBjAHQA
 TgBhAG0AZQAAAAAAUwBUAF8AYQA5AGUAYQA4ADAANwA0ADAAYwAzAGYANAA2AGEAMQBhAGEAMABh
 ADcANwBmADMAZQBkADAAMgA2AGEAZAAxAAAARAAPAAEAUAByAG8AZAB1AGMAdABWAGUAcgBzAGkA
-bwBuAAAAMQAuADAALgA2ADEAMgAyAC4AMQA5ADQAMAAwAAAAAABIAA8AAQBBAHMAcwBlAG0AYgBs
-AHkAIABWAGUAcgBzAGkAbwBuAAAAMQAuADAALgA2ADEAMgAyAC4AMQA5ADQAMAAwAAAAAAAAAAAA
+bwBuAAAAMQAuADAALgA2ADEAMgAyAC4AMQA5ADcAMAA4AAAAAABIAA8AAQBBAHMAcwBlAG0AYgBs
+AHkAIABWAGUAcgBzAGkAbwBuAAAAMQAuADAALgA2ADEAMgAyAC4AMQA5ADcAMAA4AAAAAAAAAAAA
 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
@@ -974,7 +975,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==</BinaryItem>
     <DTS:Executable
       DTS:refId="Package\FELC - Iterate throughout all mailing data files received to register them"
       DTS:CreationName="STOCK:FOREACHLOOP"
-      DTS:Description="Foreach Loop Container"
+      DTS:Description="Use to process each manifest file in the folder."
       DTS:DTSID="{2A5ADF94-5A6D-4BF5-9C74-F792D1B68ED8}"
       DTS:ExecutableType="STOCK:FOREACHLOOP"
       DTS:LocaleID="-1"
@@ -1001,12 +1002,12 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==</BinaryItem>
         <DTS:Executable
           DTS:refId="Package\FELC - Iterate throughout all mailing data files received to register them\SCR - Check counterpart match"
           DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ScriptTask.ScriptTask, Microsoft.SqlServer.ScriptTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
-          DTS:Description="Script Task"
+          DTS:Description="Check if previous manifest was found."
           DTS:DTSID="{F8DC6567-82DF-419D-B627-E7F175FDEC90}"
           DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ScriptTask.ScriptTask, Microsoft.SqlServer.ScriptTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
           DTS:LocaleID="-1"
           DTS:ObjectName="SCR - Check counterpart match"
-          DTS:ThreadHint="1">
+          DTS:ThreadHint="2">
           <DTS:Variables />
           <DTS:EventHandlers>
             <DTS:EventHandler
@@ -1651,7 +1652,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
         <DTS:Executable
           DTS:refId="Package\FELC - Iterate throughout all mailing data files received to register them\SCR - Check if file already registered"
           DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ScriptTask.ScriptTask, Microsoft.SqlServer.ScriptTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
-          DTS:Description="Script Task"
+          DTS:Description="Verify if the current file has been registered before."
           DTS:DTSID="{D78877B7-6176-47F9-861A-B8ED302A90D7}"
           DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ScriptTask.ScriptTask, Microsoft.SqlServer.ScriptTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
           DTS:LocaleID="-1"
@@ -2005,7 +2006,7 @@ namespace ST_97074eb6bc8b4b7793662d5f2f2ff82f
             file_name = Path.GetFileName(file_name);                                    //Get file name only.
             Dts.Variables["User::file_name"].Value = file_name;                         //Assign file name.
 
-            int count = (from f in files                                                //Check if file being read is already registered
+            int count = (from f in files                                                //Check if (current) file being read is already registered
                         where f == file_name
                         select f).Count();
 
@@ -2072,18 +2073,18 @@ namespace ST_97074eb6bc8b4b7793662d5f2f2ff82f
                 Encoding="UTF16LE"><![CDATA[<?xml version="1.0" encoding="UTF-16" standalone="yes"?>
 <c:Project xmlns:c="http://schemas.microsoft.com/codeprojectml/2010/08/main" xmlns:msb="http://schemas.microsoft.com/developer/msbuild/2003" runtimeVersion="3.0" schemaVersion="1.0">
 	<msb:PropertyGroup>
-		<msb:Language>msBuild</msb:Language>
 		<msb:CodeName>ST_97074eb6bc8b4b7793662d5f2f2ff82f</msb:CodeName>
+		<msb:Language>msBuild</msb:Language>
 		<msb:DisplayName>ST_97074eb6bc8b4b7793662d5f2f2ff82f</msb:DisplayName>
 		<msb:ProjectId>{58EF5320-6B2B-4A94-92E4-39223687B7F7}</msb:ProjectId>
 	</msb:PropertyGroup>
 	<msb:ItemGroup>
 		<msb:Project Include="ST_97074eb6bc8b4b7793662d5f2f2ff82f.csproj"/>
-		<msb:File Include="Properties\Settings.settings"/>
 		<msb:File Include="Properties\AssemblyInfo.cs"/>
+		<msb:File Include="Properties\Settings.settings"/>
 		<msb:File Include="Properties\Resources.resx"/>
-		<msb:File Include="Properties\Resources.Designer.cs"/>
 		<msb:File Include="MailingFile.cs"/>
+		<msb:File Include="Properties\Resources.Designer.cs"/>
 		<msb:File Include="Properties\Settings.Designer.cs"/>
 		<msb:File Include="ScriptMain.cs"/>
 	</msb:ItemGroup>
@@ -2218,7 +2219,7 @@ namespace ST_97074eb6bc8b4b7793662d5f2f2ff82f.Properties {
               <BinaryItem
                 Name="ST_97074eb6bc8b4b7793662d5f2f2ff82f.dll">TVqQAAMAAAAEAAAA//8AALgAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 AAAAgAAAAA4fug4AtAnNIbgBTM0hVGhpcyBwcm9ncmFtIGNhbm5vdCBiZSBydW4gaW4gRE9TIG1v
-ZGUuDQ0KJAAAAAAAAABQRQAATAEDAPv39FcAAAAAAAAAAOAAAiELAQsAABQAAAAIAAAAAAAADjMA
+ZGUuDQ0KJAAAAAAAAABQRQAATAEDAHAW9VcAAAAAAAAAAOAAAiELAQsAABQAAAAIAAAAAAAADjMA
 AAAgAAAAQAAAAAAAEAAgAAAAAgAABAAAAAAAAAAEAAAAAAAAAACAAAAAAgAAAAAAAAMAQIUAABAA
 ABAAAAAAEAAAEAAAAAAAABAAAAAAAAAAAAAAAMAyAABLAAAAAEAAAAgEAAAAAAAAAAAAAAAAAAAA
 AAAAAGAAAAwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
@@ -2258,7 +2259,7 @@ AJoBHADhAJoBHADpAHoF0gAZAJgF2ADxAOkF3QD5AAAG4gABAQkG6QAJADUG9AARAU0G+AABAVkG
 AKMAwAAuAFsA3AEuABsAvwEuAGMA5QEuAAsATgEuABMAlgEuACsAvwEuACMAvwEuADMAlgEuADsA
 xQEuAEMAvwFBAHMAWQBDAGsAaABJAKMAwABhAHMAWQBjAIMAWQCBAHMAWQChAHMAWQCjALsAWQDj
 AKsAWQABAasAWQC1AEEBAwABAAQAAwAAALEBOAAAACoCPQAAAE4CSwACAAMAAwACAAQABQABAAUA
-BQACAAYABwDtAAIBBIAAAAEAAADqF50+AAAAAAAAPgAAAAQAAAAAAAAAAAAAAAEAvQAAAAAABAAA
+BQACAAYABwDtAAIBBIAAAAEAAADqF9hNAAAAAAAAPgAAAAQAAAAAAAAAAAAAAAEAvQAAAAAABAAA
 AAAAAAAAAAAAAQDGAAAAAAALAAAAAAAAAAAAAAAKAAEBAAAAAAQAAAAAAAAAAAAAAAEACQQAAAAA
 CwAAAAAAAAAAAAAACgCgBQAAAAAEAAAAAAAAAAAAAAABAGoGAAAAAAAAAAABAAAAvQYAAAYABQAH
 AAUAQwAqAUUAKgEAAAAAADxNb2R1bGU+AFNUXzk3MDc0ZWI2YmM4YjRiNzc5MzY2MmQ1ZjJmMmZm
@@ -2299,8 +2300,8 @@ AGcAaQBzAHQAZQByAGUAZABfAG4AbwB0AF8AbABvAGEAZABlAGQAXwBmAGkAbABlAHMAAB9VAHMA
 ZQByADoAOgBmAGkAbABlAF8AbgBhAG0AZQAAIVMAeQBzAHQAZQBtADoAOgBUAGEAcwBrAE4AYQBt
 AGUAAC9VAHMAZQByADoAOgBlAHgAYwBlAHAAdABpAG8AbgBfAG0AZQBzAHMAYQBnAGUAAGtUAGEA
 cwBrACAAOgAgAFsAewAwAH0AXQA7ACAATQBlAHMAcwBhAGcAZQA6ACAAWwBGAGkAbABlACAAewAx
-AH0AIABhAGwAcgBlAGEAZAB5ACAAcgBlAGcAaQBzAHQAZQByAGUAZAAuAF0AAAAAAH763kKyimRM
-mL4e7Q0o7QUACLd6XFYZNOCJCImEXc2AgMyRAgYIAgYOAgYCAyAAAQMGEhUDBhIZBAAAEhUEAAAS
+AH0AIABhAGwAcgBlAGEAZAB5ACAAcgBlAGcAaQBzAHQAZQByAGUAZAAuAF0AAAAAALnngC5pBbhA
+r1dL4WzMtkgACLd6XFYZNOCJCImEXc2AgMyRAgYIAgYOAgYCAyAAAQMGEhUDBhIZBAAAEhUEAAAS
 GQUAAQESGQQIABIVBAgAEhkDBhIQBAAAEhAECAASEAMGERgEAAAAAAQBAAAABCABAQ4EIAEBCCQB
 AAEAVA4ETmFtZRhNZWRob2suTWFpbGluZ19EYXRhX0ZpbGUUAQABAFQCDElzUHJpbWFyeUtleQEG
 AAESWRFdBCAAEmEGIAIBDhJhBAcBEhUFIAEBEWkIAQACAAAAAAADAAABBCABAg4FAAICDg4EIAAS
@@ -2317,13 +2318,13 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 AAAAAQAQAAAAGAAAgAAAAAAAAAAAAAAAAAAAAQABAAAAMAAAgAAAAAAAAAAAAAAAAAAAAQAAAAAA
 SAAAAFhAAACwAwAAAAAAAAAAAACwAzQAAABWAFMAXwBWAEUAUgBTAEkATwBOAF8ASQBOAEYATwAA
-AAAAvQTv/gAAAQAAAAEAnT7qFwAAAQCdPuoXPwAAAAAAAAAEAAAAAgAAAAAAAAAAAAAAAAAAAEQA
+AAAAvQTv/gAAAQAAAAEA2E3qFwAAAQDYTeoXPwAAAAAAAAAEAAAAAgAAAAAAAAAAAAAAAAAAAEQA
 AAABAFYAYQByAEYAaQBsAGUASQBuAGYAbwAAAAAAJAAEAAAAVAByAGEAbgBzAGwAYQB0AGkAbwBu
 AAAAAAAAALAEEAMAAAEAUwB0AHIAaQBuAGcARgBpAGwAZQBJAG4AZgBvAAAA7AIAAAEAMAAwADAA
 MAAwADQAYgAwAAAAcAAkAAEARgBpAGwAZQBEAGUAcwBjAHIAaQBwAHQAaQBvAG4AAAAAAFMAVABf
 ADkANwAwADcANABlAGIANgBiAGMAOABiADQAYgA3ADcAOQAzADYANgAyAGQANQBmADIAZgAyAGYA
 ZgA4ADIAZgAAAEAADwABAEYAaQBsAGUAVgBlAHIAcwBpAG8AbgAAAAAAMQAuADAALgA2ADEAMgAy
-AC4AMQA2ADAAMgA5AAAAAABwACgAAQBJAG4AdABlAHIAbgBhAGwATgBhAG0AZQAAAFMAVABfADkA
+AC4AMQA5ADkAMgA4AAAAAABwACgAAQBJAG4AdABlAHIAbgBhAGwATgBhAG0AZQAAAFMAVABfADkA
 NwAwADcANABlAGIANgBiAGMAOABiADQAYgA3ADcAOQAzADYANgAyAGQANQBmADIAZgAyAGYAZgA4
 ADIAZgAuAGQAbABsAAAASAASAAEATABlAGcAYQBsAEMAbwBwAHkAcgBpAGcAaAB0AAAAQwBvAHAA
 eQByAGkAZwBoAHQAIABAACAAIAAyADAAMQA2AAAAeAAoAAEATwByAGkAZwBpAG4AYQBsAEYAaQBs
@@ -2331,8 +2332,8 @@ AGUAbgBhAG0AZQAAAFMAVABfADkANwAwADcANABlAGIANgBiAGMAOABiADQAYgA3ADcAOQAzADYA
 NgAyAGQANQBmADIAZgAyAGYAZgA4ADIAZgAuAGQAbABsAAAAaAAkAAEAUAByAG8AZAB1AGMAdABO
 AGEAbQBlAAAAAABTAFQAXwA5ADcAMAA3ADQAZQBiADYAYgBjADgAYgA0AGIANwA3ADkAMwA2ADYA
 MgBkADUAZgAyAGYAMgBmAGYAOAAyAGYAAABEAA8AAQBQAHIAbwBkAHUAYwB0AFYAZQByAHMAaQBv
-AG4AAAAxAC4AMAAuADYAMQAyADIALgAxADYAMAAyADkAAAAAAEgADwABAEEAcwBzAGUAbQBiAGwA
-eQAgAFYAZQByAHMAaQBvAG4AAAAxAC4AMAAuADYAMQAyADIALgAxADYAMAAyADkAAAAAAAAAAAAA
+AG4AAAAxAC4AMAAuADYAMQAyADIALgAxADkAOQAyADgAAAAAAEgADwABAEEAcwBzAGUAbQBiAGwA
+eQAgAFYAZQByAHMAaQBvAG4AAAAxAC4AMAAuADYAMQAyADIALgAxADkAOQAyADgAAAAAAAAAAAAA
 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
@@ -2355,44 +2356,15 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA</BinaryItem>
           </DTS:ObjectData>
         </DTS:Executable>
         <DTS:Executable
-          DTS:refId="Package\FELC - Iterate throughout all mailing data files received to register them\SQL - Count counterpart"
-          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
-          DTS:Description="Execute SQL Task"
-          DTS:DTSID="{86640D00-39EE-4883-A092-FC872B50FFF1}"
-          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
-          DTS:LocaleID="-1"
-          DTS:ObjectName="SQL - Count counterpart"
-          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="1">
-          <DTS:Variables />
-          <DTS:ObjectData>
-            <SQLTask:SqlTaskData
-              SQLTask:Connection="{879CBFE3-8828-45E8-BB2C-3F9D632D4E68}"
-              SQLTask:BypassPrepare="False"
-              SQLTask:SqlStatementSource="SELECT&#xA;  TOP 1 COUNT(*) AS ManifestCount&#xA;FROM&#xA;  Medhok.LetterControl&#xA;WHERE&#xA;  ManifestName = ?;"
-              SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
-              <SQLTask:ResultBinding
-                SQLTask:ResultName="ManifestCount"
-                SQLTask:DtsVariableName="User::manifest_match_count" />
-              <SQLTask:ParameterBinding
-                SQLTask:ParameterName="0"
-                SQLTask:DtsVariableName="User::file_name"
-                SQLTask:ParameterDirection="Input"
-                SQLTask:DataType="129"
-                SQLTask:ParameterSize="-1" />
-            </SQLTask:SqlTaskData>
-          </DTS:ObjectData>
-        </DTS:Executable>
-        <DTS:Executable
           DTS:refId="Package\FELC - Iterate throughout all mailing data files received to register them\SQL - Mark manifest"
           DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
-          DTS:Description="Execute SQL Task"
+          DTS:Description="If previous manifest was found then mark this current file as having a counterpart."
           DTS:DTSID="{F38E95C0-8B6F-4522-823B-B5114E949386}"
           DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
           DTS:LocaleID="-1"
           DTS:ObjectName="SQL - Mark manifest"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="1">
+          DTS:ThreadHint="2">
           <DTS:Variables />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
@@ -2417,7 +2389,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA</BinaryItem>
           DTS:LocaleID="-1"
           DTS:ObjectName="SQL - Register mismatch exception"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="2">
+          DTS:ThreadHint="3">
           <DTS:Variables />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
@@ -2479,7 +2451,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA</BinaryItem>
           DTS:LocaleID="-1"
           DTS:ObjectName="SQL - Register process error"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="3">
+          DTS:ThreadHint="4">
           <DTS:Variables />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
@@ -2498,7 +2470,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA</BinaryItem>
         <DTS:Executable
           DTS:refId="Package\FELC - Iterate throughout all mailing data files received to register them\SQL - Save error for already registred file"
           DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
-          DTS:Description="Execute SQL Task"
+          DTS:Description="Register exception when the current file is already registered."
           DTS:DTSID="{280D22E5-93CC-49AC-B05A-FCB664995846}"
           DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
           DTS:LocaleID="-1"
@@ -2520,6 +2492,35 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA</BinaryItem>
               <SQLTask:ParameterBinding
                 SQLTask:ParameterName="1"
                 SQLTask:DtsVariableName="User::exception_message"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="129"
+                SQLTask:ParameterSize="-1" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\FELC - Iterate throughout all mailing data files received to register them\SQL - Seek counterpart"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:Description="Verify if we received a previous manifest, if reious manifest was received it must be registered in table Medhok.LetterControl."
+          DTS:DTSID="{86640D00-39EE-4883-A092-FC872B50FFF1}"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="SQL - Seek counterpart"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="2">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{879CBFE3-8828-45E8-BB2C-3F9D632D4E68}"
+              SQLTask:BypassPrepare="False"
+              SQLTask:SqlStatementSource="SELECT&#xA;  TOP 1 COUNT(*) AS ManifestCount&#xA;FROM&#xA;  Medhok.LetterControl&#xA;WHERE&#xA;  ManifestName = ?;"
+              SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ResultBinding
+                SQLTask:ResultName="ManifestCount"
+                SQLTask:DtsVariableName="User::manifest_match_count" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="0"
+                SQLTask:DtsVariableName="User::file_name"
                 SQLTask:ParameterDirection="Input"
                 SQLTask:DataType="129"
                 SQLTask:ParameterSize="-1" />
@@ -2558,14 +2559,13 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA</BinaryItem>
           DTS:CreationName=""
           DTS:DTSID="{E3066008-4D75-4F7D-8D88-437DBDFDC55C}"
           DTS:From="Package\FELC - Iterate throughout all mailing data files received to register them\SQL - Register new mailing data file"
-          DTS:LogicalAnd="True"
           DTS:ObjectName="Constraint 3"
-          DTS:To="Package\FELC - Iterate throughout all mailing data files received to register them\SQL - Count counterpart" />
+          DTS:To="Package\FELC - Iterate throughout all mailing data files received to register them\SQL - Seek counterpart" />
         <DTS:PrecedenceConstraint
           DTS:refId="Package\FELC - Iterate throughout all mailing data files received to register them.PrecedenceConstraints[Constraint 4]"
           DTS:CreationName=""
           DTS:DTSID="{02177D2E-32B4-4B9C-AB9A-E8743CE6D59C}"
-          DTS:From="Package\FELC - Iterate throughout all mailing data files received to register them\SQL - Count counterpart"
+          DTS:From="Package\FELC - Iterate throughout all mailing data files received to register them\SQL - Seek counterpart"
           DTS:LogicalAnd="True"
           DTS:ObjectName="Constraint 4"
           DTS:To="Package\FELC - Iterate throughout all mailing data files received to register them\SCR - Check counterpart match" />
@@ -2573,7 +2573,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA</BinaryItem>
           DTS:refId="Package\FELC - Iterate throughout all mailing data files received to register them.PrecedenceConstraints[Constraint 5]"
           DTS:CreationName=""
           DTS:DTSID="{9934FA95-D789-46EC-B5C5-E11CD85E9EB1}"
-          DTS:From="Package\FELC - Iterate throughout all mailing data files received to register them\SQL - Count counterpart"
+          DTS:From="Package\FELC - Iterate throughout all mailing data files received to register them\SQL - Seek counterpart"
           DTS:ObjectName="Constraint 5"
           DTS:To="Package\FELC - Iterate throughout all mailing data files received to register them\SQL - Register process error"
           DTS:Value="1" />
@@ -2594,6 +2594,13 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA</BinaryItem>
           DTS:ObjectName="Constraint 7"
           DTS:To="Package\FELC - Iterate throughout all mailing data files received to register them\SQL - Register mismatch exception"
           DTS:Value="1" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\FELC - Iterate throughout all mailing data files received to register them.PrecedenceConstraints[Constraint 8]"
+          DTS:CreationName=""
+          DTS:DTSID="{7250F40B-9C4C-434B-92BA-C4221A75FB4A}"
+          DTS:From="Package\FELC - Iterate throughout all mailing data files received to register them\SQL - Save error for already registred file"
+          DTS:ObjectName="Constraint 8"
+          DTS:To="Package\FELC - Iterate throughout all mailing data files received to register them\SQL - Seek counterpart" />
       </DTS:PrecedenceConstraints>
       <DTS:EventHandlers>
         <DTS:EventHandler
@@ -2621,8 +2628,8 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA</BinaryItem>
       <DTS:ForEachVariableMappings>
         <DTS:ForEachVariableMapping
           DTS:CreationName=""
-          DTS:DTSID="{8C3AB205-5928-448B-AA16-C887D4D4AD31}"
-          DTS:ObjectName="{8C3AB205-5928-448B-AA16-C887D4D4AD31}"
+          DTS:DTSID="{6D9990E0-9027-4772-A9D4-52393C4CEC19}"
+          DTS:ObjectName="{6D9990E0-9027-4772-A9D4-52393C4CEC19}"
           DTS:ValueIndex="0"
           DTS:VariableName="User::file_name" />
       </DTS:ForEachVariableMappings>
@@ -3519,7 +3526,7 @@ namespace ST_817380d19bc04b5a9a5022ae3d775ec5
                 {
                     files.Add(file.FileName);
                 }
-                Dts.Variables["User::registered_not_loaded_files"].Value = files;        //Set the user variable to store query result
+                Dts.Variables["User::registered_not_loaded_files"].Value = files;                   //Set the user variable to store query result
                 db.Connection.Close();
             }
             catch (Exception e)
@@ -3671,19 +3678,19 @@ namespace ST_817380d19bc04b5a9a5022ae3d775ec5
             Encoding="UTF16LE"><![CDATA[<?xml version="1.0" encoding="UTF-16" standalone="yes"?>
 <c:Project xmlns:c="http://schemas.microsoft.com/codeprojectml/2010/08/main" xmlns:msb="http://schemas.microsoft.com/developer/msbuild/2003" runtimeVersion="3.0" schemaVersion="1.0">
 	<msb:PropertyGroup>
-		<msb:CodeName>ST_817380d19bc04b5a9a5022ae3d775ec5</msb:CodeName>
 		<msb:Language>msBuild</msb:Language>
+		<msb:CodeName>ST_817380d19bc04b5a9a5022ae3d775ec5</msb:CodeName>
 		<msb:DisplayName>ST_817380d19bc04b5a9a5022ae3d775ec5</msb:DisplayName>
 		<msb:ProjectId>{D715E737-AEFA-4908-92C6-F2EC9641FF9E}</msb:ProjectId>
 	</msb:PropertyGroup>
 	<msb:ItemGroup>
 		<msb:Project Include="ST_817380d19bc04b5a9a5022ae3d775ec5.csproj"/>
-		<msb:File Include="Properties\AssemblyInfo.cs"/>
 		<msb:File Include="Properties\Settings.settings"/>
+		<msb:File Include="Properties\AssemblyInfo.cs"/>
 		<msb:File Include="Properties\Resources.resx"/>
-		<msb:File Include="Properties\Resources.Designer.cs"/>
-		<msb:File Include="MailingFile.cs"/>
 		<msb:File Include="MedhokDataContext.cs"/>
+		<msb:File Include="MailingFile.cs"/>
+		<msb:File Include="Properties\Resources.Designer.cs"/>
 		<msb:File Include="Properties\Settings.Designer.cs"/>
 		<msb:File Include="ScriptMain.cs"/>
 	</msb:ItemGroup>
@@ -3818,7 +3825,7 @@ namespace ST_817380d19bc04b5a9a5022ae3d775ec5.Properties {
           <BinaryItem
             Name="ST_817380d19bc04b5a9a5022ae3d775ec5.dll">TVqQAAMAAAAEAAAA//8AALgAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 AAAAgAAAAA4fug4AtAnNIbgBTM0hVGhpcyBwcm9ncmFtIGNhbm5vdCBiZSBydW4gaW4gRE9TIG1v
-ZGUuDQ0KJAAAAAAAAABQRQAATAEDAAX39FcAAAAAAAAAAOAAAiELAQsAABgAAAAIAAAAAAAADjYA
+ZGUuDQ0KJAAAAAAAAABQRQAATAEDAPka9VcAAAAAAAAAAOAAAiELAQsAABgAAAAIAAAAAAAADjYA
 AAAgAAAAQAAAAAAAEAAgAAAAAgAABAAAAAAAAAAEAAAAAAAAAACAAAAAAgAAAAAAAAMAQIUAABAA
 ABAAAAAAEAAAEAAAAAAAABAAAAAAAAAAAAAAALg1AABTAAAAAEAAAAgEAAAAAAAAAAAAAAAAAAAA
 AAAAAGAAAAwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
@@ -3862,7 +3869,7 @@ cgEcAHwHhAEMAIgHiQGJAasHjwGRAcAHHAAJAcgHkwERAP4HmAGZAQ0IHAChAR0I6wCpATAIngH5
 ADcIawAhAMkBHAAIACwAYQAIADAAZgAhAHMAlQApAKsAyAAuAFsAWwIuABsAPgIuAGMAZAIuAAsA
 zQEuABMAFQIuACsAPgIuACMAPgIuADMAFQIuADsARAIuAEMAPgJBAHMAZgBDAGsAcABJAKsAyABh
 AHMAZgCBAHMAZgCDAIsAZgChAHMAZgDDAMMAZgAhAbMAZgC9AKUBBAABAAUAAwAAAPUBRQAAAG4C
-SgAAAJICWAACAAQAAwACAAUABQABAAYABQACAAcABwBjAWoBfAEEgAAAAQAAAOoXIj4AAAAAAAA+
+SgAAAJICWAACAAQAAwACAAUABQABAAYABQACAAcABwBjAWoBfAEEgAAAAQAAAOoXHFAAAAAAAAA+
 AAAABAAAAAAAAAAAAAAAAQDPAAAAAAAEAAAAAAAAAAAAAAABAOYAAAAAAAQAAAAAAAAAAAAAAAEA
 2AAAAAAACwAAAAAAAAAAAAAACgAwAQAAAAALAAAAAAAAAAAAAAAKAKEFAAAAAAQAAAAAAAAAAAAA
 AAEAHQYAAAAABAAAAAAAAAAAAAAAAQDSBwAAAAAAAAAAAQAAAEYIAAAHAAYARwA0AUkAXgEAAAA8
@@ -3910,8 +3917,8 @@ LgBSAGUAcwBvAHUAcgBjAGUAcwAAL1UAcwBlAHIAOgA6AGMAbwBuAG4AZQBjAHQAaQBvAG4AXwBz
 AHQAcgBpAG4AZwAAA20AAENVAHMAZQByADoAOgByAGUAZwBpAHMAdABlAHIAZQBkAF8AbgBvAHQA
 XwBsAG8AYQBkAGUAZABfAGYAaQBsAGUAcwAAIVMAeQBzAHQAZQBtADoAOgBUAGEAcwBrAE4AYQBt
 AGUAAC9VAHMAZQByADoAOgBlAHgAYwBlAHAAdABpAG8AbgBfAG0AZQBzAHMAYQBnAGUAADlUAGEA
-cwBrACAAOgAgAFsAewAwAH0AXQA7ACAATQBlAHMAcwBhAGcAZQA6ACAAWwB7ADEAfQBdAAAA7UkQ
-mhpYq02VFqd2cWjciwAIt3pcVhk04IkIiYRdzYCAzJECBggCBg4CBgIDIAABBwYVEhkBEggEIAEB
+cwBrACAAOgAgAFsAewAwAH0AXQA7ACAATQBlAHMAcwBhAGcAZQA6ACAAWwB7ADEAfQBdAAAA5Oxa
+9Vo5S0KQG8eXxeU8+gAIt3pcVhk04IkIiYRdzYCAzJECBggCBg4CBgIDIAABBwYVEhkBEggEIAEB
 DgMGEh0DBhIhBAAAEh0EAAASIQUAAQESIQQIABIdBAgAEiEDBhIUBAAAEhQECAASFAMGERwEAAAA
 AAQBAAAABCABAQgkAQABAFQOBE5hbWUYTWVkaG9rLk1haWxpbmdfRGF0YV9GaWxlFAEAAQBUAgxJ
 c1ByaW1hcnlLZXkBBgABEmERZQQgABJpBiACAQ4SaQQHARIdBSABARFxCAEAAgAAAAAAAwAAAQQg
@@ -3935,13 +3942,13 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 AAEAEAAAABgAAIAAAAAAAAAAAAAAAAAAAAEAAQAAADAAAIAAAAAAAAAAAAAAAAAAAAEAAAAAAEgA
 AABYQAAAsAMAAAAAAAAAAAAAsAM0AAAAVgBTAF8AVgBFAFIAUwBJAE8ATgBfAEkATgBGAE8AAAAA
-AL0E7/4AAAEAAAABACI+6hcAAAEAIj7qFz8AAAAAAAAABAAAAAIAAAAAAAAAAAAAAAAAAABEAAAA
+AL0E7/4AAAEAAAABABxQ6hcAAAEAHFDqFz8AAAAAAAAABAAAAAIAAAAAAAAAAAAAAAAAAABEAAAA
 AQBWAGEAcgBGAGkAbABlAEkAbgBmAG8AAAAAACQABAAAAFQAcgBhAG4AcwBsAGEAdABpAG8AbgAA
 AAAAAACwBBADAAABAFMAdAByAGkAbgBnAEYAaQBsAGUASQBuAGYAbwAAAOwCAAABADAAMAAwADAA
 MAA0AGIAMAAAAHAAJAABAEYAaQBsAGUARABlAHMAYwByAGkAcAB0AGkAbwBuAAAAAABTAFQAXwA4
 ADEANwAzADgAMABkADEAOQBiAGMAMAA0AGIANQBhADkAYQA1ADAAMgAyAGEAZQAzAGQANwA3ADUA
 ZQBjADUAAABAAA8AAQBGAGkAbABlAFYAZQByAHMAaQBvAG4AAAAAADEALgAwAC4ANgAxADIAMgAu
-ADEANQA5ADAANgAAAAAAcAAoAAEASQBuAHQAZQByAG4AYQBsAE4AYQBtAGUAAABTAFQAXwA4ADEA
+ADIAMAA1ADAAOAAAAAAAcAAoAAEASQBuAHQAZQByAG4AYQBsAE4AYQBtAGUAAABTAFQAXwA4ADEA
 NwAzADgAMABkADEAOQBiAGMAMAA0AGIANQBhADkAYQA1ADAAMgAyAGEAZQAzAGQANwA3ADUAZQBj
 ADUALgBkAGwAbAAAAEgAEgABAEwAZQBnAGEAbABDAG8AcAB5AHIAaQBnAGgAdAAAAEMAbwBwAHkA
 cgBpAGcAaAB0ACAAQAAgACAAMgAwADEANgAAAHgAKAABAE8AcgBpAGcAaQBuAGEAbABGAGkAbABl
@@ -3949,8 +3956,8 @@ AG4AYQBtAGUAAABTAFQAXwA4ADEANwAzADgAMABkADEAOQBiAGMAMAA0AGIANQBhADkAYQA1ADAA
 MgAyAGEAZQAzAGQANwA3ADUAZQBjADUALgBkAGwAbAAAAGgAJAABAFAAcgBvAGQAdQBjAHQATgBh
 AG0AZQAAAAAAUwBUAF8AOAAxADcAMwA4ADAAZAAxADkAYgBjADAANABiADUAYQA5AGEANQAwADIA
 MgBhAGUAMwBkADcANwA1AGUAYwA1AAAARAAPAAEAUAByAG8AZAB1AGMAdABWAGUAcgBzAGkAbwBu
-AAAAMQAuADAALgA2ADEAMgAyAC4AMQA1ADkAMAA2AAAAAABIAA8AAQBBAHMAcwBlAG0AYgBsAHkA
-IABWAGUAcgBzAGkAbwBuAAAAMQAuADAALgA2ADEAMgAyAC4AMQA1ADkAMAA2AAAAAAAAAAAAAAAA
+AAAAMQAuADAALgA2ADEAMgAyAC4AMgAwADUAMAA4AAAAAABIAA8AAQBBAHMAcwBlAG0AYgBsAHkA
+IABWAGUAcgBzAGkAbwBuAAAAMQAuADAALgA2ADEAMgAyAC4AMgAwADUAMAA4AAAAAAAAAAAAAAAA
 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
@@ -4291,15 +4298,14 @@ namespace ST_59153f0e11684e209f6e984cfe092618
 
 
 		/// <summary>
-        /// This method is called when this script task executes in the control flow.
-        /// Before returning from this method, set the value of Dts.TaskResult to indicate success or failure.
-        /// To open Help, press F1.
+        /// This method is called to verify if we have manifest files
+        /// in the directory to be process.
         /// </summary>
 		public void Main()
 		{
             string path = Dts.Variables["User::file_path"].Value.ToString();
-			//if (!File.Exists(path))
-            if (Directory.GetFiles(path).Length == 0)
+
+            if (Directory.GetFiles(path).Length == 0)                           // check if directory has files
                 Dts.TaskResult = (int)ScriptResults.Failure;
             else
 			    Dts.TaskResult = (int)ScriptResults.Success;
@@ -4471,7 +4477,7 @@ namespace ST_59153f0e11684e209f6e984cfe092618.Properties {
           <BinaryItem
             Name="ST_59153f0e11684e209f6e984cfe092618.dll">TVqQAAMAAAAEAAAA//8AALgAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 AAAAgAAAAA4fug4AtAnNIbgBTM0hVGhpcyBwcm9ncmFtIGNhbm5vdCBiZSBydW4gaW4gRE9TIG1v
-ZGUuDQ0KJAAAAAAAAABQRQAATAEDACX09FcAAAAAAAAAAOAAAiELAQsAABAAAAAIAAAAAAAALi4A
+ZGUuDQ0KJAAAAAAAAABQRQAATAEDAM4V9VcAAAAAAAAAAOAAAiELAQsAABAAAAAIAAAAAAAALi4A
 AAAgAAAAQAAAAAAAEAAgAAAAAgAABAAAAAAAAAAEAAAAAAAAAACAAAAAAgAAAAAAAAMAQIUAABAA
 ABAAAAAAEAAAEAAAAAAAABAAAAAAAAAAAAAAAOAtAABLAAAAAEAAAAgEAAAAAAAAAAAAAAAAAAAA
 AAAAAGAAAAwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
@@ -4503,7 +4509,7 @@ egDJALwBGwARALwBGwDRALwBGwAZANYEjQDZACcFkgDhAD4FlwDpAEcFnQAJAFEFoQDxAG4FpQDZ
 AHcFXQAZALwBGwAIABQATgAIABgAUwApAJMAgAAuABsAIAEuACMAIAEuAGMARgEuAAsArwAuABMA
 9wAuADMA9wAuACsAIAEuADsAJgEuAEMAIAEuAFsAPQFDAGsAUwBJAJMAgABhAJsAUwCDAKsAUwB1
 AKsAAgABAAMAAwAAAG8BLwAAAO4BNAAAABICQgACAAIAAwACAAMABQABAAQABQACAAUABwAEgAAA
-AQAAAOoXsjwAAAAAAAB/AAAABAAAAAAAAAAAAAAAAQCxAAAAAAAEAAAAAAAAAAAAAAABALoAAAAA
+AQAAAOoXh00AAAAAAAB/AAAABAAAAAAAAAAAAAAAAQCxAAAAAAAEAAAAAAAAAAAAAAABALoAAAAA
 AAsAAAAAAAAAAAAAAAoA9QAAAAAACwAAAAAAAAAAAAAACgDeBAAAAAAAAAAAAQAAAIYFAAAFAAQA
 AAAAAAA8TW9kdWxlPgBTVF81OTE1M2YwZTExNjg0ZTIwOWY2ZTk4NGNmZTA5MjYxOC5kbGwAUmVz
 b3VyY2VzAFNUXzU5MTUzZjBlMTE2ODRlMjA5ZjZlOTg0Y2ZlMDkyNjE4LlByb3BlcnRpZXMAU2V0
@@ -4533,7 +4539,7 @@ dHJpbmcAU3lzdGVtLklPAERpcmVjdG9yeQBHZXRGaWxlcwBzZXRfVGFza1Jlc3VsdABTVF81OTE1
 M2YwZTExNjg0ZTIwOWY2ZTk4NGNmZTA5MjYxOC5Qcm9wZXJ0aWVzLlJlc291cmNlcy5yZXNvdXJj
 ZXMAAAAAAHFTAFQAXwA1ADkAMQA1ADMAZgAwAGUAMQAxADYAOAA0AGUAMgAwADkAZgA2AGUAOQA4
 ADQAYwBmAGUAMAA5ADIANgAxADgALgBQAHIAbwBwAGUAcgB0AGkAZQBzAC4AUgBlAHMAbwB1AHIA
-YwBlAHMAAB9VAHMAZQByADoAOgBmAGkAbABlAF8AcABhAHQAaAAAAIne8dOJe5BPoLGwpl4VwYcA
+YwBlAHMAAB9VAHMAZQByADoAOgBmAGkAbABlAF8AcABhAHQAaAAAACFgYg6OBjZPpZZjdkRconsA
 CLd6XFYZNOCJCImEXc2AgMyRAwYSFQMGEhkDIAABBAAAEhUEAAASGQUAAQESGQQIABIVBAgAEhkD
 BhIMBAAAEgwECAASDAIGCAMGERQEAAAAAAQBAAAABCABAQ4EIAEBCAYAARJREVUEIAASWQYgAgEO
 ElkEBwESFQUgAQERYQgBAAIAAAAAAAMAAAEEIAASbQQgABJxBSABEnUcAyAAHAMgAA4FAAEdDg4D
@@ -4552,13 +4558,13 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 AAAAAAABABAAAAAYAACAAAAAAAAAAAAAAAAAAAABAAEAAAAwAACAAAAAAAAAAAAAAAAAAAABAAAA
 AABIAAAAWEAAALADAAAAAAAAAAAAALADNAAAAFYAUwBfAFYARQBSAFMASQBPAE4AXwBJAE4ARgBP
-AAAAAAC9BO/+AAABAAAAAQCyPOoXAAABALI86hc/AAAAAAAAAAQAAAACAAAAAAAAAAAAAAAAAAAA
+AAAAAAC9BO/+AAABAAAAAQCHTeoXAAABAIdN6hc/AAAAAAAAAAQAAAACAAAAAAAAAAAAAAAAAAAA
 RAAAAAEAVgBhAHIARgBpAGwAZQBJAG4AZgBvAAAAAAAkAAQAAABUAHIAYQBuAHMAbABhAHQAaQBv
 AG4AAAAAAAAAsAQQAwAAAQBTAHQAcgBpAG4AZwBGAGkAbABlAEkAbgBmAG8AAADsAgAAAQAwADAA
 MAAwADAANABiADAAAABwACQAAQBGAGkAbABlAEQAZQBzAGMAcgBpAHAAdABpAG8AbgAAAAAAUwBU
 AF8ANQA5ADEANQAzAGYAMABlADEAMQA2ADgANABlADIAMAA5AGYANgBlADkAOAA0AGMAZgBlADAA
 OQAyADYAMQA4AAAAQAAPAAEARgBpAGwAZQBWAGUAcgBzAGkAbwBuAAAAAAAxAC4AMAAuADYAMQAy
-ADIALgAxADUANQAzADgAAAAAAHAAKAABAEkAbgB0AGUAcgBuAGEAbABOAGEAbQBlAAAAUwBUAF8A
+ADIALgAxADkAOAA0ADcAAAAAAHAAKAABAEkAbgB0AGUAcgBuAGEAbABOAGEAbQBlAAAAUwBUAF8A
 NQA5ADEANQAzAGYAMABlADEAMQA2ADgANABlADIAMAA5AGYANgBlADkAOAA0AGMAZgBlADAAOQAy
 ADYAMQA4AC4AZABsAGwAAABIABIAAQBMAGUAZwBhAGwAQwBvAHAAeQByAGkAZwBoAHQAAABDAG8A
 cAB5AHIAaQBnAGgAdAAgAEAAIAAgADIAMAAxADYAAAB4ACgAAQBPAHIAaQBnAGkAbgBhAGwARgBp
@@ -4566,8 +4572,8 @@ AGwAZQBuAGEAbQBlAAAAUwBUAF8ANQA5ADEANQAzAGYAMABlADEAMQA2ADgANABlADIAMAA5AGYA
 NgBlADkAOAA0AGMAZgBlADAAOQAyADYAMQA4AC4AZABsAGwAAABoACQAAQBQAHIAbwBkAHUAYwB0
 AE4AYQBtAGUAAAAAAFMAVABfADUAOQAxADUAMwBmADAAZQAxADEANgA4ADQAZQAyADAAOQBmADYA
 ZQA5ADgANABjAGYAZQAwADkAMgA2ADEAOAAAAEQADwABAFAAcgBvAGQAdQBjAHQAVgBlAHIAcwBp
-AG8AbgAAADEALgAwAC4ANgAxADIAMgAuADEANQA1ADMAOAAAAAAASAAPAAEAQQBzAHMAZQBtAGIA
-bAB5ACAAVgBlAHIAcwBpAG8AbgAAADEALgAwAC4ANgAxADIAMgAuADEANQA1ADMAOAAAAAAAAAAA
+AG8AbgAAADEALgAwAC4ANgAxADIAMgAuADEAOQA4ADQANwAAAAAASAAPAAEAQQBzAHMAZQBtAGIA
+bAB5ACAAVgBlAHIAcwBpAG8AbgAAADEALgAwAC4ANgAxADIAMgAuADEAOQA4ADQANwAAAAAAAAAA
 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
@@ -5951,7 +5957,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==</BinaryItem>
       DTS:LocaleID="-1"
       DTS:ObjectName="SQL - Register error for current batch process"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="4">
+      DTS:ThreadHint="5">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
@@ -5976,7 +5982,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==</BinaryItem>
     <DTS:Executable
       DTS:refId="Package\SQL - Save batch status"
       DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
-      DTS:Description="Execute SQL Task"
+      DTS:Description="Register batch process error."
       DTS:DTSID="{8792B600-D48A-4C00-9C8D-6E0AED0CA390}"
       DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
       DTS:LocaleID="-1"
@@ -6589,7 +6595,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
         <DTS:Executable
           DTS:refId="Package\SQNC - Batch Initialization\SQL - Clean up cache table"
           DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
-          DTS:Description="Execute SQL Task"
+          DTS:Description="Remove from cache table those records related to manifest that already has been adjudicated. "
           DTS:DTSID="{A2044258-080F-49CE-A644-890C1DA7E84F}"
           DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
           DTS:LocaleID="-1"
@@ -6601,7 +6607,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
             <SQLTask:SqlTaskData
               SQLTask:Connection="{879CBFE3-8828-45E8-BB2C-3F9D632D4E68}"
               SQLTask:BypassPrepare="False"
-              SQLTask:SqlStatementSource="DELETE&#xA;FROM&#xA;  Medhok.Mailing_Data_File_Cache&#xA;WHERE&#xA;  FileName IN (&#xA;                  SELECT&#xA;                    FileName&#xA;                  FROM&#xA;                    Medhok.Mailing_Data_File&#xA;                  WHERE&#xA;                    Adjudicated = 1&#xA;              );&#xA;&#xA;&#xA;&#xA;&#xA;--TRUNCATE TABLE Medhok.Mailing_Data_File_Cache;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+              SQLTask:SqlStatementSource="DELETE&#xA;FROM&#xA;  Medhok.Mailing_Data_File_Cache&#xA;WHERE&#xA;  FileName IN (&#xA;                  SELECT&#xA;                    FileName&#xA;                  FROM&#xA;                    Medhok.Mailing_Data_File&#xA;                  WHERE&#xA;                    Adjudicated = 1&#xA;              );&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
           </DTS:ObjectData>
         </DTS:Executable>
         <DTS:Executable
@@ -6633,7 +6639,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
         <DTS:Executable
           DTS:refId="Package\SQNC - Batch Initialization\SQL - Register batch instance"
           DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
-          DTS:Description="Execute SQL Task"
+          DTS:Description="Register instance of batch process."
           DTS:DTSID="{de27ef86-3d8a-4429-a1b9-2d59477d6048}"
           DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
           DTS:LocaleID="-1"
@@ -6863,12 +6869,12 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
           Id="Package\FELC - Iterate manifests directory\FST - Move manifest files to next stage folder"
           TopLeft="7.15001232964698,110.723530887485" />
         <NodeLayout
-          Size="332.8,41.6"
+          Size="335.2,41.6"
           Id="Package\FELC - Iterate manifests directory\SCR - Check if file is ready to be moved to next stage"
-          TopLeft="7.15001232964698,21.3647150455463" />
+          TopLeft="7.15001232964687,21.3647150455463" />
         <EdgeLayout
           Id="Package\FELC - Iterate manifests directory.PrecedenceConstraints[Constraint]"
-          TopLeft="173.550012329647,62.9647150455463">
+          TopLeft="174.150012329647,62.9647150455463">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
@@ -6891,8 +6897,8 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
         <ContainerLayout
           HeaderHeight="43"
           IsExpanded="True"
-          PanelSize="350.4,207.2"
-          Size="350.4,250.4"
+          PanelSize="350.4,188"
+          Size="350.4,231.2"
           Id="Package\FELC - Iterate manifests directory"
           TopLeft="1685.71431442183,625.788243891046" />
         <NodeLayout
@@ -6905,7 +6911,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
           TopLeft="16.1977424795822,14.3462211569289" />
         <NodeLayout
           Size="195.2,41.6"
-          Id="Package\FELC - Iterate throughout all mailing data files received to register them\SQL - Count counterpart"
+          Id="Package\FELC - Iterate throughout all mailing data files received to register them\SQL - Seek counterpart"
           TopLeft="497.600019482204,167.529416964046" />
         <NodeLayout
           Size="176,41.6"
@@ -6926,7 +6932,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
         <NodeLayout
           Size="275.2,41.6"
           Id="Package\FELC - Iterate throughout all mailing data files received to register them\SQL - Save error for already registred file"
-          TopLeft="12.3571429739194,168.423534096319" />
+          TopLeft="426.071435733717,16.7058849097128" />
         <EdgeLayout
           Id="Package\FELC - Iterate throughout all mailing data files received to register them.PrecedenceConstraints[Constraint]"
           TopLeft="190.864409146249,55.9462211569289">
@@ -6987,37 +6993,25 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
         </EdgeLayout>
         <EdgeLayout
           Id="Package\FELC - Iterate throughout all mailing data files received to register them.PrecedenceConstraints[Constraint 2]"
-          TopLeft="105.531075812916,55.9462211569289">
+          TopLeft="280.197742479582,36.3260530333209">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="44.4260671610039,112.47731293939"
+              EndConnector="145.873693254135,0"
               Start="0,0"
-              End="44.4260671610039,104.97731293939">
+              End="138.373693254135,0">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,41.3974696803561" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,41.3974696803561"
-                    Point2="0,45.3974696803561"
-                    Point3="4,45.3974696803561" />
-                  <mssgle:LineSegment
-                    End="40.4260671610039,45.3974696803561" />
-                  <mssgle:CubicBezierSegment
-                    Point1="40.4260671610039,45.3974696803561"
-                    Point2="44.4260671610039,45.3974696803561"
-                    Point3="44.4260671610039,49.3974696803561" />
-                  <mssgle:LineSegment
-                    End="44.4260671610039,104.97731293939" />
+                    End="138.373693254135,0" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="6.97168592425194,50.3974696803561,30.4826953125,9.7490234375"
+              BoundingBox="53.9454989708176,5,30.4826953125,9.7490234375"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
@@ -7171,6 +7165,40 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
+        <EdgeLayout
+          Id="Package\FELC - Iterate throughout all mailing data files received to register them.PrecedenceConstraints[Constraint 8]"
+          TopLeft="563.671435733717,58.3058849097128">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="62.7285837484866,109.223532054334"
+              Start="0,0"
+              End="62.7285837484866,101.723532054334">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,61.0013215152619" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,61.0013215152619"
+                    Point2="0,65.0013215152619"
+                    Point3="4,65.0013215152619" />
+                  <mssgle:LineSegment
+                    End="58.7285837484866,65.0013215152619" />
+                  <mssgle:CubicBezierSegment
+                    Point1="58.7285837484866,65.0013215152619"
+                    Point2="62.7285837484866,65.0013215152619"
+                    Point3="62.7285837484866,69.0013215152619" />
+                  <mssgle:LineSegment
+                    End="62.7285837484866,101.723532054334" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
         <ContainerLayout
           HeaderHeight="43"
           IsExpanded="True"
@@ -7242,7 +7270,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
         <NodeLayout
           Size="256,41.6"
           Id="Package\SQNC - Batch Initialization\SQL - Clean up cache table"
-          TopLeft="88.0653086303621,257.815129374468" />
+          TopLeft="105.20816606516,261.485717661241" />
         <NodeLayout
           Size="224,41.6"
           Id="Package\SQNC - Batch Initialization\SQL - Get last execution result"
@@ -7250,7 +7278,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
         <NodeLayout
           Size="256,41.6"
           Id="Package\SQNC - Batch Initialization\SQL - Register batch instance"
-          TopLeft="84.5190488114646,181.270407175184" />
+          TopLeft="101.661906246263,184.940995461957" />
         <NodeLayout
           Size="164.8,41.6"
           Id="Package\SQNC - Batch Initialization\SQL - Reset batch"
@@ -7291,7 +7319,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
         </EdgeLayout>
         <EdgeLayout
           Id="Package\SQNC - Batch Initialization.PrecedenceConstraints[Constraint 1]"
-          TopLeft="214.292178720913,222.870407175184">
+          TopLeft="231.435036155711,226.540995461957">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
@@ -7317,26 +7345,26 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="35.7142867879799,42.8606079867878"
+              EndConnector="52.8571442227783,46.5311962735607"
               Start="0,0"
-              End="35.7142867879799,35.3606079867878">
+              End="52.8571442227783,39.0311962735607">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,21.5566358182089" />
+                    End="0,23.745309579266" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,21.5566358182089"
-                    Point2="0,25.5566358182089"
-                    Point3="4,25.5566358182089" />
+                    Point1="0,23.745309579266"
+                    Point2="0,27.745309579266"
+                    Point3="4,27.745309579266" />
                   <mssgle:LineSegment
-                    End="31.7142867879799,25.5566358182089" />
+                    End="48.8571442227783,27.745309579266" />
                   <mssgle:CubicBezierSegment
-                    Point1="31.7142867879799,25.5566358182089"
-                    Point2="35.7142867879799,25.5566358182089"
-                    Point3="35.7142867879799,29.5566358182089" />
+                    Point1="48.8571442227783,27.745309579266"
+                    Point2="52.8571442227783,27.745309579266"
+                    Point3="52.8571442227783,31.745309579266" />
                   <mssgle:LineSegment
-                    End="35.7142867879799,35.3606079867878" />
+                    End="52.8571442227783,39.0311962735607" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -7387,69 +7415,69 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="-124.371431878148,117.982177286321"
+              EndConnector="-107.22857444335,121.652765573094"
               Start="0,0"
-              End="-124.371431878148,110.482177286321">
+              End="-107.22857444335,114.152765573094">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,55.2411438266705" />
+                    End="0,57.0842175317564" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,55.2411438266705"
-                    Point2="0,59.2411438266705"
-                    Point3="-4,59.2411438266705" />
+                    Point1="0,57.0842175317564"
+                    Point2="0,61.0842175317564"
+                    Point3="-4,61.0842175317564" />
                   <mssgle:LineSegment
-                    End="-120.371431878148,59.2411438266705" />
+                    End="-103.22857444335,61.0842175317564" />
                   <mssgle:CubicBezierSegment
-                    Point1="-120.371431878148,59.2411438266705"
-                    Point2="-124.371431878148,59.2411438266705"
-                    Point3="-124.371431878148,63.2411438266705" />
+                    Point1="-103.22857444335,61.0842175317564"
+                    Point2="-107.22857444335,61.0842175317564"
+                    Point3="-107.22857444335,65.0842175317565" />
                   <mssgle:LineSegment
-                    End="-124.371431878148,110.482177286321" />
+                    End="-107.22857444335,114.152765573094" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="-87.4901690640743,64.2411438266705,50.60890625,11.609375"
+              BoundingBox="-78.9187403466751,66.0842175317565,50.60890625,11.609375"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <ContainerLayout
           HeaderHeight="43"
           IsExpanded="True"
-          PanelSize="450.4,336"
-          Size="450.4,379.2"
+          PanelSize="450.4,356"
+          Size="450.4,399.2"
           Id="Package\SQNC - Batch Initialization"
-          TopLeft="143.619050064865,82.819029060598" />
+          TopLeft="141.333335740225,88.9366762052192" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint]"
-          TopLeft="594.019050064865,272.419029060598">
+          TopLeft="591.733335740225,288.536676205219">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="58.5523896197888,-164.748439606977"
+              EndConnector="60.8381039444289,-180.866086751598"
               Start="0,0"
-              End="51.0523896197888,-164.748439606977">
+              End="53.3381039444289,-180.866086751598">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="25.2761948098944,0" />
+                    End="26.4190519722144,0" />
                   <mssgle:CubicBezierSegment
-                    Point1="25.2761948098944,0"
-                    Point2="29.2761948098944,0"
-                    Point3="29.2761948098944,-4" />
+                    Point1="26.4190519722144,0"
+                    Point2="30.4190519722144,0"
+                    Point3="30.4190519722144,-4" />
                   <mssgle:LineSegment
-                    End="29.2761948098944,-160.748439606977" />
+                    End="30.4190519722144,-176.866086751598" />
                   <mssgle:CubicBezierSegment
-                    Point1="29.2761948098944,-160.748439606977"
-                    Point2="29.2761948098944,-164.748439606977"
-                    Point3="33.2761948098944,-164.748439606977" />
+                    Point1="30.4190519722144,-176.866086751598"
+                    Point2="30.4190519722144,-180.866086751598"
+                    Point3="34.4190519722144,-180.866086751598" />
                   <mssgle:LineSegment
-                    End="51.0523896197888,-164.748439606977" />
+                    End="53.3381039444289,-180.866086751598" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
