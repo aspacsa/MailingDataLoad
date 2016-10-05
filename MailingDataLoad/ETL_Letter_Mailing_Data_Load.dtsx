@@ -11,8 +11,8 @@
   DTS:LocaleID="1033"
   DTS:ObjectName="ETL_Letter_Mailing_Data_Load"
   DTS:PackageType="5"
-  DTS:VersionBuild="324"
-  DTS:VersionGUID="{AF89B02D-5456-46DD-A441-6927AE8B71BE}">
+  DTS:VersionBuild="326"
+  DTS:VersionGUID="{3FBBC75A-F435-443C-A99C-FADEAF083DAA}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">6</DTS:Property>
   <DTS:ConnectionManagers>
@@ -121,7 +121,7 @@
           <DTS:Password
             DTS:Name="Password"
             Sensitive="1"
-            Encrypted="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAPXQ7jZTnV0GKV9nuEcqtfwAAAAAIAAAARABUAFMAAAAQZgAAAAEAACAAAACBxDC7W/qGF9It2SQh/Eks+pxry+qtsov9p2MpK+BzVAAAAAAOgAAAAAIAACAAAAAIP/K7ZAyi9ZT9Oyk/HGCt2SWAQXNxW8CU1iVi7ADzPhAAAACQXJBi4CH1kAFNwT1NEOy1QAAAAKzJyd8tgRGsyekFLbBIXs/RhYRKceK5HAGhqFm6HafkatfABHCo4NDkGlqK7kKOo7smwBlV5yRt7HeRUiAZFY8</DTS:Password>
+            Encrypted="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAPXQ7jZTnV0GKV9nuEcqtfwAAAAAIAAAARABUAFMAAAAQZgAAAAEAACAAAAAirEXPTOgPv9dZqsP51SfvX8YTGbRJP6ygYOsOSXv+BQAAAAAOgAAAAAIAACAAAABj7PJ2xQtS9ant8RtLOvsaveLo7uGGEahP2u3qdUHIShAAAADuUxcDse3quq7iQawfRAgGQAAAAMWiCoJwvsww69kpEgw5UqP8cerI7Tbfi+HRsxhV1U5VBkgGgHa3xrizOBns5IMMJi9lB4StoVY58yUSEvzs7Ns</DTS:Password>
         </DTS:ConnectionManager>
       </DTS:ObjectData>
     </DTS:ConnectionManager>
@@ -163,7 +163,7 @@
       DTS:Namespace="User"
       DTS:ObjectName="execution_log_id">
       <DTS:VariableValue
-        DTS:DataType="3">9999255</DTS:VariableValue>
+        DTS:DataType="3">9999256</DTS:VariableValue>
     </DTS:Variable>
     <DTS:Variable
       DTS:CreationName=""
@@ -278,6 +278,25 @@
       </DTS:ForEachEnumerator>
       <DTS:Variables />
       <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\FELC - Iterate manifests directory\FST - Copy not loaded maniest"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.FileSystemTask.FileSystemTask, Microsoft.SqlServer.FileSystemTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:Description="File System Task"
+          DTS:DTSID="{22ADE73E-54D1-4D69-9232-1F67DD91C470}"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.FileSystemTask.FileSystemTask, Microsoft.SqlServer.FileSystemTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="FST - Copy not loaded maniest"
+          DTS:TaskContact="File System Task;Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <FileSystemData
+              TaskSourcePath="User::file_to_be_moved"
+              TaskIsSourceVariable="True"
+              TaskDestinationPath="User::file_path_next_stage"
+              TaskIsDestinationVariable="True" />
+          </DTS:ObjectData>
+        </DTS:Executable>
         <DTS:Executable
           DTS:refId="Package\FELC - Iterate manifests directory\FST - Move manifest files to next stage folder"
           DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.FileSystemTask.FileSystemTask, Microsoft.SqlServer.FileSystemTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
@@ -700,15 +719,15 @@ namespace ST_a9ea80740c3f46a1aa0a77f3ed026ad1
                 Encoding="UTF16LE"><![CDATA[<?xml version="1.0" encoding="UTF-16" standalone="yes"?>
 <c:Project xmlns:c="http://schemas.microsoft.com/codeprojectml/2010/08/main" xmlns:msb="http://schemas.microsoft.com/developer/msbuild/2003" runtimeVersion="3.0" schemaVersion="1.0">
 	<msb:PropertyGroup>
-		<msb:CodeName>ST_a9ea80740c3f46a1aa0a77f3ed026ad1</msb:CodeName>
 		<msb:Language>msBuild</msb:Language>
+		<msb:CodeName>ST_a9ea80740c3f46a1aa0a77f3ed026ad1</msb:CodeName>
 		<msb:DisplayName>ST_a9ea80740c3f46a1aa0a77f3ed026ad1</msb:DisplayName>
 		<msb:ProjectId>{5E5E272E-1F31-4F0B-9CCF-B78499EC2B49}</msb:ProjectId>
 	</msb:PropertyGroup>
 	<msb:ItemGroup>
 		<msb:Project Include="ST_a9ea80740c3f46a1aa0a77f3ed026ad1.csproj"/>
-		<msb:File Include="Properties\AssemblyInfo.cs"/>
 		<msb:File Include="Properties\Settings.settings"/>
+		<msb:File Include="Properties\AssemblyInfo.cs"/>
 		<msb:File Include="Properties\Resources.resx"/>
 		<msb:File Include="Properties\Resources.Designer.cs"/>
 		<msb:File Include="Properties\Settings.Designer.cs"/>
@@ -825,7 +844,7 @@ namespace ST_a9ea80740c3f46a1aa0a77f3ed026ad1.Properties {
               <BinaryItem
                 Name="ST_a9ea80740c3f46a1aa0a77f3ed026ad1.dll">TVqQAAMAAAAEAAAA//8AALgAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 AAAAgAAAAA4fug4AtAnNIbgBTM0hVGhpcyBwcm9ncmFtIGNhbm5vdCBiZSBydW4gaW4gRE9TIG1v
-ZGUuDQ0KJAAAAAAAAABQRQAATAEDALkU9VcAAAAAAAAAAOAAAiELAQsAABIAAAAIAAAAAAAA/i8A
+ZGUuDQ0KJAAAAAAAAABQRQAATAEDAFZP9VcAAAAAAAAAAOAAAiELAQsAABIAAAAIAAAAAAAA/i8A
 AAAgAAAAQAAAAAAAEAAgAAAAAgAABAAAAAAAAAAEAAAAAAAAAACAAAAAAgAAAAAAAAMAQIUAABAA
 ABAAAAAAEAAAEAAAAAAAABAAAAAAAAAAAAAAAKwvAABPAAAAAEAAAAgEAAAAAAAAAAAAAAAAAAAA
 AAAAAGAAAAwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
@@ -860,7 +879,7 @@ AXoAyQC8ARsAEQC8ARsA0QC8ARsA2QD4BJUAGQAWBZsA4QBnBaAA6QB+BaUA8QCHBasACQCRBa8A
 +QCpBbMAFAC8AcYADADjBcwA4QDqBV0AGQC8ARsACAAUAE4ACAAYAFMAKQCTAIAALgATACoBLgAb
 AFMBLgAjAFMBLgBjAHkBLgALAOIALgAzACoBLgBbAHABLgArAFMBLgA7AFkBLgBDAFMBQwBrAFMA
 SQCTAIAAYQCbAFMAgwCrAFMAwwCbAFMAdQDXAAIAAQADAAMAAABvAS8AAADuATQAAAASAkIAAgAC
-AAMAAgADAAUAAQAEAAUAAgAFAAcAuAC/AASAAAABAAAA6hf8TAAAAAAAAH8AAAAEAAAAAAAAAAAA
+AAMAAgADAAUAAQAEAAUAAgAFAAcAuAC/AASAAAABAAAA6hdLagAAAAAAAH8AAAAEAAAAAAAAAAAA
 AAABALEAAAAAAAQAAAAAAAAAAAAAAAEAugAAAAAACwAAAAAAAAAAAAAACgD1AAAAAAALAAAAAAAA
 AAAAAAAKAB4FAAAAAAAAAAABAAAA+QUAAAUABAAGAAQAAAAAAAA8TW9kdWxlPgBTVF9hOWVhODA3
 NDBjM2Y0NmExYWEwYTc3ZjNlZDAyNmFkMS5kbGwAUmVzb3VyY2VzAFNUX2E5ZWE4MDc0MGMzZjQ2
@@ -894,8 +913,8 @@ MjZhZDEuUHJvcGVydGllcy5SZXNvdXJjZXMucmVzb3VyY2VzAABxUwBUAF8AYQA5AGUAYQA4ADAA
 NwA0ADAAYwAzAGYANAA2AGEAMQBhAGEAMABhADcANwBmADMAZQBkADAAMgA2AGEAZAAxAC4AUABy
 AG8AcABlAHIAdABpAGUAcwAuAFIAZQBzAG8AdQByAGMAZQBzAAAtVQBzAGUAcgA6ADoAZgBpAGwA
 ZQBfAHQAbwBfAGIAZQBfAG0AbwB2AGUAZAAAT1UAcwBlAHIAOgA6AHIAZQBnAGkAcwB0AGUAcgBl
-AGQAXwBsAG8AYQBkAGUAZABfAGEAbgBkAF8AZgBvAHUAbgBkAF8AZgBpAGwAZQBzAAAAAADspnbg
-e/oERKsOtEmObq+5AAi3elxWGTTgiQiJhF3NgIDMkQMGEhUDBhIZAyAAAQQAABIVBAAAEhkFAAEB
+AGQAXwBsAG8AYQBkAGUAZABfAGEAbgBkAF8AZgBvAHUAbgBkAF8AZgBpAGwAZQBzAAAAAAC+D32b
+qKJ4RozSFt6cW9RUAAi3elxWGTTgiQiJhF3NgIDMkQMGEhUDBhIZAyAAAQQAABIVBAAAEhkFAAEB
 EhkECAASFQQIABIZAwYSDAQAABIMBAgAEgwCBggDBhEUBAAAAAAEAQAAAAQgAQEOBCABAQgGAAES
 URFVBCAAElkGIAIBDhJZBAcBEhUFIAEBEWEIAQACAAAAAAADAAABAgYOBCABAg4FAAICDg4EIAAS
 cQQgABJ1BSABEnkcAyAAHAMgAA4EAAEODgYVEoCBAQ4GFRKAhQEOBSACARwYCiABAhUSgIUBEwAK
@@ -915,13 +934,13 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 AAAAAAEAEAAAABgAAIAAAAAAAAAAAAAAAAAAAAEAAQAAADAAAIAAAAAAAAAAAAAAAAAAAAEAAAAA
 AEgAAABYQAAAsAMAAAAAAAAAAAAAsAM0AAAAVgBTAF8AVgBFAFIAUwBJAE8ATgBfAEkATgBGAE8A
-AAAAAL0E7/4AAAEAAAABAPxM6hcAAAEA/EzqFz8AAAAAAAAABAAAAAIAAAAAAAAAAAAAAAAAAABE
+AAAAAL0E7/4AAAEAAAABAEtq6hcAAAEAS2rqFz8AAAAAAAAABAAAAAIAAAAAAAAAAAAAAAAAAABE
 AAAAAQBWAGEAcgBGAGkAbABlAEkAbgBmAG8AAAAAACQABAAAAFQAcgBhAG4AcwBsAGEAdABpAG8A
 bgAAAAAAAACwBBADAAABAFMAdAByAGkAbgBnAEYAaQBsAGUASQBuAGYAbwAAAOwCAAABADAAMAAw
 ADAAMAA0AGIAMAAAAHAAJAABAEYAaQBsAGUARABlAHMAYwByAGkAcAB0AGkAbwBuAAAAAABTAFQA
 XwBhADkAZQBhADgAMAA3ADQAMABjADMAZgA0ADYAYQAxAGEAYQAwAGEANwA3AGYAMwBlAGQAMAAy
 ADYAYQBkADEAAABAAA8AAQBGAGkAbABlAFYAZQByAHMAaQBvAG4AAAAAADEALgAwAC4ANgAxADIA
-MgAuADEAOQA3ADAAOAAAAAAAcAAoAAEASQBuAHQAZQByAG4AYQBsAE4AYQBtAGUAAABTAFQAXwBh
+MgAuADIANwAyADEAMQAAAAAAcAAoAAEASQBuAHQAZQByAG4AYQBsAE4AYQBtAGUAAABTAFQAXwBh
 ADkAZQBhADgAMAA3ADQAMABjADMAZgA0ADYAYQAxAGEAYQAwAGEANwA3AGYAMwBlAGQAMAAyADYA
 YQBkADEALgBkAGwAbAAAAEgAEgABAEwAZQBnAGEAbABDAG8AcAB5AHIAaQBnAGgAdAAAAEMAbwBw
 AHkAcgBpAGcAaAB0ACAAQAAgACAAMgAwADEANgAAAHgAKAABAE8AcgBpAGcAaQBuAGEAbABGAGkA
@@ -929,8 +948,8 @@ bABlAG4AYQBtAGUAAABTAFQAXwBhADkAZQBhADgAMAA3ADQAMABjADMAZgA0ADYAYQAxAGEAYQAw
 AGEANwA3AGYAMwBlAGQAMAAyADYAYQBkADEALgBkAGwAbAAAAGgAJAABAFAAcgBvAGQAdQBjAHQA
 TgBhAG0AZQAAAAAAUwBUAF8AYQA5AGUAYQA4ADAANwA0ADAAYwAzAGYANAA2AGEAMQBhAGEAMABh
 ADcANwBmADMAZQBkADAAMgA2AGEAZAAxAAAARAAPAAEAUAByAG8AZAB1AGMAdABWAGUAcgBzAGkA
-bwBuAAAAMQAuADAALgA2ADEAMgAyAC4AMQA5ADcAMAA4AAAAAABIAA8AAQBBAHMAcwBlAG0AYgBs
-AHkAIABWAGUAcgBzAGkAbwBuAAAAMQAuADAALgA2ADEAMgAyAC4AMQA5ADcAMAA4AAAAAAAAAAAA
+bwBuAAAAMQAuADAALgA2ADEAMgAyAC4AMgA3ADIAMQAxAAAAAABIAA8AAQBBAHMAcwBlAG0AYgBs
+AHkAIABWAGUAcgBzAGkAbwBuAAAAMQAuADAALgA2ADEAMgAyAC4AMgA3ADIAMQAxAAAAAAAAAAAA
 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
@@ -962,6 +981,15 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==</BinaryItem>
           DTS:LogicalAnd="True"
           DTS:ObjectName="Constraint"
           DTS:To="Package\FELC - Iterate manifests directory\FST - Move manifest files to next stage folder" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\FELC - Iterate manifests directory.PrecedenceConstraints[Constraint 1]"
+          DTS:CreationName=""
+          DTS:DTSID="{ADB55F7B-6809-4B9E-B727-E16EC92C1AE0}"
+          DTS:From="Package\FELC - Iterate manifests directory\SCR - Check if file is ready to be moved to next stage"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 1"
+          DTS:To="Package\FELC - Iterate manifests directory\FST - Copy not loaded maniest"
+          DTS:Value="1" />
       </DTS:PrecedenceConstraints>
       <DTS:ForEachVariableMappings>
         <DTS:ForEachVariableMapping
@@ -6869,12 +6897,12 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
           Id="Package\FELC - Iterate manifests directory\FST - Move manifest files to next stage folder"
           TopLeft="7.15001232964698,110.723530887485" />
         <NodeLayout
-          Size="335.2,41.6"
+          Size="332.8,41.6"
           Id="Package\FELC - Iterate manifests directory\SCR - Check if file is ready to be moved to next stage"
           TopLeft="7.15001232964687,21.3647150455463" />
         <EdgeLayout
           Id="Package\FELC - Iterate manifests directory.PrecedenceConstraints[Constraint]"
-          TopLeft="174.150012329647,62.9647150455463">
+          TopLeft="173.550012329647,62.9647150455463">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
@@ -6894,13 +6922,41 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
             <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
+        <NodeLayout
+          Size="225.6,41.6"
+          Id="Package\FELC - Iterate manifests directory\FST - Copy not loaded maniest"
+          TopLeft="405.371459984294,22.5882430159096" />
+        <EdgeLayout
+          Id="Package\FELC - Iterate manifests directory.PrecedenceConstraints[Constraint 1]"
+          TopLeft="339.950012329647,42.7764790307279">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="65.4214476546468,0"
+              Start="0,0"
+              End="57.9214476546468,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="57.9214476546468,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="13.7193761710734,5,30.4826953125,9.7490234375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
         <ContainerLayout
           HeaderHeight="43"
           IsExpanded="True"
-          PanelSize="350.4,188"
-          Size="350.4,231.2"
+          PanelSize="636,207.2"
+          Size="636,250.4"
           Id="Package\FELC - Iterate manifests directory"
-          TopLeft="1685.71431442183,625.788243891046" />
+          TopLeft="1668.34287487342,638.023538180288" />
         <NodeLayout
           Size="192,41.6"
           Id="Package\FELC - Iterate throughout all mailing data files received to register them\SCR - Check counterpart match"
@@ -7726,26 +7782,26 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="-302.628558271757,54.4000011668479"
+              EndConnector="-177.199997820172,66.6352954560905"
               Start="0,0"
-              End="-302.628558271757,46.9000011668479">
+              End="-177.199997820172,59.1352954560905">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,23.200000583424" />
+                    End="0,29.3176477280452" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,23.200000583424"
-                    Point2="0,27.200000583424"
-                    Point3="-4,27.200000583424" />
+                    Point1="0,29.3176477280452"
+                    Point2="0,33.3176477280452"
+                    Point3="-4,33.3176477280452" />
                   <mssgle:LineSegment
-                    End="-298.628558271757,27.200000583424" />
+                    End="-173.199997820172,33.3176477280452" />
                   <mssgle:CubicBezierSegment
-                    Point1="-298.628558271757,27.200000583424"
-                    Point2="-302.628558271757,27.200000583424"
-                    Point3="-302.628558271757,31.200000583424" />
+                    Point1="-173.199997820172,33.3176477280452"
+                    Point2="-177.199997820172,33.3176477280452"
+                    Point3="-177.199997820172,37.3176477280452" />
                   <mssgle:LineSegment
-                    End="-302.628558271757,46.9000011668479" />
+                    End="-177.199997820172,59.1352954560905" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
