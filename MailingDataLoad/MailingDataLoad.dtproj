@@ -26,7 +26,7 @@
           <SSIS:Property SSIS:Name="CreatorComputerName">WINDOWSDEV</SSIS:Property>
           <SSIS:Property SSIS:Name="Description">
           </SSIS:Property>
-          <SSIS:Property SSIS:Name="PasswordVerifier" SSIS:Sensitive="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAPXQ7jZTnV0GKV9nuEcqtfwAAAAACAAAAAAAQZgAAAAEAACAAAACniVHsbiuqIOBMmaDW7LciuGpqrG0BW76+wbLyeYJv7QAAAAAOgAAAAAIAACAAAADjrjOdTJxljWXXc4K6uP/w6UwB5Sj/NnPC14UWjqPx6pAAAACHJfcoLMxD3Hw84GKMcekkcl9x7NsEhuPVrwBOSSQYUwPfmP2383dVaLvhjR3J02F6ih+VQ6jdq+TXyHoQqNzXzBMn3m/uIkv0RYcuz353MjwMsA9dg84JZ8xD3nmacho7fyaK6bmRU+sac3Rq5vrQeSsZTk0tmOq9efs0J/j/hWBaUY2bVSL1P+LOfPFMggxAAAAA7o9pLm12vHyRkqSunrBojvqXf4adzvT7XCabIuKnY7mQjvi1JF/C6joATp0TT72enhaWTlxZ/X8DxtGGY7/ewg==</SSIS:Property>
+          <SSIS:Property SSIS:Name="PasswordVerifier" SSIS:Sensitive="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAPXQ7jZTnV0GKV9nuEcqtfwAAAAACAAAAAAAQZgAAAAEAACAAAAAppruljhpSSE2JDYR4R1X6jfKBOo5W7k2MDdFX7796ywAAAAAOgAAAAAIAACAAAACgXNPhkLOGo94HlYIHjpatoJkKlhZ4jxOw2F7IthQpsZAAAABz+w27ix23ghIa5ApTPImrec7dypqinpT5ta2/DZiqpEZJbIZkIWo7LDOcQvfyTw6v1KDHUR2h1/7hRz77Vn3HO1wFY+y7vPCs3gWC2jtdcnxuxnXDaODdFJ3k2hT8B4lfGdB5lqpC4tIHB+uNVrEkzP/9hoYJhsCODwF/YMyevvQgQwXNpZeq0VGd2a6Ec3JAAAAANn7mTLJ4gMCpZD1I6tEMyoYGaTMNfXbbdDVVAKILlM0D/mZn8u35+JWoFDlRocqShAUe63iuzjB9iEv4Vv0hpg==</SSIS:Property>
           <SSIS:Property SSIS:Name="FormatVersion">1</SSIS:Property>
         </SSIS:Properties>
         <SSIS:Packages>
@@ -43,16 +43,29 @@
                 <SSIS:Property SSIS:Name="Name">ETL_Letter_Mailing_Data_Load</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMajor">1</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMinor">0</SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionBuild">255</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionBuild">358</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionComments">
                 </SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionGUID">{D844D058-7243-413B-8F32-AB698D61E152}</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionGUID">{D3878C97-4547-4625-9143-4A0A138F28F9}</SSIS:Property>
                 <SSIS:Property SSIS:Name="PackageFormatVersion">6</SSIS:Property>
                 <SSIS:Property SSIS:Name="Description">
                 </SSIS:Property>
                 <SSIS:Property SSIS:Name="ProtectionLevel">1</SSIS:Property>
               </SSIS:Properties>
               <SSIS:Parameters>
+                <SSIS:Parameter SSIS:Name="limit_loading_errors">
+                  <SSIS:Properties>
+                    <SSIS:Property SSIS:Name="ID">{1F0B400A-950B-48C6-BCC5-8CAD21E70E07}</SSIS:Property>
+                    <SSIS:Property SSIS:Name="CreationName">
+                    </SSIS:Property>
+                    <SSIS:Property SSIS:Name="Description">Determine the amount of errors allowed when loading mailing data.</SSIS:Property>
+                    <SSIS:Property SSIS:Name="IncludeInDebugDump">0</SSIS:Property>
+                    <SSIS:Property SSIS:Name="Required">0</SSIS:Property>
+                    <SSIS:Property SSIS:Name="Sensitive">0</SSIS:Property>
+                    <SSIS:Property SSIS:Name="Value">10</SSIS:Property>
+                    <SSIS:Property SSIS:Name="DataType">9</SSIS:Property>
+                  </SSIS:Properties>
+                </SSIS:Parameter>
                 <SSIS:Parameter SSIS:Name="CM.Flat File Connection Manager.AlwaysCheckForRowDelimiters">
                   <SSIS:Properties>
                     <SSIS:Property SSIS:Name="ID">
