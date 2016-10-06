@@ -11,8 +11,8 @@
   DTS:LocaleID="1033"
   DTS:ObjectName="ETL_Letter_Mailing_Data_Load"
   DTS:PackageType="5"
-  DTS:VersionBuild="357"
-  DTS:VersionGUID="{E5888BD5-EFE3-4BB5-8CC9-5EB373EE2265}">
+  DTS:VersionBuild="369"
+  DTS:VersionGUID="{35CB016B-A60E-4E7A-8CBD-9C4CE09A9C4D}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">6</DTS:Property>
   <DTS:ConnectionManagers>
@@ -121,7 +121,7 @@
           <DTS:Password
             DTS:Name="Password"
             Sensitive="1"
-            Encrypted="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAPXQ7jZTnV0GKV9nuEcqtfwAAAAAIAAAARABUAFMAAAAQZgAAAAEAACAAAAAz1eFctPlG4ZvgjjQe5GqmPZqKqNvql1CUzGeFKiE7PgAAAAAOgAAAAAIAACAAAACiCouEbTwA3UVEUjc/dUQS60A17ySETj9k+qrD39wbExAAAADpfQHFe9DzBNCzrT40KE47QAAAAIG1uNsPMARY1cs2n/l9mgOAQNZUpNtUQpVptt94wUmXpxnWUg84BA/bMw+uqHjTzaz6sdkgeU6C4Ny4f3oRC9U</DTS:Password>
+            Encrypted="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAPXQ7jZTnV0GKV9nuEcqtfwAAAAAIAAAARABUAFMAAAAQZgAAAAEAACAAAACu3FM4Q/MKgaYNtTitcKxcDWPHVE1b49sQdrtdrvQuuAAAAAAOgAAAAAIAACAAAAACsplAfKkKNBWwu0sROyGXJcxMX30fNV64WzjmzeB0MhAAAADb+WX+LIygG92kf3UVPMcyQAAAAH6HxFC020SG2c1ko5TV/AxWdzoWF/r0RzR7j2E1NxHp9bUS1in6eJg56q88urf0OGEyHqFvsN4/KX7Ey90SbNA</DTS:Password>
         </DTS:ConnectionManager>
       </DTS:ObjectData>
     </DTS:ConnectionManager>
@@ -135,7 +135,7 @@
       DTS:ObjectName="limit_loading_errors">
       <DTS:Property
         DTS:DataType="3"
-        DTS:Name="ParameterValue">1</DTS:Property>
+        DTS:Name="ParameterValue">10</DTS:Property>
     </DTS:PackageParameter>
   </DTS:PackageParameters>
   <DTS:Variables>
@@ -175,7 +175,16 @@
       DTS:Namespace="User"
       DTS:ObjectName="execution_log_id">
       <DTS:VariableValue
-        DTS:DataType="3">9999264</DTS:VariableValue>
+        DTS:DataType="3">9999266</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{28DF282C-3D7F-4C9E-B91E-5DD535B57B17}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="file_id">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
     </DTS:Variable>
     <DTS:Variable
       DTS:CreationName=""
@@ -2469,7 +2478,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA</BinaryItem>
           DTS:LocaleID="-1"
           DTS:ObjectName="SQL - Register new mailing data file"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="1">
+          DTS:ThreadHint="0">
           <DTS:Variables />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
@@ -2525,7 +2534,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA</BinaryItem>
           DTS:LocaleID="-1"
           DTS:ObjectName="SQL - Save error for already registred file"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="0">
+          DTS:ThreadHint="1">
           <DTS:Variables />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
@@ -3077,6 +3086,79 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA</BinaryItem>
                   </outputs>
                 </component>
                 <component
+                  refId="Package\FELC - Traverse filenames collection to load its contecnt into the cache\DFT - Load mailing data into cache\DER - Add parent file ID"
+                  componentClassID="{49928E82-9C4E-49F0-AABE-3812B82707EC}"
+                  contactInfo="Derived Column;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+                  description="Creates new column values by applying expressions to transformation input columns. Create new columns or overwrite existing ones. For example, concatenate the values from the 'first name' and 'last name' column to make a 'full name' column."
+                  name="DER - Add parent file ID"
+                  usesDispositions="true">
+                  <inputs>
+                    <input
+                      refId="Package\FELC - Traverse filenames collection to load its contecnt into the cache\DFT - Load mailing data into cache\DER - Add parent file ID.Inputs[Derived Column Input]"
+                      description="Input to the Derived Column Transformation"
+                      name="Derived Column Input">
+                      <externalMetadataColumns />
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\FELC - Traverse filenames collection to load its contecnt into the cache\DFT - Load mailing data into cache\DER - Add parent file ID.Outputs[Derived Column Output]"
+                      description="Default Output of the Derived Column Transformation"
+                      exclusionGroup="1"
+                      name="Derived Column Output"
+                      synchronousInputId="Package\FELC - Traverse filenames collection to load its contecnt into the cache\DFT - Load mailing data into cache\DER - Add parent file ID.Inputs[Derived Column Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\FELC - Traverse filenames collection to load its contecnt into the cache\DFT - Load mailing data into cache\DER - Add parent file ID.Outputs[Derived Column Output].Columns[ParentID]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Computation"
+                          errorRowDisposition="FailComponent"
+                          lineageId="Package\FELC - Traverse filenames collection to load its contecnt into the cache\DFT - Load mailing data into cache\DER - Add parent file ID.Outputs[Derived Column Output].Columns[ParentID]"
+                          name="ParentID"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Expression"
+                              name="Expression">@[User::file_id]</property>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Friendly Expression"
+                              expressionType="Notify"
+                              name="FriendlyExpression">@[User::file_id]</property>
+                          </properties>
+                        </outputColumn>
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                    <output
+                      refId="Package\FELC - Traverse filenames collection to load its contecnt into the cache\DFT - Load mailing data into cache\DER - Add parent file ID.Outputs[Derived Column Error Output]"
+                      description="Error Output of the Derived Column Transformation"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="Derived Column Error Output"
+                      synchronousInputId="Package\FELC - Traverse filenames collection to load its contecnt into the cache\DFT - Load mailing data into cache\DER - Add parent file ID.Inputs[Derived Column Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\FELC - Traverse filenames collection to load its contecnt into the cache\DFT - Load mailing data into cache\DER - Add parent file ID.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\FELC - Traverse filenames collection to load its contecnt into the cache\DFT - Load mailing data into cache\DER - Add parent file ID.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\FELC - Traverse filenames collection to load its contecnt into the cache\DFT - Load mailing data into cache\DER - Add parent file ID.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\FELC - Traverse filenames collection to load its contecnt into the cache\DFT - Load mailing data into cache\DER - Add parent file ID.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
                   refId="Package\FELC - Traverse filenames collection to load its contecnt into the cache\DFT - Load mailing data into cache\FF_SRC - Read mailing data file"
                   componentClassID="{D23FD76B-F51D-420F-BBCB-19CBF6AC1AB4}"
                   contactInfo="Flat File Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
@@ -3351,6 +3433,12 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA</BinaryItem>
                           cachedName="Fulfillment_Time"
                           externalMetadataColumnId="Package\FELC - Traverse filenames collection to load its contecnt into the cache\DFT - Load mailing data into cache\OLE_DST - Load mailing data to cache.Inputs[OLE DB Destination Input].ExternalColumns[Mailing_Date]"
                           lineageId="Package\FELC - Traverse filenames collection to load its contecnt into the cache\DFT - Load mailing data into cache\FF_SRC - Read mailing data file.Outputs[Flat File Source Output].Columns[Fulfillment_Time]" />
+                        <inputColumn
+                          refId="Package\FELC - Traverse filenames collection to load its contecnt into the cache\DFT - Load mailing data into cache\OLE_DST - Load mailing data to cache.Inputs[OLE DB Destination Input].Columns[ParentID]"
+                          cachedDataType="i4"
+                          cachedName="ParentID"
+                          externalMetadataColumnId="Package\FELC - Traverse filenames collection to load its contecnt into the cache\DFT - Load mailing data into cache\OLE_DST - Load mailing data to cache.Inputs[OLE DB Destination Input].ExternalColumns[ParentID]"
+                          lineageId="Package\FELC - Traverse filenames collection to load its contecnt into the cache\DFT - Load mailing data into cache\DER - Add parent file ID.Outputs[Derived Column Output].Columns[ParentID]" />
                       </inputColumns>
                       <externalMetadataColumns
                         isUsed="True">
@@ -3372,6 +3460,10 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA</BinaryItem>
                           dataType="str"
                           length="14"
                           name="Mailing_Date" />
+                        <externalMetadataColumn
+                          refId="Package\FELC - Traverse filenames collection to load its contecnt into the cache\DFT - Load mailing data into cache\OLE_DST - Load mailing data to cache.Inputs[OLE DB Destination Input].ExternalColumns[ParentID]"
+                          dataType="i4"
+                          name="ParentID" />
                       </externalMetadataColumns>
                     </input>
                   </inputs>
@@ -3726,7 +3818,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA</BinaryItem>
               <paths>
                 <path
                   refId="Package\FELC - Traverse filenames collection to load its contecnt into the cache\DFT - Load mailing data into cache.Paths[Correct Mailing Date Length]"
-                  endId="Package\FELC - Traverse filenames collection to load its contecnt into the cache\DFT - Load mailing data into cache\OLE_DST - Load mailing data to cache.Inputs[OLE DB Destination Input]"
+                  endId="Package\FELC - Traverse filenames collection to load its contecnt into the cache\DFT - Load mailing data into cache\DER - Add parent file ID.Inputs[Derived Column Input]"
                   name="Correct Mailing Date Length"
                   startId="Package\FELC - Traverse filenames collection to load its contecnt into the cache\DFT - Load mailing data into cache\CSPL - Check length of incoming mailing date value.Outputs[Correct Mailing Date Length]" />
                 <path
@@ -3739,6 +3831,11 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA</BinaryItem>
                   endId="Package\FELC - Traverse filenames collection to load its contecnt into the cache\DFT - Load mailing data into cache\OLE_DST - Save mailing data 'wrong length' exception.Inputs[OLE DB Destination Input]"
                   name="Derived Column Output"
                   startId="Package\FELC - Traverse filenames collection to load its contecnt into the cache\DFT - Load mailing data into cache\DER - Add length exception description.Outputs[Derived Column Output]" />
+                <path
+                  refId="Package\FELC - Traverse filenames collection to load its contecnt into the cache\DFT - Load mailing data into cache.Paths[Derived Column Output2]"
+                  endId="Package\FELC - Traverse filenames collection to load its contecnt into the cache\DFT - Load mailing data into cache\OLE_DST - Load mailing data to cache.Inputs[OLE DB Destination Input]"
+                  name="Derived Column Output"
+                  startId="Package\FELC - Traverse filenames collection to load its contecnt into the cache\DFT - Load mailing data into cache\DER - Add parent file ID.Outputs[Derived Column Output]" />
                 <path
                   refId="Package\FELC - Traverse filenames collection to load its contecnt into the cache\DFT - Load mailing data into cache.Paths[Empty Fields]"
                   endId="Package\FELC - Traverse filenames collection to load its contecnt into the cache\DFT - Load mailing data into cache\DER - Add empty exception description.Inputs[Derived Column Input]"
@@ -3771,7 +3868,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA</BinaryItem>
           DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ScriptTask.ScriptTask, Microsoft.SqlServer.ScriptTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
           DTS:LocaleID="-1"
           DTS:ObjectName="SCR - Check if error limit reached"
-          DTS:ThreadHint="0">
+          DTS:ThreadHint="1">
           <DTS:Variables />
           <DTS:ObjectData>
             <ScriptProject
@@ -4395,7 +4492,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
           DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ScriptTask.ScriptTask, Microsoft.SqlServer.ScriptTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
           DTS:LocaleID="-1"
           DTS:ObjectName="SCR - Get load exception"
-          DTS:ThreadHint="0">
+          DTS:ThreadHint="1">
           <DTS:Variables />
           <DTS:ObjectData>
             <ScriptProject
@@ -5009,6 +5106,34 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
           </DTS:ObjectData>
         </DTS:Executable>
         <DTS:Executable
+          DTS:refId="Package\FELC - Traverse filenames collection to load its contecnt into the cache\SQL - Get file id"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{5D4E293F-C984-472F-93CE-DF54624B1D4C}"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="SQL - Get file id"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{879CBFE3-8828-45E8-BB2C-3F9D632D4E68}"
+              SQLTask:SqlStatementSource="SELECT&#xA;  ID AS ParentID&#xA;FROM &#xA;  MEdhok.Mailing_Data_File&#xA;WHERE&#xA;  FileName = ?;"
+              SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ResultBinding
+                SQLTask:ResultName="ParentID"
+                SQLTask:DtsVariableName="User::file_id" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="0"
+                SQLTask:DtsVariableName="User::file_name"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="129"
+                SQLTask:ParameterSize="-1" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
           DTS:refId="Package\FELC - Traverse filenames collection to load its contecnt into the cache\SQL - Register mismatch exception when loading"
           DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
           DTS:Description="Execute SQL Task"
@@ -5017,7 +5142,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
           DTS:LocaleID="-1"
           DTS:ObjectName="SQL - Register mismatch exception when loading"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="0">
+          DTS:ThreadHint="1">
           <DTS:Variables />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
@@ -5048,7 +5173,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
           DTS:LocaleID="-1"
           DTS:ObjectName="SQL - Update loaded status for file"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="1">
+          DTS:ThreadHint="0">
           <DTS:Variables />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
@@ -5100,6 +5225,14 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
           DTS:ObjectName="Constraint 3"
           DTS:To="Package\FELC - Traverse filenames collection to load its contecnt into the cache\SCR - Check if error limit reached"
           DTS:Value="2" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\FELC - Traverse filenames collection to load its contecnt into the cache.PrecedenceConstraints[Constraint 4]"
+          DTS:CreationName=""
+          DTS:DTSID="{B6880E1C-22BA-4D44-807E-01E3BE5FFB91}"
+          DTS:From="Package\FELC - Traverse filenames collection to load its contecnt into the cache\SQL - Get file id"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 4"
+          DTS:To="Package\FELC - Traverse filenames collection to load its contecnt into the cache\DFT - Load mailing data into cache" />
       </DTS:PrecedenceConstraints>
       <DTS:ForEachVariableMappings>
         <DTS:ForEachVariableMapping
@@ -7111,13 +7244,13 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==</BinaryItem>
       </DTS:ObjectData>
     </DTS:Executable>
     <DTS:Executable
-      DTS:refId="Package\SCR - Update registered not-loaded list"
+      DTS:refId="Package\SCR - Update registered, not-loaded and counterpatrt found list"
       DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ScriptTask.ScriptTask, Microsoft.SqlServer.ScriptTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
       DTS:Description="Script Task"
       DTS:DTSID="{41ACAC4E-8287-414B-94B8-695BC8DE640C}"
       DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ScriptTask.ScriptTask, Microsoft.SqlServer.ScriptTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
       DTS:LocaleID="-1"
-      DTS:ObjectName="SCR - Update registered not-loaded list"
+      DTS:ObjectName="SCR - Update registered, not-loaded and counterpatrt found list"
       DTS:ThreadHint="0">
       <DTS:Variables />
       <DTS:ObjectData>
@@ -7470,19 +7603,19 @@ namespace ST_3307461932e44a03b609c11708fbb74b
             Encoding="UTF16LE"><![CDATA[<?xml version="1.0" encoding="UTF-16" standalone="yes"?>
 <c:Project xmlns:c="http://schemas.microsoft.com/codeprojectml/2010/08/main" xmlns:msb="http://schemas.microsoft.com/developer/msbuild/2003" runtimeVersion="3.0" schemaVersion="1.0">
 	<msb:PropertyGroup>
-		<msb:CodeName>ST_3307461932e44a03b609c11708fbb74b</msb:CodeName>
 		<msb:Language>msBuild</msb:Language>
+		<msb:CodeName>ST_3307461932e44a03b609c11708fbb74b</msb:CodeName>
 		<msb:DisplayName>ST_3307461932e44a03b609c11708fbb74b</msb:DisplayName>
 		<msb:ProjectId>{9ACD1694-9CD2-4842-833F-02B31EF365E0}</msb:ProjectId>
 	</msb:PropertyGroup>
 	<msb:ItemGroup>
 		<msb:Project Include="ST_3307461932e44a03b609c11708fbb74b.csproj"/>
-		<msb:File Include="Properties\AssemblyInfo.cs"/>
 		<msb:File Include="Properties\Settings.settings"/>
+		<msb:File Include="Properties\AssemblyInfo.cs"/>
 		<msb:File Include="Properties\Resources.resx"/>
-		<msb:File Include="MailingFile.cs"/>
-		<msb:File Include="MedhokDataContext.cs"/>
 		<msb:File Include="Properties\Resources.Designer.cs"/>
+		<msb:File Include="MedhokDataContext.cs"/>
+		<msb:File Include="MailingFile.cs"/>
 		<msb:File Include="Properties\Settings.Designer.cs"/>
 		<msb:File Include="ScriptMain.cs"/>
 	</msb:ItemGroup>
@@ -7675,7 +7808,7 @@ namespace ST_3307461932e44a03b609c11708fbb74b.Properties {
           <BinaryItem
             Name="ST_3307461932e44a03b609c11708fbb74b.dll">TVqQAAMAAAAEAAAA//8AALgAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 AAAAgAAAAA4fug4AtAnNIbgBTM0hVGhpcyBwcm9ncmFtIGNhbm5vdCBiZSBydW4gaW4gRE9TIG1v
-ZGUuDQ0KJAAAAAAAAABQRQAATAEDAK1P9lcAAAAAAAAAAOAAAiELAQsAABgAAAAIAAAAAAAAXjYA
+ZGUuDQ0KJAAAAAAAAABQRQAATAEDANig9lcAAAAAAAAAAOAAAiELAQsAABgAAAAIAAAAAAAAXjYA
 AAAgAAAAQAAAAAAAEAAgAAAAAgAABAAAAAAAAAAEAAAAAAAAAACAAAAAAgAAAAAAAAMAQIUAABAA
 ABAAAAAAEAAAEAAAAAAAABAAAAAAAAAAAAAAABA2AABLAAAAAEAAAAgEAAAAAAAAAAAAAAAAAAAA
 AAAAAGAAAAwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
@@ -7721,7 +7854,7 @@ mAGZARUIHAChASUI6wCpATgIngH5AD8IawAhAMkBHAAIACwAYQAIADAAZgAhAHMAlQApAKsAyAAu
 AFsAWwIuABsAPgIuAGMAZAIuAAsAzQEuABMAFQIuACsAPgIuACMAPgIuADMAFQIuADsARAIuAEMA
 PgJBAHMAZgBDAGsAcABJAKsAyABhAHMAZgCBAHMAZgCDAIsAZgChAHMAZgDDAMMAZgAhAbMAZgC9
 AKUBBAABAAUAAwAAAPUBRQAAAG4CSgAAAJICWAACAAQAAwACAAUABQABAAYABQACAAcABwBjAWoB
-fAEEgAAAAQAAAOsXtkEAAAAAAAA+AAAABAAAAAAAAAAAAAAAAQDPAAAAAAAEAAAAAAAAAAAAAAAB
+fAEEgAAAAQAAAOsXTGoAAAAAAAA+AAAABAAAAAAAAAAAAAAAAQDPAAAAAAAEAAAAAAAAAAAAAAAB
 AOYAAAAAAAQAAAAAAAAAAAAAAAEA2AAAAAAACwAAAAAAAAAAAAAACgAwAQAAAAALAAAAAAAAAAAA
 AAAKAKEFAAAAAAQAAAAAAAAAAAAAAAEAHQYAAAAABAAAAAAAAAAAAAAAAQDaBwAAAAAAAAAAAQAA
 AE4IAAAHAAYASQA0AUsAXgEAAAAAADxNb2R1bGU+AFNUXzMzMDc0NjE5MzJlNDRhMDNiNjA5YzEx
@@ -7769,7 +7902,7 @@ ZQByADoAOgBjAG8AbgBuAGUAYwB0AGkAbwBuAF8AcwB0AHIAaQBuAGcAAANtAABDVQBzAGUAcgA6
 ADoAcgBlAGcAaQBzAHQAZQByAGUAZABfAG4AbwB0AF8AbABvAGEAZABlAGQAXwBmAGkAbABlAHMA
 ACFTAHkAcwB0AGUAbQA6ADoAVABhAHMAawBOAGEAbQBlAAAvVQBzAGUAcgA6ADoAZQB4AGMAZQBw
 AHQAaQBvAG4AXwBtAGUAcwBzAGEAZwBlAAA5VABhAHMAawAgADoAIABbAHsAMAB9AF0AOwAgAE0A
-ZQBzAHMAYQBnAGUAOgAgAFsAewAxAH0AXQAAAKJiqnEMnBdKgdNp6jJFG98ACLd6XFYZNOCJCImE
+ZQBzAHMAYQBnAGUAOgAgAFsAewAxAH0AXQAAAIeavcMCPeVJhZMjtVXqMBIACLd6XFYZNOCJCImE
 Xc2AgMyRAgYIAgYOAgYCAyAAAQcGFRIZARIIBCABAQ4DBhIdAwYSIQQAABIdBAAAEiEFAAEBEiEE
 CAASHQQIABIhAwYSFAQAABIUBAgAEhQDBhEcBAAAAAAEAQAAAAQgAQEIJAEAAQBUDgROYW1lGE1l
 ZGhvay5NYWlsaW5nX0RhdGFfRmlsZRQBAAEAVAIMSXNQcmltYXJ5S2V5AQYAARJhEWUEIAASaQYg
@@ -7792,13 +7925,13 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 AAEAEAAAABgAAIAAAAAAAAAAAAAAAAAAAAEAAQAAADAAAIAAAAAAAAAAAAAAAAAAAAEAAAAAAEgA
 AABYQAAAsAMAAAAAAAAAAAAAsAM0AAAAVgBTAF8AVgBFAFIAUwBJAE8ATgBfAEkATgBGAE8AAAAA
-AL0E7/4AAAEAAAABALZB6xcAAAEAtkHrFz8AAAAAAAAABAAAAAIAAAAAAAAAAAAAAAAAAABEAAAA
+AL0E7/4AAAEAAAABAExq6xcAAAEATGrrFz8AAAAAAAAABAAAAAIAAAAAAAAAAAAAAAAAAABEAAAA
 AQBWAGEAcgBGAGkAbABlAEkAbgBmAG8AAAAAACQABAAAAFQAcgBhAG4AcwBsAGEAdABpAG8AbgAA
 AAAAAACwBBADAAABAFMAdAByAGkAbgBnAEYAaQBsAGUASQBuAGYAbwAAAOwCAAABADAAMAAwADAA
 MAA0AGIAMAAAAHAAJAABAEYAaQBsAGUARABlAHMAYwByAGkAcAB0AGkAbwBuAAAAAABTAFQAXwAz
 ADMAMAA3ADQANgAxADkAMwAyAGUANAA0AGEAMAAzAGIANgAwADkAYwAxADEANwAwADgAZgBiAGIA
 NwA0AGIAAABAAA8AAQBGAGkAbABlAFYAZQByAHMAaQBvAG4AAAAAADEALgAwAC4ANgAxADIAMwAu
-ADEANgA4ADIAMgAAAAAAcAAoAAEASQBuAHQAZQByAG4AYQBsAE4AYQBtAGUAAABTAFQAXwAzADMA
+ADIANwAyADEAMgAAAAAAcAAoAAEASQBuAHQAZQByAG4AYQBsAE4AYQBtAGUAAABTAFQAXwAzADMA
 MAA3ADQANgAxADkAMwAyAGUANAA0AGEAMAAzAGIANgAwADkAYwAxADEANwAwADgAZgBiAGIANwA0
 AGIALgBkAGwAbAAAAEgAEgABAEwAZQBnAGEAbABDAG8AcAB5AHIAaQBnAGgAdAAAAEMAbwBwAHkA
 cgBpAGcAaAB0ACAAQAAgACAAMgAwADEANgAAAHgAKAABAE8AcgBpAGcAaQBuAGEAbABGAGkAbABl
@@ -7806,8 +7939,8 @@ AG4AYQBtAGUAAABTAFQAXwAzADMAMAA3ADQANgAxADkAMwAyAGUANAA0AGEAMAAzAGIANgAwADkA
 YwAxADEANwAwADgAZgBiAGIANwA0AGIALgBkAGwAbAAAAGgAJAABAFAAcgBvAGQAdQBjAHQATgBh
 AG0AZQAAAAAAUwBUAF8AMwAzADAANwA0ADYAMQA5ADMAMgBlADQANABhADAAMwBiADYAMAA5AGMA
 MQAxADcAMAA4AGYAYgBiADcANABiAAAARAAPAAEAUAByAG8AZAB1AGMAdABWAGUAcgBzAGkAbwBu
-AAAAMQAuADAALgA2ADEAMgAzAC4AMQA2ADgAMgAyAAAAAABIAA8AAQBBAHMAcwBlAG0AYgBsAHkA
-IABWAGUAcgBzAGkAbwBuAAAAMQAuADAALgA2ADEAMgAzAC4AMQA2ADgAMgAyAAAAAAAAAAAAAAAA
+AAAAMQAuADAALgA2ADEAMgAzAC4AMgA3ADIAMQAyAAAAAABIAA8AAQBBAHMAcwBlAG0AYgBsAHkA
+IABWAGUAcgBzAGkAbwBuAAAAMQAuADAALgA2ADEAMgAzAC4AMgA3ADIAMQAyAAAAAAAAAAAAAAAA
 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
@@ -7955,35 +8088,14 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==</BinaryItem>
               Language="CSharp"
               ReadOnlyVariables="User::last_batch_execution_successful">
               <ProjectItem
-                Name="Properties\AssemblyInfo.cs"
-                Encoding="UTF8"><![CDATA[using System.Reflection;
-using System.Runtime.CompilerServices;
-
-//
-// General Information about an assembly is controlled through the following 
-// set of attributes. Change these attribute values to modify the information
-// associated with an assembly.
-//
-[assembly: AssemblyTitle("ST_ef037507a7b34a4990062b7be3fbcba2")]
-[assembly: AssemblyDescription("")]
-[assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("ST_ef037507a7b34a4990062b7be3fbcba2")]
-[assembly: AssemblyCopyright("Copyright @  2016")]
-[assembly: AssemblyTrademark("")]
-[assembly: AssemblyCulture("")]
-//
-// Version information for an assembly consists of the following four values:
-//
-//      Major Version
-//      Minor Version 
-//      Build Number
-//      Revision
-//
-// You can specify all the values or you can default the Revision and Build Numbers 
-// by using the '*' as shown below:
-
-[assembly: AssemblyVersion("1.0.*")]]]></ProjectItem>
+                Name="Properties\Settings.settings"
+                Encoding="UTF8"><![CDATA[<?xml version='1.0' encoding='iso-8859-1'?>
+<SettingsFile xmlns="uri:settings" CurrentProfile="(Default)">
+  <Profiles>
+    <Profile Name="(Default)" />
+  </Profiles>
+  <Settings />
+</SettingsFile>]]></ProjectItem>
               <ProjectItem
                 Name="Properties\Resources.resx"
                 Encoding="UTF8"><![CDATA[<?xml version="1.0" encoding="utf-8"?>
@@ -8231,15 +8343,15 @@ namespace ST_ef037507a7b34a4990062b7be3fbcba2
                 Encoding="UTF16LE"><![CDATA[<?xml version="1.0" encoding="UTF-16" standalone="yes"?>
 <c:Project xmlns:c="http://schemas.microsoft.com/codeprojectml/2010/08/main" xmlns:msb="http://schemas.microsoft.com/developer/msbuild/2003" runtimeVersion="3.0" schemaVersion="1.0">
 	<msb:PropertyGroup>
-		<msb:Language>msBuild</msb:Language>
 		<msb:CodeName>ST_ef037507a7b34a4990062b7be3fbcba2</msb:CodeName>
+		<msb:Language>msBuild</msb:Language>
 		<msb:DisplayName>ST_ef037507a7b34a4990062b7be3fbcba2</msb:DisplayName>
 		<msb:ProjectId>{EDBF4F45-219F-4E25-8458-2E95DE2F03F2}</msb:ProjectId>
 	</msb:PropertyGroup>
 	<msb:ItemGroup>
 		<msb:Project Include="ST_43b04d1212274e0883e2cb45444baa2b.csproj"/>
-		<msb:File Include="Properties\Settings.settings"/>
 		<msb:File Include="Properties\AssemblyInfo.cs"/>
+		<msb:File Include="Properties\Settings.settings"/>
 		<msb:File Include="Properties\Resources.resx"/>
 		<msb:File Include="Properties\Resources.Designer.cs"/>
 		<msb:File Include="Properties\Settings.Designer.cs"/>
@@ -8276,14 +8388,35 @@ namespace ST_ef037507a7b34a4990062b7be3fbcba2.Properties {
     }
 }]]></ProjectItem>
               <ProjectItem
-                Name="Properties\Settings.settings"
-                Encoding="UTF8"><![CDATA[<?xml version='1.0' encoding='iso-8859-1'?>
-<SettingsFile xmlns="uri:settings" CurrentProfile="(Default)">
-  <Profiles>
-    <Profile Name="(Default)" />
-  </Profiles>
-  <Settings />
-</SettingsFile>]]></ProjectItem>
+                Name="Properties\AssemblyInfo.cs"
+                Encoding="UTF8"><![CDATA[using System.Reflection;
+using System.Runtime.CompilerServices;
+
+//
+// General Information about an assembly is controlled through the following 
+// set of attributes. Change these attribute values to modify the information
+// associated with an assembly.
+//
+[assembly: AssemblyTitle("ST_ef037507a7b34a4990062b7be3fbcba2")]
+[assembly: AssemblyDescription("")]
+[assembly: AssemblyConfiguration("")]
+[assembly: AssemblyCompany("")]
+[assembly: AssemblyProduct("ST_ef037507a7b34a4990062b7be3fbcba2")]
+[assembly: AssemblyCopyright("Copyright @  2016")]
+[assembly: AssemblyTrademark("")]
+[assembly: AssemblyCulture("")]
+//
+// Version information for an assembly consists of the following four values:
+//
+//      Major Version
+//      Minor Version 
+//      Build Number
+//      Revision
+//
+// You can specify all the values or you can default the Revision and Build Numbers 
+// by using the '*' as shown below:
+
+[assembly: AssemblyVersion("1.0.*")]]]></ProjectItem>
               <ProjectItem
                 Name="Properties\Resources.Designer.cs"
                 Encoding="UTF8"><![CDATA[//------------------------------------------------------------------------------
@@ -8355,7 +8488,7 @@ namespace ST_ef037507a7b34a4990062b7be3fbcba2.Properties {
               <BinaryItem
                 Name="ST_43b04d1212274e0883e2cb45444baa2b.dll">TVqQAAMAAAAEAAAA//8AALgAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 AAAAgAAAAA4fug4AtAnNIbgBTM0hVGhpcyBwcm9ncmFtIGNhbm5vdCBiZSBydW4gaW4gRE9TIG1v
-ZGUuDQ0KJAAAAAAAAABQRQAATAEDAHcL7FcAAAAAAAAAAOAAAiELAQsAABAAAAAIAAAAAAAAPi4A
+ZGUuDQ0KJAAAAAAAAABQRQAATAEDAPiF9lcAAAAAAAAAAOAAAiELAQsAABAAAAAIAAAAAAAAPi4A
 AAAgAAAAQAAAAAAAEAAgAAAAAgAABAAAAAAAAAAEAAAAAAAAAACAAAAAAgAAAAAAAAMAQIUAABAA
 ABAAAAAAEAAAEAAAAAAAABAAAAAAAAAAAAAAAOgtAABTAAAAAEAAAAgEAAAAAAAAAAAAAAAAAAAA
 AAAAAGAAAAwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
@@ -8386,7 +8519,7 @@ AJEAvAEbAJkAvAEbAAkAvAEbAKEAOARiAKEAUwRpACkAvAFuALkAvAF6AMkAvAEbABEAvAEbANEA
 vAEbABkA+gSNANkASwWSAOEAYgWXAOkAawWdANkAfQVdABkAvAEbAAgAFABOAAgAGABTACkAkwCA
 AC4AGwAXAS4AIwAXAS4AYwA9AS4ACwCmAC4AEwDuAC4AMwDuAC4AKwAXAS4AOwAdAS4AQwAXAS4A
 WwA0AUMAawBTAEkAkwCAAGEAmwBTAIMAqwBTAHUAoQACAAEAAwADAAAAbwEvAAAA7gE0AAAAEgJC
-AAIAAgADAAIAAwAFAAEABAAFAAIABQAHAASAAAABAAAA4xebZQAAAAAAAM0DAAAEAAAAAAAAAAAA
+AAIAAgADAAIAAwAFAAEABAAFAAIABQAHAASAAAABAAAA6xfcXAAAAAAAAM0DAAAEAAAAAAAAAAAA
 AAABALEAAAAAAAQAAAAAAAAAAAAAAAEAugAAAAAACwAAAAAAAAAAAAAACgD1AAAAAAALAAAAAAAA
 AAAAAAAKAAIFAAAAAAAAAAABAAAAjAUAAAUABAAAAAAAADxNb2R1bGU+AFNUXzQzYjA0ZDEyMTIy
 NzRlMDg4M2UyY2I0NTQ0NGJhYTJiLmRsbABSZXNvdXJjZXMAU1RfZWYwMzc1MDdhN2IzNGE0OTkw
@@ -8418,7 +8551,7 @@ ZmJjYmEyLlByb3BlcnRpZXMuUmVzb3VyY2VzLnJlc291cmNlcwAAAHFTAFQAXwBlAGYAMAAzADcA
 NQAwADcAYQA3AGIAMwA0AGEANAA5ADkAMAAwADYAMgBiADcAYgBlADMAZgBiAGMAYgBhADIALgBQ
 AHIAbwBwAGUAcgB0AGkAZQBzAC4AUgBlAHMAbwB1AHIAYwBlAHMAAEtVAHMAZQByADoAOgBsAGEA
 cwB0AF8AYgBhAHQAYwBoAF8AZQB4AGUAYwB1AHQAaQBvAG4AXwBzAHUAYwBjAGUAcwBzAGYAdQBs
-AAAA2hy2Cf82T0iK/bBwlTJ4lQAIt3pcVhk04IkIiYRdzYCAzJEDBhIVAwYSGQMgAAEEAAASFQQA
+AAAAu+WAhyUagEm596p3jfwpKAAIt3pcVhk04IkIiYRdzYCAzJEDBhIVAwYSGQMgAAEEAAASFQQA
 ABIZBQABARIZBAgAEhUECAASGQMGEgwEAAASDAQIABIMAgYIAwYRFAQAAAAABAEAAAAEIAEBDgQg
 AQEIBgABElERVQQgABJZBiACAQ4SWQQHARIVBSABARFhCAEAAgAAAAAAAwAAAQQgABJtBCAAEnEF
 IAESdRwDIAAcBAcCAghHAQAaLk5FVEZyYW1ld29yayxWZXJzaW9uPXY0LjABAFQOFEZyYW1ld29y
@@ -8436,13 +8569,13 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 AAAAAAABABAAAAAYAACAAAAAAAAAAAAAAAAAAAABAAEAAAAwAACAAAAAAAAAAAAAAAAAAAABAAAA
 AABIAAAAWEAAALADAAAAAAAAAAAAALADNAAAAFYAUwBfAFYARQBSAFMASQBPAE4AXwBJAE4ARgBP
-AAAAAAC9BO/+AAABAAAAAQCbZeMXAAABAJtl4xc/AAAAAAAAAAQAAAACAAAAAAAAAAAAAAAAAAAA
+AAAAAAC9BO/+AAABAAAAAQDcXOsXAAABANxc6xc/AAAAAAAAAAQAAAACAAAAAAAAAAAAAAAAAAAA
 RAAAAAEAVgBhAHIARgBpAGwAZQBJAG4AZgBvAAAAAAAkAAQAAABUAHIAYQBuAHMAbABhAHQAaQBv
 AG4AAAAAAAAAsAQQAwAAAQBTAHQAcgBpAG4AZwBGAGkAbABlAEkAbgBmAG8AAADsAgAAAQAwADAA
 MAAwADAANABiADAAAABwACQAAQBGAGkAbABlAEQAZQBzAGMAcgBpAHAAdABpAG8AbgAAAAAAUwBU
 AF8AZQBmADAAMwA3ADUAMAA3AGEANwBiADMANABhADQAOQA5ADAAMAA2ADIAYgA3AGIAZQAzAGYA
-YgBjAGIAYQAyAAAAQAAPAAEARgBpAGwAZQBWAGUAcgBzAGkAbwBuAAAAAAAxAC4AMAAuADYAMQAx
-ADUALgAyADYAMAAxADEAAAAAAHAAKAABAEkAbgB0AGUAcgBuAGEAbABOAGEAbQBlAAAAUwBUAF8A
+YgBjAGIAYQAyAAAAQAAPAAEARgBpAGwAZQBWAGUAcgBzAGkAbwBuAAAAAAAxAC4AMAAuADYAMQAy
+ADMALgAyADMANwA3ADIAAAAAAHAAKAABAEkAbgB0AGUAcgBuAGEAbABOAGEAbQBlAAAAUwBUAF8A
 NAAzAGIAMAA0AGQAMQAyADEAMgAyADcANABlADAAOAA4ADMAZQAyAGMAYgA0ADUANAA0ADQAYgBh
 AGEAMgBiAC4AZABsAGwAAABIABIAAQBMAGUAZwBhAGwAQwBvAHAAeQByAGkAZwBoAHQAAABDAG8A
 cAB5AHIAaQBnAGgAdAAgAEAAIAAgADIAMAAxADYAAAB4ACgAAQBPAHIAaQBnAGkAbgBhAGwARgBp
@@ -8450,8 +8583,8 @@ AGwAZQBuAGEAbQBlAAAAUwBUAF8ANAAzAGIAMAA0AGQAMQAyADEAMgAyADcANABlADAAOAA4ADMA
 ZQAyAGMAYgA0ADUANAA0ADQAYgBhAGEAMgBiAC4AZABsAGwAAABoACQAAQBQAHIAbwBkAHUAYwB0
 AE4AYQBtAGUAAAAAAFMAVABfAGUAZgAwADMANwA1ADAANwBhADcAYgAzADQAYQA0ADkAOQAwADAA
 NgAyAGIANwBiAGUAMwBmAGIAYwBiAGEAMgAAAEQADwABAFAAcgBvAGQAdQBjAHQAVgBlAHIAcwBp
-AG8AbgAAADEALgAwAC4ANgAxADEANQAuADIANgAwADEAMQAAAAAASAAPAAEAQQBzAHMAZQBtAGIA
-bAB5ACAAVgBlAHIAcwBpAG8AbgAAADEALgAwAC4ANgAxADEANQAuADIANgAwADEAMQAAAAAAAAAA
+AG8AbgAAADEALgAwAC4ANgAxADIAMwAuADIAMwA3ADcAMgAAAAAASAAPAAEAQQBzAHMAZQBtAGIA
+bAB5ACAAVgBlAHIAcwBpAG8AbgAAADEALgAwAC4ANgAxADIAMwAuADIAMwA3ADcAMgAAAAAAAAAA
 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
@@ -8488,7 +8621,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
             <SQLTask:SqlTaskData
               SQLTask:Connection="{879CBFE3-8828-45E8-BB2C-3F9D632D4E68}"
               SQLTask:BypassPrepare="False"
-              SQLTask:SqlStatementSource="DELETE&#xA;FROM&#xA;  Medhok.Mailing_Data_File_Cache&#xA;WHERE&#xA;  FileName IN (&#xA;                  SELECT&#xA;                    FileName&#xA;                  FROM&#xA;                    Medhok.Mailing_Data_File&#xA;                  WHERE&#xA;                    Adjudicated = 1&#xA;              );&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+              SQLTask:SqlStatementSource="DELETE&#xA;FROM&#xA;  Medhok.Mailing_Data_File_Cache&#xA;WHERE&#xA;  ID IN (&#xA;            SELECT&#xA;              ParentID&#xA;            FROM&#xA;              Medhok.Mailing_Data_File&#xA;            WHERE&#xA;              Adjudicated = 1&#xA;        );&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
           </DTS:ObjectData>
         </DTS:Executable>
         <DTS:Executable
@@ -8506,7 +8639,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
             <SQLTask:SqlTaskData
               SQLTask:Connection="{879CBFE3-8828-45E8-BB2C-3F9D632D4E68}"
               SQLTask:BypassPrepare="False"
-              SQLTask:SqlStatementSource="SELECT Successful, ExecutionLogId&#xA;FROM Medhok.Batch_Process&#xA;WHERE ExecutionLogId = (&#xA;       SELECT MAX(ExecutionLogId) FROM Medhok.Batch_Process&#xA;&#x9;   WHERE (Name = 'Mailing Data Load - Process' OR Name = '[Table Initializer]')&#xA;        );"
+              SQLTask:SqlStatementSource="SELECT &#xA;   Successful, ExecutionLogId&#xA;FROM &#xA;   Medhok.Batch_Process&#xA;WHERE &#xA;   ExecutionLogId = (&#xA;                                          SELECT &#xA;                                             MAX(ExecutionLogId) &#xA;                                          FROM &#xA;                                             Medhok.Batch_Process&#xA;&#x9;                     WHERE &#xA;                                             (Name = 'Mailing Data Load - Process' OR Name = '[Table Initializer]')&#xA;        );"
               SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
               <SQLTask:ResultBinding
                 SQLTask:ResultName="0"
@@ -8667,12 +8800,12 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
       DTS:From="Package\FELC - Iterate throughout all mailing data files received to register them"
       DTS:LogicalAnd="True"
       DTS:ObjectName="Constraint 3"
-      DTS:To="Package\SCR - Update registered not-loaded list" />
+      DTS:To="Package\SCR - Update registered, not-loaded and counterpatrt found list" />
     <DTS:PrecedenceConstraint
       DTS:refId="Package.PrecedenceConstraints[Constraint 4]"
       DTS:CreationName=""
       DTS:DTSID="{530042FA-B6FB-400D-B042-55692ABCE4DB}"
-      DTS:From="Package\SCR - Update registered not-loaded list"
+      DTS:From="Package\SCR - Update registered, not-loaded and counterpatrt found list"
       DTS:LogicalAnd="True"
       DTS:ObjectName="Constraint 4"
       DTS:To="Package\FELC - Traverse filenames collection to load its contecnt into the cache" />
@@ -8680,7 +8813,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
       DTS:refId="Package.PrecedenceConstraints[Constraint 5]"
       DTS:CreationName=""
       DTS:DTSID="{FDD4A3C9-88B3-4061-9B3C-9BB9107D90F5}"
-      DTS:From="Package\SCR - Update registered not-loaded list"
+      DTS:From="Package\SCR - Update registered, not-loaded and counterpatrt found list"
       DTS:ObjectName="Constraint 5"
       DTS:To="Package\SQL - Register error for current batch process"
       DTS:Value="1" />
@@ -8752,7 +8885,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
     design-time-name="Package">
     <LayoutInfo>
       <GraphLayout
-        Capacity="64" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        Capacity="128" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
           Size="225.6,41.6"
           Id="Package\FELC - Iterate manifests directory\FST - Copy not loaded maniest"
@@ -8817,7 +8950,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
           PanelSize="636,207.2"
           Size="636,250.4"
           Id="Package\FELC - Iterate manifests directory"
-          TopLeft="1672.15239874782,752.219618213217" />
+          TopLeft="2292.95239874782,820.643147642142" />
         <NodeLayout
           Size="192,41.6"
           Id="Package\FELC - Iterate throughout all mailing data files received to register them\SCR - Check counterpart match"
@@ -9122,18 +9255,18 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
           PanelSize="718.4,500"
           Size="718.4,543.2"
           Id="Package\FELC - Iterate throughout all mailing data files received to register them"
-          TopLeft="904.476205879327,164.742837671074" />
+          TopLeft="1525.27620587933,233.166367099998" />
         <NodeLayout
           Size="244.8,41.6"
           Id="Package\FELC - Traverse filenames collection to load its contecnt into the cache\DFT - Load mailing data into cache"
-          TopLeft="27.0911784633601,24.856025075229" />
+          TopLeft="37.376892924239,128.85602653379" />
         <NodeLayout
           Size="244.8,41.6"
           Id="Package\FELC - Traverse filenames collection to load its contecnt into the cache\SQL - Update loaded status for file"
-          TopLeft="27.0911784633601,112.800005542531" />
+          TopLeft="37.376892924239,216.800007001092" />
         <EdgeLayout
           Id="Package\FELC - Traverse filenames collection to load its contecnt into the cache.PrecedenceConstraints[Constraint]"
-          TopLeft="149.49117846336,66.456025075229">
+          TopLeft="159.776892924239,170.45602653379">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
@@ -9159,25 +9292,37 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
           TopLeft="323.828601493641,31.4352976439321" />
         <EdgeLayout
           Id="Package\FELC - Traverse filenames collection to load its contecnt into the cache.PrecedenceConstraints[Constraint 1]"
-          TopLeft="271.89117846336,48.9456613595805">
+          TopLeft="159.776892924239,128.85602653379">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="51.937423030281,0"
+              EndConnector="268.851708569402,-55.8207288898577"
               Start="0,0"
-              End="44.437423030281,0">
+              End="268.851708569402,-48.3207288898577">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="44.437423030281,0" />
+                    End="0,-29.3206812450227" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,-29.3206812450227"
+                    Point2="0,-33.3206812450227"
+                    Point3="4,-33.3206812450227" />
+                  <mssgle:LineSegment
+                    End="264.851708569402,-33.3206812450227" />
+                  <mssgle:CubicBezierSegment
+                    Point1="264.851708569402,-33.3206812450227"
+                    Point2="268.851708569402,-33.3206812450227"
+                    Point3="268.851708569402,-37.3206812450227" />
+                  <mssgle:LineSegment
+                    End="268.851708569402,-48.3207288898577" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="6.97736385889051,5,30.4826953125,9.7490234375"
+              BoundingBox="119.184506628451,-28.3206812450227,30.4826953125,9.7490234375"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
@@ -9235,37 +9380,63 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
+        <NodeLayout
+          Size="155.2,41.6"
+          Id="Package\FELC - Traverse filenames collection to load its contecnt into the cache\SQL - Get file id"
+          TopLeft="45.7143037951723,27.0588272187124" />
+        <EdgeLayout
+          Id="Package\FELC - Traverse filenames collection to load its contecnt into the cache.PrecedenceConstraints[Constraint 4]"
+          TopLeft="121.812265026372,68.6588272187124">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60.1971993150774"
+              Start="0,0"
+              End="0,52.6971993150774">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.6971993150774" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
         <ContainerLayout
           HeaderHeight="43"
           IsExpanded="True"
-          PanelSize="685.6,303.2"
-          Size="685.6,346.4"
+          PanelSize="685.6,313.6"
+          Size="685.6,356.8"
           Id="Package\FELC - Traverse filenames collection to load its contecnt into the cache"
-          TopLeft="1678.62587892696,259.716506307032" />
+          TopLeft="2299.42587892696,328.140035735956" />
         <NodeLayout
           Size="316.8,41.6"
           Id="Package\SCR -  Get registered not-loaded mailing data files"
-          TopLeft="922.357158471126,81.7408756455526" />
+          TopLeft="1543.15715847113,150.164405074477" />
         <NodeLayout
           Size="212.8,41.6"
           Id="Package\SCR - Check if there are fles"
-          TopLeft="652.571439684654,86.8705894536212" />
+          TopLeft="1273.37143968465,155.294118882545" />
         <NodeLayout
           Size="296,41.6"
           Id="Package\SCR - Get registered, loaded and found files"
-          TopLeft="2433.16192742465,511.945105219053" />
+          TopLeft="3053.96192742465,580.368634647977" />
         <NodeLayout
-          Size="296,41.6"
-          Id="Package\SCR - Update registered not-loaded list"
-          TopLeft="1684.66669535636,181.249279325575" />
+          Size="379.2,41.6"
+          Id="Package\SCR - Update registered, not-loaded and counterpatrt found list"
+          TopLeft="2305.46669535636,249.672808754499" />
         <NodeLayout
           Size="296,41.6"
           Id="Package\SQL - Register error for current batch process"
-          TopLeft="2389.02384960408,92.8781302829697" />
+          TopLeft="2984.68099203305,156.407541996197" />
         <NodeLayout
           Size="209.6,41.6"
           Id="Package\SQL - Save batch status"
-          TopLeft="658.285725496254,172.517649478319" />
+          TopLeft="1279.08572549625,240.941178907243" />
         <NodeLayout
           Size="228,41.6"
           Id="Package\SQNC - Batch Initialization\SCR - Check last execution"
@@ -9454,10 +9625,10 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
           PanelSize="450.4,356"
           Size="450.4,399.2"
           Id="Package\SQNC - Batch Initialization"
-          TopLeft="141.333335740225,88.9366762052192" />
+          TopLeft="762.133335740225,157.360205634143" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint]"
-          TopLeft="591.733335740225,288.536676205219">
+          TopLeft="1212.53333574023,356.960205634143">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
@@ -9491,7 +9662,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
         </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 1]"
-          TopLeft="1080.75715847113,123.340875645553">
+          TopLeft="1701.55715847113,191.764405074477">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
@@ -9525,67 +9696,55 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
         </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 10]"
-          TopLeft="2583.09288851437,511.945105219053">
+          TopLeft="3203.32145972885,580.368634647977">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,-377.466974936083"
+              EndConnector="0,-382.36109265178"
               Start="0,0"
-              End="0,-369.966974936083">
+              End="0,-374.86109265178">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,-369.966974936083" />
+                    End="0,-374.86109265178" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="-15.24134765625,-189.857999186791,30.4826953125,9.7490234375"
+              BoundingBox="-15.24134765625,-192.30505804464,30.4826953125,9.7490234375"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 2]"
-          TopLeft="1239.15715847113,102.540875645553">
+          TopLeft="1859.95715847113,174.085973535337">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="1149.86669113296,11.1372546374171"
+              EndConnector="1124.72383356192,0"
               Start="0,0"
-              End="1142.36669113296,11.1372546374171">
+              End="1117.22383356192,0">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="570.933345566478,0" />
-                  <mssgle:CubicBezierSegment
-                    Point1="570.933345566478,0"
-                    Point2="574.933345566478,0"
-                    Point3="574.933345566478,4" />
-                  <mssgle:LineSegment
-                    End="574.933345566478,7.13725463741713" />
-                  <mssgle:CubicBezierSegment
-                    Point1="574.933345566478,7.13725463741713"
-                    Point2="574.933345566478,11.1372546374171"
-                    Point3="578.933345566478,11.1372546374171" />
-                  <mssgle:LineSegment
-                    End="1142.36669113296,11.1372546374171" />
+                    End="1117.22383356192,0" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="559.691997910228,-15.7490234375,30.4826953125,9.7490234375"
+              BoundingBox="543.37056912471,5,30.4826953125,9.7490234375"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 3]"
-          TopLeft="1622.87620587933,436.342837671074">
+          TopLeft="2243.67620587933,504.766367099998">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
@@ -9619,13 +9778,13 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
         </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 4]"
-          TopLeft="1832.66669535636,222.849279325575">
+          TopLeft="2495.06669535636,291.272808754499">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="75.8258502372669,36.867226981457"
+              EndConnector="34.2258502372665,36.867226981457"
               Start="0,0"
-              End="75.8258502372669,29.367226981457">
+              End="34.2258502372665,29.367226981457">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
@@ -9636,13 +9795,13 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
                     Point2="0,22.0688336599129"
                     Point3="4,22.0688336599129" />
                   <mssgle:LineSegment
-                    End="71.8258502372669,22.0688336599129" />
+                    End="30.2258502372665,22.0688336599129" />
                   <mssgle:CubicBezierSegment
-                    Point1="71.8258502372669,22.0688336599129"
-                    Point2="75.8258502372669,22.0688336599129"
-                    Point3="75.8258502372669,26.0688336599129" />
+                    Point1="30.2258502372665,22.0688336599129"
+                    Point2="34.2258502372665,22.0688336599129"
+                    Point3="34.2258502372665,26.0688336599129" />
                   <mssgle:LineSegment
-                    End="75.8258502372669,29.367226981457" />
+                    End="34.2258502372665,29.367226981457" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -9653,43 +9812,43 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
         </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 5]"
-          TopLeft="1832.66669535636,181.249279325575">
+          TopLeft="2495.06669535636,249.672808754499">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="656.357154247723,-46.7711490426053"
+              EndConnector="565.614296676686,-51.6652667583023"
               Start="0,0"
-              End="656.357154247723,-39.2711490426053">
+              End="565.614296676686,-44.1652667583023">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,-23.9118147512322" />
+                    End="0,-30.1359798224497" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,-23.9118147512322"
-                    Point2="0,-27.9118147512322"
-                    Point3="4,-27.9118147512322" />
+                    Point1="0,-30.1359798224497"
+                    Point2="0,-34.1359798224497"
+                    Point3="4,-34.1359798224497" />
                   <mssgle:LineSegment
-                    End="652.357154247723,-27.9118147512322" />
+                    End="561.614296676686,-34.1359798224497" />
                   <mssgle:CubicBezierSegment
-                    Point1="652.357154247723,-27.9118147512322"
-                    Point2="656.357154247723,-27.9118147512322"
-                    Point3="656.357154247723,-31.9118147512322" />
+                    Point1="561.614296676686,-34.1359798224497"
+                    Point2="565.614296676686,-34.1359798224497"
+                    Point3="565.614296676686,-38.1359798224497" />
                   <mssgle:LineSegment
-                    End="656.357154247723,-39.2711490426053" />
+                    End="565.614296676686,-44.1652667583023" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="312.937229467611,-22.9118147512322,30.4826953125,9.7490234375"
+              BoundingBox="267.565800682093,-29.1359798224497,30.4826953125,9.7490234375"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 6]"
-          TopLeft="865.371439684654,105.105732549587">
+          TopLeft="1486.17143968465,173.529261978511">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
@@ -9711,7 +9870,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
         </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 7]"
-          TopLeft="761.028582590454,128.470589453621">
+          TopLeft="1381.82858259045,196.894118882545">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
@@ -9735,13 +9894,13 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
         </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 8]"
-          TopLeft="2364.22587892696,432.916506307032">
+          TopLeft="2985.02587892696,506.540035735956">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="68.9360484976883,99.8285989120207"
+              EndConnector="68.9360484976883,94.6285989120206"
               Start="0,0"
-              End="61.4360484976883,99.8285989120207">
+              End="61.4360484976883,94.6285989120206">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
@@ -9752,13 +9911,13 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
                     Point2="34.4680242488441,0"
                     Point3="34.4680242488441,4" />
                   <mssgle:LineSegment
-                    End="34.4680242488441,95.8285989120207" />
+                    End="34.4680242488441,90.6285989120206" />
                   <mssgle:CubicBezierSegment
-                    Point1="34.4680242488441,95.8285989120207"
-                    Point2="34.4680242488441,99.8285989120207"
-                    Point3="38.4680242488441,99.8285989120207" />
+                    Point1="34.4680242488441,90.6285989120206"
+                    Point2="34.4680242488441,94.6285989120206"
+                    Point3="38.4680242488441,94.6285989120206" />
                   <mssgle:LineSegment
-                    End="61.4360484976883,99.8285989120207" />
+                    End="61.4360484976883,94.6285989120206" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -9769,7 +9928,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
         </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 9]"
-          TopLeft="2581.16192742465,553.545105219053">
+          TopLeft="3201.96192742465,621.968634647977">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
@@ -9803,37 +9962,37 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
         </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 11]"
-          TopLeft="2134.35921226029,259.716506307032">
+          TopLeft="2755.15921226029,328.140035735956">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="402.664637343789,-125.238376024062"
+              EndConnector="377.521779772753,-130.132493739759"
               Start="0,0"
-              End="402.664637343789,-117.738376024062">
+              End="377.521779772753,-122.632493739759">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,-46.2703050676329" />
+                    End="0,-48.234789105319" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,-46.2703050676329"
-                    Point2="0,-50.2703050676329"
-                    Point3="4,-50.2703050676329" />
+                    Point1="0,-48.234789105319"
+                    Point2="0,-52.234789105319"
+                    Point3="4,-52.234789105319" />
                   <mssgle:LineSegment
-                    End="398.664637343789,-50.2703050676329" />
+                    End="373.521779772753,-52.234789105319" />
                   <mssgle:CubicBezierSegment
-                    Point1="398.664637343789,-50.2703050676329"
-                    Point2="402.664637343789,-50.2703050676329"
-                    Point3="402.664637343789,-54.2703050676329" />
+                    Point1="373.521779772753,-52.234789105319"
+                    Point2="377.521779772753,-52.234789105319"
+                    Point3="377.521779772753,-56.234789105319" />
                   <mssgle:LineSegment
-                    End="402.664637343789,-117.738376024062" />
+                    End="377.521779772753,-122.632493739759" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="186.090971015645,-45.2703050676329,30.4826953125,9.7490234375"
+              BoundingBox="173.519542230126,-47.234789105319,30.4826953125,9.7490234375"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
@@ -9844,11 +10003,11 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
     design-time-name="Package\FELC - Traverse filenames collection to load its contecnt into the cache\DFT - Load mailing data into cache">
     <LayoutInfo>
       <GraphLayout
-        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        Capacity="32" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
           Size="323.2,41.6"
           Id="Package\FELC - Traverse filenames collection to load its contecnt into the cache\DFT - Load mailing data into cache\OLE_DST - Load mailing data to cache"
-          TopLeft="299.410435937932,215.17087097234" />
+          TopLeft="302.675742115988,300.817930997037" />
         <NodeLayout
           Size="228.8,41.6"
           Id="Package\FELC - Traverse filenames collection to load its contecnt into the cache\DFT - Load mailing data into cache\FF_SRC - Read mailing data file"
@@ -9904,30 +10063,6 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
               BoundingBox="-38.957578125,12.6159015342851,77.91515625,11.609375"
-              RelativePosition="Any" />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package\FELC - Traverse filenames collection to load its contecnt into the cache\DFT - Load mailing data into cache.Paths[Correct Mailing Date Length]"
-          TopLeft="461.010435937932,158.709245339892">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,56.461625632448"
-              Start="0,0"
-              End="0,48.961625632448">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,48.961625632448" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="-62.064453125,18.649269847474,124.12890625,11.6630859375"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
@@ -10031,6 +10166,56 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
                   Capacity="5">
                   <mssgle:LineSegment
                     End="71.7857201318354,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="323.2,41.6"
+          Id="Package\FELC - Traverse filenames collection to load its contecnt into the cache\DFT - Load mailing data into cache\DER - Add parent file ID"
+          TopLeft="297.959188747684,211.495801285476" />
+        <EdgeLayout
+          Id="Package\FELC - Traverse filenames collection to load its contecnt into the cache\DFT - Load mailing data into cache.Paths[Correct Mailing Date Length]"
+          TopLeft="460.284812342808,158.709245339892">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,52.7865559455845"
+              Start="0,0"
+              End="0,45.2865559455845">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,45.2865559455845" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-62.064453125,16.8117350040422,124.12890625,11.6630859375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\FELC - Traverse filenames collection to load its contecnt into the cache\DFT - Load mailing data into cache.Paths[Derived Column Output2]"
+          TopLeft="461.917465431836,253.095801285476">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,47.7221297115606"
+              Start="0,0"
+              End="0,40.2221297115606">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,40.2221297115606" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
