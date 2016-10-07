@@ -26,7 +26,7 @@
           <SSIS:Property SSIS:Name="CreatorComputerName">WINDOWSDEV</SSIS:Property>
           <SSIS:Property SSIS:Name="Description">
           </SSIS:Property>
-          <SSIS:Property SSIS:Name="PasswordVerifier" SSIS:Sensitive="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAPXQ7jZTnV0GKV9nuEcqtfwAAAAACAAAAAAAQZgAAAAEAACAAAACBlJvNU46Tph7vfmyhldjKZPSHcxq1tUWg8VzYhAOHVgAAAAAOgAAAAAIAACAAAABTKm3ZlM/RboJ2nYE6ocdYN5mVjwicEML95P/lK+wj0pAAAAAlkBL2YM54lzkatToktji6ti+KiCzdo7O38TdvYFDxxU3zrKNvS28iFQ1H1bXvDK0IIPsWA3zo9Aia5oOzXvF3urJCT8CSo/Bwoa4KUPY6D9oMJfioF7KweTbD7sYqBev1Su9EYCx8FCZqEZzSc3SSVhvqtb074b0DchHQNrfSHWyHX8+devTcrRz6LtMxI05AAAAAPzEU4yH0aHTWmogUB+AL4xO+x0bzW99f04mbdiX/KhaqNeMPiRgE9UJovf2C8AeerIjKnGX4x6hSqTyUDPA+pQ==</SSIS:Property>
+          <SSIS:Property SSIS:Name="PasswordVerifier" SSIS:Sensitive="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAPXQ7jZTnV0GKV9nuEcqtfwAAAAACAAAAAAAQZgAAAAEAACAAAACDRoOaJn0kz6wMtyxYc2K+8TrBhuH2/GkUWXklIn0jjQAAAAAOgAAAAAIAACAAAADzhWhj5R2lhlfAeJff3B1rEQjtSUp5SHxoynRByFqdipAAAABMIrfvniNVlA6C40L/mFu98LncxfSMz02Rwff26lXGkxT7MLttPyhfviH6TPGOQMoUEkwnsIQPL3hGVtQ2sNZsd/bGQ3NMjixHt0v6JH/WFAc+SgDJxbfwOko55bJbTWzWLOwjTWeRg0mGy4qqIWfsZQXRxNLlieJMMD1yAKPqkSuidtGn6xqeJ1tkKLLlbmBAAAAAFnqsBCOxw3pCcEdRNzampzowekAXDMtHazHcWYsftzo6TMW207Gfpb6rzAjfRnia5Y8cOGJ8ECcnhqq4a8rIVA==</SSIS:Property>
           <SSIS:Property SSIS:Name="FormatVersion">1</SSIS:Property>
         </SSIS:Properties>
         <SSIS:Packages>
@@ -43,10 +43,10 @@
                 <SSIS:Property SSIS:Name="Name">ETL_Letter_Mailing_Data_Load</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMajor">1</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMinor">0</SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionBuild">369</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionBuild">389</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionComments">
                 </SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionGUID">{35CB016B-A60E-4E7A-8CBD-9C4CE09A9C4D}</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionGUID">{83E8797D-BC03-4424-98A4-A36D8CBB6BCA}</SSIS:Property>
                 <SSIS:Property SSIS:Name="PackageFormatVersion">6</SSIS:Property>
                 <SSIS:Property SSIS:Name="Description">
                 </SSIS:Property>
@@ -63,6 +63,19 @@
                     <SSIS:Property SSIS:Name="Required">0</SSIS:Property>
                     <SSIS:Property SSIS:Name="Sensitive">0</SSIS:Property>
                     <SSIS:Property SSIS:Name="Value">10</SSIS:Property>
+                    <SSIS:Property SSIS:Name="DataType">9</SSIS:Property>
+                  </SSIS:Properties>
+                </SSIS:Parameter>
+                <SSIS:Parameter SSIS:Name="limit_of_files_to_load">
+                  <SSIS:Properties>
+                    <SSIS:Property SSIS:Name="ID">{0FB98ED7-ADF8-4D14-8242-7D595DDD5719}</SSIS:Property>
+                    <SSIS:Property SSIS:Name="CreationName">
+                    </SSIS:Property>
+                    <SSIS:Property SSIS:Name="Description">Hold the amount of manifest files to process for each batch process instance.</SSIS:Property>
+                    <SSIS:Property SSIS:Name="IncludeInDebugDump">0</SSIS:Property>
+                    <SSIS:Property SSIS:Name="Required">0</SSIS:Property>
+                    <SSIS:Property SSIS:Name="Sensitive">0</SSIS:Property>
+                    <SSIS:Property SSIS:Name="Value">59</SSIS:Property>
                     <SSIS:Property SSIS:Name="DataType">9</SSIS:Property>
                   </SSIS:Properties>
                 </SSIS:Parameter>

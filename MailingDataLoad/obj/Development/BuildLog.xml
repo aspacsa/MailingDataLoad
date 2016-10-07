@@ -2,13 +2,13 @@
 <BuildLog xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <ProjectInfo>
     <Name>MailingDataLoad</Name>
-    <LastWriteTime>2016-10-06T17:11:11.4081802Z</LastWriteTime>
+    <LastWriteTime>2016-10-07T14:39:07.9297796Z</LastWriteTime>
     <LastKnownProtectionLevel>EncryptSensitiveWithUserKey</LastKnownProtectionLevel>
   </ProjectInfo>
   <LastBuildInfos>
     <ProjectBuildItemInfo>
       <Name>ETL_Letter_Mailing_Data_Load.dtsx</Name>
-      <LastWriteTime>2016-10-06T19:08:06.2724569Z</LastWriteTime>
+      <LastWriteTime>2016-10-07T14:44:47.1687525Z</LastWriteTime>
       <LastKnownProtectionLevel>EncryptSensitiveWithUserKey</LastKnownProtectionLevel>
     </ProjectBuildItemInfo>
     <ProjectBuildItemInfo>
