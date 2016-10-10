@@ -11,8 +11,8 @@
   DTS:LocaleID="1033"
   DTS:ObjectName="ETL_Mailing_Data_Adjudicator"
   DTS:PackageType="5"
-  DTS:VersionBuild="6"
-  DTS:VersionGUID="{8E5451CC-361C-405B-8C2E-73541B6781E5}">
+  DTS:VersionBuild="20"
+  DTS:VersionGUID="{2BF44D4F-D99E-439E-8912-491CB44AAF4E}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">6</DTS:Property>
   <DTS:ConnectionManagers>
@@ -27,21 +27,33 @@
           <DTS:Password
             DTS:Name="Password"
             Sensitive="1"
-            Encrypted="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAPXQ7jZTnV0GKV9nuEcqtfwAAAAAIAAAARABUAFMAAAAQZgAAAAEAACAAAAAznctk+85onrpTYtcf+3GEW1fWXBey0HnaPOD24PpZeQAAAAAOgAAAAAIAACAAAAAM+SiiiU2lmql4xzz70lcoznI0hzkECtoUVVNmizNKSxAAAADV89t2NBIp7tojvfTACYUsQAAAAE0kN5WthtS0uTMN++1+Puziv4WipKYgbECZ89YVuyyo1nQEEQ2s0PNXWQABTzVHxa9h9in/EFdMAFD8AhwKpEw</DTS:Password>
+            Encrypted="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAPXQ7jZTnV0GKV9nuEcqtfwAAAAAIAAAARABUAFMAAAAQZgAAAAEAACAAAAA5bngygaUcM2C4N+vkTSkj/XjYQgiDP3gAMy+XzjyndAAAAAAOgAAAAAIAACAAAACYSRiL03rgNtbjSyLbIhSHGc8y8Lal3P7AIH/z1s9SYBAAAADD91PZKAnhWQgiHIY1uwhDQAAAAFd71WHKKCNegJI++WBBozGC34oemREUBCwbz57Znf7sq5TZn89+gHwGt26DBaDpZ8S3OXg0lXr7rHx3yUxae7Q</DTS:Password>
         </DTS:ConnectionManager>
       </DTS:ObjectData>
     </DTS:ConnectionManager>
   </DTS:ConnectionManagers>
+  <DTS:PackageParameters>
+    <DTS:PackageParameter
+      DTS:CreationName=""
+      DTS:DataType="3"
+      DTS:Description="Execution ID"
+      DTS:DTSID="{8B468834-D377-48E9-B601-E3C97DBB14DD}"
+      DTS:ObjectName="execution_log_id">
+      <DTS:Property
+        DTS:DataType="3"
+        DTS:Name="ParameterValue">9999283</DTS:Property>
+    </DTS:PackageParameter>
+  </DTS:PackageParameters>
   <DTS:Variables />
   <DTS:Executables>
     <DTS:Executable
-      DTS:refId="Package\DFT - Perform the (mailing data) adjudication process"
+      DTS:refId="Package\DFT - Prepare mailing data to be adjudicated"
       DTS:CreationName="SSIS.Pipeline.3"
       DTS:Description="Data Flow Task"
       DTS:DTSID="{479E9751-11C2-4222-A1BA-A18F37C3A158}"
       DTS:ExecutableType="SSIS.Pipeline.3"
       DTS:LocaleID="-1"
-      DTS:ObjectName="DFT - Perform the (mailing data) adjudication process"
+      DTS:ObjectName="DFT - Prepare mailing data to be adjudicated"
       DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
       <DTS:Variables />
       <DTS:ObjectData>
@@ -49,7 +61,80 @@
           version="1">
           <components>
             <component
-              refId="Package\DFT - Perform the (mailing data) adjudication process\LKP - Find letters that match those in cache"
+              refId="Package\DFT - Prepare mailing data to be adjudicated\DER - Add execition id column"
+              componentClassID="{49928E82-9C4E-49F0-AABE-3812B82707EC}"
+              contactInfo="Derived Column;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Creates new column values by applying expressions to transformation input columns. Create new columns or overwrite existing ones. For example, concatenate the values from the 'first name' and 'last name' column to make a 'full name' column."
+              name="DER - Add execition id column"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\DFT - Prepare mailing data to be adjudicated\DER - Add execition id column.Inputs[Derived Column Input]"
+                  description="Input to the Derived Column Transformation"
+                  name="Derived Column Input">
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DFT - Prepare mailing data to be adjudicated\DER - Add execition id column.Outputs[Derived Column Output]"
+                  description="Default Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  name="Derived Column Output"
+                  synchronousInputId="Package\DFT - Prepare mailing data to be adjudicated\DER - Add execition id column.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT - Prepare mailing data to be adjudicated\DER - Add execition id column.Outputs[Derived Column Output].Columns[ExecutionLogID]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\DFT - Prepare mailing data to be adjudicated\DER - Add execition id column.Outputs[Derived Column Output].Columns[ExecutionLogID]"
+                      name="ExecutionLogID"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">@[$Package::execution_log_id]</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">@[$Package::execution_log_id]</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\DFT - Prepare mailing data to be adjudicated\DER - Add execition id column.Outputs[Derived Column Error Output]"
+                  description="Error Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Derived Column Error Output"
+                  synchronousInputId="Package\DFT - Prepare mailing data to be adjudicated\DER - Add execition id column.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT - Prepare mailing data to be adjudicated\DER - Add execition id column.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DFT - Prepare mailing data to be adjudicated\DER - Add execition id column.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DFT - Prepare mailing data to be adjudicated\DER - Add execition id column.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DFT - Prepare mailing data to be adjudicated\DER - Add execition id column.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DFT - Prepare mailing data to be adjudicated\LKP - Find letters that match those in cache"
               componentClassID="{671046B0-AA63-4C9F-90E4-C06E0B710CE3}"
               contactInfo="Lookup;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;6"
               description="Joins additional columns to the data flow by looking up values in a table. For example, join to the 'employee id' column the employees table to get 'hire date' and 'employee name'. We recommend this transformation when the lookup table can fit into memory."
@@ -63,12 +148,18 @@
                   expressionType="Notify"
                   name="SqlCommand"
                   UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">SELECT
-  LetterID,
-  LetterName
+  
+   LetterID,
+  
+   RTRIM( LTRIM(LetterName) ) AS LetterName
+
 FROM
-  Medhok.Letter
+ 
+   Medhok.Letter
+
 WHERE
-  Received = 1
+ 
+MailingDate IS NULL
 ;</property>
                 <property
                   dataType="System.String"
@@ -76,12 +167,18 @@ WHERE
                   expressionType="Notify"
                   name="SqlCommandParam"
                   UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">select * from (SELECT
-  LetterID,
-  LetterName
+  
+   LetterID,
+  
+   RTRIM( LTRIM(LetterName) ) AS LetterName
+
 FROM
-  Medhok.Letter
+ 
+   Medhok.Letter
+
 WHERE
-  Received = 1
+ 
+MailingDate IS NULL
 ;) [refTable]
 where [refTable].[LetterName] = ?</property>
                 <property
@@ -119,7 +216,7 @@ where [refTable].[LetterName] = ?</property>
                   containsID="true"
                   dataType="System.String"
                   description="Specifies the list of lineage identifiers that map to the parameters that the SQL statement in the SQLCommand property uses. Entries in the list are separated by semicolons."
-                  name="ParameterMap">#{Package\DFT - Perform the (mailing data) adjudication process\OLE_SRC - Get manifest records from cache table.Outputs[OLE DB Source Output].Columns[FileName]};</property>
+                  name="ParameterMap">#{Package\DFT - Prepare mailing data to be adjudicated\OLE_SRC - Get manifest records from cache table.Outputs[OLE DB Source Output].Columns[FileName]};</property>
                 <property
                   dataType="System.Int32"
                   description="Specifies the column code page to use when code page information is unavailable from the data source."
@@ -131,7 +228,7 @@ where [refTable].[LetterName] = ?</property>
               </properties>
               <connections>
                 <connection
-                  refId="Package\DFT - Perform the (mailing data) adjudication process\LKP - Find letters that match those in cache.Connections[OleDbConnection]"
+                  refId="Package\DFT - Prepare mailing data to be adjudicated\LKP - Find letters that match those in cache.Connections[OleDbConnection]"
                   connectionManagerID="Package.ConnectionManagers[MSSQLSERVER.testdb.sa]"
                   connectionManagerRefId="Package.ConnectionManagers[MSSQLSERVER.testdb.sa]"
                   description="Connection manager used to access lookup data."
@@ -139,16 +236,16 @@ where [refTable].[LetterName] = ?</property>
               </connections>
               <inputs>
                 <input
-                  refId="Package\DFT - Perform the (mailing data) adjudication process\LKP - Find letters that match those in cache.Inputs[Lookup Input]"
+                  refId="Package\DFT - Prepare mailing data to be adjudicated\LKP - Find letters that match those in cache.Inputs[Lookup Input]"
                   name="Lookup Input">
                   <inputColumns>
                     <inputColumn
-                      refId="Package\DFT - Perform the (mailing data) adjudication process\LKP - Find letters that match those in cache.Inputs[Lookup Input].Columns[FileName]"
+                      refId="Package\DFT - Prepare mailing data to be adjudicated\LKP - Find letters that match those in cache.Inputs[Lookup Input].Columns[FileName]"
                       cachedCodepage="1252"
                       cachedDataType="str"
                       cachedLength="133"
                       cachedName="FileName"
-                      lineageId="Package\DFT - Perform the (mailing data) adjudication process\OLE_SRC - Get manifest records from cache table.Outputs[OLE DB Source Output].Columns[FileName]">
+                      lineageId="Package\DFT - Prepare mailing data to be adjudicated\OLE_SRC - Get manifest records from cache table.Outputs[OLE DB Source Output].Columns[FileName]">
                       <properties>
                         <property
                           dataType="System.String"
@@ -166,17 +263,17 @@ where [refTable].[LetterName] = ?</property>
               </inputs>
               <outputs>
                 <output
-                  refId="Package\DFT - Perform the (mailing data) adjudication process\LKP - Find letters that match those in cache.Outputs[Lookup Match Output]"
+                  refId="Package\DFT - Prepare mailing data to be adjudicated\LKP - Find letters that match those in cache.Outputs[Lookup Match Output]"
                   errorOrTruncationOperation="Lookup"
                   exclusionGroup="1"
                   name="Lookup Match Output"
-                  synchronousInputId="Package\DFT - Perform the (mailing data) adjudication process\LKP - Find letters that match those in cache.Inputs[Lookup Input]">
+                  synchronousInputId="Package\DFT - Prepare mailing data to be adjudicated\LKP - Find letters that match those in cache.Inputs[Lookup Input]">
                   <outputColumns>
                     <outputColumn
-                      refId="Package\DFT - Perform the (mailing data) adjudication process\LKP - Find letters that match those in cache.Outputs[Lookup Match Output].Columns[LetterID]"
+                      refId="Package\DFT - Prepare mailing data to be adjudicated\LKP - Find letters that match those in cache.Outputs[Lookup Match Output].Columns[LetterID]"
                       dataType="i4"
                       errorOrTruncationOperation="Copy Column"
-                      lineageId="Package\DFT - Perform the (mailing data) adjudication process\LKP - Find letters that match those in cache.Outputs[Lookup Match Output].Columns[LetterID]"
+                      lineageId="Package\DFT - Prepare mailing data to be adjudicated\LKP - Find letters that match those in cache.Outputs[Lookup Match Output].Columns[LetterID]"
                       name="LetterID"
                       truncationRowDisposition="FailComponent">
                       <properties>
@@ -190,30 +287,30 @@ where [refTable].[LetterName] = ?</property>
                   <externalMetadataColumns />
                 </output>
                 <output
-                  refId="Package\DFT - Perform the (mailing data) adjudication process\LKP - Find letters that match those in cache.Outputs[Lookup No Match Output]"
+                  refId="Package\DFT - Prepare mailing data to be adjudicated\LKP - Find letters that match those in cache.Outputs[Lookup No Match Output]"
                   description="The Lookup output that handles rows with no matching entries in the reference dataset. Use this output when the NoMatchBehavior property is set to &quot;Send rows with no matching entries to the no match output.&quot;"
                   exclusionGroup="1"
                   name="Lookup No Match Output"
-                  synchronousInputId="Package\DFT - Perform the (mailing data) adjudication process\LKP - Find letters that match those in cache.Inputs[Lookup Input]">
+                  synchronousInputId="Package\DFT - Prepare mailing data to be adjudicated\LKP - Find letters that match those in cache.Inputs[Lookup Input]">
                   <externalMetadataColumns />
                 </output>
                 <output
-                  refId="Package\DFT - Perform the (mailing data) adjudication process\LKP - Find letters that match those in cache.Outputs[Lookup Error Output]"
+                  refId="Package\DFT - Prepare mailing data to be adjudicated\LKP - Find letters that match those in cache.Outputs[Lookup Error Output]"
                   exclusionGroup="1"
                   isErrorOut="true"
                   name="Lookup Error Output"
-                  synchronousInputId="Package\DFT - Perform the (mailing data) adjudication process\LKP - Find letters that match those in cache.Inputs[Lookup Input]">
+                  synchronousInputId="Package\DFT - Prepare mailing data to be adjudicated\LKP - Find letters that match those in cache.Inputs[Lookup Input]">
                   <outputColumns>
                     <outputColumn
-                      refId="Package\DFT - Perform the (mailing data) adjudication process\LKP - Find letters that match those in cache.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      refId="Package\DFT - Prepare mailing data to be adjudicated\LKP - Find letters that match those in cache.Outputs[Lookup Error Output].Columns[ErrorCode]"
                       dataType="i4"
-                      lineageId="Package\DFT - Perform the (mailing data) adjudication process\LKP - Find letters that match those in cache.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      lineageId="Package\DFT - Prepare mailing data to be adjudicated\LKP - Find letters that match those in cache.Outputs[Lookup Error Output].Columns[ErrorCode]"
                       name="ErrorCode"
                       specialFlags="1" />
                     <outputColumn
-                      refId="Package\DFT - Perform the (mailing data) adjudication process\LKP - Find letters that match those in cache.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      refId="Package\DFT - Prepare mailing data to be adjudicated\LKP - Find letters that match those in cache.Outputs[Lookup Error Output].Columns[ErrorColumn]"
                       dataType="i4"
-                      lineageId="Package\DFT - Perform the (mailing data) adjudication process\LKP - Find letters that match those in cache.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      lineageId="Package\DFT - Prepare mailing data to be adjudicated\LKP - Find letters that match those in cache.Outputs[Lookup Error Output].Columns[ErrorColumn]"
                       name="ErrorColumn"
                       specialFlags="2" />
                   </outputColumns>
@@ -222,11 +319,11 @@ where [refTable].[LetterName] = ?</property>
               </outputs>
             </component>
             <component
-              refId="Package\DFT - Perform the (mailing data) adjudication process\OLE DB Destination"
+              refId="Package\DFT - Prepare mailing data to be adjudicated\OLE_DST - Save info about mailing data with no match"
               componentClassID="{4ADA7EAA-136C-4215-8098-D7A7C27FC0D1}"
               contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
               description="OLE DB Destination"
-              name="OLE DB Destination"
+              name="OLE_DST - Save info about mailing data with no match"
               usesDispositions="true"
               version="4">
               <properties>
@@ -237,7 +334,7 @@ where [refTable].[LetterName] = ?</property>
                 <property
                   dataType="System.String"
                   description="Specifies the name of the database object used to open a rowset."
-                  name="OpenRowset"></property>
+                  name="OpenRowset">[Medhok].[Mailing_Data_NoMatch]</property>
                 <property
                   dataType="System.String"
                   description="Specifies the variable that contains the name of the database object used to open a rowset."
@@ -259,7 +356,148 @@ where [refTable].[LetterName] = ?</property>
                   dataType="System.Int32"
                   description="Specifies the mode used to access the database."
                   name="AccessMode"
-                  typeConverter="AccessMode">0</property>
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">true</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\DFT - Prepare mailing data to be adjudicated\OLE_DST - Save info about mailing data with no match.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[MSSQLSERVER.testdb.sa]"
+                  connectionManagerRefId="Package.ConnectionManagers[MSSQLSERVER.testdb.sa]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\DFT - Prepare mailing data to be adjudicated\OLE_DST - Save info about mailing data with no match.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\DFT - Prepare mailing data to be adjudicated\OLE_DST - Save info about mailing data with no match.Inputs[OLE DB Destination Input].Columns[ParentID]"
+                      cachedDataType="i4"
+                      cachedName="ParentID"
+                      externalMetadataColumnId="Package\DFT - Prepare mailing data to be adjudicated\OLE_DST - Save info about mailing data with no match.Inputs[OLE DB Destination Input].ExternalColumns[ParentID]"
+                      lineageId="Package\DFT - Prepare mailing data to be adjudicated\OLE_SRC - Get manifest records from cache table.Outputs[OLE DB Source Output].Columns[ParentID]" />
+                    <inputColumn
+                      refId="Package\DFT - Prepare mailing data to be adjudicated\OLE_DST - Save info about mailing data with no match.Inputs[OLE DB Destination Input].Columns[FileName]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="133"
+                      cachedName="FileName"
+                      externalMetadataColumnId="Package\DFT - Prepare mailing data to be adjudicated\OLE_DST - Save info about mailing data with no match.Inputs[OLE DB Destination Input].ExternalColumns[FileName]"
+                      lineageId="Package\DFT - Prepare mailing data to be adjudicated\OLE_SRC - Get manifest records from cache table.Outputs[OLE DB Source Output].Columns[FileName]" />
+                    <inputColumn
+                      refId="Package\DFT - Prepare mailing data to be adjudicated\OLE_DST - Save info about mailing data with no match.Inputs[OLE DB Destination Input].Columns[ExecutionLogID]"
+                      cachedDataType="i4"
+                      cachedName="ExecutionLogID"
+                      externalMetadataColumnId="Package\DFT - Prepare mailing data to be adjudicated\OLE_DST - Save info about mailing data with no match.Inputs[OLE DB Destination Input].ExternalColumns[ExecutionLogID]"
+                      lineageId="Package\DFT - Prepare mailing data to be adjudicated\DER - Add execition id column.Outputs[Derived Column Output].Columns[ExecutionLogID]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\DFT - Prepare mailing data to be adjudicated\OLE_DST - Save info about mailing data with no match.Inputs[OLE DB Destination Input].ExternalColumns[ID]"
+                      dataType="i4"
+                      name="ID" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - Prepare mailing data to be adjudicated\OLE_DST - Save info about mailing data with no match.Inputs[OLE DB Destination Input].ExternalColumns[ExecutionLogID]"
+                      dataType="i4"
+                      name="ExecutionLogID" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - Prepare mailing data to be adjudicated\OLE_DST - Save info about mailing data with no match.Inputs[OLE DB Destination Input].ExternalColumns[ParentID]"
+                      dataType="i4"
+                      name="ParentID" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - Prepare mailing data to be adjudicated\OLE_DST - Save info about mailing data with no match.Inputs[OLE DB Destination Input].ExternalColumns[FileName]"
+                      codePage="1252"
+                      dataType="str"
+                      length="133"
+                      name="FileName" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DFT - Prepare mailing data to be adjudicated\OLE_DST - Save info about mailing data with no match.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\DFT - Prepare mailing data to be adjudicated\OLE_DST - Save info about mailing data with no match.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT - Prepare mailing data to be adjudicated\OLE_DST - Save info about mailing data with no match.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DFT - Prepare mailing data to be adjudicated\OLE_DST - Save info about mailing data with no match.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DFT - Prepare mailing data to be adjudicated\OLE_DST - Save info about mailing data with no match.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DFT - Prepare mailing data to be adjudicated\OLE_DST - Save info about mailing data with no match.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DFT - Prepare mailing data to be adjudicated\OLE_DST - Store tempoararly mailing data into buffer"
+              componentClassID="{4ADA7EAA-136C-4215-8098-D7A7C27FC0D1}"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="OLE_DST - Store tempoararly mailing data into buffer"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[Medhok].[Mailing_Data_Buffer]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
                 <property
                   dataType="System.Boolean"
                   description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
@@ -271,7 +509,7 @@ where [refTable].[LetterName] = ?</property>
                 <property
                   dataType="System.String"
                   description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
-                  name="FastLoadOptions"></property>
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
                 <property
                   dataType="System.Int32"
                   description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
@@ -279,39 +517,77 @@ where [refTable].[LetterName] = ?</property>
               </properties>
               <connections>
                 <connection
-                  refId="Package\DFT - Perform the (mailing data) adjudication process\OLE DB Destination.Connections[OleDbConnection]"
+                  refId="Package\DFT - Prepare mailing data to be adjudicated\OLE_DST - Store tempoararly mailing data into buffer.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[MSSQLSERVER.testdb.sa]"
+                  connectionManagerRefId="Package.ConnectionManagers[MSSQLSERVER.testdb.sa]"
                   description="The OLE DB runtime connection used to access the database."
                   name="OleDbConnection" />
               </connections>
               <inputs>
                 <input
-                  refId="Package\DFT - Perform the (mailing data) adjudication process\OLE DB Destination.Inputs[OLE DB Destination Input]"
+                  refId="Package\DFT - Prepare mailing data to be adjudicated\OLE_DST - Store tempoararly mailing data into buffer.Inputs[OLE DB Destination Input]"
                   errorOrTruncationOperation="Insert"
                   errorRowDisposition="FailComponent"
                   hasSideEffects="true"
                   name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\DFT - Prepare mailing data to be adjudicated\OLE_DST - Store tempoararly mailing data into buffer.Inputs[OLE DB Destination Input].Columns[MailingDate]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="19"
+                      cachedName="MailingDate"
+                      externalMetadataColumnId="Package\DFT - Prepare mailing data to be adjudicated\OLE_DST - Store tempoararly mailing data into buffer.Inputs[OLE DB Destination Input].ExternalColumns[MailingDate]"
+                      lineageId="Package\DFT - Prepare mailing data to be adjudicated\OLE_SRC - Get manifest records from cache table.Outputs[OLE DB Source Output].Columns[MailingDate]" />
+                    <inputColumn
+                      refId="Package\DFT - Prepare mailing data to be adjudicated\OLE_DST - Store tempoararly mailing data into buffer.Inputs[OLE DB Destination Input].Columns[LetterID]"
+                      cachedDataType="i4"
+                      cachedName="LetterID"
+                      externalMetadataColumnId="Package\DFT - Prepare mailing data to be adjudicated\OLE_DST - Store tempoararly mailing data into buffer.Inputs[OLE DB Destination Input].ExternalColumns[LetterID]"
+                      lineageId="Package\DFT - Prepare mailing data to be adjudicated\LKP - Find letters that match those in cache.Outputs[Lookup Match Output].Columns[LetterID]" />
+                    <inputColumn
+                      refId="Package\DFT - Prepare mailing data to be adjudicated\OLE_DST - Store tempoararly mailing data into buffer.Inputs[OLE DB Destination Input].Columns[ParentID]"
+                      cachedDataType="i4"
+                      cachedName="ParentID"
+                      externalMetadataColumnId="Package\DFT - Prepare mailing data to be adjudicated\OLE_DST - Store tempoararly mailing data into buffer.Inputs[OLE DB Destination Input].ExternalColumns[ParentID]"
+                      lineageId="Package\DFT - Prepare mailing data to be adjudicated\OLE_SRC - Get manifest records from cache table.Outputs[OLE DB Source Output].Columns[ParentID]" />
+                  </inputColumns>
                   <externalMetadataColumns
-                    isUsed="True" />
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\DFT - Prepare mailing data to be adjudicated\OLE_DST - Store tempoararly mailing data into buffer.Inputs[OLE DB Destination Input].ExternalColumns[LetterID]"
+                      dataType="i4"
+                      name="LetterID" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - Prepare mailing data to be adjudicated\OLE_DST - Store tempoararly mailing data into buffer.Inputs[OLE DB Destination Input].ExternalColumns[MailingDate]"
+                      dataType="dbTimeStamp2"
+                      name="MailingDate"
+                      scale="7" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - Prepare mailing data to be adjudicated\OLE_DST - Store tempoararly mailing data into buffer.Inputs[OLE DB Destination Input].ExternalColumns[ParentID]"
+                      dataType="i4"
+                      name="ParentID" />
+                  </externalMetadataColumns>
                 </input>
               </inputs>
               <outputs>
                 <output
-                  refId="Package\DFT - Perform the (mailing data) adjudication process\OLE DB Destination.Outputs[OLE DB Destination Error Output]"
+                  refId="Package\DFT - Prepare mailing data to be adjudicated\OLE_DST - Store tempoararly mailing data into buffer.Outputs[OLE DB Destination Error Output]"
                   exclusionGroup="1"
                   isErrorOut="true"
                   name="OLE DB Destination Error Output"
-                  synchronousInputId="Package\DFT - Perform the (mailing data) adjudication process\OLE DB Destination.Inputs[OLE DB Destination Input]">
+                  synchronousInputId="Package\DFT - Prepare mailing data to be adjudicated\OLE_DST - Store tempoararly mailing data into buffer.Inputs[OLE DB Destination Input]">
                   <outputColumns>
                     <outputColumn
-                      refId="Package\DFT - Perform the (mailing data) adjudication process\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      refId="Package\DFT - Prepare mailing data to be adjudicated\OLE_DST - Store tempoararly mailing data into buffer.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
                       dataType="i4"
-                      lineageId="Package\DFT - Perform the (mailing data) adjudication process\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      lineageId="Package\DFT - Prepare mailing data to be adjudicated\OLE_DST - Store tempoararly mailing data into buffer.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
                       name="ErrorCode"
                       specialFlags="1" />
                     <outputColumn
-                      refId="Package\DFT - Perform the (mailing data) adjudication process\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      refId="Package\DFT - Prepare mailing data to be adjudicated\OLE_DST - Store tempoararly mailing data into buffer.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
                       dataType="i4"
-                      lineageId="Package\DFT - Perform the (mailing data) adjudication process\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      lineageId="Package\DFT - Prepare mailing data to be adjudicated\OLE_DST - Store tempoararly mailing data into buffer.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
                       name="ErrorColumn"
                       specialFlags="2" />
                   </outputColumns>
@@ -320,7 +596,7 @@ where [refTable].[LetterName] = ?</property>
               </outputs>
             </component>
             <component
-              refId="Package\DFT - Perform the (mailing data) adjudication process\OLE_SRC - Get manifest records from cache table"
+              refId="Package\DFT - Prepare mailing data to be adjudicated\OLE_SRC - Get manifest records from cache table"
               componentClassID="{165A526D-D5DE-47FF-96A6-F8274C19826B}"
               contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
               description="OLE DB Source"
@@ -381,7 +657,7 @@ WHERE
               </properties>
               <connections>
                 <connection
-                  refId="Package\DFT - Perform the (mailing data) adjudication process\OLE_SRC - Get manifest records from cache table.Connections[OleDbConnection]"
+                  refId="Package\DFT - Prepare mailing data to be adjudicated\OLE_SRC - Get manifest records from cache table.Connections[OleDbConnection]"
                   connectionManagerID="Package.ConnectionManagers[MSSQLSERVER.testdb.sa]"
                   connectionManagerRefId="Package.ConnectionManagers[MSSQLSERVER.testdb.sa]"
                   description="The OLE DB runtime connection used to access the database."
@@ -389,55 +665,55 @@ WHERE
               </connections>
               <outputs>
                 <output
-                  refId="Package\DFT - Perform the (mailing data) adjudication process\OLE_SRC - Get manifest records from cache table.Outputs[OLE DB Source Output]"
+                  refId="Package\DFT - Prepare mailing data to be adjudicated\OLE_SRC - Get manifest records from cache table.Outputs[OLE DB Source Output]"
                   name="OLE DB Source Output">
                   <outputColumns>
                     <outputColumn
-                      refId="Package\DFT - Perform the (mailing data) adjudication process\OLE_SRC - Get manifest records from cache table.Outputs[OLE DB Source Output].Columns[ParentID]"
+                      refId="Package\DFT - Prepare mailing data to be adjudicated\OLE_SRC - Get manifest records from cache table.Outputs[OLE DB Source Output].Columns[ParentID]"
                       dataType="i4"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\DFT - Perform the (mailing data) adjudication process\OLE_SRC - Get manifest records from cache table.Outputs[OLE DB Source Output].ExternalColumns[ParentID]"
-                      lineageId="Package\DFT - Perform the (mailing data) adjudication process\OLE_SRC - Get manifest records from cache table.Outputs[OLE DB Source Output].Columns[ParentID]"
+                      externalMetadataColumnId="Package\DFT - Prepare mailing data to be adjudicated\OLE_SRC - Get manifest records from cache table.Outputs[OLE DB Source Output].ExternalColumns[ParentID]"
+                      lineageId="Package\DFT - Prepare mailing data to be adjudicated\OLE_SRC - Get manifest records from cache table.Outputs[OLE DB Source Output].Columns[ParentID]"
                       name="ParentID"
                       truncationRowDisposition="FailComponent" />
                     <outputColumn
-                      refId="Package\DFT - Perform the (mailing data) adjudication process\OLE_SRC - Get manifest records from cache table.Outputs[OLE DB Source Output].Columns[FileName]"
+                      refId="Package\DFT - Prepare mailing data to be adjudicated\OLE_SRC - Get manifest records from cache table.Outputs[OLE DB Source Output].Columns[FileName]"
                       codePage="1252"
                       dataType="str"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\DFT - Perform the (mailing data) adjudication process\OLE_SRC - Get manifest records from cache table.Outputs[OLE DB Source Output].ExternalColumns[FileName]"
+                      externalMetadataColumnId="Package\DFT - Prepare mailing data to be adjudicated\OLE_SRC - Get manifest records from cache table.Outputs[OLE DB Source Output].ExternalColumns[FileName]"
                       length="133"
-                      lineageId="Package\DFT - Perform the (mailing data) adjudication process\OLE_SRC - Get manifest records from cache table.Outputs[OLE DB Source Output].Columns[FileName]"
+                      lineageId="Package\DFT - Prepare mailing data to be adjudicated\OLE_SRC - Get manifest records from cache table.Outputs[OLE DB Source Output].Columns[FileName]"
                       name="FileName"
                       truncationRowDisposition="FailComponent" />
                     <outputColumn
-                      refId="Package\DFT - Perform the (mailing data) adjudication process\OLE_SRC - Get manifest records from cache table.Outputs[OLE DB Source Output].Columns[MailingDate]"
+                      refId="Package\DFT - Prepare mailing data to be adjudicated\OLE_SRC - Get manifest records from cache table.Outputs[OLE DB Source Output].Columns[MailingDate]"
                       codePage="1252"
                       dataType="str"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\DFT - Perform the (mailing data) adjudication process\OLE_SRC - Get manifest records from cache table.Outputs[OLE DB Source Output].ExternalColumns[MailingDate]"
+                      externalMetadataColumnId="Package\DFT - Prepare mailing data to be adjudicated\OLE_SRC - Get manifest records from cache table.Outputs[OLE DB Source Output].ExternalColumns[MailingDate]"
                       length="19"
-                      lineageId="Package\DFT - Perform the (mailing data) adjudication process\OLE_SRC - Get manifest records from cache table.Outputs[OLE DB Source Output].Columns[MailingDate]"
+                      lineageId="Package\DFT - Prepare mailing data to be adjudicated\OLE_SRC - Get manifest records from cache table.Outputs[OLE DB Source Output].Columns[MailingDate]"
                       name="MailingDate"
                       truncationRowDisposition="FailComponent" />
                   </outputColumns>
                   <externalMetadataColumns
                     isUsed="True">
                     <externalMetadataColumn
-                      refId="Package\DFT - Perform the (mailing data) adjudication process\OLE_SRC - Get manifest records from cache table.Outputs[OLE DB Source Output].ExternalColumns[ParentID]"
+                      refId="Package\DFT - Prepare mailing data to be adjudicated\OLE_SRC - Get manifest records from cache table.Outputs[OLE DB Source Output].ExternalColumns[ParentID]"
                       dataType="i4"
                       name="ParentID" />
                     <externalMetadataColumn
-                      refId="Package\DFT - Perform the (mailing data) adjudication process\OLE_SRC - Get manifest records from cache table.Outputs[OLE DB Source Output].ExternalColumns[FileName]"
+                      refId="Package\DFT - Prepare mailing data to be adjudicated\OLE_SRC - Get manifest records from cache table.Outputs[OLE DB Source Output].ExternalColumns[FileName]"
                       codePage="1252"
                       dataType="str"
                       length="133"
                       name="FileName" />
                     <externalMetadataColumn
-                      refId="Package\DFT - Perform the (mailing data) adjudication process\OLE_SRC - Get manifest records from cache table.Outputs[OLE DB Source Output].ExternalColumns[MailingDate]"
+                      refId="Package\DFT - Prepare mailing data to be adjudicated\OLE_SRC - Get manifest records from cache table.Outputs[OLE DB Source Output].ExternalColumns[MailingDate]"
                       codePage="1252"
                       dataType="str"
                       length="19"
@@ -445,39 +721,39 @@ WHERE
                   </externalMetadataColumns>
                 </output>
                 <output
-                  refId="Package\DFT - Perform the (mailing data) adjudication process\OLE_SRC - Get manifest records from cache table.Outputs[OLE DB Source Error Output]"
+                  refId="Package\DFT - Prepare mailing data to be adjudicated\OLE_SRC - Get manifest records from cache table.Outputs[OLE DB Source Error Output]"
                   isErrorOut="true"
                   name="OLE DB Source Error Output">
                   <outputColumns>
                     <outputColumn
-                      refId="Package\DFT - Perform the (mailing data) adjudication process\OLE_SRC - Get manifest records from cache table.Outputs[OLE DB Source Error Output].Columns[ParentID]"
+                      refId="Package\DFT - Prepare mailing data to be adjudicated\OLE_SRC - Get manifest records from cache table.Outputs[OLE DB Source Error Output].Columns[ParentID]"
                       dataType="i4"
-                      lineageId="Package\DFT - Perform the (mailing data) adjudication process\OLE_SRC - Get manifest records from cache table.Outputs[OLE DB Source Error Output].Columns[ParentID]"
+                      lineageId="Package\DFT - Prepare mailing data to be adjudicated\OLE_SRC - Get manifest records from cache table.Outputs[OLE DB Source Error Output].Columns[ParentID]"
                       name="ParentID" />
                     <outputColumn
-                      refId="Package\DFT - Perform the (mailing data) adjudication process\OLE_SRC - Get manifest records from cache table.Outputs[OLE DB Source Error Output].Columns[FileName]"
+                      refId="Package\DFT - Prepare mailing data to be adjudicated\OLE_SRC - Get manifest records from cache table.Outputs[OLE DB Source Error Output].Columns[FileName]"
                       codePage="1252"
                       dataType="str"
                       length="133"
-                      lineageId="Package\DFT - Perform the (mailing data) adjudication process\OLE_SRC - Get manifest records from cache table.Outputs[OLE DB Source Error Output].Columns[FileName]"
+                      lineageId="Package\DFT - Prepare mailing data to be adjudicated\OLE_SRC - Get manifest records from cache table.Outputs[OLE DB Source Error Output].Columns[FileName]"
                       name="FileName" />
                     <outputColumn
-                      refId="Package\DFT - Perform the (mailing data) adjudication process\OLE_SRC - Get manifest records from cache table.Outputs[OLE DB Source Error Output].Columns[MailingDate]"
+                      refId="Package\DFT - Prepare mailing data to be adjudicated\OLE_SRC - Get manifest records from cache table.Outputs[OLE DB Source Error Output].Columns[MailingDate]"
                       codePage="1252"
                       dataType="str"
                       length="19"
-                      lineageId="Package\DFT - Perform the (mailing data) adjudication process\OLE_SRC - Get manifest records from cache table.Outputs[OLE DB Source Error Output].Columns[MailingDate]"
+                      lineageId="Package\DFT - Prepare mailing data to be adjudicated\OLE_SRC - Get manifest records from cache table.Outputs[OLE DB Source Error Output].Columns[MailingDate]"
                       name="MailingDate" />
                     <outputColumn
-                      refId="Package\DFT - Perform the (mailing data) adjudication process\OLE_SRC - Get manifest records from cache table.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      refId="Package\DFT - Prepare mailing data to be adjudicated\OLE_SRC - Get manifest records from cache table.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
                       dataType="i4"
-                      lineageId="Package\DFT - Perform the (mailing data) adjudication process\OLE_SRC - Get manifest records from cache table.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      lineageId="Package\DFT - Prepare mailing data to be adjudicated\OLE_SRC - Get manifest records from cache table.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
                       name="ErrorCode"
                       specialFlags="1" />
                     <outputColumn
-                      refId="Package\DFT - Perform the (mailing data) adjudication process\OLE_SRC - Get manifest records from cache table.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      refId="Package\DFT - Prepare mailing data to be adjudicated\OLE_SRC - Get manifest records from cache table.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
                       dataType="i4"
-                      lineageId="Package\DFT - Perform the (mailing data) adjudication process\OLE_SRC - Get manifest records from cache table.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      lineageId="Package\DFT - Prepare mailing data to be adjudicated\OLE_SRC - Get manifest records from cache table.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
                       name="ErrorColumn"
                       specialFlags="2" />
                   </outputColumns>
@@ -488,20 +764,110 @@ WHERE
           </components>
           <paths>
             <path
-              refId="Package\DFT - Perform the (mailing data) adjudication process.Paths[Lookup Match Output]"
-              endId="Package\DFT - Perform the (mailing data) adjudication process\OLE DB Destination.Inputs[OLE DB Destination Input]"
-              name="Lookup Match Output"
-              startId="Package\DFT - Perform the (mailing data) adjudication process\LKP - Find letters that match those in cache.Outputs[Lookup Match Output]" />
+              refId="Package\DFT - Prepare mailing data to be adjudicated.Paths[Derived Column Output]"
+              endId="Package\DFT - Prepare mailing data to be adjudicated\OLE_DST - Save info about mailing data with no match.Inputs[OLE DB Destination Input]"
+              name="Derived Column Output"
+              startId="Package\DFT - Prepare mailing data to be adjudicated\DER - Add execition id column.Outputs[Derived Column Output]" />
             <path
-              refId="Package\DFT - Perform the (mailing data) adjudication process.Paths[OLE DB Source Output]"
-              endId="Package\DFT - Perform the (mailing data) adjudication process\LKP - Find letters that match those in cache.Inputs[Lookup Input]"
+              refId="Package\DFT - Prepare mailing data to be adjudicated.Paths[Lookup Match Output]"
+              endId="Package\DFT - Prepare mailing data to be adjudicated\OLE_DST - Store tempoararly mailing data into buffer.Inputs[OLE DB Destination Input]"
+              name="Lookup Match Output"
+              startId="Package\DFT - Prepare mailing data to be adjudicated\LKP - Find letters that match those in cache.Outputs[Lookup Match Output]" />
+            <path
+              refId="Package\DFT - Prepare mailing data to be adjudicated.Paths[Lookup No Match Output]"
+              endId="Package\DFT - Prepare mailing data to be adjudicated\DER - Add execition id column.Inputs[Derived Column Input]"
+              name="Lookup No Match Output"
+              startId="Package\DFT - Prepare mailing data to be adjudicated\LKP - Find letters that match those in cache.Outputs[Lookup No Match Output]" />
+            <path
+              refId="Package\DFT - Prepare mailing data to be adjudicated.Paths[OLE DB Source Output]"
+              endId="Package\DFT - Prepare mailing data to be adjudicated\LKP - Find letters that match those in cache.Inputs[Lookup Input]"
               name="OLE DB Source Output"
-              startId="Package\DFT - Perform the (mailing data) adjudication process\OLE_SRC - Get manifest records from cache table.Outputs[OLE DB Source Output]" />
+              startId="Package\DFT - Prepare mailing data to be adjudicated\OLE_SRC - Get manifest records from cache table.Outputs[OLE DB Source Output]" />
           </paths>
         </pipeline>
       </DTS:ObjectData>
     </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\SQL - Adjudicate mailing data to letters"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{39C60187-2348-4EA9-BB21-242279446DA6}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="SQL - Adjudicate mailing data to letters"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{1BECA79F-376F-46D2-886B-99F80846DDDA}"
+          SQLTask:BypassPrepare="False"
+          SQLTask:SqlStatementSource="UPDATE&#xA;  letter&#xA;SET&#xA;  letter.MailingDate = buffer.MailingDate&#xA;FROM&#xA;  Medhok.Letter AS letter&#xA;  INNER JOIN &#xA;  Medhok.Mailing_Data_Buffer AS buffer&#xA;    ON letter.LetterID = buffer.LetterID&#xA;;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\SQL - Clean up buffer table"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{C35CF17E-CE8F-4AF0-951D-7805FEE7349A}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="SQL - Clean up buffer table"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{1BECA79F-376F-46D2-886B-99F80846DDDA}"
+          SQLTask:BypassPrepare="False"
+          SQLTask:SqlStatementSource="TRUNCATE TABLE&#xA;   Medhok.Mailing_Data_Buffer;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\SQL - Update mailing file status"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{5572592E-AF6F-4F3C-A404-CC14327C1B05}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="SQL - Update mailing file status"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{1BECA79F-376F-46D2-886B-99F80846DDDA}"
+          SQLTask:BypassPrepare="False"
+          SQLTask:SqlStatementSource=";WITH mailing_cache AS&#xA;(&#xA;  SELECT DISTINCT ParentID&#xA;  FROM&#xA;    Medhok.Mailing_Data_File_Cache&#xA;)&#xA;UPDATE&#xA;  mailing_file&#xA;SET&#xA;  mailing_file.Adjudicated = 1&#xA;FROM&#xA;  Medhok.Mailing_Data_File AS mailing_file&#xA;  INNER JOIN&#xA;  mailing_cache&#xA;    ON mailing_file.ID = mailing_cache.ParentID&#xA;;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
   </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{352CF956-7A8E-4289-B285-1ECEB6F08564}"
+      DTS:From="Package\SQL - Clean up buffer table"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\DFT - Prepare mailing data to be adjudicated" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 1]"
+      DTS:CreationName=""
+      DTS:DTSID="{56F60C0B-89C2-4E3F-BB6A-769B04A991B5}"
+      DTS:From="Package\DFT - Prepare mailing data to be adjudicated"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 1"
+      DTS:To="Package\SQL - Adjudicate mailing data to letters" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 2]"
+      DTS:CreationName=""
+      DTS:DTSID="{C56ECB98-1D59-4DA4-BF20-032D6EC4E343}"
+      DTS:From="Package\SQL - Adjudicate mailing data to letters"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 2"
+      DTS:To="Package\SQL - Update mailing file status" />
+  </DTS:PrecedenceConstraints>
   <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
 <!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
 <!--If you manually edit this section and make a mistake, you can delete it. -->
@@ -513,29 +879,111 @@ WHERE
     design-time-name="Package">
     <LayoutInfo>
       <GraphLayout
-        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
-          Size="334.4,41.6"
-          Id="Package\DFT - Perform the (mailing data) adjudication process"
-          TopLeft="46.4489803828581,45.7075636662414" />
+          Size="292.8,41.6"
+          Id="Package\DFT - Prepare mailing data to be adjudicated"
+          TopLeft="76.6530625298836,146.211766756447" />
+        <NodeLayout
+          Size="208,41.6"
+          Id="Package\SQL - Clean up buffer table"
+          TopLeft="123.051022410045,50.071429196526" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="225.052042469964,91.671429196526">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,54.5403375599209"
+              Start="0,0"
+              End="0,47.0403375599209">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,47.0403375599209" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="265.6,41.6"
+          Id="Package\SQL - Adjudicate mailing data to letters"
+          TopLeft="96.9285729855906,246.710087416494" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 1]"
+          TopLeft="226.390817757737,187.811766756447">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,58.898320660047"
+              Start="0,0"
+              End="0,51.398320660047">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,51.398320660047" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="228.8,41.6"
+          Id="Package\SQL - Update mailing file status"
+          TopLeft="120.000002043588,346.957988059232" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 2]"
+          TopLeft="232.064287514589,288.310087416494">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,58.6479006427381"
+              Start="0,0"
+              End="0,51.1479006427381">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,51.1479006427381" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
       </GraphLayout>
     </LayoutInfo>
   </Package>
   <TaskHost
-    design-time-name="Package\DFT - Perform the (mailing data) adjudication process">
+    design-time-name="Package\DFT - Prepare mailing data to be adjudicated">
     <LayoutInfo>
       <GraphLayout
-        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
-          Size="315.2,41.6"
-          Id="Package\DFT - Perform the (mailing data) adjudication process\OLE_SRC - Get manifest records from cache table"
-          TopLeft="34.5306128329507,43.9596644820641" />
+          Size="332.8,41.6"
+          Id="Package\DFT - Prepare mailing data to be adjudicated\OLE_DST - Store tempoararly mailing data into buffer"
+          TopLeft="436.734701315099,194.016809443702" />
         <NodeLayout
           Size="286.4,41.6"
-          Id="Package\DFT - Perform the (mailing data) adjudication process\LKP - Find letters that match those in cache"
+          Id="Package\DFT - Prepare mailing data to be adjudicated\LKP - Find letters that match those in cache"
           TopLeft="463.459191472468,45.7016812360823" />
+        <NodeLayout
+          Size="315.2,41.6"
+          Id="Package\DFT - Prepare mailing data to be adjudicated\OLE_SRC - Get manifest records from cache table"
+          TopLeft="34.5306128329507,43.9596644820641" />
         <EdgeLayout
-          Id="Package\DFT - Perform the (mailing data) adjudication process.Paths[OLE DB Source Output]"
+          Id="Package\DFT - Prepare mailing data to be adjudicated.Paths[OLE DB Source Output]"
           TopLeft="349.730612832951,65.6306728590732">
           <EdgeLayout.Curve>
             <mssgle:Curve
@@ -556,47 +1004,102 @@ WHERE
             <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
-        <NodeLayout
-          Size="172.8,41.6"
-          Id="Package\DFT - Perform the (mailing data) adjudication process\OLE DB Destination"
-          TopLeft="523.265315033604,194.89075903579" />
         <EdgeLayout
-          Id="Package\DFT - Perform the (mailing data) adjudication process.Paths[Lookup Match Output]"
-          TopLeft="608.162253253036,87.3016812360823">
+          Id="Package\DFT - Prepare mailing data to be adjudicated.Paths[Lookup Match Output]"
+          TopLeft="604.896946393783,87.3016812360823">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,107.589077799708"
+              EndConnector="0,106.715128207619"
               Start="0,0"
-              End="0,100.089077799708">
+              End="0,99.2151282076193">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,100.089077799708" />
+                    End="0,99.2151282076193" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="-48.19138671875,44.239851399854,96.3827734375,11.609375"
+              BoundingBox="-48.19138671875,43.8028766038097,96.3827734375,11.609375"
               RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="222.4,41.6"
+          Id="Package\DFT - Prepare mailing data to be adjudicated\DER - Add execition id column"
+          TopLeft="884.081647708882,45.4453787886148" />
+        <EdgeLayout
+          Id="Package\DFT - Prepare mailing data to be adjudicated.Paths[Lookup No Match Output]"
+          TopLeft="749.859191472468,66.3735300123485">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="134.222456236414,0"
+              Start="0,0"
+              End="126.722456236414,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="126.722456236414,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="7.5548413994569,5,111.6127734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="340.8,41.6"
+          Id="Package\DFT - Prepare mailing data to be adjudicated\OLE_DST - Save info about mailing data with no match"
+          TopLeft="832.653075404487,193.142859851613" />
+        <EdgeLayout
+          Id="Package\DFT - Prepare mailing data to be adjudicated.Paths[Derived Column Output]"
+          TopLeft="999.167361556684,87.0453787886148">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,106.097481062998"
+              Start="0,0"
+              End="0,98.597481062998">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,98.597481062998" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>
     </LayoutInfo>
   </TaskHost>
   <PipelineComponentMetadata
-    design-time-name="Package\DFT - Perform the (mailing data) adjudication process\OLE_SRC - Get manifest records from cache table">
+    design-time-name="Package\DFT - Prepare mailing data to be adjudicated\OLE_DST - Store tempoararly mailing data into buffer">
     <Properties>
       <Property>
         <Name>DataSourceViewID</Name>
       </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
     </Properties>
   </PipelineComponentMetadata>
   <PipelineComponentMetadata
-    design-time-name="Package\DFT - Perform the (mailing data) adjudication process\LKP - Find letters that match those in cache">
+    design-time-name="Package\DFT - Prepare mailing data to be adjudicated\LKP - Find letters that match those in cache">
     <Properties>
       <Property>
         <Name>OverwriteParamsSQLProp</Name>
@@ -615,6 +1118,27 @@ WHERE
       </Property>
       <Property>
         <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\DFT - Prepare mailing data to be adjudicated\OLE_SRC - Get manifest records from cache table">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\DFT - Prepare mailing data to be adjudicated\OLE_DST - Save info about mailing data with no match">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
       </Property>
     </Properties>
   </PipelineComponentMetadata>
