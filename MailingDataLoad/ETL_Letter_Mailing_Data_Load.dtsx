@@ -11,8 +11,8 @@
   DTS:LocaleID="1033"
   DTS:ObjectName="ETL_Letter_Mailing_Data_Load"
   DTS:PackageType="5"
-  DTS:VersionBuild="446"
-  DTS:VersionGUID="{E4363BD0-E915-4C6F-8AC8-CDB756A7C232}">
+  DTS:VersionBuild="458"
+  DTS:VersionGUID="{83FC351E-C955-4C70-BF34-BDE8B0099F21}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">6</DTS:Property>
   <DTS:ConnectionManagers>
@@ -121,7 +121,7 @@
           <DTS:Password
             DTS:Name="Password"
             Sensitive="1"
-            Encrypted="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAPXQ7jZTnV0GKV9nuEcqtfwAAAAAIAAAARABUAFMAAAAQZgAAAAEAACAAAABF+8Ujq7l9PiwE/oKqFEiGmPn7llTSQKJ8oyFdoXiWOgAAAAAOgAAAAAIAACAAAADdoeV3Z28/Ll0AR9GL2oxNYeXez1d6QwzHIYv3bzsppBAAAABPZe+5BqpCTqjGTlhOtZTAQAAAAHcc12XJygCPojkKYdUm4lf8zTRqRiGsoq2QEWXIraAUBw1mFrO2PCPu1uQm9IKJq627p0fa8ZyFoijjP2gedXw</DTS:Password>
+            Encrypted="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAPXQ7jZTnV0GKV9nuEcqtfwAAAAAIAAAARABUAFMAAAAQZgAAAAEAACAAAACoyKzBJKVkA9kn2KWfJtZOUyktx8mUpt87ONme9FhuOgAAAAAOgAAAAAIAACAAAACL7ZJ0Pv+HLvd+LRVs1oifkop/Oa/6f392iJRVM6OOsRAAAADOJxLviFqxJ9IegF2hocorQAAAAL0uk6N7McVh5ehuX0mL3WgPF2VhcTVC4svgo6icEOYP6eg6xS7mCdxusJDypL88zaC4UP3BqcEsy4rH12QgC7U</DTS:Password>
         </DTS:ConnectionManager>
       </DTS:ObjectData>
     </DTS:ConnectionManager>
@@ -185,7 +185,7 @@
       DTS:Namespace="User"
       DTS:ObjectName="execution_log_id">
       <DTS:VariableValue
-        DTS:DataType="3">9999300</DTS:VariableValue>
+        DTS:DataType="3">9999309</DTS:VariableValue>
     </DTS:Variable>
     <DTS:Variable
       DTS:CreationName=""
@@ -2770,11 +2770,11 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA</BinaryItem>
               version="1">
               <components>
                 <component
-                  refId="Package\FELC - Traverse filenames collection to load its contecnt into the cache\DFT - Load mailing data into cache\CNT - Count error rows"
+                  refId="Package\FELC - Traverse filenames collection to load its contecnt into the cache\DFT - Load mailing data into cache\CNT - Count rows with errors"
                   componentClassID="{E2697D8C-70DA-42B2-8208-A19CE3A9FE41}"
                   contactInfo="Row Count;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
                   description="Counts rows as they pass through a data flow. For example, use the number of rows processed to determine whether or not to perform cleanup operations, or update text in an e-mail message to communicate processing status."
-                  name="CNT - Count error rows">
+                  name="CNT - Count rows with errors">
                   <properties>
                     <property
                       dataType="System.String"
@@ -2783,7 +2783,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA</BinaryItem>
                   </properties>
                   <inputs>
                     <input
-                      refId="Package\FELC - Traverse filenames collection to load its contecnt into the cache\DFT - Load mailing data into cache\CNT - Count error rows.Inputs[Row Count Input 1]"
+                      refId="Package\FELC - Traverse filenames collection to load its contecnt into the cache\DFT - Load mailing data into cache\CNT - Count rows with errors.Inputs[Row Count Input 1]"
                       hasSideEffects="true"
                       name="Row Count Input 1">
                       <externalMetadataColumns />
@@ -2791,9 +2791,9 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA</BinaryItem>
                   </inputs>
                   <outputs>
                     <output
-                      refId="Package\FELC - Traverse filenames collection to load its contecnt into the cache\DFT - Load mailing data into cache\CNT - Count error rows.Outputs[Row Count Output 1]"
+                      refId="Package\FELC - Traverse filenames collection to load its contecnt into the cache\DFT - Load mailing data into cache\CNT - Count rows with errors.Outputs[Row Count Output 1]"
                       name="Row Count Output 1"
-                      synchronousInputId="Package\FELC - Traverse filenames collection to load its contecnt into the cache\DFT - Load mailing data into cache\CNT - Count error rows.Inputs[Row Count Input 1]">
+                      synchronousInputId="Package\FELC - Traverse filenames collection to load its contecnt into the cache\DFT - Load mailing data into cache\CNT - Count rows with errors.Inputs[Row Count Input 1]">
                       <externalMetadataColumns />
                     </output>
                   </outputs>
@@ -3274,6 +3274,28 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA</BinaryItem>
                               description="Derived Column Friendly Expression"
                               expressionType="Notify"
                               name="FriendlyExpression">@[User::file_name]</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\FELC - Traverse filenames collection to load its contecnt into the cache\DFT - Load mailing data into cache\DER - Add process related data.Outputs[Derived Column Output].Columns[ParentID]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Computation"
+                          errorRowDisposition="FailComponent"
+                          lineageId="Package\FELC - Traverse filenames collection to load its contecnt into the cache\DFT - Load mailing data into cache\DER - Add process related data.Outputs[Derived Column Output].Columns[ParentID]"
+                          name="ParentID"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Expression"
+                              name="Expression">@[User::file_id]</property>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Friendly Expression"
+                              expressionType="Notify"
+                              name="FriendlyExpression">@[User::file_id]</property>
                           </properties>
                         </outputColumn>
                       </outputColumns>
@@ -4051,18 +4073,18 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA</BinaryItem>
                           externalMetadataColumnId="Package\FELC - Traverse filenames collection to load its contecnt into the cache\DFT - Load mailing data into cache\OLE_DST - Store file errors.Inputs[OLE DB Destination Input].ExternalColumns[ExecutionLogID]"
                           lineageId="Package\FELC - Traverse filenames collection to load its contecnt into the cache\DFT - Load mailing data into cache\DER - Add process related data.Outputs[Derived Column Output].Columns[ExecutionLogID]" />
                         <inputColumn
-                          refId="Package\FELC - Traverse filenames collection to load its contecnt into the cache\DFT - Load mailing data into cache\OLE_DST - Store file errors.Inputs[OLE DB Destination Input].Columns[CurrentFileName]"
-                          cachedDataType="wstr"
-                          cachedName="CurrentFileName"
-                          externalMetadataColumnId="Package\FELC - Traverse filenames collection to load its contecnt into the cache\DFT - Load mailing data into cache\OLE_DST - Store file errors.Inputs[OLE DB Destination Input].ExternalColumns[FileName]"
-                          lineageId="Package\FELC - Traverse filenames collection to load its contecnt into the cache\DFT - Load mailing data into cache\DER - Add process related data.Outputs[Derived Column Output].Columns[CurrentFileName]" />
-                        <inputColumn
                           refId="Package\FELC - Traverse filenames collection to load its contecnt into the cache\DFT - Load mailing data into cache\OLE_DST - Store file errors.Inputs[OLE DB Destination Input].Columns[Flat File Source Error Output Column]"
                           cachedCodepage="1252"
                           cachedDataType="text"
                           cachedName="Flat File Source Error Output Column"
                           externalMetadataColumnId="Package\FELC - Traverse filenames collection to load its contecnt into the cache\DFT - Load mailing data into cache\OLE_DST - Store file errors.Inputs[OLE DB Destination Input].ExternalColumns[Source]"
                           lineageId="Package\FELC - Traverse filenames collection to load its contecnt into the cache\DFT - Load mailing data into cache\FF_SRC - Read mailing data file.Outputs[Flat File Source Error Output].Columns[Flat File Source Error Output Column]" />
+                        <inputColumn
+                          refId="Package\FELC - Traverse filenames collection to load its contecnt into the cache\DFT - Load mailing data into cache\OLE_DST - Store file errors.Inputs[OLE DB Destination Input].Columns[ParentID]"
+                          cachedDataType="i4"
+                          cachedName="ParentID"
+                          externalMetadataColumnId="Package\FELC - Traverse filenames collection to load its contecnt into the cache\DFT - Load mailing data into cache\OLE_DST - Store file errors.Inputs[OLE DB Destination Input].ExternalColumns[ParentID]"
+                          lineageId="Package\FELC - Traverse filenames collection to load its contecnt into the cache\DFT - Load mailing data into cache\DER - Add process related data.Outputs[Derived Column Output].Columns[ParentID]" />
                       </inputColumns>
                       <externalMetadataColumns
                         isUsed="True">
@@ -4088,10 +4110,9 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA</BinaryItem>
                           dataType="i4"
                           name="ExecutionLogID" />
                         <externalMetadataColumn
-                          refId="Package\FELC - Traverse filenames collection to load its contecnt into the cache\DFT - Load mailing data into cache\OLE_DST - Store file errors.Inputs[OLE DB Destination Input].ExternalColumns[FileName]"
-                          dataType="wstr"
-                          length="254"
-                          name="FileName" />
+                          refId="Package\FELC - Traverse filenames collection to load its contecnt into the cache\DFT - Load mailing data into cache\OLE_DST - Store file errors.Inputs[OLE DB Destination Input].ExternalColumns[ParentID]"
+                          dataType="i4"
+                          name="ParentID" />
                       </externalMetadataColumns>
                     </input>
                   </inputs>
@@ -4144,7 +4165,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA</BinaryItem>
                   startId="Package\FELC - Traverse filenames collection to load its contecnt into the cache\DFT - Load mailing data into cache\DER - Add parent file ID.Outputs[Derived Column Output]" />
                 <path
                   refId="Package\FELC - Traverse filenames collection to load its contecnt into the cache\DFT - Load mailing data into cache.Paths[Derived Column Output3]"
-                  endId="Package\FELC - Traverse filenames collection to load its contecnt into the cache\DFT - Load mailing data into cache\CNT - Count error rows.Inputs[Row Count Input 1]"
+                  endId="Package\FELC - Traverse filenames collection to load its contecnt into the cache\DFT - Load mailing data into cache\CNT - Count rows with errors.Inputs[Row Count Input 1]"
                   name="Derived Column Output"
                   startId="Package\FELC - Traverse filenames collection to load its contecnt into the cache\DFT - Load mailing data into cache\DER - Add process related data.Outputs[Derived Column Output]" />
                 <path
@@ -4176,7 +4197,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA</BinaryItem>
                   refId="Package\FELC - Traverse filenames collection to load its contecnt into the cache\DFT - Load mailing data into cache.Paths[Row Count Output 1]"
                   endId="Package\FELC - Traverse filenames collection to load its contecnt into the cache\DFT - Load mailing data into cache\OLE_DST - Store file errors.Inputs[OLE DB Destination Input]"
                   name="Row Count Output 1"
-                  startId="Package\FELC - Traverse filenames collection to load its contecnt into the cache\DFT - Load mailing data into cache\CNT - Count error rows.Outputs[Row Count Output 1]" />
+                  startId="Package\FELC - Traverse filenames collection to load its contecnt into the cache\DFT - Load mailing data into cache\CNT - Count rows with errors.Outputs[Row Count Output 1]" />
               </paths>
             </pipeline>
           </DTS:ObjectData>
@@ -11086,8 +11107,8 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
           Id="Package\FELC - Traverse filenames collection to load its contecnt into the cache\DFT - Load mailing data into cache\DER - Add length exception description"
           TopLeft="802.721102105633,118.857144524069" />
         <NodeLayout
-          Size="228.8,41.6"
-          Id="Package\FELC - Traverse filenames collection to load its contecnt into the cache\DFT - Load mailing data into cache\CNT - Count error rows"
+          Size="217.6,41.6"
+          Id="Package\FELC - Traverse filenames collection to load its contecnt into the cache\DFT - Load mailing data into cache\CNT - Count rows with errors"
           TopLeft="37.1428577753962,212.078434346869" />
         <EdgeLayout
           Id="Package\FELC - Traverse filenames collection to load its contecnt into the cache\DFT - Load mailing data into cache.Paths[Derived Column Output1]"
@@ -11159,7 +11180,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
         </EdgeLayout>
         <EdgeLayout
           Id="Package\FELC - Traverse filenames collection to load its contecnt into the cache\DFT - Load mailing data into cache.Paths[Row Count Output 1]"
-          TopLeft="151.066667291096,253.678434346869">
+          TopLeft="148.266667291096,253.678434346869">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
@@ -11299,7 +11320,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
         </EdgeLayout>
         <EdgeLayout
           Id="Package\FELC - Traverse filenames collection to load its contecnt into the cache\DFT - Load mailing data into cache.Paths[Derived Column Output3]"
-          TopLeft="150.415306178057,163.469748689725">
+          TopLeft="147.615306178057,163.469748689725">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"

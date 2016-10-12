@@ -11,8 +11,8 @@
   DTS:LocaleID="1033"
   DTS:ObjectName="ETL_Mailing_Data_Adjudicator"
   DTS:PackageType="5"
-  DTS:VersionBuild="35"
-  DTS:VersionGUID="{CE80CE95-9EF1-422A-A635-9BF843EE1D26}">
+  DTS:VersionBuild="47"
+  DTS:VersionGUID="{804B8C72-69B2-4B75-80EB-B31A6A2ECFC7}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">6</DTS:Property>
   <DTS:ConnectionManagers>
@@ -27,7 +27,7 @@
           <DTS:Password
             DTS:Name="Password"
             Sensitive="1"
-            Encrypted="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAPXQ7jZTnV0GKV9nuEcqtfwAAAAAIAAAARABUAFMAAAAQZgAAAAEAACAAAABbOWFgmYrSB8Y7OV/MU1CRTNbbDxMsHsCT8cYarRfIXQAAAAAOgAAAAAIAACAAAACzLY3J5ULtbHHeiD5JLUx5IUi1YVgVLftN4bLSo2K2BhAAAACqAG2ZWEy2QJotpO93XnC8QAAAAGjvSTvkzHzdWk2IjRDjwQYYnWMKT+ahejudWrcmN4nJ35YlRcix98oDn7YCMKCpUVZorZTKTW/Ffh/iBCNluMU</DTS:Password>
+            Encrypted="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAPXQ7jZTnV0GKV9nuEcqtfwAAAAAIAAAARABUAFMAAAAQZgAAAAEAACAAAADI4Kg7b6W3GhbN2C6mjz6k6j6PTRqMuVaypYV0mj+HtQAAAAAOgAAAAAIAACAAAADyUuXTW6Mu91Yx2kgMofyvcZUH/6lrhR5XNhh7orhBaRAAAAAaefolFI7JNWo5rwjd/YHAQAAAAIZ3KjQZCFuTBeCGOlmgsuus1ID3JWzODk9RDorcBQfnIXo4797TDYSNd9lNfEGYWnGNdzldhWYfPCEm1ePWOjw</DTS:Password>
         </DTS:ConnectionManager>
       </DTS:ObjectData>
     </DTS:ConnectionManager>
@@ -41,7 +41,7 @@
       DTS:ObjectName="execution_log_id">
       <DTS:Property
         DTS:DataType="3"
-        DTS:Name="ParameterValue">9999285</DTS:Property>
+        DTS:Name="ParameterValue">9999309</DTS:Property>
     </DTS:PackageParameter>
   </DTS:PackageParameters>
   <DTS:Variables>
@@ -492,7 +492,7 @@ where [refTable].[LetterName] = ?</property>
                 <property
                   dataType="System.Boolean"
                   description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
-                  name="FastLoadKeepIdentity">true</property>
+                  name="FastLoadKeepIdentity">false</property>
                 <property
                   dataType="System.Boolean"
                   description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
@@ -3397,7 +3397,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
         <SQLTask:SqlTaskData
           SQLTask:Connection="{1BECA79F-376F-46D2-886B-99F80846DDDA}"
           SQLTask:BypassPrepare="False"
-          SQLTask:SqlStatementSource=";WITH mailing_cache AS&#xA;(&#xA;  SELECT DISTINCT ParentID&#xA;  FROM&#xA;    Medhok.Mailing_Data_File_Cache&#xA;)&#xA;UPDATE&#xA;  mailing_file&#xA;SET&#xA;  mailing_file.Adjudicated = 1&#xA;FROM&#xA;  Medhok.Mailing_Data_File AS mailing_file&#xA;  INNER JOIN&#xA;  mailing_cache&#xA;    ON mailing_file.ID = mailing_cache.ParentID&#xA;;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          SQLTask:SqlStatementSource=";WITH mailing_cache AS&#xA;(&#xA;  SELECT DISTINCT ParentID&#xA;  FROM&#xA;    Medhok.Mailing_Data_File_Cache&#xA;)&#xA;UPDATE&#xA;  mailing_file&#xA;SET&#xA;  mailing_file.Adjudicated = 1,&#xA;  mailing_file.AdjudicationDate = GETDATE()&#xA;FROM&#xA;  Medhok.Mailing_Data_File AS mailing_file&#xA;  INNER JOIN&#xA;  mailing_cache&#xA;    ON mailing_file.ID = mailing_cache.ParentID&#xA;;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
       </DTS:ObjectData>
     </DTS:Executable>
   </DTS:Executables>
@@ -3502,7 +3502,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
         <NodeLayout
           Size="292.8,41.6"
           Id="Package\DFT - Prepare mailing data to be adjudicated"
-          TopLeft="76.6530625298836,146.211766756447" />
+          TopLeft="77.9676883557794,148.250982471321" />
         <NodeLayout
           Size="210.4,41.6"
           Id="Package\SCR - Get load exception"
@@ -3520,35 +3520,35 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
           Id="Package\SCR - Set update mailing status error"
           TopLeft="487.346947074979,351.327736019676" />
         <NodeLayout
-          Size="265.6,41.6"
+          Size="292.8,41.6"
           Id="Package\SQL - Adjudicate mailing data to letters"
-          TopLeft="96.9285729855906,246.710087416494" />
+          TopLeft="77.9676883557794,248.749303131368" />
         <NodeLayout
-          Size="208,41.6"
+          Size="292.8,41.6"
           Id="Package\SQL - Clean up buffer table"
-          TopLeft="123.051022410045,50.071429196526" />
+          TopLeft="77.9676883557794,52.1106449113997" />
         <NodeLayout
           Size="296,41.6"
           Id="Package\SQL - Register error for current batch process"
           TopLeft="1099.59185546063,251.697482521559" />
         <NodeLayout
-          Size="228.8,41.6"
+          Size="292.8,41.6"
           Id="Package\SQL - Update mailing file status"
-          TopLeft="120.000002043588,346.957988059232" />
+          TopLeft="77.9676883557794,348.997203774106" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint]"
-          TopLeft="225.052042469964,91.671429196526">
+          TopLeft="224.367688355779,93.7106449113998">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,54.5403375599209"
+              EndConnector="0,54.540337559921"
               Start="0,0"
-              End="0,47.0403375599209">
+              End="0,47.040337559921">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,47.0403375599209" />
+                    End="0,47.040337559921" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -3561,7 +3561,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
         </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 1]"
-          TopLeft="226.390817757737,187.811766756447">
+          TopLeft="224.367688355779,189.850982471321">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
@@ -3583,18 +3583,18 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
         </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 2]"
-          TopLeft="232.064287514589,288.310087416494">
+          TopLeft="224.367688355779,290.349303131368">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,58.6479006427381"
+              EndConnector="0,58.647900642738"
               Start="0,0"
-              End="0,51.1479006427381">
+              End="0,51.147900642738">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,51.1479006427381" />
+                    End="0,51.147900642738" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -3605,73 +3605,73 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
         </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 3]"
-          TopLeft="369.453062529884,167.754623909723">
+          TopLeft="370.767688355779,168.774231767159">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="104.832659832868,0"
+              EndConnector="103.518034006973,0"
               Start="0,0"
-              End="97.3326598328684,0">
+              End="96.0180340069726,0">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="97.3326598328684,0" />
+                    End="96.0180340069726,0" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="33.4249822601842,5,30.4826953125,9.7490234375"
+              BoundingBox="32.7676693472363,5,30.4826953125,9.7490234375"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 4]"
-          TopLeft="362.528572985591,268.692860580893">
+          TopLeft="370.767688355779,269.71246843833">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="119.104088277789,0"
+              EndConnector="110.864972907601,0"
               Start="0,0"
-              End="111.604088277789,0">
+              End="103.364972907601,0">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="111.604088277789,0" />
+                    End="103.364972907601,0" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="40.5606964826446,5,30.4826953125,9.7490234375"
+              BoundingBox="36.4411387975503,5,30.4826953125,9.7490234375"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 5]"
-          TopLeft="348.800002043588,369.942862039454">
+          TopLeft="370.767688355779,370.962469896891">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="138.546945031391,0"
+              EndConnector="116.5792587192,0"
               Start="0,0"
-              End="131.046945031391,0">
+              End="109.0792587192,0">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="131.046945031391,0" />
+                    End="109.0792587192,0" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="50.2821248594457,5,30.4826953125,9.7490234375"
+              BoundingBox="39.2982817033498,5,30.4826953125,9.7490234375"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
@@ -3798,73 +3798,73 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
         <NodeLayout
           Size="340.8,41.6"
           Id="Package\DFT - Prepare mailing data to be adjudicated\OLE_DST - Save info about mailing data with no match"
-          TopLeft="832.653075404487,193.142859851613" />
+          TopLeft="945.034029699276,140.123251264896" />
         <NodeLayout
           Size="315.2,41.6"
           Id="Package\DFT - Prepare mailing data to be adjudicated\OLE_SRC - Get manifest records from cache table"
-          TopLeft="35.2448985594007,44.7243703751417" />
+          TopLeft="63.9362255552072,44.7243703751417" />
         <NodeLayout
-          Size="248,41.6"
+          Size="315.2,41.6"
           Id="Package\DFT - Prepare mailing data to be adjudicated\DER - Add execution id to data flow"
-          TopLeft="75.500001192093,143.147060753977" />
+          TopLeft="63.9362255552072,143.147060753977" />
         <NodeLayout
-          Size="286.4,41.6"
+          Size="332.8,41.6"
           Id="Package\DFT - Prepare mailing data to be adjudicated\LKP - Find letters that match those in cache"
-          TopLeft="463.459191472468,45.7016812360823" />
+          TopLeft="450.096946393783,45.7016812360823" />
         <NodeLayout
-          Size="222.4,41.6"
+          Size="340.8,41.6"
           Id="Package\DFT - Prepare mailing data to be adjudicated\DER - Add execition id column"
-          TopLeft="884.081647708882,45.4453787886148" />
+          TopLeft="942.176886793476,46.4649866460517" />
         <NodeLayout
-          Size="291.2,41.6"
+          Size="315.2,41.6"
           Id="Package\DFT - Prepare mailing data to be adjudicated\OLE_DST - Store row errors detected in data"
-          TopLeft="57.1428581159941,347.176475457254" />
+          TopLeft="63.9362255552072,347.176475457254" />
         <NodeLayout
-          Size="217.6,41.6"
+          Size="315.2,41.6"
           Id="Package\DFT - Prepare mailing data to be adjudicated\CNT - Count rows with errors"
-          TopLeft="87.8571443533408,243.941179891771" />
+          TopLeft="63.9362255552072,243.941179891771" />
         <NodeLayout
           Size="332.8,41.6"
           Id="Package\DFT - Prepare mailing data to be adjudicated\OLE_DST - Store tempoararly mailing data into buffer"
-          TopLeft="436.734701315099,194.016809443702" />
+          TopLeft="452.001708330983,144.056024429295" />
         <EdgeLayout
           Id="Package\DFT - Prepare mailing data to be adjudicated.Paths[File records with errors]"
-          TopLeft="196.172449875747,86.3243703751417">
+          TopLeft="221.536225555207,86.3243703751417">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,56.8226903788357"
+              EndConnector="0,56.8226903788353"
               Start="0,0"
-              End="0,49.3226903788357">
+              End="0,49.3226903788353">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,49.3226903788357" />
+                    End="0,49.3226903788353" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="-51.292578125,19.7868334706678,102.58515625,9.7490234375"
+              BoundingBox="-51.292578125,19.7868334706676,102.58515625,9.7490234375"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
           Id="Package\DFT - Prepare mailing data to be adjudicated.Paths[Derived Column Output1]"
-          TopLeft="198.078572772717,184.747060753977">
+          TopLeft="221.536225555207,184.747060753977">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,59.1941191377939"
+              EndConnector="0,59.194119137794"
               Start="0,0"
-              End="0,51.6941191377939">
+              End="0,51.694119137794">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,51.6941191377939" />
+                    End="0,51.694119137794" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -3875,18 +3875,18 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
         </EdgeLayout>
         <EdgeLayout
           Id="Package\DFT - Prepare mailing data to be adjudicated.Paths[Derived Column Output]"
-          TopLeft="999.167361556684,87.0453787886148">
+          TopLeft="1114.00545824638,88.0649866460517">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,106.097481062998"
+              EndConnector="0,52.0582646188441"
               Start="0,0"
-              End="0,98.597481062998">
+              End="0,44.5582646188441">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,98.597481062998" />
+                    End="0,44.5582646188441" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -3897,18 +3897,18 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
         </EdgeLayout>
         <EdgeLayout
           Id="Package\DFT - Prepare mailing data to be adjudicated.Paths[Row Count Output 1]"
-          TopLeft="199.700001234667,285.541179891771">
+          TopLeft="221.536225555207,285.541179891771">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,61.6352955654826"
+              EndConnector="0,61.635295565483"
               Start="0,0"
-              End="0,54.1352955654826">
+              End="0,54.135295565483">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,54.1352955654826" />
+                    End="0,54.135295565483" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -3919,18 +3919,18 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
         </EdgeLayout>
         <EdgeLayout
           Id="Package\DFT - Prepare mailing data to be adjudicated.Paths[OLE DB Source Output]"
-          TopLeft="350.444898559401,66.013025805612">
+          TopLeft="379.136225555207,66.013025805612">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="113.014292913067,0"
+              EndConnector="70.9607208385763,0"
               Start="0,0"
-              End="105.514292913067,0">
+              End="63.4607208385763,0">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="105.514292913067,0" />
+                    End="63.4607208385763,0" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -3941,49 +3941,49 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
         </EdgeLayout>
         <EdgeLayout
           Id="Package\DFT - Prepare mailing data to be adjudicated.Paths[Lookup No Match Output]"
-          TopLeft="749.859191472468,66.3735300123485">
+          TopLeft="782.896946393784,66.883333941067">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="134.222456236414,0"
+              EndConnector="159.279940399692,0"
               Start="0,0"
-              End="126.722456236414,0">
+              End="151.779940399692,0">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="126.722456236414,0" />
+                    End="151.779940399692,0" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="7.5548413994569,5,111.6127734375,11.609375"
+              BoundingBox="20.0835834810962,5,111.6127734375,11.609375"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
           Id="Package\DFT - Prepare mailing data to be adjudicated.Paths[Lookup Match Output]"
-          TopLeft="604.896946393783,87.3016812360823">
+          TopLeft="617.449327362383,87.3016812360823">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,106.715128207619"
+              EndConnector="0,56.754343193213"
               Start="0,0"
-              End="0,99.2151282076193">
+              End="0,49.254343193213">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,99.2151282076193" />
+                    End="0,49.254343193213" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="-48.19138671875,43.8028766038097,96.3827734375,11.609375"
+              BoundingBox="-48.19138671875,18.8224840966065,96.3827734375,11.609375"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
