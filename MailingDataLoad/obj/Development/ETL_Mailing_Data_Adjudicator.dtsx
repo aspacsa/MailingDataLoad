@@ -11,8 +11,8 @@
   DTS:LocaleID="1033"
   DTS:ObjectName="ETL_Mailing_Data_Adjudicator"
   DTS:PackageType="5"
-  DTS:VersionBuild="53"
-  DTS:VersionGUID="{B1EE6576-7B08-4A39-8DAF-7499E57E522E}">
+  DTS:VersionBuild="60"
+  DTS:VersionGUID="{EE566527-008F-425E-9323-9C9945F5D0DE}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">6</DTS:Property>
   <DTS:ConnectionManagers>
@@ -27,7 +27,7 @@
           <DTS:Password
             DTS:Name="Password"
             Sensitive="1"
-            Encrypted="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAPXQ7jZTnV0GKV9nuEcqtfwAAAAAIAAAARABUAFMAAAAQZgAAAAEAACAAAACwB3Fcmt60EgWl7eS4r2nkS2vFGrdcPineyTp+o5AUhAAAAAAOgAAAAAIAACAAAAD4URccEfySCFy2em/pprwKRu6HI8Yx73ETEzWNczenrhAAAABXnaOmKhYuEgUIzhXETvxNQAAAAK1NNrPkcKGzKMsMOBBRWQr3T2bMDVngO+b64mHs7Y/D0AazXkgnlJ35CF9lS5iBSDa20v9BpdDWXanG1uB6gsY</DTS:Password>
+            Encrypted="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAPXQ7jZTnV0GKV9nuEcqtfwAAAAAIAAAARABUAFMAAAAQZgAAAAEAACAAAAA6osdAex6agIopLhanDHq7pqryfYmUwRto0/d+N+4lIwAAAAAOgAAAAAIAACAAAAA5vO2ZbFyZRuTci4LUJ+QqBHNMNtDbQpzwlt5UKhnvSRAAAADI3nrxcY2MJ2nBx0Q/9RYuQAAAAF9mAQ9T3+2oxcTeCeLTVTPAUwTW3zeKP9LnZGv9DT/tUM7YxvcfXz8hf75plF4d1BWaks9S4qSUfXfgozDMnGI</DTS:Password>
         </DTS:ConnectionManager>
       </DTS:ObjectData>
     </DTS:ConnectionManager>
@@ -41,7 +41,7 @@
       DTS:ObjectName="execution_log_id">
       <DTS:Property
         DTS:DataType="3"
-        DTS:Name="ParameterValue">9999310</DTS:Property>
+        DTS:Name="ParameterValue">9999314</DTS:Property>
     </DTS:PackageParameter>
   </DTS:PackageParameters>
   <DTS:Variables>
@@ -64,24 +64,6 @@
       <DTS:VariableValue
         DTS:DataType="8"
         xml:space="preserve"></DTS:VariableValue>
-    </DTS:Variable>
-    <DTS:Variable
-      DTS:CreationName=""
-      DTS:DTSID="{935C66AD-92B7-4119-8F25-0B05B660859E}"
-      DTS:IncludeInDebugDump="6789"
-      DTS:Namespace="User"
-      DTS:ObjectName="match_letters_count">
-      <DTS:VariableValue
-        DTS:DataType="3">0</DTS:VariableValue>
-    </DTS:Variable>
-    <DTS:Variable
-      DTS:CreationName=""
-      DTS:DTSID="{B6272B24-6994-43C1-A915-5CA4A596605A}"
-      DTS:IncludeInDebugDump="6789"
-      DTS:Namespace="User"
-      DTS:ObjectName="no_match_letters_count">
-      <DTS:VariableValue
-        DTS:DataType="3">0</DTS:VariableValue>
     </DTS:Variable>
     <DTS:Variable
       DTS:CreationName=""
@@ -108,64 +90,6 @@
         <pipeline
           version="1">
           <components>
-            <component
-              refId="Package\DFT - Prepare mailing data to be adjudicated\CNT - Count letters that do not match"
-              componentClassID="{E2697D8C-70DA-42B2-8208-A19CE3A9FE41}"
-              contactInfo="Row Count;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
-              description="Counts rows as they pass through a data flow. For example, use the number of rows processed to determine whether or not to perform cleanup operations, or update text in an e-mail message to communicate processing status."
-              name="CNT - Count letters that do not match">
-              <properties>
-                <property
-                  dataType="System.String"
-                  description="Specifies the variable to hold the row count."
-                  name="VariableName">User::no_match_letters_count</property>
-              </properties>
-              <inputs>
-                <input
-                  refId="Package\DFT - Prepare mailing data to be adjudicated\CNT - Count letters that do not match.Inputs[Row Count Input 1]"
-                  hasSideEffects="true"
-                  name="Row Count Input 1">
-                  <externalMetadataColumns />
-                </input>
-              </inputs>
-              <outputs>
-                <output
-                  refId="Package\DFT - Prepare mailing data to be adjudicated\CNT - Count letters that do not match.Outputs[Row Count Output 1]"
-                  name="Row Count Output 1"
-                  synchronousInputId="Package\DFT - Prepare mailing data to be adjudicated\CNT - Count letters that do not match.Inputs[Row Count Input 1]">
-                  <externalMetadataColumns />
-                </output>
-              </outputs>
-            </component>
-            <component
-              refId="Package\DFT - Prepare mailing data to be adjudicated\CNT - Count letters that match"
-              componentClassID="{E2697D8C-70DA-42B2-8208-A19CE3A9FE41}"
-              contactInfo="Row Count;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
-              description="Counts rows as they pass through a data flow. For example, use the number of rows processed to determine whether or not to perform cleanup operations, or update text in an e-mail message to communicate processing status."
-              name="CNT - Count letters that match">
-              <properties>
-                <property
-                  dataType="System.String"
-                  description="Specifies the variable to hold the row count."
-                  name="VariableName">User::match_letters_count</property>
-              </properties>
-              <inputs>
-                <input
-                  refId="Package\DFT - Prepare mailing data to be adjudicated\CNT - Count letters that match.Inputs[Row Count Input 1]"
-                  hasSideEffects="true"
-                  name="Row Count Input 1">
-                  <externalMetadataColumns />
-                </input>
-              </inputs>
-              <outputs>
-                <output
-                  refId="Package\DFT - Prepare mailing data to be adjudicated\CNT - Count letters that match.Outputs[Row Count Output 1]"
-                  name="Row Count Output 1"
-                  synchronousInputId="Package\DFT - Prepare mailing data to be adjudicated\CNT - Count letters that match.Inputs[Row Count Input 1]">
-                  <externalMetadataColumns />
-                </output>
-              </outputs>
-            </component>
             <component
               refId="Package\DFT - Prepare mailing data to be adjudicated\CNT - Count rows with errors"
               componentClassID="{E2697D8C-70DA-42B2-8208-A19CE3A9FE41}"
@@ -1153,7 +1077,7 @@ WHERE
               startId="Package\DFT - Prepare mailing data to be adjudicated\DER - Add execution id to data flow.Outputs[Derived Column Output]" />
             <path
               refId="Package\DFT - Prepare mailing data to be adjudicated.Paths[Derived Column Output1]"
-              endId="Package\DFT - Prepare mailing data to be adjudicated\CNT - Count letters that do not match.Inputs[Row Count Input 1]"
+              endId="Package\DFT - Prepare mailing data to be adjudicated\OLE_DST - Save info about mailing data with no match.Inputs[OLE DB Destination Input]"
               name="Derived Column Output"
               startId="Package\DFT - Prepare mailing data to be adjudicated\DER - Add execition id column.Outputs[Derived Column Output]" />
             <path
@@ -1163,7 +1087,7 @@ WHERE
               startId="Package\DFT - Prepare mailing data to be adjudicated\OLE_SRC - Get manifest records from cache table.Outputs[OLE DB Source Error Output]" />
             <path
               refId="Package\DFT - Prepare mailing data to be adjudicated.Paths[Lookup Match Output]"
-              endId="Package\DFT - Prepare mailing data to be adjudicated\CNT - Count letters that match.Inputs[Row Count Input 1]"
+              endId="Package\DFT - Prepare mailing data to be adjudicated\OLE_DST - Store tempoararly mailing data into buffer.Inputs[OLE DB Destination Input]"
               name="Lookup Match Output"
               startId="Package\DFT - Prepare mailing data to be adjudicated\LKP - Find letters that match those in cache.Outputs[Lookup Match Output]" />
             <path
@@ -1181,16 +1105,6 @@ WHERE
               endId="Package\DFT - Prepare mailing data to be adjudicated\OLE_DST - Store row errors detected in data.Inputs[OLE DB Destination Input]"
               name="Row Count Output 1"
               startId="Package\DFT - Prepare mailing data to be adjudicated\CNT - Count rows with errors.Outputs[Row Count Output 1]" />
-            <path
-              refId="Package\DFT - Prepare mailing data to be adjudicated.Paths[Row Count Output 11]"
-              endId="Package\DFT - Prepare mailing data to be adjudicated\OLE_DST - Store tempoararly mailing data into buffer.Inputs[OLE DB Destination Input]"
-              name="Row Count Output 1"
-              startId="Package\DFT - Prepare mailing data to be adjudicated\CNT - Count letters that match.Outputs[Row Count Output 1]" />
-            <path
-              refId="Package\DFT - Prepare mailing data to be adjudicated.Paths[Row Count Output 12]"
-              endId="Package\DFT - Prepare mailing data to be adjudicated\OLE_DST - Save info about mailing data with no match.Inputs[OLE DB Destination Input]"
-              name="Row Count Output 1"
-              startId="Package\DFT - Prepare mailing data to be adjudicated\CNT - Count letters that do not match.Outputs[Row Count Output 1]" />
           </paths>
         </pipeline>
       </DTS:ObjectData>
@@ -3483,20 +3397,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
         <SQLTask:SqlTaskData
           SQLTask:Connection="{1BECA79F-376F-46D2-886B-99F80846DDDA}"
           SQLTask:BypassPrepare="False"
-          SQLTask:SqlStatementSource=";WITH mcache AS&#xA;(&#xA;  SELECT DISTINCT ParentID&#xA;  FROM&#xA;    Medhok.Mailing_Data_File_Cache&#xA;)&#xA;UPDATE&#xA;  mfile&#xA;SET&#xA;  mfile.Adjudicated = 1,&#xA;  mfile.AdjudicationDate = GETDATE(),&#xA;  mfile.AmtMatchLetters = ?,&#xA;  mfile.AmtNoMatchLetters = ?&#xA;FROM&#xA;  Medhok.Mailing_Data_File AS mfile&#xA;  INNER JOIN&#xA;  mcache&#xA;    ON mfile.ID = mcache.ParentID&#xA;;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
-          <SQLTask:ParameterBinding
-            SQLTask:ParameterName="0"
-            SQLTask:DtsVariableName="User::match_letters_count"
-            SQLTask:ParameterDirection="Input"
-            SQLTask:DataType="20"
-            SQLTask:ParameterSize="-1" />
-          <SQLTask:ParameterBinding
-            SQLTask:ParameterName="1"
-            SQLTask:DtsVariableName="User::no_match_letters_count"
-            SQLTask:ParameterDirection="Input"
-            SQLTask:DataType="20"
-            SQLTask:ParameterSize="-1" />
-        </SQLTask:SqlTaskData>
+          SQLTask:SqlStatementSource=";WITH mcache AS&#xA;(&#xA;  SELECT DISTINCT ParentID&#xA;  FROM&#xA;    Medhok.Mailing_Data_File_Cache&#xA;)&#xA;UPDATE&#xA;  mfile&#xA;SET&#xA;  mfile.Adjudicated = 1,&#xA;  mfile.AdjudicationDate = GETDATE()&#xA;FROM&#xA;  Medhok.Mailing_Data_File AS mfile&#xA;  INNER JOIN&#xA;  mcache&#xA;    ON mfile.ID = mcache.ParentID&#xA;;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
       </DTS:ObjectData>
     </DTS:Executable>
   </DTS:Executables>
@@ -3893,11 +3794,11 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
     design-time-name="Package\DFT - Prepare mailing data to be adjudicated">
     <LayoutInfo>
       <GraphLayout
-        Capacity="32" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
           Size="340.8,41.6"
           Id="Package\DFT - Prepare mailing data to be adjudicated\OLE_DST - Save info about mailing data with no match"
-          TopLeft="945.85035624379,245.871151907634" />
+          TopLeft="945.85035624379,140.997200856985" />
         <NodeLayout
           Size="315.2,41.6"
           Id="Package\DFT - Prepare mailing data to be adjudicated\OLE_SRC - Get manifest records from cache table"
@@ -3925,7 +3826,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
         <NodeLayout
           Size="332.8,41.6"
           Id="Package\DFT - Prepare mailing data to be adjudicated\OLE_DST - Store tempoararly mailing data into buffer"
-          TopLeft="452.818034875497,244.560227519501" />
+          TopLeft="456.899667598068,141.434175653029" />
         <EdgeLayout
           Id="Package\DFT - Prepare mailing data to be adjudicated.Paths[File records with errors]"
           TopLeft="221.536225555207,86.3243703751417">
@@ -4040,96 +3941,44 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
-        <NodeLayout
-          Size="331.2,41.6"
-          Id="Package\DFT - Prepare mailing data to be adjudicated\CNT - Count letters that match"
-          TopLeft="453.061232205383,141.579833918377" />
         <EdgeLayout
           Id="Package\DFT - Prepare mailing data to be adjudicated.Paths[Lookup Match Output]"
-          TopLeft="618.395415844097,89.9235300123486">
+          TopLeft="620.71463354044,89.9235300123486">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,51.6563039060282"
+              EndConnector="0,51.5106456406802"
               Start="0,0"
-              End="0,44.1563039060282">
+              End="0,44.0106456406802">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,44.1563039060282" />
+                    End="0,44.0106456406802" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="-48.19138671875,16.2734644530141,96.3827734375,11.609375"
+              BoundingBox="-48.19138671875,16.2006353203401,96.3827734375,11.609375"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
-          Id="Package\DFT - Prepare mailing data to be adjudicated.Paths[Row Count Output 11]"
-          TopLeft="618.93963354044,183.179833918377">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,61.380393601124"
-              Start="0,0"
-              End="0,53.880393601124">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,53.880393601124" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <NodeLayout
-          Size="340,41.6"
-          Id="Package\DFT - Prepare mailing data to be adjudicated\CNT - Count letters that do not match"
-          TopLeft="949.387771270018,141.579833918377" />
-        <EdgeLayout
           Id="Package\DFT - Prepare mailing data to be adjudicated.Paths[Derived Column Output1]"
-          TopLeft="1115.98232903175,88.0649866460517">
+          TopLeft="1114.41362151863,88.0649866460517">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,53.5148472723252"
+              EndConnector="0,52.932214210933"
               Start="0,0"
-              End="0,46.0148472723252">
+              End="0,45.432214210933">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,46.0148472723252" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package\DFT - Prepare mailing data to be adjudicated.Paths[Row Count Output 12]"
-          TopLeft="1117.8190637569,183.179833918377">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,62.6913179892574"
-              Start="0,0"
-              End="0,55.1913179892574">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,55.1913179892574" />
+                    End="0,45.432214210933" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
