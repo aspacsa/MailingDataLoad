@@ -4,7 +4,7 @@
     <Configuration>
       <Name>Development</Name>
       <Options>
-        <StartObjectID>ETL_Mailing_Data_Adjudicator.dtsx</StartObjectID>
+        <StartObjectID>ETL_Letter_Mailing_Data_Load.dtsx</StartObjectID>
         <Run64BitRuntime>true</Run64BitRuntime>
         <UserIDs />
         <UserPasswords />
