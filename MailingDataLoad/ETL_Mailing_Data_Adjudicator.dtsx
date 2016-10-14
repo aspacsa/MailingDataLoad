@@ -11,8 +11,8 @@
   DTS:LocaleID="1033"
   DTS:ObjectName="ETL_Mailing_Data_Adjudicator"
   DTS:PackageType="5"
-  DTS:VersionBuild="47"
-  DTS:VersionGUID="{804B8C72-69B2-4B75-80EB-B31A6A2ECFC7}">
+  DTS:VersionBuild="54"
+  DTS:VersionGUID="{5AC186B2-E470-4AAB-BC7A-0899C6E5ADF4}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">6</DTS:Property>
   <DTS:ConnectionManagers>
@@ -27,7 +27,7 @@
           <DTS:Password
             DTS:Name="Password"
             Sensitive="1"
-            Encrypted="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAPXQ7jZTnV0GKV9nuEcqtfwAAAAAIAAAARABUAFMAAAAQZgAAAAEAACAAAADI4Kg7b6W3GhbN2C6mjz6k6j6PTRqMuVaypYV0mj+HtQAAAAAOgAAAAAIAACAAAADyUuXTW6Mu91Yx2kgMofyvcZUH/6lrhR5XNhh7orhBaRAAAAAaefolFI7JNWo5rwjd/YHAQAAAAIZ3KjQZCFuTBeCGOlmgsuus1ID3JWzODk9RDorcBQfnIXo4797TDYSNd9lNfEGYWnGNdzldhWYfPCEm1ePWOjw</DTS:Password>
+            Encrypted="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAPXQ7jZTnV0GKV9nuEcqtfwAAAAAIAAAARABUAFMAAAAQZgAAAAEAACAAAAAYic/wxh+HrHEJD7mDEczMh+zx7lc76cLqEhFr3g7+3QAAAAAOgAAAAAIAACAAAAD1KVPSKxgWzTzYX4wleWfw8f5TmpHPX6XKKXsFjp3RSRAAAADvDQJRRgAqxKRsMI5daeiMQAAAAAtiAan7EHvY8qYBtZyqz3Xu+tV86kcABw+ylP9B1UUo+CXYBfWyxHja5TQr9cSz1dJxS1Lb1gj63pczwIOg+Rg</DTS:Password>
         </DTS:ConnectionManager>
       </DTS:ObjectData>
     </DTS:ConnectionManager>
@@ -41,7 +41,7 @@
       DTS:ObjectName="execution_log_id">
       <DTS:Property
         DTS:DataType="3"
-        DTS:Name="ParameterValue">9999309</DTS:Property>
+        DTS:Name="ParameterValue">9999310</DTS:Property>
     </DTS:PackageParameter>
   </DTS:PackageParameters>
   <DTS:Variables>
@@ -64,6 +64,24 @@
       <DTS:VariableValue
         DTS:DataType="8"
         xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{935C66AD-92B7-4119-8F25-0B05B660859E}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="match_letters_count">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{B6272B24-6994-43C1-A915-5CA4A596605A}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="no_match_letters_count">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
     </DTS:Variable>
     <DTS:Variable
       DTS:CreationName=""
@@ -90,6 +108,64 @@
         <pipeline
           version="1">
           <components>
+            <component
+              refId="Package\DFT - Prepare mailing data to be adjudicated\CNT - Count letters that do not match"
+              componentClassID="{E2697D8C-70DA-42B2-8208-A19CE3A9FE41}"
+              contactInfo="Row Count;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Counts rows as they pass through a data flow. For example, use the number of rows processed to determine whether or not to perform cleanup operations, or update text in an e-mail message to communicate processing status."
+              name="CNT - Count letters that do not match">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable to hold the row count."
+                  name="VariableName">User::no_match_letters_count</property>
+              </properties>
+              <inputs>
+                <input
+                  refId="Package\DFT - Prepare mailing data to be adjudicated\CNT - Count letters that do not match.Inputs[Row Count Input 1]"
+                  hasSideEffects="true"
+                  name="Row Count Input 1">
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DFT - Prepare mailing data to be adjudicated\CNT - Count letters that do not match.Outputs[Row Count Output 1]"
+                  name="Row Count Output 1"
+                  synchronousInputId="Package\DFT - Prepare mailing data to be adjudicated\CNT - Count letters that do not match.Inputs[Row Count Input 1]">
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DFT - Prepare mailing data to be adjudicated\CNT - Count letters that match"
+              componentClassID="{E2697D8C-70DA-42B2-8208-A19CE3A9FE41}"
+              contactInfo="Row Count;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Counts rows as they pass through a data flow. For example, use the number of rows processed to determine whether or not to perform cleanup operations, or update text in an e-mail message to communicate processing status."
+              name="CNT - Count letters that match">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable to hold the row count."
+                  name="VariableName">User::match_letters_count</property>
+              </properties>
+              <inputs>
+                <input
+                  refId="Package\DFT - Prepare mailing data to be adjudicated\CNT - Count letters that match.Inputs[Row Count Input 1]"
+                  hasSideEffects="true"
+                  name="Row Count Input 1">
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DFT - Prepare mailing data to be adjudicated\CNT - Count letters that match.Outputs[Row Count Output 1]"
+                  name="Row Count Output 1"
+                  synchronousInputId="Package\DFT - Prepare mailing data to be adjudicated\CNT - Count letters that match.Inputs[Row Count Input 1]">
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
             <component
               refId="Package\DFT - Prepare mailing data to be adjudicated\CNT - Count rows with errors"
               componentClassID="{E2697D8C-70DA-42B2-8208-A19CE3A9FE41}"
@@ -1072,14 +1148,14 @@ WHERE
           <paths>
             <path
               refId="Package\DFT - Prepare mailing data to be adjudicated.Paths[Derived Column Output]"
-              endId="Package\DFT - Prepare mailing data to be adjudicated\OLE_DST - Save info about mailing data with no match.Inputs[OLE DB Destination Input]"
-              name="Derived Column Output"
-              startId="Package\DFT - Prepare mailing data to be adjudicated\DER - Add execition id column.Outputs[Derived Column Output]" />
-            <path
-              refId="Package\DFT - Prepare mailing data to be adjudicated.Paths[Derived Column Output1]"
               endId="Package\DFT - Prepare mailing data to be adjudicated\CNT - Count rows with errors.Inputs[Row Count Input 1]"
               name="Derived Column Output"
               startId="Package\DFT - Prepare mailing data to be adjudicated\DER - Add execution id to data flow.Outputs[Derived Column Output]" />
+            <path
+              refId="Package\DFT - Prepare mailing data to be adjudicated.Paths[Derived Column Output1]"
+              endId="Package\DFT - Prepare mailing data to be adjudicated\CNT - Count letters that do not match.Inputs[Row Count Input 1]"
+              name="Derived Column Output"
+              startId="Package\DFT - Prepare mailing data to be adjudicated\DER - Add execition id column.Outputs[Derived Column Output]" />
             <path
               refId="Package\DFT - Prepare mailing data to be adjudicated.Paths[File records with errors]"
               endId="Package\DFT - Prepare mailing data to be adjudicated\DER - Add execution id to data flow.Inputs[Derived Column Input]"
@@ -1087,7 +1163,7 @@ WHERE
               startId="Package\DFT - Prepare mailing data to be adjudicated\OLE_SRC - Get manifest records from cache table.Outputs[OLE DB Source Error Output]" />
             <path
               refId="Package\DFT - Prepare mailing data to be adjudicated.Paths[Lookup Match Output]"
-              endId="Package\DFT - Prepare mailing data to be adjudicated\OLE_DST - Store tempoararly mailing data into buffer.Inputs[OLE DB Destination Input]"
+              endId="Package\DFT - Prepare mailing data to be adjudicated\CNT - Count letters that match.Inputs[Row Count Input 1]"
               name="Lookup Match Output"
               startId="Package\DFT - Prepare mailing data to be adjudicated\LKP - Find letters that match those in cache.Outputs[Lookup Match Output]" />
             <path
@@ -1105,6 +1181,16 @@ WHERE
               endId="Package\DFT - Prepare mailing data to be adjudicated\OLE_DST - Store row errors detected in data.Inputs[OLE DB Destination Input]"
               name="Row Count Output 1"
               startId="Package\DFT - Prepare mailing data to be adjudicated\CNT - Count rows with errors.Outputs[Row Count Output 1]" />
+            <path
+              refId="Package\DFT - Prepare mailing data to be adjudicated.Paths[Row Count Output 11]"
+              endId="Package\DFT - Prepare mailing data to be adjudicated\OLE_DST - Store tempoararly mailing data into buffer.Inputs[OLE DB Destination Input]"
+              name="Row Count Output 1"
+              startId="Package\DFT - Prepare mailing data to be adjudicated\CNT - Count letters that match.Outputs[Row Count Output 1]" />
+            <path
+              refId="Package\DFT - Prepare mailing data to be adjudicated.Paths[Row Count Output 12]"
+              endId="Package\DFT - Prepare mailing data to be adjudicated\OLE_DST - Save info about mailing data with no match.Inputs[OLE DB Destination Input]"
+              name="Row Count Output 1"
+              startId="Package\DFT - Prepare mailing data to be adjudicated\CNT - Count letters that do not match.Outputs[Row Count Output 1]" />
           </paths>
         </pipeline>
       </DTS:ObjectData>
@@ -1380,15 +1466,15 @@ namespace ST_9ea553aa601a4451acba067f5ceb9a08
             Encoding="UTF16LE"><![CDATA[<?xml version="1.0" encoding="UTF-16" standalone="yes"?>
 <c:Project xmlns:c="http://schemas.microsoft.com/codeprojectml/2010/08/main" xmlns:msb="http://schemas.microsoft.com/developer/msbuild/2003" runtimeVersion="3.0" schemaVersion="1.0">
 	<msb:PropertyGroup>
-		<msb:Language>msBuild</msb:Language>
 		<msb:CodeName>ST_9ea553aa601a4451acba067f5ceb9a08</msb:CodeName>
+		<msb:Language>msBuild</msb:Language>
 		<msb:DisplayName>ST_9ea553aa601a4451acba067f5ceb9a08</msb:DisplayName>
 		<msb:ProjectId>{F37ED7B2-66D1-4089-A3DD-BB924CA69CD7}</msb:ProjectId>
 	</msb:PropertyGroup>
 	<msb:ItemGroup>
 		<msb:Project Include="ST_61f6380e0d3f410fab3b6f2a7c026110.csproj"/>
-		<msb:File Include="Properties\Settings.settings"/>
 		<msb:File Include="Properties\AssemblyInfo.cs"/>
+		<msb:File Include="Properties\Settings.settings"/>
 		<msb:File Include="Properties\Resources.resx"/>
 		<msb:File Include="Properties\Resources.Designer.cs"/>
 		<msb:File Include="Properties\Settings.Designer.cs"/>
@@ -1525,7 +1611,7 @@ namespace ST_9ea553aa601a4451acba067f5ceb9a08.Properties {
           <BinaryItem
             Name="ST_61f6380e0d3f410fab3b6f2a7c026110.dll">TVqQAAMAAAAEAAAA//8AALgAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 AAAAgAAAAA4fug4AtAnNIbgBTM0hVGhpcyBwcm9ncmFtIGNhbm5vdCBiZSBydW4gaW4gRE9TIG1v
-ZGUuDQ0KJAAAAAAAAABQRQAATAEDALgp/VcAAAAAAAAAAOAAAiELAQsAABAAAAAIAAAAAAAALi8A
+ZGUuDQ0KJAAAAAAAAABQRQAATAEDAPSZ/lcAAAAAAAAAAOAAAiELAQsAABAAAAAIAAAAAAAALi8A
 AAAgAAAAQAAAAAAAEAAgAAAAAgAABAAAAAAAAAAEAAAAAAAAAACAAAAAAgAAAAAAAAMAQIUAABAA
 ABAAAAAAEAAAEAAAAAAAABAAAAAAAAAAAAAAANwuAABPAAAAAEAAAAgEAAAAAAAAAAAAAAAAAAAA
 AAAAAGAAAAwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
@@ -1557,7 +1643,7 @@ oQBTBGkAKQC8AW4AuQC8AXoAyQC8ARsAEQC8ARsA0QC8ARsAGQD6BI0A2QBLBZIA4QBiBZcA6QBr
 BZ0ACQB1BaEA8QCFBaUA6QCMBawA2QCWBV0AGQC8ARsACAAUAE4ACAAYAFMAKQCTAIAALgAbACYB
 LgAjACYBLgBjAEwBLgALALUALgATAP0ALgAzAP0ALgArACYBLgA7ACwBLgBDACYBLgBbAEMBQwBr
 AFMASQCTAIAAYQCbAFMAgwCrAFMAdQCxAAIAAQADAAMAAABvAS8AAADuATQAAAASAkIAAgACAAMA
-AgADAAUAAQAEAAUAAgAFAAcABIAAAAEAAADwF/xiAAAAAAAAzQMAAAQAAAAAAAAAAAAAAAEAsQAA
+AgADAAUAAQAEAAUAAgAFAAcABIAAAAEAAADxF1pyAAAAAAAAzQMAAAQAAAAAAAAAAAAAAAEAsQAA
 AAAABAAAAAAAAAAAAAAAAQC6AAAAAAALAAAAAAAAAAAAAAAKAPUAAAAAAAsAAAAAAAAAAAAAAAoA
 AgUAAAAAAAAAAAEAAAClBQAABQAEAAAAADxNb2R1bGU+AFNUXzYxZjYzODBlMGQzZjQxMGZhYjNi
 NmYyYTdjMDI2MTEwLmRsbABSZXNvdXJjZXMAU1RfOWVhNTUzYWE2MDFhNDQ1MWFjYmEwNjdmNWNl
@@ -1592,7 +1678,7 @@ AHMAZQByADoAOgBlAHIAcgBvAHIAXwBkAGUAcwBjAHIAaQBwAHQAaQBvAG4AAC9VAHMAZQByADoA
 OgBlAHgAYwBlAHAAdABpAG8AbgBfAG0AZQBzAHMAYQBnAGUAAENFAHgAYwBlAHAAdABpAG8AbgAg
 ADoAIABbAHsAMAB9AF0AOwAgAE0AZQBzAHMAYQBnAGUAOgAgAFsAewAxAH0AXQAAQUUAcgByAG8A
 cgAgAGEAZABqAHUAZABpAGMAYQB0AGkAbgBnACAAbQBhAGkAbABpAG4AZwAgAGQAYQB0AGEALgAA
-AAAAQ/7m9EeVIUK4Lflnq8Xd0QAIt3pcVhk04IkIiYRdzYCAzJEDBhIVAwYSGQMgAAEEAAASFQQA
+AAAABfjc2rllxE+mzgitU9spewAIt3pcVhk04IkIiYRdzYCAzJEDBhIVAwYSGQMgAAEEAAASFQQA
 ABIZBQABARIZBAgAEhUECAASGQMGEgwEAAASDAQIABIMAgYIAwYRFAQAAAAABAEAAAAEIAEBDgQg
 AQEIBgABElERVQQgABJZBiACAQ4SWQQHARIVBSABARFhCAEAAgAAAAAAAwAAAQQgABJtBCAAEnEF
 IAESdRwDIAAcAyAADgYAAw4OHBwEIAEBHAMHAQ5HAQAaLk5FVEZyYW1ld29yayxWZXJzaW9uPXY0
@@ -1606,13 +1692,13 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 AAAAAAABABAAAAAYAACAAAAAAAAAAAAAAAAAAAABAAEAAAAwAACAAAAAAAAAAAAAAAAAAAABAAAA
 AABIAAAAWEAAALADAAAAAAAAAAAAALADNAAAAFYAUwBfAFYARQBSAFMASQBPAE4AXwBJAE4ARgBP
-AAAAAAC9BO/+AAABAAAAAQD8YvAXAAABAPxi8Bc/AAAAAAAAAAQAAAACAAAAAAAAAAAAAAAAAAAA
+AAAAAAC9BO/+AAABAAAAAQBacvEXAAABAFpy8Rc/AAAAAAAAAAQAAAACAAAAAAAAAAAAAAAAAAAA
 RAAAAAEAVgBhAHIARgBpAGwAZQBJAG4AZgBvAAAAAAAkAAQAAABUAHIAYQBuAHMAbABhAHQAaQBv
 AG4AAAAAAAAAsAQQAwAAAQBTAHQAcgBpAG4AZwBGAGkAbABlAEkAbgBmAG8AAADsAgAAAQAwADAA
 MAAwADAANABiADAAAABwACQAAQBGAGkAbABlAEQAZQBzAGMAcgBpAHAAdABpAG8AbgAAAAAAUwBU
 AF8AOQBlAGEANQA1ADMAYQBhADYAMAAxAGEANAA0ADUAMQBhAGMAYgBhADAANgA3AGYANQBjAGUA
 YgA5AGEAMAA4AAAAQAAPAAEARgBpAGwAZQBWAGUAcgBzAGkAbwBuAAAAAAAxAC4AMAAuADYAMQAy
-ADgALgAyADUAMwA0ADAAAAAAAHAAKAABAEkAbgB0AGUAcgBuAGEAbABOAGEAbQBlAAAAUwBUAF8A
+ADkALgAyADkAMgA3ADQAAAAAAHAAKAABAEkAbgB0AGUAcgBuAGEAbABOAGEAbQBlAAAAUwBUAF8A
 NgAxAGYANgAzADgAMABlADAAZAAzAGYANAAxADAAZgBhAGIAMwBiADYAZgAyAGEANwBjADAAMgA2
 ADEAMQAwAC4AZABsAGwAAABIABIAAQBMAGUAZwBhAGwAQwBvAHAAeQByAGkAZwBoAHQAAABDAG8A
 cAB5AHIAaQBnAGgAdAAgAEAAIAAgADIAMAAxADYAAAB4ACgAAQBPAHIAaQBnAGkAbgBhAGwARgBp
@@ -1620,8 +1706,8 @@ AGwAZQBuAGEAbQBlAAAAUwBUAF8ANgAxAGYANgAzADgAMABlADAAZAAzAGYANAAxADAAZgBhAGIA
 MwBiADYAZgAyAGEANwBjADAAMgA2ADEAMQAwAC4AZABsAGwAAABoACQAAQBQAHIAbwBkAHUAYwB0
 AE4AYQBtAGUAAAAAAFMAVABfADkAZQBhADUANQAzAGEAYQA2ADAAMQBhADQANAA1ADEAYQBjAGIA
 YQAwADYANwBmADUAYwBlAGIAOQBhADAAOAAAAEQADwABAFAAcgBvAGQAdQBjAHQAVgBlAHIAcwBp
-AG8AbgAAADEALgAwAC4ANgAxADIAOAAuADIANQAzADQAMAAAAAAASAAPAAEAQQBzAHMAZQBtAGIA
-bAB5ACAAVgBlAHIAcwBpAG8AbgAAADEALgAwAC4ANgAxADIAOAAuADIANQAzADQAMAAAAAAAAAAA
+AG8AbgAAADEALgAwAC4ANgAxADIAOQAuADIAOQAyADcANAAAAAAASAAPAAEAQQBzAHMAZQBtAGIA
+bAB5ACAAVgBlAHIAcwBpAG8AbgAAADEALgAwAC4ANgAxADIAOQAuADIAOQAyADcANAAAAAAAAAAA
 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
@@ -1661,90 +1747,35 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
           Language="CSharp"
           ReadWriteVariables="User::error_description">
           <ProjectItem
-            Name="ST_2c122f54f1364c7db5f3003e6de8c90b.csproj"
-            Encoding="UTF8"><![CDATA[<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <PropertyGroup>
-    <ProjectTypeGuids>{30D016F9-3734-4E33-A861-5E7D899E18F3};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>8.0.30703</ProductVersion>
-    <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{FE79D0CC-86BF-40EE-B2EC-8570B6C875BE}</ProjectGuid>
-    <OutputType>Library</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ST_2c122f54f1364c7db5f3003e6de8c90b</RootNamespace>
-    <AssemblyName>ST_2c122f54f1364c7db5f3003e6de8c90b</AssemblyName>
-    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
-    <FileAlignment>512</FileAlignment>
-    <ResolveAssemblyReferenceIgnoreTargetFrameworkAttributeVersionMismatch>true</ResolveAssemblyReferenceIgnoreTargetFrameworkAttributeVersionMismatch>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>.\bin\Debug\</OutputPath>
-    <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
-    <DebugSymbols>false</DebugSymbols>
-    <Optimize>true</Optimize>
-    <OutputPath>.\bin\Release\</OutputPath>
-    <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
-    <DefineConstants>TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-  </PropertyGroup>
-  <ItemGroup>
-    <Reference Include="System" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Windows.Forms" />
-    <Reference Include="System.Xml" />
-    <Reference Include="Microsoft.SqlServer.ManagedDTS, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91" />
-    <Reference Include="Microsoft.SqlServer.ScriptTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91" />
-  </ItemGroup>
-  <ItemGroup>
-    <AppDesigner Include="Properties\" />
-    <Compile Include="Properties\AssemblyInfo.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <EmbeddedResource Include="Properties\Resources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Resources.resx</DependentUpon>
-    </Compile>
-    <None Include="Properties\Settings.settings">
-      <Generator>SettingsSingleFileGenerator</Generator>
-      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
-    </None>
-    <Compile Include="Properties\Settings.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Settings.settings</DependentUpon>
-    </Compile>
-    <Compile Include="ScriptMain.cs">
-      <SubType>Code</SubType>
-    </Compile>
-  </ItemGroup>
-  <!-- Include the build rules for a C# project.-->
-  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
-  <ProjectExtensions>
-    <VisualStudio>
-      <FlavorProperties GUID="{30D016F9-3734-4E33-A861-5E7D899E18F3}">
-        <ProjectProperties HostName="VSTAHostName" HostPackage="{B3A685AA-7EAF-4BC6-9940-57959FA5AC07}" ApplicationType="usd" Language="cs" TemplatesPath="" DebugInfoExeName="#HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\VisualStudio\10.0\InstallDir#\devenv.exe" />
-        <Host Name="ScriptTask" />
-        <ProjectClient>
-          <HostIdentifier>SSIS_ST110</HostIdentifier>
-        </ProjectClient>
-      </FlavorProperties>
-    </VisualStudio>
-  </ProjectExtensions>
-</Project>]]></ProjectItem>
+            Name="Properties\AssemblyInfo.cs"
+            Encoding="UTF8"><![CDATA[using System.Reflection;
+using System.Runtime.CompilerServices;
+
+//
+// General Information about an assembly is controlled through the following 
+// set of attributes. Change these attribute values to modify the information
+// associated with an assembly.
+//
+[assembly: AssemblyTitle("ST_2c122f54f1364c7db5f3003e6de8c90b")]
+[assembly: AssemblyDescription("")]
+[assembly: AssemblyConfiguration("")]
+[assembly: AssemblyCompany("")]
+[assembly: AssemblyProduct("ST_2c122f54f1364c7db5f3003e6de8c90b")]
+[assembly: AssemblyCopyright("Copyright @  2016")]
+[assembly: AssemblyTrademark("")]
+[assembly: AssemblyCulture("")]
+//
+// Version information for an assembly consists of the following four values:
+//
+//      Major Version
+//      Minor Version 
+//      Build Number
+//      Revision
+//
+// You can specify all the values or you can default the Revision and Build Numbers 
+// by using the '*' as shown below:
+
+[assembly: AssemblyVersion("1.0.*")]]]></ProjectItem>
           <ProjectItem
             Name="Properties\Resources.resx"
             Encoding="UTF8"><![CDATA[<?xml version="1.0" encoding="utf-8"?>
@@ -1865,14 +1896,34 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
   </resheader>
 </root>]]></ProjectItem>
           <ProjectItem
-            Name="Properties\Settings.settings"
-            Encoding="UTF8"><![CDATA[<?xml version='1.0' encoding='iso-8859-1'?>
-<SettingsFile xmlns="uri:settings" CurrentProfile="(Default)">
-  <Profiles>
-    <Profile Name="(Default)" />
-  </Profiles>
-  <Settings />
-</SettingsFile>]]></ProjectItem>
+            Name="Properties\Settings.Designer.cs"
+            Encoding="UTF8"><![CDATA[//------------------------------------------------------------------------------
+// <auto-generated>
+//     This code was generated by a tool.
+//
+//     Changes to this file may cause incorrect behavior and will be lost if
+//     the code is regenerated.
+// </auto-generated>
+//------------------------------------------------------------------------------
+
+[assembly: global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Scope="member", Target="ST_2c122f54f1364c7db5f3003e6de8c90b.Properties.Settings.get_Default():ST_2c122f54f1364c7db5f3003e6de8c90b.Properties.Sett" +
+    "ings")]
+
+namespace ST_2c122f54f1364c7db5f3003e6de8c90b.Properties {
+    
+    
+    internal sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase {
+        
+        [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
+        private static Settings defaultInstance = new Settings();
+        
+        public static Settings Default {
+            get {
+                return defaultInstance;
+            }
+        }
+    }
+}]]></ProjectItem>
           <ProjectItem
             Name="ScriptMain.cs"
             Encoding="UTF8"><![CDATA[#region Help:  Introduction to the script task
@@ -2008,64 +2059,99 @@ namespace ST_2c122f54f1364c7db5f3003e6de8c90b
 	</msb:ItemGroup>
 </c:Project>]]></ProjectItem>
           <ProjectItem
-            Name="Properties\Settings.Designer.cs"
-            Encoding="UTF8"><![CDATA[//------------------------------------------------------------------------------
-// <auto-generated>
-//     This code was generated by a tool.
-//
-//     Changes to this file may cause incorrect behavior and will be lost if
-//     the code is regenerated.
-// </auto-generated>
-//------------------------------------------------------------------------------
-
-[assembly: global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Scope="member", Target="ST_2c122f54f1364c7db5f3003e6de8c90b.Properties.Settings.get_Default():ST_2c122f54f1364c7db5f3003e6de8c90b.Properties.Sett" +
-    "ings")]
-
-namespace ST_2c122f54f1364c7db5f3003e6de8c90b.Properties {
-    
-    
-    internal sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase {
-        
-        [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-        private static Settings defaultInstance = new Settings();
-        
-        public static Settings Default {
-            get {
-                return defaultInstance;
-            }
-        }
-    }
-}]]></ProjectItem>
+            Name="ST_2c122f54f1364c7db5f3003e6de8c90b.csproj"
+            Encoding="UTF8"><![CDATA[<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <ProjectTypeGuids>{30D016F9-3734-4E33-A861-5E7D899E18F3};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{FE79D0CC-86BF-40EE-B2EC-8570B6C875BE}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>ST_2c122f54f1364c7db5f3003e6de8c90b</RootNamespace>
+    <AssemblyName>ST_2c122f54f1364c7db5f3003e6de8c90b</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ResolveAssemblyReferenceIgnoreTargetFrameworkAttributeVersionMismatch>true</ResolveAssemblyReferenceIgnoreTargetFrameworkAttributeVersionMismatch>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>.\bin\Debug\</OutputPath>
+    <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <DebugSymbols>false</DebugSymbols>
+    <Optimize>true</Optimize>
+    <OutputPath>.\bin\Release\</OutputPath>
+    <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.SqlServer.ManagedDTS, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91" />
+    <Reference Include="Microsoft.SqlServer.ScriptTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91" />
+  </ItemGroup>
+  <ItemGroup>
+    <AppDesigner Include="Properties\" />
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+    <Compile Include="ScriptMain.cs">
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+  <!-- Include the build rules for a C# project.-->
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{30D016F9-3734-4E33-A861-5E7D899E18F3}">
+        <ProjectProperties HostName="VSTAHostName" HostPackage="{B3A685AA-7EAF-4BC6-9940-57959FA5AC07}" ApplicationType="usd" Language="cs" TemplatesPath="" DebugInfoExeName="#HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\VisualStudio\10.0\InstallDir#\devenv.exe" />
+        <Host Name="ScriptTask" />
+        <ProjectClient>
+          <HostIdentifier>SSIS_ST110</HostIdentifier>
+        </ProjectClient>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+</Project>]]></ProjectItem>
           <ProjectItem
-            Name="Properties\AssemblyInfo.cs"
-            Encoding="UTF8"><![CDATA[using System.Reflection;
-using System.Runtime.CompilerServices;
-
-//
-// General Information about an assembly is controlled through the following 
-// set of attributes. Change these attribute values to modify the information
-// associated with an assembly.
-//
-[assembly: AssemblyTitle("ST_2c122f54f1364c7db5f3003e6de8c90b")]
-[assembly: AssemblyDescription("")]
-[assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("ST_2c122f54f1364c7db5f3003e6de8c90b")]
-[assembly: AssemblyCopyright("Copyright @  2016")]
-[assembly: AssemblyTrademark("")]
-[assembly: AssemblyCulture("")]
-//
-// Version information for an assembly consists of the following four values:
-//
-//      Major Version
-//      Minor Version 
-//      Build Number
-//      Revision
-//
-// You can specify all the values or you can default the Revision and Build Numbers 
-// by using the '*' as shown below:
-
-[assembly: AssemblyVersion("1.0.*")]]]></ProjectItem>
+            Name="Properties\Settings.settings"
+            Encoding="UTF8"><![CDATA[<?xml version='1.0' encoding='iso-8859-1'?>
+<SettingsFile xmlns="uri:settings" CurrentProfile="(Default)">
+  <Profiles>
+    <Profile Name="(Default)" />
+  </Profiles>
+  <Settings />
+</SettingsFile>]]></ProjectItem>
           <ProjectItem
             Name="Properties\Resources.Designer.cs"
             Encoding="UTF8"><![CDATA[//------------------------------------------------------------------------------
@@ -2273,14 +2359,35 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
           Language="CSharp"
           ReadWriteVariables="User::error_description">
           <ProjectItem
-            Name="Properties\Settings.settings"
-            Encoding="UTF8"><![CDATA[<?xml version='1.0' encoding='iso-8859-1'?>
-<SettingsFile xmlns="uri:settings" CurrentProfile="(Default)">
-  <Profiles>
-    <Profile Name="(Default)" />
-  </Profiles>
-  <Settings />
-</SettingsFile>]]></ProjectItem>
+            Name="Properties\AssemblyInfo.cs"
+            Encoding="UTF8"><![CDATA[using System.Reflection;
+using System.Runtime.CompilerServices;
+
+//
+// General Information about an assembly is controlled through the following 
+// set of attributes. Change these attribute values to modify the information
+// associated with an assembly.
+//
+[assembly: AssemblyTitle("ST_2c122f54f1364c7db5f3003e6de8c90b")]
+[assembly: AssemblyDescription("")]
+[assembly: AssemblyConfiguration("")]
+[assembly: AssemblyCompany("")]
+[assembly: AssemblyProduct("ST_2c122f54f1364c7db5f3003e6de8c90b")]
+[assembly: AssemblyCopyright("Copyright @  2016")]
+[assembly: AssemblyTrademark("")]
+[assembly: AssemblyCulture("")]
+//
+// Version information for an assembly consists of the following four values:
+//
+//      Major Version
+//      Minor Version 
+//      Build Number
+//      Revision
+//
+// You can specify all the values or you can default the Revision and Build Numbers 
+// by using the '*' as shown below:
+
+[assembly: AssemblyVersion("1.0.*")]]]></ProjectItem>
           <ProjectItem
             Name="Properties\Resources.resx"
             Encoding="UTF8"><![CDATA[<?xml version="1.0" encoding="utf-8"?>
@@ -2567,35 +2674,14 @@ namespace ST_2c122f54f1364c7db5f3003e6de8c90b.Properties {
     }
 }]]></ProjectItem>
           <ProjectItem
-            Name="Properties\AssemblyInfo.cs"
-            Encoding="UTF8"><![CDATA[using System.Reflection;
-using System.Runtime.CompilerServices;
-
-//
-// General Information about an assembly is controlled through the following 
-// set of attributes. Change these attribute values to modify the information
-// associated with an assembly.
-//
-[assembly: AssemblyTitle("ST_2c122f54f1364c7db5f3003e6de8c90b")]
-[assembly: AssemblyDescription("")]
-[assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("ST_2c122f54f1364c7db5f3003e6de8c90b")]
-[assembly: AssemblyCopyright("Copyright @  2016")]
-[assembly: AssemblyTrademark("")]
-[assembly: AssemblyCulture("")]
-//
-// Version information for an assembly consists of the following four values:
-//
-//      Major Version
-//      Minor Version 
-//      Build Number
-//      Revision
-//
-// You can specify all the values or you can default the Revision and Build Numbers 
-// by using the '*' as shown below:
-
-[assembly: AssemblyVersion("1.0.*")]]]></ProjectItem>
+            Name="Properties\Settings.settings"
+            Encoding="UTF8"><![CDATA[<?xml version='1.0' encoding='iso-8859-1'?>
+<SettingsFile xmlns="uri:settings" CurrentProfile="(Default)">
+  <Profiles>
+    <Profile Name="(Default)" />
+  </Profiles>
+  <Settings />
+</SettingsFile>]]></ProjectItem>
           <ProjectItem
             Name="Properties\Resources.Designer.cs"
             Encoding="UTF8"><![CDATA[//------------------------------------------------------------------------------
@@ -2803,14 +2889,35 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
           Language="CSharp"
           ReadWriteVariables="User::error_description">
           <ProjectItem
-            Name="Properties\Settings.settings"
-            Encoding="UTF8"><![CDATA[<?xml version='1.0' encoding='iso-8859-1'?>
-<SettingsFile xmlns="uri:settings" CurrentProfile="(Default)">
-  <Profiles>
-    <Profile Name="(Default)" />
-  </Profiles>
-  <Settings />
-</SettingsFile>]]></ProjectItem>
+            Name="Properties\AssemblyInfo.cs"
+            Encoding="UTF8"><![CDATA[using System.Reflection;
+using System.Runtime.CompilerServices;
+
+//
+// General Information about an assembly is controlled through the following 
+// set of attributes. Change these attribute values to modify the information
+// associated with an assembly.
+//
+[assembly: AssemblyTitle("ST_2c122f54f1364c7db5f3003e6de8c90b")]
+[assembly: AssemblyDescription("")]
+[assembly: AssemblyConfiguration("")]
+[assembly: AssemblyCompany("")]
+[assembly: AssemblyProduct("ST_2c122f54f1364c7db5f3003e6de8c90b")]
+[assembly: AssemblyCopyright("Copyright @  2016")]
+[assembly: AssemblyTrademark("")]
+[assembly: AssemblyCulture("")]
+//
+// Version information for an assembly consists of the following four values:
+//
+//      Major Version
+//      Minor Version 
+//      Build Number
+//      Revision
+//
+// You can specify all the values or you can default the Revision and Build Numbers 
+// by using the '*' as shown below:
+
+[assembly: AssemblyVersion("1.0.*")]]]></ProjectItem>
           <ProjectItem
             Name="Properties\Resources.resx"
             Encoding="UTF8"><![CDATA[<?xml version="1.0" encoding="utf-8"?>
@@ -3097,35 +3204,14 @@ namespace ST_2c122f54f1364c7db5f3003e6de8c90b.Properties {
             Name="ST_d47ed921061f42bb9b86b831ac6490b9.csproj"
             Encoding="UTF8"><![CDATA[<?xml version="1.0" encoding="utf-8"?><Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003"><PropertyGroup><ProjectTypeGuids>{30D016F9-3734-4E33-A861-5E7D899E18F3};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids><Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration><Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform><ProductVersion>8.0.30703</ProductVersion><SchemaVersion>2.0</SchemaVersion><ProjectGuid>{FE79D0CC-86BF-40EE-B2EC-8570B6C875BE}</ProjectGuid><OutputType>Library</OutputType><AppDesignerFolder>Properties</AppDesignerFolder><RootNamespace>ST_2c122f54f1364c7db5f3003e6de8c90b</RootNamespace><AssemblyName>ST_d47ed921061f42bb9b86b831ac6490b9</AssemblyName><TargetFrameworkVersion>v4.0</TargetFrameworkVersion><FileAlignment>512</FileAlignment><ResolveAssemblyReferenceIgnoreTargetFrameworkAttributeVersionMismatch>true</ResolveAssemblyReferenceIgnoreTargetFrameworkAttributeVersionMismatch></PropertyGroup><PropertyGroup Condition=" '$(Configuration)' == 'Debug' "><DebugSymbols>true</DebugSymbols><DebugType>full</DebugType><Optimize>false</Optimize><OutputPath>.\bin\Debug\</OutputPath><EnableUnmanagedDebugging>false</EnableUnmanagedDebugging><DefineConstants>DEBUG;TRACE</DefineConstants><ErrorReport>prompt</ErrorReport><WarningLevel>4</WarningLevel></PropertyGroup><PropertyGroup Condition=" '$(Configuration)' == 'Release' "><DebugSymbols>false</DebugSymbols><Optimize>true</Optimize><OutputPath>.\bin\Release\</OutputPath><EnableUnmanagedDebugging>false</EnableUnmanagedDebugging><DefineConstants>TRACE</DefineConstants><ErrorReport>prompt</ErrorReport><WarningLevel>4</WarningLevel></PropertyGroup><ItemGroup><Reference Include="System" /><Reference Include="System.Data" /><Reference Include="System.Windows.Forms" /><Reference Include="System.Xml" /><Reference Include="Microsoft.SqlServer.ManagedDTS, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91" /><Reference Include="Microsoft.SqlServer.ScriptTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91" /></ItemGroup><ItemGroup><AppDesigner Include="Properties\" /><Compile Include="Properties\AssemblyInfo.cs"><SubType>Code</SubType></Compile><EmbeddedResource Include="Properties\Resources.resx"><Generator>ResXFileCodeGenerator</Generator><LastGenOutput>Resources.Designer.cs</LastGenOutput></EmbeddedResource><Compile Include="Properties\Resources.Designer.cs"><AutoGen>True</AutoGen><DependentUpon>Resources.resx</DependentUpon></Compile><None Include="Properties\Settings.settings"><Generator>SettingsSingleFileGenerator</Generator><LastGenOutput>Settings.Designer.cs</LastGenOutput></None><Compile Include="Properties\Settings.Designer.cs"><AutoGen>True</AutoGen><DependentUpon>Settings.settings</DependentUpon></Compile><Compile Include="ScriptMain.cs"><SubType>Code</SubType></Compile></ItemGroup><!-- Include the build rules for a C# project.--><Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" /><ProjectExtensions><VisualStudio><FlavorProperties GUID="{30D016F9-3734-4E33-A861-5E7D899E18F3}"><ProjectProperties HostName="VSTAHostName" HostPackage="{B3A685AA-7EAF-4BC6-9940-57959FA5AC07}" ApplicationType="usd" Language="cs" TemplatesPath="" DebugInfoExeName="#HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\VisualStudio\10.0\InstallDir#\devenv.exe" /><Host Name="ScriptTask" /><ProjectClient><HostIdentifier>SSIS_ST110</HostIdentifier></ProjectClient></FlavorProperties></VisualStudio></ProjectExtensions></Project>]]></ProjectItem>
           <ProjectItem
-            Name="Properties\AssemblyInfo.cs"
-            Encoding="UTF8"><![CDATA[using System.Reflection;
-using System.Runtime.CompilerServices;
-
-//
-// General Information about an assembly is controlled through the following 
-// set of attributes. Change these attribute values to modify the information
-// associated with an assembly.
-//
-[assembly: AssemblyTitle("ST_2c122f54f1364c7db5f3003e6de8c90b")]
-[assembly: AssemblyDescription("")]
-[assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("ST_2c122f54f1364c7db5f3003e6de8c90b")]
-[assembly: AssemblyCopyright("Copyright @  2016")]
-[assembly: AssemblyTrademark("")]
-[assembly: AssemblyCulture("")]
-//
-// Version information for an assembly consists of the following four values:
-//
-//      Major Version
-//      Minor Version 
-//      Build Number
-//      Revision
-//
-// You can specify all the values or you can default the Revision and Build Numbers 
-// by using the '*' as shown below:
-
-[assembly: AssemblyVersion("1.0.*")]]]></ProjectItem>
+            Name="Properties\Settings.settings"
+            Encoding="UTF8"><![CDATA[<?xml version='1.0' encoding='iso-8859-1'?>
+<SettingsFile xmlns="uri:settings" CurrentProfile="(Default)">
+  <Profiles>
+    <Profile Name="(Default)" />
+  </Profiles>
+  <Settings />
+</SettingsFile>]]></ProjectItem>
           <ProjectItem
             Name="Properties\Resources.Designer.cs"
             Encoding="UTF8"><![CDATA[//------------------------------------------------------------------------------
@@ -3397,7 +3483,20 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
         <SQLTask:SqlTaskData
           SQLTask:Connection="{1BECA79F-376F-46D2-886B-99F80846DDDA}"
           SQLTask:BypassPrepare="False"
-          SQLTask:SqlStatementSource=";WITH mailing_cache AS&#xA;(&#xA;  SELECT DISTINCT ParentID&#xA;  FROM&#xA;    Medhok.Mailing_Data_File_Cache&#xA;)&#xA;UPDATE&#xA;  mailing_file&#xA;SET&#xA;  mailing_file.Adjudicated = 1,&#xA;  mailing_file.AdjudicationDate = GETDATE()&#xA;FROM&#xA;  Medhok.Mailing_Data_File AS mailing_file&#xA;  INNER JOIN&#xA;  mailing_cache&#xA;    ON mailing_file.ID = mailing_cache.ParentID&#xA;;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          SQLTask:SqlStatementSource=";WITH mcache AS&#xA;(&#xA;  SELECT DISTINCT ParentID&#xA;  FROM&#xA;    Medhok.Mailing_Data_File_Cache&#xA;)&#xA;UPDATE&#xA;  mfile&#xA;SET&#xA;  mfile.Adjudicated = 1,&#xA;  mfile.AdjudicationDate = GETDATE(),&#xA;  mfile.AmtMatchLetters = ?,&#xA;  mfile.AmtNoMatchLetters = ?&#xA;FROM&#xA;  Medhok.Mailing_Data_File AS mfile&#xA;  INNER JOIN&#xA;  mcache&#xA;    ON mfile.ID = mcache.ParentID&#xA;;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="0"
+            SQLTask:DtsVariableName="User::match_letters_count"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="20"
+            SQLTask:ParameterSize="-1" />
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="1"
+            SQLTask:DtsVariableName="User::no_match_letters_count"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="20"
+            SQLTask:ParameterSize="-1" />
+        </SQLTask:SqlTaskData>
       </DTS:ObjectData>
     </DTS:Executable>
   </DTS:Executables>
@@ -3794,11 +3893,11 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
     design-time-name="Package\DFT - Prepare mailing data to be adjudicated">
     <LayoutInfo>
       <GraphLayout
-        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        Capacity="32" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
           Size="340.8,41.6"
           Id="Package\DFT - Prepare mailing data to be adjudicated\OLE_DST - Save info about mailing data with no match"
-          TopLeft="945.034029699276,140.123251264896" />
+          TopLeft="945.85035624379,245.871151907634" />
         <NodeLayout
           Size="315.2,41.6"
           Id="Package\DFT - Prepare mailing data to be adjudicated\OLE_SRC - Get manifest records from cache table"
@@ -3810,7 +3909,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
         <NodeLayout
           Size="332.8,41.6"
           Id="Package\DFT - Prepare mailing data to be adjudicated\LKP - Find letters that match those in cache"
-          TopLeft="450.096946393783,45.7016812360823" />
+          TopLeft="451.729599482811,48.3235300123485" />
         <NodeLayout
           Size="340.8,41.6"
           Id="Package\DFT - Prepare mailing data to be adjudicated\DER - Add execition id column"
@@ -3826,7 +3925,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
         <NodeLayout
           Size="332.8,41.6"
           Id="Package\DFT - Prepare mailing data to be adjudicated\OLE_DST - Store tempoararly mailing data into buffer"
-          TopLeft="452.001708330983,144.056024429295" />
+          TopLeft="452.818034875497,244.560227519501" />
         <EdgeLayout
           Id="Package\DFT - Prepare mailing data to be adjudicated.Paths[File records with errors]"
           TopLeft="221.536225555207,86.3243703751417">
@@ -3852,7 +3951,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
-          Id="Package\DFT - Prepare mailing data to be adjudicated.Paths[Derived Column Output1]"
+          Id="Package\DFT - Prepare mailing data to be adjudicated.Paths[Derived Column Output]"
           TopLeft="221.536225555207,184.747060753977">
           <EdgeLayout.Curve>
             <mssgle:Curve
@@ -3865,28 +3964,6 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
                   Capacity="5">
                   <mssgle:LineSegment
                     End="0,51.694119137794" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package\DFT - Prepare mailing data to be adjudicated.Paths[Derived Column Output]"
-          TopLeft="1114.00545824638,88.0649866460517">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,52.0582646188441"
-              Start="0,0"
-              End="0,44.5582646188441">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,44.5582646188441" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -3919,18 +3996,18 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
         </EdgeLayout>
         <EdgeLayout
           Id="Package\DFT - Prepare mailing data to be adjudicated.Paths[OLE DB Source Output]"
-          TopLeft="379.136225555207,66.013025805612">
+          TopLeft="379.136225555207,67.3239501937451">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="70.9607208385763,0"
+              EndConnector="72.5933739276043,0"
               Start="0,0"
-              End="63.4607208385763,0">
+              End="65.0933739276043,0">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="63.4607208385763,0" />
+                    End="65.0933739276043,0" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -3941,50 +4018,124 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
         </EdgeLayout>
         <EdgeLayout
           Id="Package\DFT - Prepare mailing data to be adjudicated.Paths[Lookup No Match Output]"
-          TopLeft="782.896946393784,66.883333941067">
+          TopLeft="784.529599482811,68.1942583292001">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="159.279940399692,0"
+              EndConnector="157.647287310665,0"
               Start="0,0"
-              End="151.779940399692,0">
+              End="150.147287310665,0">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="151.779940399692,0" />
+                    End="150.147287310665,0" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="20.0835834810962,5,111.6127734375,11.609375"
+              BoundingBox="19.2672569365823,5,111.6127734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="331.2,41.6"
+          Id="Package\DFT - Prepare mailing data to be adjudicated\CNT - Count letters that match"
+          TopLeft="453.061232205383,141.579833918377" />
+        <EdgeLayout
+          Id="Package\DFT - Prepare mailing data to be adjudicated.Paths[Lookup Match Output]"
+          TopLeft="618.395415844097,89.9235300123486">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,51.6563039060282"
+              Start="0,0"
+              End="0,44.1563039060282">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,44.1563039060282" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-48.19138671875,16.2734644530141,96.3827734375,11.609375"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
-          Id="Package\DFT - Prepare mailing data to be adjudicated.Paths[Lookup Match Output]"
-          TopLeft="617.449327362383,87.3016812360823">
+          Id="Package\DFT - Prepare mailing data to be adjudicated.Paths[Row Count Output 11]"
+          TopLeft="618.93963354044,183.179833918377">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,56.754343193213"
+              EndConnector="0,61.380393601124"
               Start="0,0"
-              End="0,49.254343193213">
+              End="0,53.880393601124">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,49.254343193213" />
+                    End="0,53.880393601124" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="-48.19138671875,18.8224840966065,96.3827734375,11.609375"
-              RelativePosition="Any" />
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="340,41.6"
+          Id="Package\DFT - Prepare mailing data to be adjudicated\CNT - Count letters that do not match"
+          TopLeft="949.387771270018,141.579833918377" />
+        <EdgeLayout
+          Id="Package\DFT - Prepare mailing data to be adjudicated.Paths[Derived Column Output1]"
+          TopLeft="1115.98232903175,88.0649866460517">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,53.5148472723252"
+              Start="0,0"
+              End="0,46.0148472723252">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,46.0148472723252" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\DFT - Prepare mailing data to be adjudicated.Paths[Row Count Output 12]"
+          TopLeft="1117.8190637569,183.179833918377">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,62.6913179892574"
+              Start="0,0"
+              End="0,55.1913179892574">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,55.1913179892574" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>
