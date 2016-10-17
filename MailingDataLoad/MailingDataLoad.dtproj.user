@@ -4,7 +4,7 @@
     <Configuration>
       <Name>Development</Name>
       <Options>
-        <StartObjectID>ETL_Letter_Mailing_Data_Load.dtsx</StartObjectID>
+        <StartObjectID>ETL_Mailing_File_Life_Span_Check.dtsx</StartObjectID>
         <Run64BitRuntime>true</Run64BitRuntime>
         <UserIDs />
         <UserPasswords />
