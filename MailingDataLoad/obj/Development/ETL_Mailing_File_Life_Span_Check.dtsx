@@ -11,8 +11,8 @@
   DTS:LocaleID="1033"
   DTS:ObjectName="ETL_Mailing_File_Life_Span_Check"
   DTS:PackageType="5"
-  DTS:VersionBuild="39"
-  DTS:VersionGUID="{CF15AF1B-8E6F-4062-87AB-01B0F512C20F}">
+  DTS:VersionBuild="65"
+  DTS:VersionGUID="{233CF40B-F77B-4540-957D-BA59E2A74688}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">6</DTS:Property>
   <DTS:ConnectionManagers>
@@ -27,7 +27,7 @@
           <DTS:Password
             DTS:Name="Password"
             Sensitive="1"
-            Encrypted="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAPXQ7jZTnV0GKV9nuEcqtfwAAAAAIAAAARABUAFMAAAAQZgAAAAEAACAAAAAcl50En6I0T7PKYmYtViobUYr6LgJWtuxTfSpjLVC9mgAAAAAOgAAAAAIAACAAAABZ04GuOQBPyTyN9s5oTJ26ld7eXSlbLQNeKFDxyAGgCBAAAAD7WwWFENSkEmGNFxqMKzTzQAAAALi2Z3LPD4qCu4bhtx14zcU+oQwbzc8V1lrZh9GLRJpw+1wuuxxZacw/U0Vpm1Iypb3t4tEkklWHWRHk5Y4IvHo</DTS:Password>
+            Encrypted="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAPXQ7jZTnV0GKV9nuEcqtfwAAAAAIAAAARABUAFMAAAAQZgAAAAEAACAAAADiVwqIcXmkv9FeV2eRGTvNG5kp+0xpVD8Hyw4Ur1m0hQAAAAAOgAAAAAIAACAAAAAobMalONIhN//ujiUd/17OWJW/CzkIHu/Yx5GqTHtjdhAAAAAAaiWfTqxaqk+EWSdXb97kQAAAADfXgnGdMOgavssz67DoKqa7Qq38fL5AV7EWim5nnlda97ZjCVDtf1I0NNayE4lPiLcTpblMhasViEvmeZ+3unw</DTS:Password>
         </DTS:ConnectionManager>
       </DTS:ObjectData>
     </DTS:ConnectionManager>
@@ -83,6 +83,39 @@
     </DTS:Variable>
     <DTS:Variable
       DTS:CreationName=""
+      DTS:DTSID="{EDA901C6-BE90-4110-869F-59CC4BD3F8B1}"
+      DTS:EvaluateAsExpression="True"
+      DTS:Expression="&quot;File '&quot; + @[User::current_file] + &quot;' life span expired, has been deleted.&quot;"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="event_normal_file_deletion">
+      <DTS:VariableValue
+        DTS:DataType="8">File '' life span expired, has been deleted.</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{F8BE3BDB-8601-4EA6-8033-DB8F21A535A9}"
+      DTS:EvaluateAsExpression="True"
+      DTS:Expression="&quot;Cleanup process finished for folder '&quot; +  @[$Package::deletion_path] + &quot;'.&quot;"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="event_normal_finished">
+      <DTS:VariableValue
+        DTS:DataType="8">Cleanup process finished for folder 'C:\Users\Ernesto Rodriguez\Projects\SampleData\LettersMailingData\Stage_1'.</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{290EBB0E-37FD-461D-9A04-42B0C6599F55}"
+      DTS:EvaluateAsExpression="True"
+      DTS:Expression="&quot;Cleaning up folder '&quot; + @[$Package::deletion_path] + &quot;' initiated.&quot;"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="event_normal_init">
+      <DTS:VariableValue
+        DTS:DataType="8">Cleaning up folder 'C:\Users\Ernesto Rodriguez\Projects\SampleData\LettersMailingData\Stage_1' initiated.</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
       DTS:DTSID="{015DFC49-E224-4B2B-8D50-CA798F3D8055}"
       DTS:IncludeInDebugDump="2345"
       DTS:Namespace="User"
@@ -108,6 +141,17 @@
           </SOAP-ENV:Body>
         </SOAP-ENV:Envelope>
       </DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{1F921EE2-3BD6-4321-A12A-66FE4FD2837D}"
+      DTS:EvaluateAsExpression="True"
+      DTS:Expression="&quot;Error detected when cleaning up mailing files from '&quot; +  @[$Package::deletion_path] + &quot;' path.&quot;"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="failed_batch_error_msg">
+      <DTS:VariableValue
+        DTS:DataType="8">Error detected when cleaning up mailing files from 'C:\Users\Ernesto Rodriguez\Projects\SampleData\LettersMailingData\Stage_1' path.</DTS:VariableValue>
     </DTS:Variable>
     <DTS:Variable
       DTS:CreationName=""
@@ -189,6 +233,29 @@
               DTS:ObjectName="SCR - Verify if current file life span"
               DTS:ThreadHint="1">
               <DTS:Variables />
+              <DTS:EventHandlers>
+                <DTS:EventHandler
+                  DTS:refId="Package\SEQC - Main process tasks\FELC - Traverse firts stage directory\SCR - Verify if current file life span.EventHandlers[OnError]"
+                  DTS:CreationName="OnError"
+                  DTS:DTSID="{49F24968-BC32-457C-8CE9-1594F2E05D51}"
+                  DTS:EventID="304712528"
+                  DTS:EventName="OnError"
+                  DTS:LocaleID="-1">
+                  <DTS:Variables>
+                    <DTS:Variable
+                      DTS:CreationName=""
+                      DTS:Description="The propagate property of the event"
+                      DTS:DTSID="{21D935B4-FBDE-49AD-894D-655A713549CF}"
+                      DTS:IncludeInDebugDump="6789"
+                      DTS:Namespace="System"
+                      DTS:ObjectName="Propagate">
+                      <DTS:VariableValue
+                        DTS:DataType="11">0</DTS:VariableValue>
+                    </DTS:Variable>
+                  </DTS:Variables>
+                  <DTS:Executables />
+                </DTS:EventHandler>
+              </DTS:EventHandlers>
               <DTS:ObjectData>
                 <ScriptProject
                   Name="ST_819c1f2d208f43d58a4070b403144667"
@@ -489,15 +556,15 @@ namespace ST_819c1f2d208f43d58a4070b403144667
                     Encoding="UTF16LE"><![CDATA[<?xml version="1.0" encoding="UTF-16" standalone="yes"?>
 <c:Project xmlns:c="http://schemas.microsoft.com/codeprojectml/2010/08/main" xmlns:msb="http://schemas.microsoft.com/developer/msbuild/2003" runtimeVersion="3.0" schemaVersion="1.0">
 	<msb:PropertyGroup>
-		<msb:CodeName>ST_819c1f2d208f43d58a4070b403144667</msb:CodeName>
 		<msb:Language>msBuild</msb:Language>
+		<msb:CodeName>ST_819c1f2d208f43d58a4070b403144667</msb:CodeName>
 		<msb:DisplayName>ST_819c1f2d208f43d58a4070b403144667</msb:DisplayName>
 		<msb:ProjectId>{A9076A1C-61D0-46CA-A460-23E58D0B426D}</msb:ProjectId>
 	</msb:PropertyGroup>
 	<msb:ItemGroup>
 		<msb:Project Include="ST_819c1f2d208f43d58a4070b403144667.csproj"/>
-		<msb:File Include="Properties\AssemblyInfo.cs"/>
 		<msb:File Include="Properties\Settings.settings"/>
+		<msb:File Include="Properties\AssemblyInfo.cs"/>
 		<msb:File Include="Properties\Resources.resx"/>
 		<msb:File Include="Properties\Resources.Designer.cs"/>
 		<msb:File Include="Properties\Settings.Designer.cs"/>
@@ -689,7 +756,7 @@ namespace ST_819c1f2d208f43d58a4070b403144667.Properties {
                   <BinaryItem
                     Name="ST_819c1f2d208f43d58a4070b403144667.dll">TVqQAAMAAAAEAAAA//8AALgAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 AAAAgAAAAA4fug4AtAnNIbgBTM0hVGhpcyBwcm9ncmFtIGNhbm5vdCBiZSBydW4gaW4gRE9TIG1v
-ZGUuDQ0KJAAAAAAAAABQRQAATAEDAFEvBVgAAAAAAAAAAOAAAiELAQsAABAAAAAIAAAAAAAATi8A
+ZGUuDQ0KJAAAAAAAAABQRQAATAEDAIs8BlgAAAAAAAAAAOAAAiELAQsAABAAAAAIAAAAAAAATi8A
 AAAgAAAAQAAAAAAAEAAgAAAAAgAABAAAAAAAAAAEAAAAAAAAAACAAAAAAgAAAAAAAAMAQIUAABAA
 ABAAAAAAEAAAEAAAAAAAABAAAAAAAAAAAAAAAAAvAABLAAAAAEAAAAgEAAAAAAAAAAAAAAAAAAAA
 AAAAAGAAAAwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
@@ -723,7 +790,7 @@ GwAZANYEjQDZACcFkgDhAD4FlwDpAEcFnQAJAHMFpwD5AIsFqwAMAJcFsAABAagFpwABAa0FtAAM
 ALsFuQDpAMIFvwDZAMwFXQAZALwBGwAIABQATgAIABgAUwApAJMAgAAuABsAPwEuACMAPwEuAGMA
 ZQEuAAsAzgAuABMAFgEuADMAFgEuACsAPwEuADsARQEuAEMAPwEuAFsAXAFDAGsAUwBJAJMAgABh
 AJsAUwCDAKsAUwB1AMQAAgABAAMAAwAAAG8BLwAAAO4BNAAAABICQgACAAIAAwACAAMABQABAAQA
-BQACAAUABwChAASAAAABAAAA9hdIcQAAAAAAAH8AAAAEAAAAAAAAAAAAAAABALEAAAAAAAQAAAAA
+BQACAAUABwChAASAAAABAAAA9xclTwAAAAAAAH8AAAAEAAAAAAAAAAAAAAABALEAAAAAAAQAAAAA
 AAAAAAAAAAEAugAAAAAACwAAAAAAAAAAAAAACgD1AAAAAAALAAAAAAAAAAAAAAAKAN4EAAAAAAAA
 AAABAAAA2wUAAAUABAAAAAAAADxNb2R1bGU+AFNUXzgxOWMxZjJkMjA4ZjQzZDU4YTQwNzBiNDAz
 MTQ0NjY3LmRsbABSZXNvdXJjZXMAU1RfODE5YzFmMmQyMDhmNDNkNThhNDA3MGI0MDMxNDQ2Njcu
@@ -756,7 +823,7 @@ MDcwYjQwMzE0NDY2Ny5Qcm9wZXJ0aWVzLlJlc291cmNlcy5yZXNvdXJjZXMAAAAAcVMAVABfADgA
 MQA5AGMAMQBmADIAZAAyADAAOABmADQAMwBkADUAOABhADQAMAA3ADAAYgA0ADAAMwAxADQANAA2
 ADYANwAuAFAAcgBvAHAAZQByAHQAaQBlAHMALgBSAGUAcwBvAHUAcgBjAGUAcwAAJ1UAcwBlAHIA
 OgA6AGUAeABwAGkAcgBlAGQAXwBmAGkAbABlAHMAACVVAHMAZQByADoAOgBjAHUAcgByAGUAbgB0
-AF8AZgBpAGwAZQAAAAAA9yBlDCsrFkOJeSExGuv1xAAIt3pcVhk04IkIiYRdzYCAzJEDBhIVAwYS
+AF8AZgBpAGwAZQAAAAAAWETiTS6R10qM4sl+1Fq4gwAIt3pcVhk04IkIiYRdzYCAzJEDBhIVAwYS
 GQMgAAEEAAASFQQAABIZBQABARIZBAgAEhUECAASGQMGEgwEAAASDAQIABIMAgYIAwYRFAQAAAAA
 BAEAAAAEIAEBDgQgAQEIBgABElERVQQgABJZBiACAQ4SWQQHARIVBSABARFhCAEAAgAAAAAAAwAA
 AQQgABJtBCAAEnEFIAESdRwDIAAcBRUSeQEOAyAADgQAAQ4OAyAACAQAAQIOBSABAhMABCABARwJ
@@ -770,13 +837,13 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 AAAAAAABABAAAAAYAACAAAAAAAAAAAAAAAAAAAABAAEAAAAwAACAAAAAAAAAAAAAAAAAAAABAAAA
 AABIAAAAWEAAALADAAAAAAAAAAAAALADNAAAAFYAUwBfAFYARQBSAFMASQBPAE4AXwBJAE4ARgBP
-AAAAAAC9BO/+AAABAAAAAQBIcfYXAAABAEhx9hc/AAAAAAAAAAQAAAACAAAAAAAAAAAAAAAAAAAA
+AAAAAAC9BO/+AAABAAAAAQAlT/cXAAABACVP9xc/AAAAAAAAAAQAAAACAAAAAAAAAAAAAAAAAAAA
 RAAAAAEAVgBhAHIARgBpAGwAZQBJAG4AZgBvAAAAAAAkAAQAAABUAHIAYQBuAHMAbABhAHQAaQBv
 AG4AAAAAAAAAsAQQAwAAAQBTAHQAcgBpAG4AZwBGAGkAbABlAEkAbgBmAG8AAADsAgAAAQAwADAA
 MAAwADAANABiADAAAABwACQAAQBGAGkAbABlAEQAZQBzAGMAcgBpAHAAdABpAG8AbgAAAAAAUwBU
 AF8AOAAxADkAYwAxAGYAMgBkADIAMAA4AGYANAAzAGQANQA4AGEANAAwADcAMABiADQAMAAzADEA
 NAA0ADYANgA3AAAAQAAPAAEARgBpAGwAZQBWAGUAcgBzAGkAbwBuAAAAAAAxAC4AMAAuADYAMQAz
-ADQALgAyADkAMAAwADAAAAAAAHAAKAABAEkAbgB0AGUAcgBuAGEAbABOAGEAbQBlAAAAUwBUAF8A
+ADUALgAyADAAMgA2ADEAAAAAAHAAKAABAEkAbgB0AGUAcgBuAGEAbABOAGEAbQBlAAAAUwBUAF8A
 OAAxADkAYwAxAGYAMgBkADIAMAA4AGYANAAzAGQANQA4AGEANAAwADcAMABiADQAMAAzADEANAA0
 ADYANgA3AC4AZABsAGwAAABIABIAAQBMAGUAZwBhAGwAQwBvAHAAeQByAGkAZwBoAHQAAABDAG8A
 cAB5AHIAaQBnAGgAdAAgAEAAIAAgADIAMAAxADYAAAB4ACgAAQBPAHIAaQBnAGkAbgBhAGwARgBp
@@ -784,8 +851,8 @@ AGwAZQBuAGEAbQBlAAAAUwBUAF8AOAAxADkAYwAxAGYAMgBkADIAMAA4AGYANAAzAGQANQA4AGEA
 NAAwADcAMABiADQAMAAzADEANAA0ADYANgA3AC4AZABsAGwAAABoACQAAQBQAHIAbwBkAHUAYwB0
 AE4AYQBtAGUAAAAAAFMAVABfADgAMQA5AGMAMQBmADIAZAAyADAAOABmADQAMwBkADUAOABhADQA
 MAA3ADAAYgA0ADAAMwAxADQANAA2ADYANwAAAEQADwABAFAAcgBvAGQAdQBjAHQAVgBlAHIAcwBp
-AG8AbgAAADEALgAwAC4ANgAxADMANAAuADIAOQAwADAAMAAAAAAASAAPAAEAQQBzAHMAZQBtAGIA
-bAB5ACAAVgBlAHIAcwBpAG8AbgAAADEALgAwAC4ANgAxADMANAAuADIAOQAwADAAMAAAAAAAAAAA
+AG8AbgAAADEALgAwAC4ANgAxADMANQAuADIAMAAyADYAMQAAAAAASAAPAAEAQQBzAHMAZQBtAGIA
+bAB5ACAAVgBlAHIAcwBpAG8AbgAAADEALgAwAC4ANgAxADMANQAuADIAMAAyADYAMQAAAAAAAAAA
 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
@@ -807,6 +874,37 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
                 </ScriptProject>
               </DTS:ObjectData>
             </DTS:Executable>
+            <DTS:Executable
+              DTS:refId="Package\SEQC - Main process tasks\FELC - Traverse firts stage directory\SQL - Register file deletion event"
+              DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+              DTS:Description="Execute SQL Task"
+              DTS:DTSID="{BAAA2ABE-A5CE-4114-B883-40E31B67B3ED}"
+              DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+              DTS:LocaleID="-1"
+              DTS:ObjectName="SQL - Register file deletion event"
+              DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+              DTS:ThreadHint="1">
+              <DTS:Variables />
+              <DTS:ObjectData>
+                <SQLTask:SqlTaskData
+                  SQLTask:Connection="{879CBFE3-8828-45E8-BB2C-3F9D632D4E68}"
+                  SQLTask:BypassPrepare="False"
+                  SQLTask:SqlStatementSource="INSERT INTO&#xA;  Medhok.Batch_Process_Event&#xA;(&#xA;  ExecutionLogID, &#xA;  Description&#xA;) &#xA;VALUES (?, ?)&#xA;;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+                  <SQLTask:ParameterBinding
+                    SQLTask:ParameterName="0"
+                    SQLTask:DtsVariableName="$Package::execution_log_id"
+                    SQLTask:ParameterDirection="Input"
+                    SQLTask:DataType="20"
+                    SQLTask:ParameterSize="-1" />
+                  <SQLTask:ParameterBinding
+                    SQLTask:ParameterName="1"
+                    SQLTask:DtsVariableName="User::event_normal_file_deletion"
+                    SQLTask:ParameterDirection="Input"
+                    SQLTask:DataType="129"
+                    SQLTask:ParameterSize="-1" />
+                </SQLTask:SqlTaskData>
+              </DTS:ObjectData>
+            </DTS:Executable>
           </DTS:Executables>
           <DTS:PrecedenceConstraints>
             <DTS:PrecedenceConstraint
@@ -817,12 +915,20 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
               DTS:LogicalAnd="True"
               DTS:ObjectName="Constraint"
               DTS:To="Package\SEQC - Main process tasks\FELC - Traverse firts stage directory\FST - Delete file" />
+            <DTS:PrecedenceConstraint
+              DTS:refId="Package\SEQC - Main process tasks\FELC - Traverse firts stage directory.PrecedenceConstraints[Constraint 1]"
+              DTS:CreationName=""
+              DTS:DTSID="{4BFD2607-543E-4CFD-B573-26B51FDDB776}"
+              DTS:From="Package\SEQC - Main process tasks\FELC - Traverse firts stage directory\FST - Delete file"
+              DTS:LogicalAnd="True"
+              DTS:ObjectName="Constraint 1"
+              DTS:To="Package\SEQC - Main process tasks\FELC - Traverse firts stage directory\SQL - Register file deletion event" />
           </DTS:PrecedenceConstraints>
           <DTS:ForEachVariableMappings>
             <DTS:ForEachVariableMapping
               DTS:CreationName=""
-              DTS:DTSID="{183A152E-5713-4EC8-AF5A-A250F40A936F}"
-              DTS:ObjectName="{183A152E-5713-4EC8-AF5A-A250F40A936F}"
+              DTS:DTSID="{DBA053AA-EFF8-461C-8BD4-23453E3CE89A}"
+              DTS:ObjectName="{DBA053AA-EFF8-461C-8BD4-23453E3CE89A}"
               DTS:ValueIndex="0"
               DTS:VariableName="User::current_file" />
           </DTS:ForEachVariableMappings>
@@ -869,14 +975,35 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
               ReadOnlyVariables="System::TaskName,$Package::connection_string,$Package::limit_days_in_folder"
               ReadWriteVariables="User::exception_message,User::expired_files">
               <ProjectItem
-                Name="Properties\Settings.settings"
-                Encoding="UTF8"><![CDATA[<?xml version='1.0' encoding='iso-8859-1'?>
-<SettingsFile xmlns="uri:settings" CurrentProfile="(Default)">
-  <Profiles>
-    <Profile Name="(Default)" />
-  </Profiles>
-  <Settings />
-</SettingsFile>]]></ProjectItem>
+                Name="Properties\AssemblyInfo.cs"
+                Encoding="UTF8"><![CDATA[using System.Reflection;
+using System.Runtime.CompilerServices;
+
+//
+// General Information about an assembly is controlled through the following 
+// set of attributes. Change these attribute values to modify the information
+// associated with an assembly.
+//
+[assembly: AssemblyTitle("ST_0fd5a8b3702b4f70bb1fdb6dd0a6b064")]
+[assembly: AssemblyDescription("")]
+[assembly: AssemblyConfiguration("")]
+[assembly: AssemblyCompany("")]
+[assembly: AssemblyProduct("ST_0fd5a8b3702b4f70bb1fdb6dd0a6b064")]
+[assembly: AssemblyCopyright("Copyright @  2016")]
+[assembly: AssemblyTrademark("")]
+[assembly: AssemblyCulture("")]
+//
+// Version information for an assembly consists of the following four values:
+//
+//      Major Version
+//      Minor Version 
+//      Build Number
+//      Revision
+//
+// You can specify all the values or you can default the Revision and Build Numbers 
+// by using the '*' as shown below:
+
+[assembly: AssemblyVersion("1.0.*")]]]></ProjectItem>
               <ProjectItem
                 Name="Properties\Resources.resx"
                 Encoding="UTF8"><![CDATA[<?xml version="1.0" encoding="utf-8"?>
@@ -1319,35 +1446,14 @@ namespace ST_0fd5a8b3702b4f70bb1fdb6dd0a6b064.Properties {
   </ProjectExtensions>
 </Project>]]></ProjectItem>
               <ProjectItem
-                Name="Properties\AssemblyInfo.cs"
-                Encoding="UTF8"><![CDATA[using System.Reflection;
-using System.Runtime.CompilerServices;
-
-//
-// General Information about an assembly is controlled through the following 
-// set of attributes. Change these attribute values to modify the information
-// associated with an assembly.
-//
-[assembly: AssemblyTitle("ST_0fd5a8b3702b4f70bb1fdb6dd0a6b064")]
-[assembly: AssemblyDescription("")]
-[assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("ST_0fd5a8b3702b4f70bb1fdb6dd0a6b064")]
-[assembly: AssemblyCopyright("Copyright @  2016")]
-[assembly: AssemblyTrademark("")]
-[assembly: AssemblyCulture("")]
-//
-// Version information for an assembly consists of the following four values:
-//
-//      Major Version
-//      Minor Version 
-//      Build Number
-//      Revision
-//
-// You can specify all the values or you can default the Revision and Build Numbers 
-// by using the '*' as shown below:
-
-[assembly: AssemblyVersion("1.0.*")]]]></ProjectItem>
+                Name="Properties\Settings.settings"
+                Encoding="UTF8"><![CDATA[<?xml version='1.0' encoding='iso-8859-1'?>
+<SettingsFile xmlns="uri:settings" CurrentProfile="(Default)">
+  <Profiles>
+    <Profile Name="(Default)" />
+  </Profiles>
+  <Settings />
+</SettingsFile>]]></ProjectItem>
               <ProjectItem
                 Name="Properties\Resources.Designer.cs"
                 Encoding="UTF8"><![CDATA[//------------------------------------------------------------------------------
@@ -1419,7 +1525,7 @@ namespace ST_0fd5a8b3702b4f70bb1fdb6dd0a6b064.Properties {
               <BinaryItem
                 Name="ST_0fd5a8b3702b4f70bb1fdb6dd0a6b064.dll">TVqQAAMAAAAEAAAA//8AALgAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 AAAAgAAAAA4fug4AtAnNIbgBTM0hVGhpcyBwcm9ncmFtIGNhbm5vdCBiZSBydW4gaW4gRE9TIG1v
-ZGUuDQ0KJAAAAAAAAABQRQAATAEDAKQsBVgAAAAAAAAAAOAAAiELAQsAABoAAAAIAAAAAAAAnjgA
+ZGUuDQ0KJAAAAAAAAABQRQAATAEDANYyBlgAAAAAAAAAAOAAAiELAQsAABoAAAAIAAAAAAAAnjgA
 AAAgAAAAQAAAAAAAEAAgAAAAAgAABAAAAAAAAAAEAAAAAAAAAACAAAAAAgAAAAAAAAMAQIUAABAA
 ABAAAAAAEAAAEAAAAAAAABAAAAAAAAAAAAAAAEw4AABPAAAAAEAAAAgEAAAAAAAAAAAAAAAAAAAA
 AAAAAGAAAAwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
@@ -1469,7 +1575,7 @@ ASEB3QdgAZkBDgh9AQwA0wEgABQAUgiwARwAYAjCAQwAbAjHAcEBjwjNAckBpAggABEBrAjRAREA
 AC4AWwCfAi4AGwCCAi4AYwCoAi4ACwARAi4AEwBZAi4AKwCCAi4AIwCCAi4AMwBZAi4AOwCIAi4A
 QwCCAkEAcwBqAEMAawB0AEkAqwDMAGEAcwBqAIEAcwBqAIMAiwBqAKEAcwBqAMMAwwBqAAMBswBq
 ACEBswBqAMEA4wEEAAEABQADAAAA/wFJAAAAeAJOAAAAnAJcAAIABAADAAIABQAFAAEABgAFAAIA
-BwAHAKEBqAG6AQSAAAABAAAA9hfybwAAAAAAAD4AAAAEAAAAAAAAAAAAAAABAM8AAAAAAAQAAAAA
+BwAHAKEBqAG6AQSAAAABAAAA9xdLSgAAAAAAAD4AAAAEAAAAAAAAAAAAAAABAM8AAAAAAAQAAAAA
 AAAAAAAAAAEA5gAAAAAABAAAAAAAAAAAAAAAAQDYAAAAAAALAAAAAAAAAAAAAAAKADABAAAAAAsA
 AAAAAAAAAAAAAAoAyQUAAAAABAAAAAAAAAAAAAAAAQBLBgAAAAAEAAAAAAAAAAAAAAABALYIAAAA
 AAAAAAABAAAAKgkAAAcABgAIAAYAVwByAVkAnAEAAAAAADxNb2R1bGU+AFNUXzBmZDVhOGIzNzAy
@@ -1522,7 +1628,7 @@ AFAAYQBjAGsAYQBnAGUAOgA6AGwAaQBtAGkAdABfAGQAYQB5AHMAXwBpAG4AXwBmAG8AbABkAGUA
 cgAAA20AACdVAHMAZQByADoAOgBlAHgAcABpAHIAZQBkAF8AZgBpAGwAZQBzAAAhUwB5AHMAdABl
 AG0AOgA6AFQAYQBzAGsATgBhAG0AZQAAL1UAcwBlAHIAOgA6AGUAeABjAGUAcAB0AGkAbwBuAF8A
 bQBlAHMAcwBhAGcAZQAAOVQAYQBzAGsAIAA6ACAAWwB7ADAAfQBdADsAIABNAGUAcwBzAGEAZwBl
-ADoAIABbAHsAMQB9AF0AAAAAAKGrREPh93FCjJggQcAx/eEACLd6XFYZNOCJCImEXc2AgMyRAgYI
+ADoAIABbAHsAMQB9AF0AAAAAAOXTZvusldtCqrGglpq0Pb8ACLd6XFYZNOCJCImEXc2AgMyRAgYI
 AgYOAgYCAwYRGQMgAAEHBhUSHQESCAQgAQEOAwYSIQMGEiUEAAASIQQAABIlBQABARIlBAgAEiEE
 CAASJQMGEhQEAAASFAQIABIUAwYRHAQAAAAABAEAAAAEIAEBCCQBAAEAVA4ETmFtZRhNZWRob2su
 TWFpbGluZ19EYXRhX0ZpbGUUAQABAFQCDElzUHJpbWFyeUtleQEGAAESZRFpBCAAEm0GIAIBDhJt
@@ -1545,13 +1651,13 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 AQAQAAAAGAAAgAAAAAAAAAAAAAAAAAAAAQABAAAAMAAAgAAAAAAAAAAAAAAAAAAAAQAAAAAASAAA
 AFhAAACwAwAAAAAAAAAAAACwAzQAAABWAFMAXwBWAEUAUgBTAEkATwBOAF8ASQBOAEYATwAAAAAA
-vQTv/gAAAQAAAAEA8m/2FwAAAQDyb/YXPwAAAAAAAAAEAAAAAgAAAAAAAAAAAAAAAAAAAEQAAAAB
+vQTv/gAAAQAAAAEAS0r3FwAAAQBLSvcXPwAAAAAAAAAEAAAAAgAAAAAAAAAAAAAAAAAAAEQAAAAB
 AFYAYQByAEYAaQBsAGUASQBuAGYAbwAAAAAAJAAEAAAAVAByAGEAbgBzAGwAYQB0AGkAbwBuAAAA
 AAAAALAEEAMAAAEAUwB0AHIAaQBuAGcARgBpAGwAZQBJAG4AZgBvAAAA7AIAAAEAMAAwADAAMAAw
 ADQAYgAwAAAAcAAkAAEARgBpAGwAZQBEAGUAcwBjAHIAaQBwAHQAaQBvAG4AAAAAAFMAVABfADAA
 ZgBkADUAYQA4AGIAMwA3ADAAMgBiADQAZgA3ADAAYgBiADEAZgBkAGIANgBkAGQAMABhADYAYgAw
-ADYANAAAAEAADwABAEYAaQBsAGUAVgBlAHIAcwBpAG8AbgAAAAAAMQAuADAALgA2ADEAMwA0AC4A
-MgA4ADYANQA4AAAAAABwACgAAQBJAG4AdABlAHIAbgBhAGwATgBhAG0AZQAAAFMAVABfADAAZgBk
+ADYANAAAAEAADwABAEYAaQBsAGUAVgBlAHIAcwBpAG8AbgAAAAAAMQAuADAALgA2ADEAMwA1AC4A
+MQA5ADAAMQA5AAAAAABwACgAAQBJAG4AdABlAHIAbgBhAGwATgBhAG0AZQAAAFMAVABfADAAZgBk
 ADUAYQA4AGIAMwA3ADAAMgBiADQAZgA3ADAAYgBiADEAZgBkAGIANgBkAGQAMABhADYAYgAwADYA
 NAAuAGQAbABsAAAASAASAAEATABlAGcAYQBsAEMAbwBwAHkAcgBpAGcAaAB0AAAAQwBvAHAAeQBy
 AGkAZwBoAHQAIABAACAAIAAyADAAMQA2AAAAeAAoAAEATwByAGkAZwBpAG4AYQBsAEYAaQBsAGUA
@@ -1559,8 +1665,8 @@ bgBhAG0AZQAAAFMAVABfADAAZgBkADUAYQA4AGIAMwA3ADAAMgBiADQAZgA3ADAAYgBiADEAZgBk
 AGIANgBkAGQAMABhADYAYgAwADYANAAuAGQAbABsAAAAaAAkAAEAUAByAG8AZAB1AGMAdABOAGEA
 bQBlAAAAAABTAFQAXwAwAGYAZAA1AGEAOABiADMANwAwADIAYgA0AGYANwAwAGIAYgAxAGYAZABi
 ADYAZABkADAAYQA2AGIAMAA2ADQAAABEAA8AAQBQAHIAbwBkAHUAYwB0AFYAZQByAHMAaQBvAG4A
-AAAxAC4AMAAuADYAMQAzADQALgAyADgANgA1ADgAAAAAAEgADwABAEEAcwBzAGUAbQBiAGwAeQAg
-AFYAZQByAHMAaQBvAG4AAAAxAC4AMAAuADYAMQAzADQALgAyADgANgA1ADgAAAAAAAAAAAAAAAAA
+AAAxAC4AMAAuADYAMQAzADUALgAxADkAMAAxADkAAAAAAEgADwABAEEAcwBzAGUAbQBiAGwAeQAg
+AFYAZQByAHMAaQBvAG4AAAAxAC4AMAAuADYAMQAzADUALgAxADkAMAAxADkAAAAAAAAAAAAAAAAA
 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
@@ -1593,6 +1699,29 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA</BinaryItem>
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
           DTS:ThreadHint="0">
           <DTS:Variables />
+          <DTS:EventHandlers>
+            <DTS:EventHandler
+              DTS:refId="Package\SEQC - Main process tasks\SQL - Register error for current batch process.EventHandlers[OnError]"
+              DTS:CreationName="OnError"
+              DTS:DTSID="{1227861F-DE75-43B7-9DE2-116750074799}"
+              DTS:EventID="410051656"
+              DTS:EventName="OnError"
+              DTS:LocaleID="-1">
+              <DTS:Variables>
+                <DTS:Variable
+                  DTS:CreationName=""
+                  DTS:Description="The propagate property of the event"
+                  DTS:DTSID="{F324707C-F8A7-40E4-8882-1514222FAF8A}"
+                  DTS:IncludeInDebugDump="6789"
+                  DTS:Namespace="System"
+                  DTS:ObjectName="Propagate">
+                  <DTS:VariableValue
+                    DTS:DataType="11">-1</DTS:VariableValue>
+                </DTS:Variable>
+              </DTS:Variables>
+              <DTS:Executables />
+            </DTS:EventHandler>
+          </DTS:EventHandlers>
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
               SQLTask:Connection="{879CBFE3-8828-45E8-BB2C-3F9D632D4E68}"
@@ -1634,7 +1763,161 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA</BinaryItem>
           DTS:Value="1" />
       </DTS:PrecedenceConstraints>
     </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\SQL - Register cleanup process event"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{72aea3c8-3a8e-45a8-b47a-d98384d22704}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="SQL - Register cleanup process event"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{879CBFE3-8828-45E8-BB2C-3F9D632D4E68}"
+          SQLTask:BypassPrepare="False"
+          SQLTask:SqlStatementSource="INSERT INTO&#xA;  Medhok.Batch_Process_Event&#xA;(&#xA;  ExecutionLogID, &#xA;  Description&#xA;) &#xA;VALUES (?, ?)&#xA;;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="0"
+            SQLTask:DtsVariableName="$Package::execution_log_id"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="20"
+            SQLTask:ParameterSize="-1" />
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="1"
+            SQLTask:DtsVariableName="User::event_normal_finished"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="129"
+            SQLTask:ParameterSize="-1" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\SQL - Register Initial Event"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{2E2613AE-6AC8-4A10-A71D-0F52814274F7}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="SQL - Register Initial Event"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{879CBFE3-8828-45E8-BB2C-3F9D632D4E68}"
+          SQLTask:BypassPrepare="False"
+          SQLTask:SqlStatementSource="INSERT INTO&#xA;  Medhok.Batch_Process_Event&#xA;(&#xA;  ExecutionLogID, &#xA;  Description&#xA;) &#xA;VALUES (?, ?)&#xA;;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="0"
+            SQLTask:DtsVariableName="$Package::execution_log_id"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="20"
+            SQLTask:ParameterSize="-1" />
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="1"
+            SQLTask:DtsVariableName="User::event_normal_init"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="129"
+            SQLTask:ParameterSize="-1" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\SQL - Update process batch status as failed"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{f3e50302-2497-4ee0-971d-1d6d6d758198}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="SQL - Update process batch status as failed"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{879CBFE3-8828-45E8-BB2C-3F9D632D4E68}"
+          SQLTask:BypassPrepare="False"
+          SQLTask:SqlStatementSource="UPDATE&#xA;  Medhok.Batch_Process&#xA;SET&#xA;  ErrorMessage = ?&#xA;WHERE&#xA;  ExecutionLogId = ?&#xA;;&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="1"
+            SQLTask:DtsVariableName="$Package::execution_log_id"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="20"
+            SQLTask:ParameterSize="-1" />
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="0"
+            SQLTask:DtsVariableName="User::failed_batch_error_msg"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="129"
+            SQLTask:ParameterSize="-1" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\SQL - Update process batch status as successful"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{F718E4F3-4407-4BB3-8597-C044E6D11C6F}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="SQL - Update process batch status as successful"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="2">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{879CBFE3-8828-45E8-BB2C-3F9D632D4E68}"
+          SQLTask:BypassPrepare="False"
+          SQLTask:SqlStatementSource="UPDATE&#xA;  Medhok.Batch_Process&#xA;SET&#xA;  Successful = 1,&#xA;  EndedAt = GETDATE()&#xA;WHERE&#xA;  ExecutionLogId = ?&#xA;;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="0"
+            SQLTask:DtsVariableName="$Package::execution_log_id"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="20"
+            SQLTask:ParameterSize="-1" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
   </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{21770A90-E5DD-4919-8E67-B9DD175E0E60}"
+      DTS:From="Package\SEQC - Main process tasks"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\SQL - Update process batch status as successful" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 1]"
+      DTS:CreationName=""
+      DTS:DTSID="{D29974C1-0183-43CB-8E17-91CD32DF2CA3}"
+      DTS:From="Package\SEQC - Main process tasks"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 1"
+      DTS:To="Package\SQL - Update process batch status as failed"
+      DTS:Value="1" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 2]"
+      DTS:CreationName=""
+      DTS:DTSID="{0C1ACE5C-8254-4AFA-8A03-006EFE23720C}"
+      DTS:From="Package\SQL - Register Initial Event"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 2"
+      DTS:To="Package\SEQC - Main process tasks" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 3]"
+      DTS:CreationName=""
+      DTS:DTSID="{D0808D16-7BDF-48A5-ADE2-704E4CF231C6}"
+      DTS:From="Package\SEQC - Main process tasks"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 3"
+      DTS:To="Package\SQL - Register cleanup process event"
+      DTS:Value="2" />
+  </DTS:PrecedenceConstraints>
   <DTS:EventHandlers>
     <DTS:EventHandler
       DTS:refId="Package.EventHandlers[OnError]"
@@ -1669,33 +1952,55 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA</BinaryItem>
     design-time-name="Package">
     <LayoutInfo>
       <GraphLayout
-        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        Capacity="32" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
-          Size="324.8,41.6"
-          Id="Package\SEQC - Main process tasks\SCR - Get list of files registered without counterpart"
-          TopLeft="78.3000021117074,23.5168094437014" />
+          Size="243.2,41.6"
+          Id="Package\SEQC - Main process tasks\FELC - Traverse firts stage directory\FST - Delete file"
+          TopLeft="77.2642885363832,111.038660720358" />
         <NodeLayout
           Size="243.2,41.6"
           Id="Package\SEQC - Main process tasks\FELC - Traverse firts stage directory\SCR - Verify if current file life span"
-          TopLeft="54.3326551326165,33.4865569874136" />
-        <NodeLayout
-          Size="155.2,41.6"
-          Id="Package\SEQC - Main process tasks\FELC - Traverse firts stage directory\FST - Delete file"
-          TopLeft="100.19592194015,111.038660720358" />
+          TopLeft="77.2642885363832,33.4865569874136" />
         <EdgeLayout
           Id="Package\SEQC - Main process tasks\FELC - Traverse firts stage directory.PrecedenceConstraints[Constraint]"
-          TopLeft="176.864288536383,75.0865569874136">
+          TopLeft="198.864288536383,75.0865569874136">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,35.9521037329441"
+              EndConnector="0,35.9521037329444"
               Start="0,0"
-              End="0,28.4521037329441">
+              End="0,28.4521037329444">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,28.4521037329441" />
+                    End="0,28.4521037329444" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="235.2,41.6"
+          Id="Package\SEQC - Main process tasks\FELC - Traverse firts stage directory\SQL - Register file deletion event"
+          TopLeft="81.5619079083813,188.329418714319" />
+        <EdgeLayout
+          Id="Package\SEQC - Main process tasks\FELC - Traverse firts stage directory.PrecedenceConstraints[Constraint 1]"
+          TopLeft="199.013098222382,152.638660720358">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,35.6907579939608"
+              Start="0,0"
+              End="0,28.1907579939608">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,28.1907579939608" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -1707,24 +2012,44 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA</BinaryItem>
         <ContainerLayout
           HeaderHeight="43"
           IsExpanded="True"
-          PanelSize="376.8,208"
-          Size="376.8,251.2"
+          PanelSize="441.6,284.8"
+          Size="441.6,328"
           Id="Package\SEQC - Main process tasks\FELC - Traverse firts stage directory"
           TopLeft="56.9857155507924,111.560506996234" />
+        <NodeLayout
+          Size="324.8,41.6"
+          Id="Package\SEQC - Main process tasks\SCR - Get list of files registered without counterpart"
+          TopLeft="78.3000021117074,23.5168094437014" />
+        <NodeLayout
+          Size="296,41.6"
+          Id="Package\SEQC - Main process tasks\SQL - Register error for current batch process"
+          TopLeft="466.383682311033,25.9764724880413" />
         <EdgeLayout
           Id="Package\SEQC - Main process tasks.PrecedenceConstraints[Constraint]"
-          TopLeft="243.04285883125,65.1168094437014">
+          TopLeft="240.700002111707,65.1168094437014">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,46.4436975525326"
+              EndConnector="37.085713439085,46.4436975525326"
               Start="0,0"
-              End="0,38.9436975525326">
+              End="37.085713439085,38.9436975525326">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,38.9436975525326" />
+                    End="0,19.2218487762663" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,19.2218487762663"
+                    Point2="0,23.2218487762663"
+                    Point3="4,23.2218487762663" />
+                  <mssgle:LineSegment
+                    End="33.085713439085,23.2218487762663" />
+                  <mssgle:CubicBezierSegment
+                    Point1="33.085713439085,23.2218487762663"
+                    Point2="37.085713439085,23.2218487762663"
+                    Point3="37.085713439085,27.2218487762663" />
+                  <mssgle:LineSegment
+                    End="37.085713439085,38.9436975525326" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -1733,10 +2058,6 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA</BinaryItem>
             <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
-        <NodeLayout
-          Size="296,41.6"
-          Id="Package\SEQC - Main process tasks\SQL - Register error for current batch process"
-          TopLeft="466.383682311033,25.9764724880413" />
         <EdgeLayout
           Id="Package\SEQC - Main process tasks.PrecedenceConstraints[Constraint 1]"
           TopLeft="403.100002111707,45.5466409658714">
@@ -1764,10 +2085,118 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA</BinaryItem>
         <ContainerLayout
           HeaderHeight="43"
           IsExpanded="True"
-          PanelSize="842.4,417.6"
-          Size="842.4,460.8"
+          PanelSize="842.4,494.4"
+          Size="842.4,537.6"
           Id="Package\SEQC - Main process tasks"
-          TopLeft="45.500000681196,78.0378161433659" />
+          TopLeft="46.4523816497959,109.645659723909" />
+        <NodeLayout
+          Size="301.6,41.6"
+          Id="Package\SQL - Update process batch status as failed"
+          TopLeft="993.333350249699,359.921573675216" />
+        <NodeLayout
+          Size="307.2,41.6"
+          Id="Package\SQL - Update process batch status as successful"
+          TopLeft="985.714302500899,227.372552208422" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="888.852381649796,247.109105966165">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="96.8619208511035,0"
+              Start="0,0"
+              End="89.3619208511035,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="89.3619208511035,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 1]"
+          TopLeft="888.852381649796,379.583616699562">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="104.480968599903,0"
+              Start="0,0"
+              End="96.9809685999035,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="96.9809685999035,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="33.2491366437017,5,30.4826953125,9.7490234375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="208,41.6"
+          Id="Package\SQL - Register Initial Event"
+          TopLeft="370.397965397849,22.9789918417749" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 2]"
+          TopLeft="471.025173523822,64.5789918417749">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,45.066667882134"
+              Start="0,0"
+              End="0,37.566667882134">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,37.566667882134" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="304.8,41.6"
+          Id="Package\SQL - Register cleanup process event"
+          TopLeft="994.0714454067,492.108401804729" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 3]"
+          TopLeft="888.852381649796,511.877030764319">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="105.219063756904,0"
+              Start="0,0"
+              End="97.7190637569041,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="97.7190637569041,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="23.5550787534521,5,50.60890625,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
       </GraphLayout>
     </LayoutInfo>
   </Package>

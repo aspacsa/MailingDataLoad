@@ -2,7 +2,7 @@
 <BuildLog xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <ProjectInfo>
     <Name>MailingDataLoad</Name>
-    <LastWriteTime>2016-10-17T19:17:55.4446353Z</LastWriteTime>
+    <LastWriteTime>2016-10-18T14:15:38.1180394Z</LastWriteTime>
     <LastKnownProtectionLevel>EncryptSensitiveWithUserKey</LastKnownProtectionLevel>
   </ProjectInfo>
   <LastBuildInfos>
@@ -18,7 +18,7 @@
     </ProjectBuildItemInfo>
     <ProjectBuildItemInfo>
       <Name>ETL_Mailing_File_Life_Span_Check.dtsx</Name>
-      <LastWriteTime>2016-10-17T20:07:33.0659709Z</LastWriteTime>
+      <LastWriteTime>2016-10-18T15:22:28.1760677Z</LastWriteTime>
       <LastKnownProtectionLevel>EncryptSensitiveWithUserKey</LastKnownProtectionLevel>
     </ProjectBuildItemInfo>
   </LastBuildInfos>
