@@ -11,8 +11,8 @@
   DTS:LocaleID="1033"
   DTS:ObjectName="ETL_Letter_Mailing_Data_Load"
   DTS:PackageType="5"
-  DTS:VersionBuild="519"
-  DTS:VersionGUID="{61BFC001-DD13-4446-AEDC-C19CA41E3CE9}">
+  DTS:VersionBuild="528"
+  DTS:VersionGUID="{9C261011-5E10-4FD8-AC4A-0EE1E525FC92}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">6</DTS:Property>
   <DTS:ConnectionManagers>
@@ -119,7 +119,7 @@
           <DTS:Password
             DTS:Name="Password"
             Sensitive="1"
-            Encrypted="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAPXQ7jZTnV0GKV9nuEcqtfwAAAAAIAAAARABUAFMAAAAQZgAAAAEAACAAAABwcxaVGl556xwTGOmjzuvEBqffYDL3UREMOiiL2wOkCQAAAAAOgAAAAAIAACAAAACpVrE5lnIkAoGvCBWIITvbxeKfS7NK4wzo4i6DgsU9lRAAAACi7tjpL9e3z/ochiRFcsK5QAAAAJpmEgIf/GQF11tssrsr8Y22h9JNhglTgFo7y1StwoESyKM7jikvtFudDlBl7R4Ar+Qye01wf1SW6nvpMvUe2kQ</DTS:Password>
+            Encrypted="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAPXQ7jZTnV0GKV9nuEcqtfwAAAAAIAAAARABUAFMAAAAQZgAAAAEAACAAAADP3CELDaHGlH0B2zWSg3LiZ5aomLN7YvHbZ+/RDYnuEwAAAAAOgAAAAAIAACAAAACnjnr2nKZl1pDwVNPpBzUvBcQKlnlLJF4Q2Cuwg07TGRAAAAB0fczPnk1RGbvl2uCRbiUEQAAAAJeGOkraEso339QV+aCsGhLkTNs903Pa/sOBiDgbbGGpF3hJqMrq8j3zTrL2w0oCxxH5EuPIaRG/7s1LEWtvRIs</DTS:Password>
         </DTS:ConnectionManager>
       </DTS:ObjectData>
     </DTS:ConnectionManager>
@@ -141,7 +141,7 @@
       DTS:ObjectName="execution_log_id">
       <DTS:Property
         DTS:DataType="3"
-        DTS:Name="ParameterValue">9999331</DTS:Property>
+        DTS:Name="ParameterValue">9999332</DTS:Property>
     </DTS:PackageParameter>
     <DTS:PackageParameter
       DTS:CreationName=""
@@ -290,10 +290,50 @@
     </DTS:Variable>
     <DTS:Variable
       DTS:CreationName=""
+      DTS:DTSID="{8DE400C9-3523-4043-AA55-91E6A50F4C92}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="file_row_count">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
       DTS:DTSID="{866A048F-4B09-4B02-AA1B-5D5F9F9EA802}"
       DTS:IncludeInDebugDump="6789"
       DTS:Namespace="User"
       DTS:ObjectName="file_row_error_count">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{642EF51C-24DD-40E8-8854-2B41AE8E7155}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="file_total_good_rows">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{4BCC579F-A8B5-43C0-9697-F82F03704867}"
+      DTS:EvaluateAsExpression="True"
+      DTS:Expression="@[User::file_total_row_count] -  @[User::file_total_good_rows]"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="file_total_rows_excluded">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{2444D9EF-32EC-46C1-9D14-D83E6B786F30}"
+      DTS:EvaluateAsExpression="True"
+      DTS:Expression="@[User::file_row_count]  +  @[User::file_row_error_count]"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="file_total_row_count">
       <DTS:VariableValue
         DTS:DataType="3">0</DTS:VariableValue>
     </DTS:Variable>
@@ -473,14 +513,35 @@
               Language="CSharp"
               ReadOnlyVariables="User::file_to_be_moved,User::registered_loaded_and_found_files">
               <ProjectItem
-                Name="Properties\Settings.settings"
-                Encoding="UTF8"><![CDATA[<?xml version='1.0' encoding='iso-8859-1'?>
-<SettingsFile xmlns="uri:settings" CurrentProfile="(Default)">
-  <Profiles>
-    <Profile Name="(Default)" />
-  </Profiles>
-  <Settings />
-</SettingsFile>]]></ProjectItem>
+                Name="Properties\AssemblyInfo.cs"
+                Encoding="UTF8"><![CDATA[using System.Reflection;
+using System.Runtime.CompilerServices;
+
+//
+// General Information about an assembly is controlled through the following 
+// set of attributes. Change these attribute values to modify the information
+// associated with an assembly.
+//
+[assembly: AssemblyTitle("ST_a9ea80740c3f46a1aa0a77f3ed026ad1")]
+[assembly: AssemblyDescription("")]
+[assembly: AssemblyConfiguration("")]
+[assembly: AssemblyCompany("")]
+[assembly: AssemblyProduct("ST_a9ea80740c3f46a1aa0a77f3ed026ad1")]
+[assembly: AssemblyCopyright("Copyright @  2016")]
+[assembly: AssemblyTrademark("")]
+[assembly: AssemblyCulture("")]
+//
+// Version information for an assembly consists of the following four values:
+//
+//      Major Version
+//      Minor Version 
+//      Build Number
+//      Revision
+//
+// You can specify all the values or you can default the Revision and Build Numbers 
+// by using the '*' as shown below:
+
+[assembly: AssemblyVersion("1.0.*")]]]></ProjectItem>
               <ProjectItem
                 Name="Properties\Resources.resx"
                 Encoding="UTF8"><![CDATA[<?xml version="1.0" encoding="utf-8"?>
@@ -858,35 +919,14 @@ namespace ST_a9ea80740c3f46a1aa0a77f3ed026ad1.Properties {
     }
 }]]></ProjectItem>
               <ProjectItem
-                Name="Properties\AssemblyInfo.cs"
-                Encoding="UTF8"><![CDATA[using System.Reflection;
-using System.Runtime.CompilerServices;
-
-//
-// General Information about an assembly is controlled through the following 
-// set of attributes. Change these attribute values to modify the information
-// associated with an assembly.
-//
-[assembly: AssemblyTitle("ST_a9ea80740c3f46a1aa0a77f3ed026ad1")]
-[assembly: AssemblyDescription("")]
-[assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("ST_a9ea80740c3f46a1aa0a77f3ed026ad1")]
-[assembly: AssemblyCopyright("Copyright @  2016")]
-[assembly: AssemblyTrademark("")]
-[assembly: AssemblyCulture("")]
-//
-// Version information for an assembly consists of the following four values:
-//
-//      Major Version
-//      Minor Version 
-//      Build Number
-//      Revision
-//
-// You can specify all the values or you can default the Revision and Build Numbers 
-// by using the '*' as shown below:
-
-[assembly: AssemblyVersion("1.0.*")]]]></ProjectItem>
+                Name="Properties\Settings.settings"
+                Encoding="UTF8"><![CDATA[<?xml version='1.0' encoding='iso-8859-1'?>
+<SettingsFile xmlns="uri:settings" CurrentProfile="(Default)">
+  <Profiles>
+    <Profile Name="(Default)" />
+  </Profiles>
+  <Settings />
+</SettingsFile>]]></ProjectItem>
               <ProjectItem
                 Name="Properties\Resources.Designer.cs"
                 Encoding="UTF8"><![CDATA[//------------------------------------------------------------------------------
@@ -1185,14 +1225,35 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==</BinaryItem>
               ReadOnlyVariables="User::file_name,User::manifest_match_count"
               ReadWriteVariables="User::exception_message">
               <ProjectItem
-                Name="Properties\Settings.settings"
-                Encoding="UTF8"><![CDATA[<?xml version='1.0' encoding='iso-8859-1'?>
-<SettingsFile xmlns="uri:settings" CurrentProfile="(Default)">
-  <Profiles>
-    <Profile Name="(Default)" />
-  </Profiles>
-  <Settings />
-</SettingsFile>]]></ProjectItem>
+                Name="Properties\AssemblyInfo.cs"
+                Encoding="UTF8"><![CDATA[using System.Reflection;
+using System.Runtime.CompilerServices;
+
+//
+// General Information about an assembly is controlled through the following 
+// set of attributes. Change these attribute values to modify the information
+// associated with an assembly.
+//
+[assembly: AssemblyTitle("ST_e815e2c9f3f54fa19070ae7494ee9e92")]
+[assembly: AssemblyDescription("")]
+[assembly: AssemblyConfiguration("")]
+[assembly: AssemblyCompany("")]
+[assembly: AssemblyProduct("ST_e815e2c9f3f54fa19070ae7494ee9e92")]
+[assembly: AssemblyCopyright("Copyright @  2016")]
+[assembly: AssemblyTrademark("")]
+[assembly: AssemblyCulture("")]
+//
+// Version information for an assembly consists of the following four values:
+//
+//      Major Version
+//      Minor Version 
+//      Build Number
+//      Revision
+//
+// You can specify all the values or you can default the Revision and Build Numbers 
+// by using the '*' as shown below:
+
+[assembly: AssemblyVersion("1.0.*")]]]></ProjectItem>
               <ProjectItem
                 Name="Properties\Resources.resx"
                 Encoding="UTF8"><![CDATA[<?xml version="1.0" encoding="utf-8"?>
@@ -1575,35 +1636,14 @@ namespace ST_e815e2c9f3f54fa19070ae7494ee9e92.Properties {
     }
 }]]></ProjectItem>
               <ProjectItem
-                Name="Properties\AssemblyInfo.cs"
-                Encoding="UTF8"><![CDATA[using System.Reflection;
-using System.Runtime.CompilerServices;
-
-//
-// General Information about an assembly is controlled through the following 
-// set of attributes. Change these attribute values to modify the information
-// associated with an assembly.
-//
-[assembly: AssemblyTitle("ST_e815e2c9f3f54fa19070ae7494ee9e92")]
-[assembly: AssemblyDescription("")]
-[assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("ST_e815e2c9f3f54fa19070ae7494ee9e92")]
-[assembly: AssemblyCopyright("Copyright @  2016")]
-[assembly: AssemblyTrademark("")]
-[assembly: AssemblyCulture("")]
-//
-// Version information for an assembly consists of the following four values:
-//
-//      Major Version
-//      Minor Version 
-//      Build Number
-//      Revision
-//
-// You can specify all the values or you can default the Revision and Build Numbers 
-// by using the '*' as shown below:
-
-[assembly: AssemblyVersion("1.0.*")]]]></ProjectItem>
+                Name="Properties\Settings.settings"
+                Encoding="UTF8"><![CDATA[<?xml version='1.0' encoding='iso-8859-1'?>
+<SettingsFile xmlns="uri:settings" CurrentProfile="(Default)">
+  <Profiles>
+    <Profile Name="(Default)" />
+  </Profiles>
+  <Settings />
+</SettingsFile>]]></ProjectItem>
               <ProjectItem
                 Name="Properties\Resources.Designer.cs"
                 Encoding="UTF8"><![CDATA[//------------------------------------------------------------------------------
@@ -1835,14 +1875,35 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
               ReadOnlyVariables="System::TaskName,User::registered_not_loaded_files"
               ReadWriteVariables="User::exception_message,User::file_name">
               <ProjectItem
-                Name="Properties\Settings.settings"
-                Encoding="UTF8"><![CDATA[<?xml version='1.0' encoding='iso-8859-1'?>
-<SettingsFile xmlns="uri:settings" CurrentProfile="(Default)">
-  <Profiles>
-    <Profile Name="(Default)" />
-  </Profiles>
-  <Settings />
-</SettingsFile>]]></ProjectItem>
+                Name="Properties\AssemblyInfo.cs"
+                Encoding="UTF8"><![CDATA[using System.Reflection;
+using System.Runtime.CompilerServices;
+
+//
+// General Information about an assembly is controlled through the following 
+// set of attributes. Change these attribute values to modify the information
+// associated with an assembly.
+//
+[assembly: AssemblyTitle("ST_97074eb6bc8b4b7793662d5f2f2ff82f")]
+[assembly: AssemblyDescription("")]
+[assembly: AssemblyConfiguration("")]
+[assembly: AssemblyCompany("")]
+[assembly: AssemblyProduct("ST_97074eb6bc8b4b7793662d5f2f2ff82f")]
+[assembly: AssemblyCopyright("Copyright @  2016")]
+[assembly: AssemblyTrademark("")]
+[assembly: AssemblyCulture("")]
+//
+// Version information for an assembly consists of the following four values:
+//
+//      Major Version
+//      Minor Version 
+//      Build Number
+//      Revision
+//
+// You can specify all the values or you can default the Revision and Build Numbers 
+// by using the '*' as shown below:
+
+[assembly: AssemblyVersion("1.0.*")]]]></ProjectItem>
               <ProjectItem
                 Name="Properties\Resources.resx"
                 Encoding="UTF8"><![CDATA[<?xml version="1.0" encoding="utf-8"?>
@@ -2263,35 +2324,14 @@ namespace ST_97074eb6bc8b4b7793662d5f2f2ff82f.Properties {
     }
 }]]></ProjectItem>
               <ProjectItem
-                Name="Properties\AssemblyInfo.cs"
-                Encoding="UTF8"><![CDATA[using System.Reflection;
-using System.Runtime.CompilerServices;
-
-//
-// General Information about an assembly is controlled through the following 
-// set of attributes. Change these attribute values to modify the information
-// associated with an assembly.
-//
-[assembly: AssemblyTitle("ST_97074eb6bc8b4b7793662d5f2f2ff82f")]
-[assembly: AssemblyDescription("")]
-[assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("ST_97074eb6bc8b4b7793662d5f2f2ff82f")]
-[assembly: AssemblyCopyright("Copyright @  2016")]
-[assembly: AssemblyTrademark("")]
-[assembly: AssemblyCulture("")]
-//
-// Version information for an assembly consists of the following four values:
-//
-//      Major Version
-//      Minor Version 
-//      Build Number
-//      Revision
-//
-// You can specify all the values or you can default the Revision and Build Numbers 
-// by using the '*' as shown below:
-
-[assembly: AssemblyVersion("1.0.*")]]]></ProjectItem>
+                Name="Properties\Settings.settings"
+                Encoding="UTF8"><![CDATA[<?xml version='1.0' encoding='iso-8859-1'?>
+<SettingsFile xmlns="uri:settings" CurrentProfile="(Default)">
+  <Profiles>
+    <Profile Name="(Default)" />
+  </Profiles>
+  <Settings />
+</SettingsFile>]]></ProjectItem>
               <ProjectItem
                 Name="Properties\Resources.Designer.cs"
                 Encoding="UTF8"><![CDATA[//------------------------------------------------------------------------------
@@ -2836,6 +2876,35 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA</BinaryItem>
               version="1">
               <components>
                 <component
+                  refId="Package\FELC - Traverse filenames collection to load its contecnt into the cache\DFT - Load mailing data into cache\CNT - Count rows"
+                  componentClassID="{E2697D8C-70DA-42B2-8208-A19CE3A9FE41}"
+                  contactInfo="Row Count;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+                  description="Counts rows as they pass through a data flow. For example, use the number of rows processed to determine whether or not to perform cleanup operations, or update text in an e-mail message to communicate processing status."
+                  name="CNT - Count rows">
+                  <properties>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the variable to hold the row count."
+                      name="VariableName">User::file_row_count</property>
+                  </properties>
+                  <inputs>
+                    <input
+                      refId="Package\FELC - Traverse filenames collection to load its contecnt into the cache\DFT - Load mailing data into cache\CNT - Count rows.Inputs[Row Count Input 1]"
+                      hasSideEffects="true"
+                      name="Row Count Input 1">
+                      <externalMetadataColumns />
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\FELC - Traverse filenames collection to load its contecnt into the cache\DFT - Load mailing data into cache\CNT - Count rows.Outputs[Row Count Output 1]"
+                      name="Row Count Output 1"
+                      synchronousInputId="Package\FELC - Traverse filenames collection to load its contecnt into the cache\DFT - Load mailing data into cache\CNT - Count rows.Inputs[Row Count Input 1]">
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
                   refId="Package\FELC - Traverse filenames collection to load its contecnt into the cache\DFT - Load mailing data into cache\CNT - Count rows with errors"
                   componentClassID="{E2697D8C-70DA-42B2-8208-A19CE3A9FE41}"
                   contactInfo="Row Count;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
@@ -2860,6 +2929,35 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA</BinaryItem>
                       refId="Package\FELC - Traverse filenames collection to load its contecnt into the cache\DFT - Load mailing data into cache\CNT - Count rows with errors.Outputs[Row Count Output 1]"
                       name="Row Count Output 1"
                       synchronousInputId="Package\FELC - Traverse filenames collection to load its contecnt into the cache\DFT - Load mailing data into cache\CNT - Count rows with errors.Inputs[Row Count Input 1]">
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\FELC - Traverse filenames collection to load its contecnt into the cache\DFT - Load mailing data into cache\CNT - Count total good rows"
+                  componentClassID="{E2697D8C-70DA-42B2-8208-A19CE3A9FE41}"
+                  contactInfo="Row Count;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+                  description="Counts rows as they pass through a data flow. For example, use the number of rows processed to determine whether or not to perform cleanup operations, or update text in an e-mail message to communicate processing status."
+                  name="CNT - Count total good rows">
+                  <properties>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the variable to hold the row count."
+                      name="VariableName">User::file_total_good_rows</property>
+                  </properties>
+                  <inputs>
+                    <input
+                      refId="Package\FELC - Traverse filenames collection to load its contecnt into the cache\DFT - Load mailing data into cache\CNT - Count total good rows.Inputs[Row Count Input 1]"
+                      hasSideEffects="true"
+                      name="Row Count Input 1">
+                      <externalMetadataColumns />
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\FELC - Traverse filenames collection to load its contecnt into the cache\DFT - Load mailing data into cache\CNT - Count total good rows.Outputs[Row Count Output 1]"
+                      name="Row Count Output 1"
+                      synchronousInputId="Package\FELC - Traverse filenames collection to load its contecnt into the cache\DFT - Load mailing data into cache\CNT - Count total good rows.Inputs[Row Count Input 1]">
                       <externalMetadataColumns />
                     </output>
                   </outputs>
@@ -4216,24 +4314,24 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA</BinaryItem>
                   startId="Package\FELC - Traverse filenames collection to load its contecnt into the cache\DFT - Load mailing data into cache\CSPL - Check length of incoming mailing date value.Outputs[Correct Mailing Date Length]" />
                 <path
                   refId="Package\FELC - Traverse filenames collection to load its contecnt into the cache\DFT - Load mailing data into cache.Paths[Derived Column Output]"
+                  endId="Package\FELC - Traverse filenames collection to load its contecnt into the cache\DFT - Load mailing data into cache\CNT - Count rows with errors.Inputs[Row Count Input 1]"
+                  name="Derived Column Output"
+                  startId="Package\FELC - Traverse filenames collection to load its contecnt into the cache\DFT - Load mailing data into cache\DER - Add process related data.Outputs[Derived Column Output]" />
+                <path
+                  refId="Package\FELC - Traverse filenames collection to load its contecnt into the cache\DFT - Load mailing data into cache.Paths[Derived Column Output1]"
                   endId="Package\FELC - Traverse filenames collection to load its contecnt into the cache\DFT - Load mailing data into cache\OLE_DST - Save mailing data 'empty fields' exception.Inputs[OLE DB Destination Input]"
                   name="Derived Column Output"
                   startId="Package\FELC - Traverse filenames collection to load its contecnt into the cache\DFT - Load mailing data into cache\DER - Add empty exception description.Outputs[Derived Column Output]" />
                 <path
-                  refId="Package\FELC - Traverse filenames collection to load its contecnt into the cache\DFT - Load mailing data into cache.Paths[Derived Column Output1]"
+                  refId="Package\FELC - Traverse filenames collection to load its contecnt into the cache\DFT - Load mailing data into cache.Paths[Derived Column Output2]"
                   endId="Package\FELC - Traverse filenames collection to load its contecnt into the cache\DFT - Load mailing data into cache\OLE_DST - Save mailing data 'wrong length' exception.Inputs[OLE DB Destination Input]"
                   name="Derived Column Output"
                   startId="Package\FELC - Traverse filenames collection to load its contecnt into the cache\DFT - Load mailing data into cache\DER - Add length exception description.Outputs[Derived Column Output]" />
                 <path
-                  refId="Package\FELC - Traverse filenames collection to load its contecnt into the cache\DFT - Load mailing data into cache.Paths[Derived Column Output2]"
-                  endId="Package\FELC - Traverse filenames collection to load its contecnt into the cache\DFT - Load mailing data into cache\OLE_DST - Load mailing data to cache.Inputs[OLE DB Destination Input]"
+                  refId="Package\FELC - Traverse filenames collection to load its contecnt into the cache\DFT - Load mailing data into cache.Paths[Derived Column Output3]"
+                  endId="Package\FELC - Traverse filenames collection to load its contecnt into the cache\DFT - Load mailing data into cache\CNT - Count total good rows.Inputs[Row Count Input 1]"
                   name="Derived Column Output"
                   startId="Package\FELC - Traverse filenames collection to load its contecnt into the cache\DFT - Load mailing data into cache\DER - Add parent file ID.Outputs[Derived Column Output]" />
-                <path
-                  refId="Package\FELC - Traverse filenames collection to load its contecnt into the cache\DFT - Load mailing data into cache.Paths[Derived Column Output3]"
-                  endId="Package\FELC - Traverse filenames collection to load its contecnt into the cache\DFT - Load mailing data into cache\CNT - Count rows with errors.Inputs[Row Count Input 1]"
-                  name="Derived Column Output"
-                  startId="Package\FELC - Traverse filenames collection to load its contecnt into the cache\DFT - Load mailing data into cache\DER - Add process related data.Outputs[Derived Column Output]" />
                 <path
                   refId="Package\FELC - Traverse filenames collection to load its contecnt into the cache\DFT - Load mailing data into cache.Paths[Empty Fields]"
                   endId="Package\FELC - Traverse filenames collection to load its contecnt into the cache\DFT - Load mailing data into cache\DER - Add empty exception description.Inputs[Derived Column Input]"
@@ -4246,7 +4344,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA</BinaryItem>
                   startId="Package\FELC - Traverse filenames collection to load its contecnt into the cache\DFT - Load mailing data into cache\FF_SRC - Read mailing data file.Outputs[Flat File Source Error Output]" />
                 <path
                   refId="Package\FELC - Traverse filenames collection to load its contecnt into the cache\DFT - Load mailing data into cache.Paths[Flat File Source Output]"
-                  endId="Package\FELC - Traverse filenames collection to load its contecnt into the cache\DFT - Load mailing data into cache\CSPL - Check empty fields.Inputs[Conditional Split Input]"
+                  endId="Package\FELC - Traverse filenames collection to load its contecnt into the cache\DFT - Load mailing data into cache\CNT - Count rows.Inputs[Row Count Input 1]"
                   name="Flat File Source Output"
                   startId="Package\FELC - Traverse filenames collection to load its contecnt into the cache\DFT - Load mailing data into cache\FF_SRC - Read mailing data file.Outputs[Flat File Source Output]" />
                 <path
@@ -4264,6 +4362,16 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA</BinaryItem>
                   endId="Package\FELC - Traverse filenames collection to load its contecnt into the cache\DFT - Load mailing data into cache\OLE_DST - Store file errors.Inputs[OLE DB Destination Input]"
                   name="Row Count Output 1"
                   startId="Package\FELC - Traverse filenames collection to load its contecnt into the cache\DFT - Load mailing data into cache\CNT - Count rows with errors.Outputs[Row Count Output 1]" />
+                <path
+                  refId="Package\FELC - Traverse filenames collection to load its contecnt into the cache\DFT - Load mailing data into cache.Paths[Row Count Output 11]"
+                  endId="Package\FELC - Traverse filenames collection to load its contecnt into the cache\DFT - Load mailing data into cache\CSPL - Check empty fields.Inputs[Conditional Split Input]"
+                  name="Row Count Output 1"
+                  startId="Package\FELC - Traverse filenames collection to load its contecnt into the cache\DFT - Load mailing data into cache\CNT - Count rows.Outputs[Row Count Output 1]" />
+                <path
+                  refId="Package\FELC - Traverse filenames collection to load its contecnt into the cache\DFT - Load mailing data into cache.Paths[Row Count Output 12]"
+                  endId="Package\FELC - Traverse filenames collection to load its contecnt into the cache\DFT - Load mailing data into cache\OLE_DST - Load mailing data to cache.Inputs[OLE DB Destination Input]"
+                  name="Row Count Output 1"
+                  startId="Package\FELC - Traverse filenames collection to load its contecnt into the cache\DFT - Load mailing data into cache\CNT - Count total good rows.Outputs[Row Count Output 1]" />
               </paths>
             </pipeline>
           </DTS:ObjectData>
@@ -4286,36 +4394,6 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA</BinaryItem>
               Language="CSharp"
               ReadOnlyVariables="User::loading_error_counter,$Package::limit_loading_errors"
               ReadWriteVariables="User::exception_message">
-              <ProjectItem
-                Name="Properties\AssemblyInfo.cs"
-                Encoding="UTF8"><![CDATA[using System.Reflection;
-using System.Runtime.CompilerServices;
-
-//
-// General Information about an assembly is controlled through the following 
-// set of attributes. Change these attribute values to modify the information
-// associated with an assembly.
-//
-[assembly: AssemblyTitle("ST_2f30b9edfcdb48f69d10f64bd7b4a637")]
-[assembly: AssemblyDescription("")]
-[assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("ST_2f30b9edfcdb48f69d10f64bd7b4a637")]
-[assembly: AssemblyCopyright("Copyright @  2016")]
-[assembly: AssemblyTrademark("")]
-[assembly: AssemblyCulture("")]
-//
-// Version information for an assembly consists of the following four values:
-//
-//      Major Version
-//      Minor Version 
-//      Build Number
-//      Revision
-//
-// You can specify all the values or you can default the Revision and Build Numbers 
-// by using the '*' as shown below:
-
-[assembly: AssemblyVersion("1.0.*")]]]></ProjectItem>
               <ProjectItem
                 Name="Properties\Resources.resx"
                 Encoding="UTF8"><![CDATA[<?xml version="1.0" encoding="utf-8"?>
@@ -4435,6 +4513,35 @@ using System.Runtime.CompilerServices;
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
 </root>]]></ProjectItem>
+              <ProjectItem
+                Name="Properties\Settings.Designer.cs"
+                Encoding="UTF8"><![CDATA[//------------------------------------------------------------------------------
+// <auto-generated>
+//     This code was generated by a tool.
+//
+//     Changes to this file may cause incorrect behavior and will be lost if
+//     the code is regenerated.
+// </auto-generated>
+//------------------------------------------------------------------------------
+
+[assembly: global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Scope="member", Target="ST_2f30b9edfcdb48f69d10f64bd7b4a637.Properties.Settings.get_Default():ST_2f30b9edfcdb48f69d10f64bd7b4a637.Properties.Sett" +
+    "ings")]
+
+namespace ST_2f30b9edfcdb48f69d10f64bd7b4a637.Properties {
+    
+    
+    internal sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase {
+        
+        [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
+        private static Settings defaultInstance = new Settings();
+        
+        public static Settings Default {
+            get {
+                return defaultInstance;
+            }
+        }
+    }
+}]]></ProjectItem>
               <ProjectItem
                 Name="ST_2f30b9edfcdb48f69d10f64bd7b4a637.csproj"
                 Encoding="UTF8"><![CDATA[<?xml version="1.0" encoding="utf-8"?>
@@ -4666,34 +4773,35 @@ namespace ST_2f30b9edfcdb48f69d10f64bd7b4a637
 	</msb:ItemGroup>
 </c:Project>]]></ProjectItem>
               <ProjectItem
-                Name="Properties\Settings.Designer.cs"
-                Encoding="UTF8"><![CDATA[//------------------------------------------------------------------------------
-// <auto-generated>
-//     This code was generated by a tool.
+                Name="Properties\AssemblyInfo.cs"
+                Encoding="UTF8"><![CDATA[using System.Reflection;
+using System.Runtime.CompilerServices;
+
 //
-//     Changes to this file may cause incorrect behavior and will be lost if
-//     the code is regenerated.
-// </auto-generated>
-//------------------------------------------------------------------------------
+// General Information about an assembly is controlled through the following 
+// set of attributes. Change these attribute values to modify the information
+// associated with an assembly.
+//
+[assembly: AssemblyTitle("ST_2f30b9edfcdb48f69d10f64bd7b4a637")]
+[assembly: AssemblyDescription("")]
+[assembly: AssemblyConfiguration("")]
+[assembly: AssemblyCompany("")]
+[assembly: AssemblyProduct("ST_2f30b9edfcdb48f69d10f64bd7b4a637")]
+[assembly: AssemblyCopyright("Copyright @  2016")]
+[assembly: AssemblyTrademark("")]
+[assembly: AssemblyCulture("")]
+//
+// Version information for an assembly consists of the following four values:
+//
+//      Major Version
+//      Minor Version 
+//      Build Number
+//      Revision
+//
+// You can specify all the values or you can default the Revision and Build Numbers 
+// by using the '*' as shown below:
 
-[assembly: global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Scope="member", Target="ST_2f30b9edfcdb48f69d10f64bd7b4a637.Properties.Settings.get_Default():ST_2f30b9edfcdb48f69d10f64bd7b4a637.Properties.Sett" +
-    "ings")]
-
-namespace ST_2f30b9edfcdb48f69d10f64bd7b4a637.Properties {
-    
-    
-    internal sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase {
-        
-        [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-        private static Settings defaultInstance = new Settings();
-        
-        public static Settings Default {
-            get {
-                return defaultInstance;
-            }
-        }
-    }
-}]]></ProjectItem>
+[assembly: AssemblyVersion("1.0.*")]]]></ProjectItem>
               <ProjectItem
                 Name="Properties\Settings.settings"
                 Encoding="UTF8"><![CDATA[<?xml version='1.0' encoding='iso-8859-1'?>
@@ -4911,36 +5019,6 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
               ReadOnlyVariables="User::file_name"
               ReadWriteVariables="User::exception_message,User::loading_error_counter">
               <ProjectItem
-                Name="Properties\AssemblyInfo.cs"
-                Encoding="UTF8"><![CDATA[using System.Reflection;
-using System.Runtime.CompilerServices;
-
-//
-// General Information about an assembly is controlled through the following 
-// set of attributes. Change these attribute values to modify the information
-// associated with an assembly.
-//
-[assembly: AssemblyTitle("ST_9ea553aa601a4451acba067f5ceb9a08")]
-[assembly: AssemblyDescription("")]
-[assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("ST_9ea553aa601a4451acba067f5ceb9a08")]
-[assembly: AssemblyCopyright("Copyright @  2016")]
-[assembly: AssemblyTrademark("")]
-[assembly: AssemblyCulture("")]
-//
-// Version information for an assembly consists of the following four values:
-//
-//      Major Version
-//      Minor Version 
-//      Build Number
-//      Revision
-//
-// You can specify all the values or you can default the Revision and Build Numbers 
-// by using the '*' as shown below:
-
-[assembly: AssemblyVersion("1.0.*")]]]></ProjectItem>
-              <ProjectItem
                 Name="Properties\Resources.resx"
                 Encoding="UTF8"><![CDATA[<?xml version="1.0" encoding="utf-8"?>
 <root>
@@ -5059,6 +5137,35 @@ using System.Runtime.CompilerServices;
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
 </root>]]></ProjectItem>
+              <ProjectItem
+                Name="Properties\Settings.Designer.cs"
+                Encoding="UTF8"><![CDATA[//------------------------------------------------------------------------------
+// <auto-generated>
+//     This code was generated by a tool.
+//
+//     Changes to this file may cause incorrect behavior and will be lost if
+//     the code is regenerated.
+// </auto-generated>
+//------------------------------------------------------------------------------
+
+[assembly: global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Scope="member", Target="ST_9ea553aa601a4451acba067f5ceb9a08.Properties.Settings.get_Default():ST_9ea553aa601a4451acba067f5ceb9a08.Properties.Sett" +
+    "ings")]
+
+namespace ST_9ea553aa601a4451acba067f5ceb9a08.Properties {
+    
+    
+    internal sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase {
+        
+        [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
+        private static Settings defaultInstance = new Settings();
+        
+        public static Settings Default {
+            get {
+                return defaultInstance;
+            }
+        }
+    }
+}]]></ProjectItem>
               <ProjectItem
                 Name="ST_9ea553aa601a4451acba067f5ceb9a08.csproj"
                 Encoding="UTF8"><![CDATA[<?xml version="1.0" encoding="utf-8"?>
@@ -5286,34 +5393,35 @@ namespace ST_9ea553aa601a4451acba067f5ceb9a08
 	</msb:ItemGroup>
 </c:Project>]]></ProjectItem>
               <ProjectItem
-                Name="Properties\Settings.Designer.cs"
-                Encoding="UTF8"><![CDATA[//------------------------------------------------------------------------------
-// <auto-generated>
-//     This code was generated by a tool.
+                Name="Properties\AssemblyInfo.cs"
+                Encoding="UTF8"><![CDATA[using System.Reflection;
+using System.Runtime.CompilerServices;
+
 //
-//     Changes to this file may cause incorrect behavior and will be lost if
-//     the code is regenerated.
-// </auto-generated>
-//------------------------------------------------------------------------------
+// General Information about an assembly is controlled through the following 
+// set of attributes. Change these attribute values to modify the information
+// associated with an assembly.
+//
+[assembly: AssemblyTitle("ST_9ea553aa601a4451acba067f5ceb9a08")]
+[assembly: AssemblyDescription("")]
+[assembly: AssemblyConfiguration("")]
+[assembly: AssemblyCompany("")]
+[assembly: AssemblyProduct("ST_9ea553aa601a4451acba067f5ceb9a08")]
+[assembly: AssemblyCopyright("Copyright @  2016")]
+[assembly: AssemblyTrademark("")]
+[assembly: AssemblyCulture("")]
+//
+// Version information for an assembly consists of the following four values:
+//
+//      Major Version
+//      Minor Version 
+//      Build Number
+//      Revision
+//
+// You can specify all the values or you can default the Revision and Build Numbers 
+// by using the '*' as shown below:
 
-[assembly: global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Scope="member", Target="ST_9ea553aa601a4451acba067f5ceb9a08.Properties.Settings.get_Default():ST_9ea553aa601a4451acba067f5ceb9a08.Properties.Sett" +
-    "ings")]
-
-namespace ST_9ea553aa601a4451acba067f5ceb9a08.Properties {
-    
-    
-    internal sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase {
-        
-        [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-        private static Settings defaultInstance = new Settings();
-        
-        public static Settings Default {
-            get {
-                return defaultInstance;
-            }
-        }
-    }
-}]]></ProjectItem>
+[assembly: AssemblyVersion("1.0.*")]]]></ProjectItem>
               <ProjectItem
                 Name="Properties\Settings.settings"
                 Encoding="UTF8"><![CDATA[<?xml version='1.0' encoding='iso-8859-1'?>
@@ -5513,13 +5621,13 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
           </DTS:ObjectData>
         </DTS:Executable>
         <DTS:Executable
-          DTS:refId="Package\FELC - Traverse filenames collection to load its contecnt into the cache\SCR - Reset file error counter"
+          DTS:refId="Package\FELC - Traverse filenames collection to load its contecnt into the cache\SCR - Reset file counters"
           DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ScriptTask.ScriptTask, Microsoft.SqlServer.ScriptTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
           DTS:Description="Script Task"
           DTS:DTSID="{502F8606-1F35-4F77-B87D-9EF0ABA9AA18}"
           DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ScriptTask.ScriptTask, Microsoft.SqlServer.ScriptTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
           DTS:LocaleID="-1"
-          DTS:ObjectName="SCR - Reset file error counter"
+          DTS:ObjectName="SCR - Reset file counters"
           DTS:ThreadHint="1">
           <DTS:Variables />
           <DTS:ObjectData>
@@ -5528,7 +5636,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
               VSTAMajorVersion="3"
               VSTAMinorVersion="0"
               Language="CSharp"
-              ReadWriteVariables="User::file_row_error_count">
+              ReadWriteVariables="User::file_row_count,User::file_row_error_count,User::file_total_good_rows,User::file_total_row_count,User::file_total_rows_excluded">
               <ProjectItem
                 Name="Properties\Settings.settings"
                 Encoding="UTF8"><![CDATA[<?xml version='1.0' encoding='iso-8859-1'?>
@@ -5781,6 +5889,10 @@ namespace ST_5d7cc3ad736244c7a5a4dce703c66c8f
 		public void Main()
 		{
             Dts.Variables["User::file_row_error_count"].Value = 0;
+            Dts.Variables["User::file_total_row_count"].Value = 0;
+            Dts.Variables["User::file_row_count"].Value = 0;
+            Dts.Variables["User::file_total_good_rows"].Value = 0;
+            Dts.Variables["User::file_total_rows_excluded"].Value = 0;
 			Dts.TaskResult = (int)ScriptResults.Success;
 		}
 
@@ -6006,94 +6118,103 @@ namespace ST_5d7cc3ad736244c7a5a4dce703c66c8f.Properties {
               <BinaryItem
                 Name="ST_5d7cc3ad736244c7a5a4dce703c66c8f.dll">TVqQAAMAAAAEAAAA//8AALgAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 AAAAgAAAAA4fug4AtAnNIbgBTM0hVGhpcyBwcm9ncmFtIGNhbm5vdCBiZSBydW4gaW4gRE9TIG1v
-ZGUuDQ0KJAAAAAAAAABQRQAATAEDAKg6/VcAAAAAAAAAAOAAAiELAQsAAA4AAAAIAAAAAAAA7i0A
+ZGUuDQ0KJAAAAAAAAABQRQAATAEDAA/bCFgAAAAAAAAAAOAAAiELAQsAABAAAAAIAAAAAAAATi8A
 AAAgAAAAQAAAAAAAEAAgAAAAAgAABAAAAAAAAAAEAAAAAAAAAACAAAAAAgAAAAAAAAMAQIUAABAA
-ABAAAAAAEAAAEAAAAAAAABAAAAAAAAAAAAAAAJgtAABTAAAAAEAAAAgEAAAAAAAAAAAAAAAAAAAA
+ABAAAAAAEAAAEAAAAAAAABAAAAAAAAAAAAAAAPQuAABXAAAAAEAAAAgEAAAAAAAAAAAAAAAAAAAA
 AAAAAGAAAAwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAIAAACAAAAAAAAAAAAAAACCAAAEgAAAAAAAAAAAAAAC50ZXh0AAAA9A0AAAAgAAAADgAAAAIA
-AAAAAAAAAAAAAAAAACAAAGAucnNyYwAAAAgEAAAAQAAAAAYAAAAQAAAAAAAAAAAAAAAAAABAAABA
-LnJlbG9jAAAMAAAAAGAAAAACAAAAFgAAAAAAAAAAAAAAAAAAQAAAQgAAAAAAAAAAAAAAAAAAAADQ
-LQAAAAAAAEgAAAACAAUAsCEAAOgLAAABAAAAAAAAAPggAAC4AAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAIAAACAAAAAAAAAAAAAAACCAAAEgAAAAAAAAAAAAAAC50ZXh0AAAAVA8AAAAgAAAAEAAAAAIA
+AAAAAAAAAAAAAAAAACAAAGAucnNyYwAAAAgEAAAAQAAAAAYAAAASAAAAAAAAAAAAAAAAAABAAABA
+LnJlbG9jAAAMAAAAAGAAAAACAAAAGAAAAAAAAAAAAAAAAAAAQAAAQgAAAAAAAAAAAAAAAAAAAAAw
+LwAAAAAAAEgAAAACAAUAOCIAALwMAAABAAAAAAAAAIAhAAC4AAAAAAAAAAAAAAAAAAAAAAAAAAAA
 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAB4CKA4AAAoqEzACAC0AAAABAAARfgEAAAQtIHIBAABw0AIA
 AAIoDwAACm8QAAAKcxEAAAoKBoABAAAEfgEAAAQqGn4CAAAEKh4CgAIAAAQqGn4DAAAEKi5zBgAA
-BoADAAAEKh4CKBQAAAoqtgIoFgAACm8XAAAKcnMAAHBvGAAAChaMHgAAAW8ZAAAKAigWAAAKFm8a
-AAAKKh4CKBsAAAoqAAAAAAAAALQAAADOyu++AQAAAJEAAABsU3lzdGVtLlJlc291cmNlcy5SZXNv
-dXJjZVJlYWRlciwgbXNjb3JsaWIsIFZlcnNpb249NC4wLjAuMCwgQ3VsdHVyZT1uZXV0cmFsLCBQ
-dWJsaWNLZXlUb2tlbj1iNzdhNWM1NjE5MzRlMDg5I1N5c3RlbS5SZXNvdXJjZXMuUnVudGltZVJl
-c291cmNlU2V0AgAAAAAAAAAAAAAAUEFEUEFEULQAAABCU0pCAQABAAAAAAAMAAAAdjQuMC4zMDMx
-OQAAAAAFAGwAAAC8AwAAI34AACgEAACsBQAAI1N0cmluZ3MAAAAA1AkAAKwAAAAjVVMAgAoAABAA
-AAAjR1VJRAAAAJAKAABYAQAAI0Jsb2IAAAAAAAAAAgAAAVcdogEJAwAAAPolMwAWAAABAAAAHgAA
-AAUAAAAGAAAACQAAAAEAAAAbAAAAAgAAAA8AAAABAAAAAgAAAAMAAAAEAAAAAQAAAAQAAAABAAAA
-AQAAAAAACgABAAAAAAAGAMEAugAKAN0AyAAOAD0BFAEGAFkBugAGAG8BXgEGAKABiwEGAFcCPQIG
-AIICcAIGAJkCcAIGALYCcAIGANUCcAIGAO4CcAIGAAcDcAIGACIDcAIGAD0DcAIGAFYDcAIGAI8D
-bwMGAK8DbwMGAOADzQMGAP0DugAGAAIEugAGACYEcAIKAFIEPAQKAGsEPAQGAIAEbwMOAKIEFAEO
-AMQEFAESAB0F/QQSADUF/QQGAEcFugAAAAAAAQAAAAAAAQABAAAAEAAyADwABQABAAEAAAEQAGsA
-PAAJAAMABQABABAAdAB/AA0ABAAIAAMBAACjAAAAEQAEAAoAEQB/ARMAEQCsARcAEQD2ATkABgYf
-AkcAVoAnAkoAVoAvAkoAUCAAAAAAgxi8ARsAAQBYIAAAAACTCMIBHwABAJEgAAAAAJMI1gEkAAEA
-mCAAAAAAkwjiASkAAQCgIAAAAACWCAYCPQACALMgAAAAAIYYvAEbAAIApyAAAAAAkRibBIkAAgC7
-IAAAAACGABoCGwACAOkgAAAAAIYYvAEbAAIAAAABADcCOQC8AVgAQQC8AVgASQC8AVgAUQC8AVgA
-WQC8AVgAYQC8AVgAaQC8AVgAcQC8AVgAeQC8AVgAgQC8AVgAiQC8AV0AkQC8ARsAmQC8ARsACQC8
-ARsAoQAUBGIAoQAvBGkAKQC8AW4AuQC8AXoAyQC8ARsAEQC8ARsA0QC8ARsAGQDWBI0A2QAnBZIA
-4QA+BZcA6QBNBZ0A2QBXBV0AGQC8ARsACAAUAE4ACAAYAFMAKQCTAIAALgAbABMBLgAjABMBLgBj
-ADkBLgALAKIALgATAOoALgAzAOoALgArABMBLgA7ABkBLgBDABMBLgBbADABQwBrAFMASQCTAIAA
-YQCbAFMAgwCrAFMAdQACAAEAAwADAAAAbwEvAAAA7gE0AAAAEgJCAAIAAgADAAIAAwAFAAEABAAF
-AAIABQAHAASAAAABAAAA8Bd0awAAAAAAAH8AAAAEAAAAAAAAAAAAAAABALEAAAAAAAQAAAAAAAAA
-AAAAAAEAugAAAAAACwAAAAAAAAAAAAAACgD1AAAAAAALAAAAAAAAAAAAAAAKAN4EAAAAAAAAAAAB
-AAAAZgUAAAUABAAAAAA8TW9kdWxlPgBTVF81ZDdjYzNhZDczNjI0NGM3YTVhNGRjZTcwM2M2NmM4
-Zi5kbGwAUmVzb3VyY2VzAFNUXzVkN2NjM2FkNzM2MjQ0YzdhNWE0ZGNlNzAzYzY2YzhmLlByb3Bl
-cnRpZXMAU2V0dGluZ3MAU2NyaXB0TWFpbgBTVF81ZDdjYzNhZDczNjI0NGM3YTVhNGRjZTcwM2M2
-NmM4ZgBTY3JpcHRSZXN1bHRzAG1zY29ybGliAFN5c3RlbQBPYmplY3QAU3lzdGVtLkNvbmZpZ3Vy
-YXRpb24AQXBwbGljYXRpb25TZXR0aW5nc0Jhc2UATWljcm9zb2Z0LlNxbFNlcnZlci5TY3JpcHRU
-YXNrAE1pY3Jvc29mdC5TcWxTZXJ2ZXIuRHRzLlRhc2tzLlNjcmlwdFRhc2sAVlNUQVJUU2NyaXB0
-T2JqZWN0TW9kZWxCYXNlAEVudW0AU3lzdGVtLlJlc291cmNlcwBSZXNvdXJjZU1hbmFnZXIAcmVz
-b3VyY2VNYW4AU3lzdGVtLkdsb2JhbGl6YXRpb24AQ3VsdHVyZUluZm8AcmVzb3VyY2VDdWx0dXJl
-AC5jdG9yAGdldF9SZXNvdXJjZU1hbmFnZXIAZ2V0X0N1bHR1cmUAc2V0X0N1bHR1cmUAQ3VsdHVy
-ZQBkZWZhdWx0SW5zdGFuY2UAZ2V0X0RlZmF1bHQARGVmYXVsdABNYWluAHZhbHVlX18AU3VjY2Vz
-cwBGYWlsdXJlAHZhbHVlAFN5c3RlbS5SdW50aW1lLlZlcnNpb25pbmcAVGFyZ2V0RnJhbWV3b3Jr
-QXR0cmlidXRlAFN5c3RlbS5SZWZsZWN0aW9uAEFzc2VtYmx5VGl0bGVBdHRyaWJ1dGUAQXNzZW1i
-bHlEZXNjcmlwdGlvbkF0dHJpYnV0ZQBBc3NlbWJseUNvbmZpZ3VyYXRpb25BdHRyaWJ1dGUAQXNz
-ZW1ibHlDb21wYW55QXR0cmlidXRlAEFzc2VtYmx5UHJvZHVjdEF0dHJpYnV0ZQBBc3NlbWJseUNv
-cHlyaWdodEF0dHJpYnV0ZQBBc3NlbWJseVRyYWRlbWFya0F0dHJpYnV0ZQBBc3NlbWJseUN1bHR1
-cmVBdHRyaWJ1dGUAQXNzZW1ibHlWZXJzaW9uQXR0cmlidXRlAFN5c3RlbS5SdW50aW1lLkNvbXBp
-bGVyU2VydmljZXMAQ29tcGlsYXRpb25SZWxheGF0aW9uc0F0dHJpYnV0ZQBSdW50aW1lQ29tcGF0
-aWJpbGl0eUF0dHJpYnV0ZQBTeXN0ZW0uRGlhZ25vc3RpY3MARGVidWdnZXJOb25Vc2VyQ29kZUF0
-dHJpYnV0ZQBUeXBlAFJ1bnRpbWVUeXBlSGFuZGxlAEdldFR5cGVGcm9tSGFuZGxlAEFzc2VtYmx5
-AGdldF9Bc3NlbWJseQBTeXN0ZW0uQ29tcG9uZW50TW9kZWwARWRpdG9yQnJvd3NhYmxlQXR0cmli
-dXRlAEVkaXRvckJyb3dzYWJsZVN0YXRlAENvbXBpbGVyR2VuZXJhdGVkQXR0cmlidXRlAC5jY3Rv
-cgBTU0lTU2NyaXB0VGFza0VudHJ5UG9pbnRBdHRyaWJ1dGUAU2NyaXB0T2JqZWN0TW9kZWwAZ2V0
-X0R0cwBNaWNyb3NvZnQuU3FsU2VydmVyLk1hbmFnZWREVFMATWljcm9zb2Z0LlNxbFNlcnZlci5E
-dHMuUnVudGltZQBWYXJpYWJsZXMAZ2V0X1ZhcmlhYmxlcwBWYXJpYWJsZQBnZXRfSXRlbQBJbnQz
-MgBzZXRfVmFsdWUAc2V0X1Rhc2tSZXN1bHQAU1RfNWQ3Y2MzYWQ3MzYyNDRjN2E1YTRkY2U3MDNj
-NjZjOGYuUHJvcGVydGllcy5SZXNvdXJjZXMucmVzb3VyY2VzAAAAAABxUwBUAF8ANQBkADcAYwBj
-ADMAYQBkADcAMwA2ADIANAA0AGMANwBhADUAYQA0AGQAYwBlADcAMAAzAGMANgA2AGMAOABmAC4A
-UAByAG8AcABlAHIAdABpAGUAcwAuAFIAZQBzAG8AdQByAGMAZQBzAAA1VQBzAGUAcgA6ADoAZgBp
-AGwAZQBfAHIAbwB3AF8AZQByAHIAbwByAF8AYwBvAHUAbgB0AAAAAACvrgCsgcMvTq24dYsWwH3x
-AAi3elxWGTTgiQiJhF3NgIDMkQMGEhUDBhIZAyAAAQQAABIVBAAAEhkFAAEBEhkECAASFQQIABIZ
-AwYSDAQAABIMBAgAEgwCBggDBhEUBAAAAAAEAQAAAAQgAQEOBCABAQgGAAESURFVBCAAElkGIAIB
-DhJZBAcBEhUFIAEBEWEIAQACAAAAAAADAAABBCAAEm0EIAAScQUgARJ1HAQgAQEcRwEAGi5ORVRG
-cmFtZXdvcmssVmVyc2lvbj12NC4wAQBUDhRGcmFtZXdvcmtEaXNwbGF5TmFtZRAuTkVUIEZyYW1l
-d29yayA0KAEAI1NUXzVkN2NjM2FkNzM2MjQ0YzdhNWE0ZGNlNzAzYzY2YzhmAAAFAQAAAAAWAQAR
-Q29weXJpZ2h0IEAgIDIwMTYAAAgBAAgAAAAAAB4BAAEAVAIWV3JhcE5vbkV4Y2VwdGlvblRocm93
-cwHALQAAAAAAAAAAAADeLQAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA0C0AAAAAAAAAAAAAAAAA
-AAAAX0NvckRsbE1haW4AbXNjb3JlZS5kbGwAAAAAAP8lACAAEAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAQAQAAAAGAAAgAAAAAAAAAAAAAAAAAAAAQABAAAAMAAAgAAAAAAAAAAAAAAAAAAAAQAA
-AAAASAAAAFhAAACwAwAAAAAAAAAAAACwAzQAAABWAFMAXwBWAEUAUgBTAEkATwBOAF8ASQBOAEYA
-TwAAAAAAvQTv/gAAAQAAAAEAdGvwFwAAAQB0a/AXPwAAAAAAAAAEAAAAAgAAAAAAAAAAAAAAAAAA
-AEQAAAABAFYAYQByAEYAaQBsAGUASQBuAGYAbwAAAAAAJAAEAAAAVAByAGEAbgBzAGwAYQB0AGkA
-bwBuAAAAAAAAALAEEAMAAAEAUwB0AHIAaQBuAGcARgBpAGwAZQBJAG4AZgBvAAAA7AIAAAEAMAAw
-ADAAMAAwADQAYgAwAAAAcAAkAAEARgBpAGwAZQBEAGUAcwBjAHIAaQBwAHQAaQBvAG4AAAAAAFMA
-VABfADUAZAA3AGMAYwAzAGEAZAA3ADMANgAyADQANABjADcAYQA1AGEANABkAGMAZQA3ADAAMwBj
-ADYANgBjADgAZgAAAEAADwABAEYAaQBsAGUAVgBlAHIAcwBpAG8AbgAAAAAAMQAuADAALgA2ADEA
-MgA4AC4AMgA3ADUAMAA4AAAAAABwACgAAQBJAG4AdABlAHIAbgBhAGwATgBhAG0AZQAAAFMAVABf
-ADUAZAA3AGMAYwAzAGEAZAA3ADMANgAyADQANABjADcAYQA1AGEANABkAGMAZQA3ADAAMwBjADYA
-NgBjADgAZgAuAGQAbABsAAAASAASAAEATABlAGcAYQBsAEMAbwBwAHkAcgBpAGcAaAB0AAAAQwBv
-AHAAeQByAGkAZwBoAHQAIABAACAAIAAyADAAMQA2AAAAeAAoAAEATwByAGkAZwBpAG4AYQBsAEYA
-aQBsAGUAbgBhAG0AZQAAAFMAVABfADUAZAA3AGMAYwAzAGEAZAA3ADMANgAyADQANABjADcAYQA1
-AGEANABkAGMAZQA3ADAAMwBjADYANgBjADgAZgAuAGQAbABsAAAAaAAkAAEAUAByAG8AZAB1AGMA
-dABOAGEAbQBlAAAAAABTAFQAXwA1AGQANwBjAGMAMwBhAGQANwAzADYAMgA0ADQAYwA3AGEANQBh
-ADQAZABjAGUANwAwADMAYwA2ADYAYwA4AGYAAABEAA8AAQBQAHIAbwBkAHUAYwB0AFYAZQByAHMA
-aQBvAG4AAAAxAC4AMAAuADYAMQAyADgALgAyADcANQAwADgAAAAAAEgADwABAEEAcwBzAGUAbQBi
-AGwAeQAgAFYAZQByAHMAaQBvAG4AAAAxAC4AMAAuADYAMQAyADgALgAyADcANQAwADgAAAAAAAAA
+BoADAAAEKh4CKBQAAAoqAAMwAgCtAAAAAAAAAAIoFgAACm8XAAAKcnMAAHBvGAAAChaMHgAAAW8Z
+AAAKAigWAAAKbxcAAApyqQAAcG8YAAAKFoweAAABbxkAAAoCKBYAAApvFwAACnLfAABwbxgAAAoW
+jB4AAAFvGQAACgIoFgAACm8XAAAKcgkBAHBvGAAAChaMHgAAAW8ZAAAKAigWAAAKbxcAAApyPwEA
+cG8YAAAKFoweAAABbxkAAAoCKBYAAAoWbxoAAAoqHgIoGwAACioAAAC0AAAAzsrvvgEAAACRAAAA
+bFN5c3RlbS5SZXNvdXJjZXMuUmVzb3VyY2VSZWFkZXIsIG1zY29ybGliLCBWZXJzaW9uPTQuMC4w
+LjAsIEN1bHR1cmU9bmV1dHJhbCwgUHVibGljS2V5VG9rZW49Yjc3YTVjNTYxOTM0ZTA4OSNTeXN0
+ZW0uUmVzb3VyY2VzLlJ1bnRpbWVSZXNvdXJjZVNldAIAAAAAAAAAAAAAAFBBRFBBRFC0AAAAQlNK
+QgEAAQAAAAAADAAAAHY0LjAuMzAzMTkAAAAABQBsAAAAvAMAACN+AAAoBAAArAUAACNTdHJpbmdz
+AAAAANQJAACAAQAAI1VTAFQLAAAQAAAAI0dVSUQAAABkCwAAWAEAACNCbG9iAAAAAAAAAAIAAAFX
+HaIBCQMAAAD6JTMAFgAAAQAAAB4AAAAFAAAABgAAAAkAAAABAAAAGwAAAAIAAAAPAAAAAQAAAAIA
+AAADAAAABAAAAAEAAAAEAAAAAQAAAAEAAAAAAAoAAQAAAAAABgDBALoACgDdAMgADgA9ARQBBgBZ
+AboABgBvAV4BBgCgAYsBBgBXAj0CBgCCAnACBgCZAnACBgC2AnACBgDVAnACBgDuAnACBgAHA3AC
+BgAiA3ACBgA9A3ACBgBWA3ACBgCPA28DBgCvA28DBgDgA80DBgD9A7oABgACBLoABgAmBHACCgBS
+BDwECgBrBDwEBgCABG8DDgCiBBQBDgDEBBQBEgAdBf0EEgA1Bf0EBgBHBboAAAAAAAEAAAAAAAEA
+AQAAABAAMgA8AAUAAQABAAABEABrADwACQADAAUAAQAQAHQAfwANAAQACAADAQAAowAAABEABAAK
+ABEAfwETABEArAEXABEA9gE5AAYGHwJHAFaAJwJKAFaALwJKAFAgAAAAAIMYvAEbAAEAWCAAAAAA
+kwjCAR8AAQCRIAAAAACTCNYBJAABAJggAAAAAJMI4gEpAAEAoCAAAAAAlggGAj0AAgCzIAAAAACG
+GLwBGwACAKcgAAAAAJEYmwSJAAIAvCAAAAAAhgAaAhsAAgB1IQAAAACGGLwBGwACAAAAAQA3AjkA
+vAFYAEEAvAFYAEkAvAFYAFEAvAFYAFkAvAFYAGEAvAFYAGkAvAFYAHEAvAFYAHkAvAFYAIEAvAFY
+AIkAvAFdAJEAvAEbAJkAvAEbAAkAvAEbAKEAFARiAKEALwRpACkAvAFuALkAvAF6AMkAvAEbABEA
+vAEbANEAvAEbABkA1gSNANkAJwWSAOEAPgWXAOkATQWdANkAVwVdABkAvAEbAAgAFABOAAgAGABT
+ACkAkwCAAC4AGwATAS4AIwATAS4AYwA5AS4ACwCiAC4AEwDqAC4AMwDqAC4AKwATAS4AOwAZAS4A
+QwATAS4AWwAwAUMAawBTAEkAkwCAAGEAmwBTAIMAqwBTAHUAAgABAAMAAwAAAG8BLwAAAO4BNAAA
+ABICQgACAAIAAwACAAMABQABAAQABQACAAUABwAEgAAAAQAAAPkX50wAAAAAAAB/AAAABAAAAAAA
+AAAAAAAAAQCxAAAAAAAEAAAAAAAAAAAAAAABALoAAAAAAAsAAAAAAAAAAAAAAAoA9QAAAAAACwAA
+AAAAAAAAAAAACgDeBAAAAAAAAAAAAQAAAGYFAAAFAAQAAAAAPE1vZHVsZT4AU1RfNWQ3Y2MzYWQ3
+MzYyNDRjN2E1YTRkY2U3MDNjNjZjOGYuZGxsAFJlc291cmNlcwBTVF81ZDdjYzNhZDczNjI0NGM3
+YTVhNGRjZTcwM2M2NmM4Zi5Qcm9wZXJ0aWVzAFNldHRpbmdzAFNjcmlwdE1haW4AU1RfNWQ3Y2Mz
+YWQ3MzYyNDRjN2E1YTRkY2U3MDNjNjZjOGYAU2NyaXB0UmVzdWx0cwBtc2NvcmxpYgBTeXN0ZW0A
+T2JqZWN0AFN5c3RlbS5Db25maWd1cmF0aW9uAEFwcGxpY2F0aW9uU2V0dGluZ3NCYXNlAE1pY3Jv
+c29mdC5TcWxTZXJ2ZXIuU2NyaXB0VGFzawBNaWNyb3NvZnQuU3FsU2VydmVyLkR0cy5UYXNrcy5T
+Y3JpcHRUYXNrAFZTVEFSVFNjcmlwdE9iamVjdE1vZGVsQmFzZQBFbnVtAFN5c3RlbS5SZXNvdXJj
+ZXMAUmVzb3VyY2VNYW5hZ2VyAHJlc291cmNlTWFuAFN5c3RlbS5HbG9iYWxpemF0aW9uAEN1bHR1
+cmVJbmZvAHJlc291cmNlQ3VsdHVyZQAuY3RvcgBnZXRfUmVzb3VyY2VNYW5hZ2VyAGdldF9DdWx0
+dXJlAHNldF9DdWx0dXJlAEN1bHR1cmUAZGVmYXVsdEluc3RhbmNlAGdldF9EZWZhdWx0AERlZmF1
+bHQATWFpbgB2YWx1ZV9fAFN1Y2Nlc3MARmFpbHVyZQB2YWx1ZQBTeXN0ZW0uUnVudGltZS5WZXJz
+aW9uaW5nAFRhcmdldEZyYW1ld29ya0F0dHJpYnV0ZQBTeXN0ZW0uUmVmbGVjdGlvbgBBc3NlbWJs
+eVRpdGxlQXR0cmlidXRlAEFzc2VtYmx5RGVzY3JpcHRpb25BdHRyaWJ1dGUAQXNzZW1ibHlDb25m
+aWd1cmF0aW9uQXR0cmlidXRlAEFzc2VtYmx5Q29tcGFueUF0dHJpYnV0ZQBBc3NlbWJseVByb2R1
+Y3RBdHRyaWJ1dGUAQXNzZW1ibHlDb3B5cmlnaHRBdHRyaWJ1dGUAQXNzZW1ibHlUcmFkZW1hcmtB
+dHRyaWJ1dGUAQXNzZW1ibHlDdWx0dXJlQXR0cmlidXRlAEFzc2VtYmx5VmVyc2lvbkF0dHJpYnV0
+ZQBTeXN0ZW0uUnVudGltZS5Db21waWxlclNlcnZpY2VzAENvbXBpbGF0aW9uUmVsYXhhdGlvbnNB
+dHRyaWJ1dGUAUnVudGltZUNvbXBhdGliaWxpdHlBdHRyaWJ1dGUAU3lzdGVtLkRpYWdub3N0aWNz
+AERlYnVnZ2VyTm9uVXNlckNvZGVBdHRyaWJ1dGUAVHlwZQBSdW50aW1lVHlwZUhhbmRsZQBHZXRU
+eXBlRnJvbUhhbmRsZQBBc3NlbWJseQBnZXRfQXNzZW1ibHkAU3lzdGVtLkNvbXBvbmVudE1vZGVs
+AEVkaXRvckJyb3dzYWJsZUF0dHJpYnV0ZQBFZGl0b3JCcm93c2FibGVTdGF0ZQBDb21waWxlckdl
+bmVyYXRlZEF0dHJpYnV0ZQAuY2N0b3IAU1NJU1NjcmlwdFRhc2tFbnRyeVBvaW50QXR0cmlidXRl
+AFNjcmlwdE9iamVjdE1vZGVsAGdldF9EdHMATWljcm9zb2Z0LlNxbFNlcnZlci5NYW5hZ2VkRFRT
+AE1pY3Jvc29mdC5TcWxTZXJ2ZXIuRHRzLlJ1bnRpbWUAVmFyaWFibGVzAGdldF9WYXJpYWJsZXMA
+VmFyaWFibGUAZ2V0X0l0ZW0ASW50MzIAc2V0X1ZhbHVlAHNldF9UYXNrUmVzdWx0AFNUXzVkN2Nj
+M2FkNzM2MjQ0YzdhNWE0ZGNlNzAzYzY2YzhmLlByb3BlcnRpZXMuUmVzb3VyY2VzLnJlc291cmNl
+cwAAAAAAcVMAVABfADUAZAA3AGMAYwAzAGEAZAA3ADMANgAyADQANABjADcAYQA1AGEANABkAGMA
+ZQA3ADAAMwBjADYANgBjADgAZgAuAFAAcgBvAHAAZQByAHQAaQBlAHMALgBSAGUAcwBvAHUAcgBj
+AGUAcwAANVUAcwBlAHIAOgA6AGYAaQBsAGUAXwByAG8AdwBfAGUAcgByAG8AcgBfAGMAbwB1AG4A
+dAAANVUAcwBlAHIAOgA6AGYAaQBsAGUAXwB0AG8AdABhAGwAXwByAG8AdwBfAGMAbwB1AG4AdAAA
+KVUAcwBlAHIAOgA6AGYAaQBsAGUAXwByAG8AdwBfAGMAbwB1AG4AdAAANVUAcwBlAHIAOgA6AGYA
+aQBsAGUAXwB0AG8AdABhAGwAXwBnAG8AbwBkAF8AcgBvAHcAcwAAPVUAcwBlAHIAOgA6AGYAaQBs
+AGUAXwB0AG8AdABhAGwAXwByAG8AdwBzAF8AZQB4AGMAbAB1AGQAZQBkAAAAAAA8r+FB0YALTLV2
+2uHNuE3FAAi3elxWGTTgiQiJhF3NgIDMkQMGEhUDBhIZAyAAAQQAABIVBAAAEhkFAAEBEhkECAAS
+FQQIABIZAwYSDAQAABIMBAgAEgwCBggDBhEUBAAAAAAEAQAAAAQgAQEOBCABAQgGAAESURFVBCAA
+ElkGIAIBDhJZBAcBEhUFIAEBEWEIAQACAAAAAAADAAABBCAAEm0EIAAScQUgARJ1HAQgAQEcRwEA
+Gi5ORVRGcmFtZXdvcmssVmVyc2lvbj12NC4wAQBUDhRGcmFtZXdvcmtEaXNwbGF5TmFtZRAuTkVU
+IEZyYW1ld29yayA0KAEAI1NUXzVkN2NjM2FkNzM2MjQ0YzdhNWE0ZGNlNzAzYzY2YzhmAAAFAQAA
+AAAWAQARQ29weXJpZ2h0IEAgIDIwMTYAAAgBAAgAAAAAAB4BAAEAVAIWV3JhcE5vbkV4Y2VwdGlv
+blRocm93cwEcLwAAAAAAAAAAAAA+LwAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAMC8AAAAAAAAA
+AAAAAAAAAAAAAAAAAF9Db3JEbGxNYWluAG1zY29yZWUuZGxsAAAAAAD/JQAgABAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAABABAAAAAYAACAAAAAAAAAAAAAAAAAAAABAAEAAAAwAACAAAAAAAAAAAAAAAAAAAABAAAA
+AABIAAAAWEAAALADAAAAAAAAAAAAALADNAAAAFYAUwBfAFYARQBSAFMASQBPAE4AXwBJAE4ARgBP
+AAAAAAC9BO/+AAABAAAAAQDnTPkXAAABAOdM+Rc/AAAAAAAAAAQAAAACAAAAAAAAAAAAAAAAAAAA
+RAAAAAEAVgBhAHIARgBpAGwAZQBJAG4AZgBvAAAAAAAkAAQAAABUAHIAYQBuAHMAbABhAHQAaQBv
+AG4AAAAAAAAAsAQQAwAAAQBTAHQAcgBpAG4AZwBGAGkAbABlAEkAbgBmAG8AAADsAgAAAQAwADAA
+MAAwADAANABiADAAAABwACQAAQBGAGkAbABlAEQAZQBzAGMAcgBpAHAAdABpAG8AbgAAAAAAUwBU
+AF8ANQBkADcAYwBjADMAYQBkADcAMwA2ADIANAA0AGMANwBhADUAYQA0AGQAYwBlADcAMAAzAGMA
+NgA2AGMAOABmAAAAQAAPAAEARgBpAGwAZQBWAGUAcgBzAGkAbwBuAAAAAAAxAC4AMAAuADYAMQAz
+ADcALgAxADkANgA4ADcAAAAAAHAAKAABAEkAbgB0AGUAcgBuAGEAbABOAGEAbQBlAAAAUwBUAF8A
+NQBkADcAYwBjADMAYQBkADcAMwA2ADIANAA0AGMANwBhADUAYQA0AGQAYwBlADcAMAAzAGMANgA2
+AGMAOABmAC4AZABsAGwAAABIABIAAQBMAGUAZwBhAGwAQwBvAHAAeQByAGkAZwBoAHQAAABDAG8A
+cAB5AHIAaQBnAGgAdAAgAEAAIAAgADIAMAAxADYAAAB4ACgAAQBPAHIAaQBnAGkAbgBhAGwARgBp
+AGwAZQBuAGEAbQBlAAAAUwBUAF8ANQBkADcAYwBjADMAYQBkADcAMwA2ADIANAA0AGMANwBhADUA
+YQA0AGQAYwBlADcAMAAzAGMANgA2AGMAOABmAC4AZABsAGwAAABoACQAAQBQAHIAbwBkAHUAYwB0
+AE4AYQBtAGUAAAAAAFMAVABfADUAZAA3AGMAYwAzAGEAZAA3ADMANgAyADQANABjADcAYQA1AGEA
+NABkAGMAZQA3ADAAMwBjADYANgBjADgAZgAAAEQADwABAFAAcgBvAGQAdQBjAHQAVgBlAHIAcwBp
+AG8AbgAAADEALgAwAC4ANgAxADMANwAuADEAOQA2ADgANwAAAAAASAAPAAEAQQBzAHMAZQBtAGIA
+bAB5ACAAVgBlAHIAcwBpAG8AbgAAADEALgAwAC4ANgAxADMANwAuADEAOQA2ADgANwAAAAAAAAAA
 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
@@ -6102,7 +6223,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAMAAAA8D0A
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAwAAABQPwAA
 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
@@ -6111,7 +6232,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA</BinaryItem>
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
             </ScriptProject>
           </DTS:ObjectData>
         </DTS:Executable>
@@ -6214,9 +6335,9 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA</BinaryItem>
             <SQLTask:SqlTaskData
               SQLTask:Connection="{879CBFE3-8828-45E8-BB2C-3F9D632D4E68}"
               SQLTask:BypassPrepare="False"
-              SQLTask:SqlStatementSource="UPDATE &#xA;  Medhok.Mailing_Data_File&#xA;SET &#xA;  Loaded = 1,&#xA;  ErrorsFound = ?&#xA;WHERE&#xA;  FileName = ?;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              SQLTask:SqlStatementSource="UPDATE &#xA;  Medhok.Mailing_Data_File&#xA;SET &#xA;  Loaded = 1,&#xA;  ErrorsFound = ?,&#xA;  TotalRecords = ?,&#xA;  TotalRecordsExcluded = ?&#xA;WHERE&#xA;  FileName = ?;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
               <SQLTask:ParameterBinding
-                SQLTask:ParameterName="1"
+                SQLTask:ParameterName="3"
                 SQLTask:DtsVariableName="User::file_name"
                 SQLTask:ParameterDirection="Input"
                 SQLTask:DataType="129"
@@ -6224,6 +6345,18 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA</BinaryItem>
               <SQLTask:ParameterBinding
                 SQLTask:ParameterName="0"
                 SQLTask:DtsVariableName="User::file_row_error_count"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="20"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="1"
+                SQLTask:DtsVariableName="User::file_total_row_count"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="20"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="2"
+                SQLTask:DtsVariableName="User::file_total_rows_excluded"
                 SQLTask:ParameterDirection="Input"
                 SQLTask:DataType="20"
                 SQLTask:ParameterSize="-1" />
@@ -6289,7 +6422,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA</BinaryItem>
           DTS:From="Package\FELC - Traverse filenames collection to load its contecnt into the cache\SQL - Update loaded status for file"
           DTS:LogicalAnd="True"
           DTS:ObjectName="Constraint 6"
-          DTS:To="Package\FELC - Traverse filenames collection to load its contecnt into the cache\SCR - Reset file error counter" />
+          DTS:To="Package\FELC - Traverse filenames collection to load its contecnt into the cache\SCR - Reset file counters" />
       </DTS:PrecedenceConstraints>
       <DTS:ForEachVariableMappings>
         <DTS:ForEachVariableMapping
@@ -6341,6 +6474,15 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA</BinaryItem>
           Language="CSharp"
           ReadOnlyVariables="System::TaskName,$Package::connection_string"
           ReadWriteVariables="User::exception_message,User::registered_not_loaded_files">
+          <ProjectItem
+            Name="Properties\Settings.settings"
+            Encoding="UTF8"><![CDATA[<?xml version='1.0' encoding='iso-8859-1'?>
+<SettingsFile xmlns="uri:settings" CurrentProfile="(Default)">
+  <Profiles>
+    <Profile Name="(Default)" />
+  </Profiles>
+  <Settings />
+</SettingsFile>]]></ProjectItem>
           <ProjectItem
             Name="Properties\Resources.resx"
             Encoding="UTF8"><![CDATA[<?xml version="1.0" encoding="utf-8"?>
@@ -6460,35 +6602,6 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA</BinaryItem>
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
 </root>]]></ProjectItem>
-          <ProjectItem
-            Name="Properties\Settings.Designer.cs"
-            Encoding="UTF8"><![CDATA[//------------------------------------------------------------------------------
-// <auto-generated>
-//     This code was generated by a tool.
-//
-//     Changes to this file may cause incorrect behavior and will be lost if
-//     the code is regenerated.
-// </auto-generated>
-//------------------------------------------------------------------------------
-
-[assembly: global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Scope="member", Target="ST_817380d19bc04b5a9a5022ae3d775ec5.Properties.Settings.get_Default():ST_817380d19bc04b5a9a5022ae3d775ec5.Properties.Sett" +
-    "ings")]
-
-namespace ST_817380d19bc04b5a9a5022ae3d775ec5.Properties {
-    
-    
-    internal sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase {
-        
-        [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-        private static Settings defaultInstance = new Settings();
-        
-        public static Settings Default {
-            get {
-                return defaultInstance;
-            }
-        }
-    }
-}]]></ProjectItem>
           <ProjectItem
             Name="MedhokDataContext.cs"
             Encoding="UTF8"><![CDATA[//using System;
@@ -6788,6 +6901,35 @@ namespace ST_817380d19bc04b5a9a5022ae3d775ec5
 	</msb:ItemGroup>
 </c:Project>]]></ProjectItem>
           <ProjectItem
+            Name="Properties\Settings.Designer.cs"
+            Encoding="UTF8"><![CDATA[//------------------------------------------------------------------------------
+// <auto-generated>
+//     This code was generated by a tool.
+//
+//     Changes to this file may cause incorrect behavior and will be lost if
+//     the code is regenerated.
+// </auto-generated>
+//------------------------------------------------------------------------------
+
+[assembly: global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Scope="member", Target="ST_817380d19bc04b5a9a5022ae3d775ec5.Properties.Settings.get_Default():ST_817380d19bc04b5a9a5022ae3d775ec5.Properties.Sett" +
+    "ings")]
+
+namespace ST_817380d19bc04b5a9a5022ae3d775ec5.Properties {
+    
+    
+    internal sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase {
+        
+        [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
+        private static Settings defaultInstance = new Settings();
+        
+        public static Settings Default {
+            get {
+                return defaultInstance;
+            }
+        }
+    }
+}]]></ProjectItem>
+          <ProjectItem
             Name="Properties\AssemblyInfo.cs"
             Encoding="UTF8"><![CDATA[using System.Reflection;
 using System.Runtime.CompilerServices;
@@ -6817,15 +6959,6 @@ using System.Runtime.CompilerServices;
 // by using the '*' as shown below:
 
 [assembly: AssemblyVersion("1.0.*")]]]></ProjectItem>
-          <ProjectItem
-            Name="Properties\Settings.settings"
-            Encoding="UTF8"><![CDATA[<?xml version='1.0' encoding='iso-8859-1'?>
-<SettingsFile xmlns="uri:settings" CurrentProfile="(Default)">
-  <Profiles>
-    <Profile Name="(Default)" />
-  </Profiles>
-  <Settings />
-</SettingsFile>]]></ProjectItem>
           <ProjectItem
             Name="Properties\Resources.Designer.cs"
             Encoding="UTF8"><![CDATA[//------------------------------------------------------------------------------
@@ -7424,15 +7557,15 @@ namespace ST_59153f0e11684e209f6e984cfe092618
             Encoding="UTF16LE"><![CDATA[<?xml version="1.0" encoding="UTF-16" standalone="yes"?>
 <c:Project xmlns:c="http://schemas.microsoft.com/codeprojectml/2010/08/main" xmlns:msb="http://schemas.microsoft.com/developer/msbuild/2003" runtimeVersion="3.0" schemaVersion="1.0">
 	<msb:PropertyGroup>
-		<msb:CodeName>ST_59153f0e11684e209f6e984cfe092618</msb:CodeName>
 		<msb:Language>msBuild</msb:Language>
+		<msb:CodeName>ST_59153f0e11684e209f6e984cfe092618</msb:CodeName>
 		<msb:DisplayName>ST_59153f0e11684e209f6e984cfe092618</msb:DisplayName>
 		<msb:ProjectId>{EBBBD993-41A7-44FD-89FC-474C2F1A5CD6}</msb:ProjectId>
 	</msb:PropertyGroup>
 	<msb:ItemGroup>
 		<msb:Project Include="ST_59153f0e11684e209f6e984cfe092618.csproj"/>
-		<msb:File Include="Properties\AssemblyInfo.cs"/>
 		<msb:File Include="Properties\Settings.settings"/>
+		<msb:File Include="Properties\AssemblyInfo.cs"/>
 		<msb:File Include="Properties\Resources.resx"/>
 		<msb:File Include="Properties\Resources.Designer.cs"/>
 		<msb:File Include="Properties\Settings.Designer.cs"/>
@@ -7549,7 +7682,7 @@ namespace ST_59153f0e11684e209f6e984cfe092618.Properties {
           <BinaryItem
             Name="ST_59153f0e11684e209f6e984cfe092618.dll">TVqQAAMAAAAEAAAA//8AALgAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 AAAAgAAAAA4fug4AtAnNIbgBTM0hVGhpcyBwcm9ncmFtIGNhbm5vdCBiZSBydW4gaW4gRE9TIG1v
-ZGUuDQ0KJAAAAAAAAABQRQAATAEDAFqFB1gAAAAAAAAAAOAAAiELAQsAABAAAAAIAAAAAAAAPi4A
+ZGUuDQ0KJAAAAAAAAABQRQAATAEDALHACFgAAAAAAAAAAOAAAiELAQsAABAAAAAIAAAAAAAAPi4A
 AAAgAAAAQAAAAAAAEAAgAAAAAgAABAAAAAAAAAAEAAAAAAAAAACAAAAAAgAAAAAAAAMAQIUAABAA
 ABAAAAAAEAAAEAAAAAAAABAAAAAAAAAAAAAAAOgtAABTAAAAAEAAAAgEAAAAAAAAAAAAAAAAAAAA
 AAAAAGAAAAwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
@@ -7581,7 +7714,7 @@ egDJALwBGwARALwBGwDRALwBGwAZANYEjQDZACcFkgDhAD4FlwDpAEcFnQAJAFEFoQDxAG4FpQDZ
 AHcFXQAZALwBGwAIABQATgAIABgAUwApAJMAgAAuABsAIAEuACMAIAEuAGMARgEuAAsArwAuABMA
 9wAuADMA9wAuACsAIAEuADsAJgEuAEMAIAEuAFsAPQFDAGsAUwBJAJMAgABhAJsAUwCDAKsAUwB1
 AKsAAgABAAMAAwAAAG8BLwAAAO4BNAAAABICQgACAAIAAwACAAMABQABAAQABQACAAUABwAEgAAA
-AQAAAPgXzUoAAAAAAAB/AAAABAAAAAAAAAAAAAAAAQCxAAAAAAAEAAAAAAAAAAAAAAABALoAAAAA
+AQAAAPkXuD8AAAAAAAB/AAAABAAAAAAAAAAAAAAAAQCxAAAAAAAEAAAAAAAAAAAAAAABALoAAAAA
 AAsAAAAAAAAAAAAAAAoA9QAAAAAACwAAAAAAAAAAAAAACgDeBAAAAAAAAAAAAQAAAIYFAAAFAAQA
 AAAAAAA8TW9kdWxlPgBTVF81OTE1M2YwZTExNjg0ZTIwOWY2ZTk4NGNmZTA5MjYxOC5kbGwAUmVz
 b3VyY2VzAFNUXzU5MTUzZjBlMTE2ODRlMjA5ZjZlOTg0Y2ZlMDkyNjE4LlByb3BlcnRpZXMAU2V0
@@ -7611,8 +7744,8 @@ dHJpbmcAU3lzdGVtLklPAERpcmVjdG9yeQBHZXRGaWxlcwBzZXRfVGFza1Jlc3VsdABTVF81OTE1
 M2YwZTExNjg0ZTIwOWY2ZTk4NGNmZTA5MjYxOC5Qcm9wZXJ0aWVzLlJlc291cmNlcy5yZXNvdXJj
 ZXMAAAAAAHFTAFQAXwA1ADkAMQA1ADMAZgAwAGUAMQAxADYAOAA0AGUAMgAwADkAZgA2AGUAOQA4
 ADQAYwBmAGUAMAA5ADIANgAxADgALgBQAHIAbwBwAGUAcgB0AGkAZQBzAC4AUgBlAHMAbwB1AHIA
-YwBlAHMAACckAFAAYQBjAGsAYQBnAGUAOgA6AGYAaQBsAGUAXwBwAGEAdABoAAAArrmDMLnioki4
-xS3UDAo87gAIt3pcVhk04IkIiYRdzYCAzJEDBhIVAwYSGQMgAAEEAAASFQQAABIZBQABARIZBAgA
+YwBlAHMAACckAFAAYQBjAGsAYQBnAGUAOgA6AGYAaQBsAGUAXwBwAGEAdABoAAAArpShboTKr0q6
+HNvTC09PwQAIt3pcVhk04IkIiYRdzYCAzJEDBhIVAwYSGQMgAAEEAAASFQQAABIZBQABARIZBAgA
 EhUECAASGQMGEgwEAAASDAQIABIMAgYIAwYRFAQAAAAABAEAAAAEIAEBDgQgAQEIBgABElERVQQg
 ABJZBiACAQ4SWQQHARIVBSABARFhCAEAAgAAAAAAAwAAAQQgABJtBCAAEnEFIAESdRwDIAAcAyAA
 DgUAAR0ODgMHAQ5HAQAaLk5FVEZyYW1ld29yayxWZXJzaW9uPXY0LjABAFQOFEZyYW1ld29ya0Rp
@@ -7630,13 +7763,13 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 AAAAAAABABAAAAAYAACAAAAAAAAAAAAAAAAAAAABAAEAAAAwAACAAAAAAAAAAAAAAAAAAAABAAAA
 AABIAAAAWEAAALADAAAAAAAAAAAAALADNAAAAFYAUwBfAFYARQBSAFMASQBPAE4AXwBJAE4ARgBP
-AAAAAAC9BO/+AAABAAAAAQDNSvgXAAABAM1K+Bc/AAAAAAAAAAQAAAACAAAAAAAAAAAAAAAAAAAA
+AAAAAAC9BO/+AAABAAAAAQC4P/kXAAABALg/+Rc/AAAAAAAAAAQAAAACAAAAAAAAAAAAAAAAAAAA
 RAAAAAEAVgBhAHIARgBpAGwAZQBJAG4AZgBvAAAAAAAkAAQAAABUAHIAYQBuAHMAbABhAHQAaQBv
 AG4AAAAAAAAAsAQQAwAAAQBTAHQAcgBpAG4AZwBGAGkAbABlAEkAbgBmAG8AAADsAgAAAQAwADAA
 MAAwADAANABiADAAAABwACQAAQBGAGkAbABlAEQAZQBzAGMAcgBpAHAAdABpAG8AbgAAAAAAUwBU
 AF8ANQA5ADEANQAzAGYAMABlADEAMQA2ADgANABlADIAMAA5AGYANgBlADkAOAA0AGMAZgBlADAA
 OQAyADYAMQA4AAAAQAAPAAEARgBpAGwAZQBWAGUAcgBzAGkAbwBuAAAAAAAxAC4AMAAuADYAMQAz
-ADYALgAxADkAMQA0ADkAAAAAAHAAKAABAEkAbgB0AGUAcgBuAGEAbABOAGEAbQBlAAAAUwBUAF8A
+ADcALgAxADYAMwAxADIAAAAAAHAAKAABAEkAbgB0AGUAcgBuAGEAbABOAGEAbQBlAAAAUwBUAF8A
 NQA5ADEANQAzAGYAMABlADEAMQA2ADgANABlADIAMAA5AGYANgBlADkAOAA0AGMAZgBlADAAOQAy
 ADYAMQA4AC4AZABsAGwAAABIABIAAQBMAGUAZwBhAGwAQwBvAHAAeQByAGkAZwBoAHQAAABDAG8A
 cAB5AHIAaQBnAGgAdAAgAEAAIAAgADIAMAAxADYAAAB4ACgAAQBPAHIAaQBnAGkAbgBhAGwARgBp
@@ -7644,8 +7777,8 @@ AGwAZQBuAGEAbQBlAAAAUwBUAF8ANQA5ADEANQAzAGYAMABlADEAMQA2ADgANABlADIAMAA5AGYA
 NgBlADkAOAA0AGMAZgBlADAAOQAyADYAMQA4AC4AZABsAGwAAABoACQAAQBQAHIAbwBkAHUAYwB0
 AE4AYQBtAGUAAAAAAFMAVABfADUAOQAxADUAMwBmADAAZQAxADEANgA4ADQAZQAyADAAOQBmADYA
 ZQA5ADgANABjAGYAZQAwADkAMgA2ADEAOAAAAEQADwABAFAAcgBvAGQAdQBjAHQAVgBlAHIAcwBp
-AG8AbgAAADEALgAwAC4ANgAxADMANgAuADEAOQAxADQAOQAAAAAASAAPAAEAQQBzAHMAZQBtAGIA
-bAB5ACAAVgBlAHIAcwBpAG8AbgAAADEALgAwAC4ANgAxADMANgAuADEAOQAxADQAOQAAAAAAAAAA
+AG8AbgAAADEALgAwAC4ANgAxADMANwAuADEANgAzADEAMgAAAAAASAAPAAEAQQBzAHMAZQBtAGIA
+bAB5ACAAVgBlAHIAcwBpAG8AbgAAADEALgAwAC4ANgAxADMANwAuADEANgAzADEAMgAAAAAAAAAA
 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
@@ -7685,6 +7818,15 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
           Language="CSharp"
           ReadOnlyVariables="System::TaskName,$Package::connection_string"
           ReadWriteVariables="User::exception_message,User::registered_loaded_and_found_files">
+          <ProjectItem
+            Name="Properties\Settings.settings"
+            Encoding="UTF8"><![CDATA[<?xml version='1.0' encoding='iso-8859-1'?>
+<SettingsFile xmlns="uri:settings" CurrentProfile="(Default)">
+  <Profiles>
+    <Profile Name="(Default)" />
+  </Profiles>
+  <Settings />
+</SettingsFile>]]></ProjectItem>
           <ProjectItem
             Name="Properties\Resources.resx"
             Encoding="UTF8"><![CDATA[<?xml version="1.0" encoding="utf-8"?>
@@ -7804,35 +7946,6 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
 </root>]]></ProjectItem>
-          <ProjectItem
-            Name="Properties\Settings.Designer.cs"
-            Encoding="UTF8"><![CDATA[//------------------------------------------------------------------------------
-// <auto-generated>
-//     This code was generated by a tool.
-//
-//     Changes to this file may cause incorrect behavior and will be lost if
-//     the code is regenerated.
-// </auto-generated>
-//------------------------------------------------------------------------------
-
-[assembly: global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Scope="member", Target="ST_3307461932e44a03b609c11708fbb74b.Properties.Settings.get_Default():ST_3307461932e44a03b609c11708fbb74b.Properties.Sett" +
-    "ings")]
-
-namespace ST_3307461932e44a03b609c11708fbb74b.Properties {
-    
-    
-    internal sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase {
-        
-        [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-        private static Settings defaultInstance = new Settings();
-        
-        public static Settings Default {
-            get {
-                return defaultInstance;
-            }
-        }
-    }
-}]]></ProjectItem>
           <ProjectItem
             Name="MedhokDataContext.cs"
             Encoding="UTF8"><![CDATA[using System.Data.Linq;
@@ -7989,27 +8102,8 @@ namespace ST_3307461932e44a03b609c11708fbb74b
 	}
 }]]></ProjectItem>
           <ProjectItem
-            Name="Project"
-            Encoding="UTF16LE"><![CDATA[<?xml version="1.0" encoding="UTF-16" standalone="yes"?>
-<c:Project xmlns:c="http://schemas.microsoft.com/codeprojectml/2010/08/main" xmlns:msb="http://schemas.microsoft.com/developer/msbuild/2003" runtimeVersion="3.0" schemaVersion="1.0">
-	<msb:PropertyGroup>
-		<msb:Language>msBuild</msb:Language>
-		<msb:CodeName>ST_3307461932e44a03b609c11708fbb74b</msb:CodeName>
-		<msb:DisplayName>ST_3307461932e44a03b609c11708fbb74b</msb:DisplayName>
-		<msb:ProjectId>{9ACD1694-9CD2-4842-833F-02B31EF365E0}</msb:ProjectId>
-	</msb:PropertyGroup>
-	<msb:ItemGroup>
-		<msb:Project Include="ST_d31b16b55dce40b3981da0ef3802a346.csproj"/>
-		<msb:File Include="Properties\Settings.settings"/>
-		<msb:File Include="Properties\AssemblyInfo.cs"/>
-		<msb:File Include="Properties\Resources.resx"/>
-		<msb:File Include="Properties\Resources.Designer.cs"/>
-		<msb:File Include="MedhokDataContext.cs"/>
-		<msb:File Include="MailingFile.cs"/>
-		<msb:File Include="Properties\Settings.Designer.cs"/>
-		<msb:File Include="ScriptMain.cs"/>
-	</msb:ItemGroup>
-</c:Project>]]></ProjectItem>
+            Name="ST_d31b16b55dce40b3981da0ef3802a346.csproj"
+            Encoding="UTF8"><![CDATA[<?xml version="1.0" encoding="utf-8"?><Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003"><PropertyGroup><ProjectTypeGuids>{30D016F9-3734-4E33-A861-5E7D899E18F3};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids><Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration><Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform><ProductVersion>8.0.30703</ProductVersion><SchemaVersion>2.0</SchemaVersion><ProjectGuid>{2B3FD112-89E6-4532-9660-348A91E6EF99}</ProjectGuid><OutputType>Library</OutputType><AppDesignerFolder>Properties</AppDesignerFolder><RootNamespace>ST_3307461932e44a03b609c11708fbb74b</RootNamespace><AssemblyName>ST_d31b16b55dce40b3981da0ef3802a346</AssemblyName><TargetFrameworkVersion>v4.0</TargetFrameworkVersion><FileAlignment>512</FileAlignment><ResolveAssemblyReferenceIgnoreTargetFrameworkAttributeVersionMismatch>true</ResolveAssemblyReferenceIgnoreTargetFrameworkAttributeVersionMismatch></PropertyGroup><PropertyGroup Condition=" '$(Configuration)' == 'Debug' "><DebugSymbols>true</DebugSymbols><DebugType>full</DebugType><Optimize>false</Optimize><OutputPath>.\bin\Debug\</OutputPath><EnableUnmanagedDebugging>false</EnableUnmanagedDebugging><DefineConstants>DEBUG;TRACE</DefineConstants><ErrorReport>prompt</ErrorReport><WarningLevel>4</WarningLevel></PropertyGroup><PropertyGroup Condition=" '$(Configuration)' == 'Release' "><DebugSymbols>false</DebugSymbols><Optimize>true</Optimize><OutputPath>.\bin\Release\</OutputPath><EnableUnmanagedDebugging>false</EnableUnmanagedDebugging><DefineConstants>TRACE</DefineConstants><ErrorReport>prompt</ErrorReport><WarningLevel>4</WarningLevel></PropertyGroup><ItemGroup><Reference Include="System" /><Reference Include="System.Data" /><Reference Include="System.Data.Linq" /><Reference Include="System.Windows.Forms" /><Reference Include="System.Xml" /><Reference Include="Microsoft.SqlServer.ManagedDTS, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91" /><Reference Include="Microsoft.SqlServer.ScriptTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91" /></ItemGroup><ItemGroup><AppDesigner Include="Properties\" /><Compile Include="MailingFile.cs" /><Compile Include="MedhokDataContext.cs" /><Compile Include="Properties\AssemblyInfo.cs"><SubType>Code</SubType></Compile><EmbeddedResource Include="Properties\Resources.resx"><Generator>ResXFileCodeGenerator</Generator><LastGenOutput>Resources.Designer.cs</LastGenOutput></EmbeddedResource><Compile Include="Properties\Resources.Designer.cs"><AutoGen>True</AutoGen><DependentUpon>Resources.resx</DependentUpon></Compile><None Include="Properties\Settings.settings"><Generator>SettingsSingleFileGenerator</Generator><LastGenOutput>Settings.Designer.cs</LastGenOutput></None><Compile Include="Properties\Settings.Designer.cs"><AutoGen>True</AutoGen><DependentUpon>Settings.settings</DependentUpon></Compile><Compile Include="ScriptMain.cs"><SubType>Code</SubType></Compile></ItemGroup><!-- Include the build rules for a C# project.--><Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" /><ProjectExtensions><VisualStudio><FlavorProperties GUID="{30D016F9-3734-4E33-A861-5E7D899E18F3}"><ProjectProperties HostName="VSTAHostName" HostPackage="{B3A685AA-7EAF-4BC6-9940-57959FA5AC07}" ApplicationType="usd" Language="cs" TemplatesPath="" DebugInfoExeName="#HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\VisualStudio\10.0\InstallDir#\devenv.exe" /><Host Name="ScriptTask" /><ProjectClient><HostIdentifier>SSIS_ST110</HostIdentifier></ProjectClient></FlavorProperties></VisualStudio></ProjectExtensions></Project>]]></ProjectItem>
           <ProjectItem
             Name="MailingFile.cs"
             Encoding="UTF8"><![CDATA[using System.Data.Linq.Mapping;
@@ -8036,8 +8130,56 @@ namespace ST_3307461932e44a03b609c11708fbb74b
     }
 }]]></ProjectItem>
           <ProjectItem
-            Name="ST_d31b16b55dce40b3981da0ef3802a346.csproj"
-            Encoding="UTF8"><![CDATA[<?xml version="1.0" encoding="utf-8"?><Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003"><PropertyGroup><ProjectTypeGuids>{30D016F9-3734-4E33-A861-5E7D899E18F3};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids><Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration><Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform><ProductVersion>8.0.30703</ProductVersion><SchemaVersion>2.0</SchemaVersion><ProjectGuid>{2B3FD112-89E6-4532-9660-348A91E6EF99}</ProjectGuid><OutputType>Library</OutputType><AppDesignerFolder>Properties</AppDesignerFolder><RootNamespace>ST_3307461932e44a03b609c11708fbb74b</RootNamespace><AssemblyName>ST_d31b16b55dce40b3981da0ef3802a346</AssemblyName><TargetFrameworkVersion>v4.0</TargetFrameworkVersion><FileAlignment>512</FileAlignment><ResolveAssemblyReferenceIgnoreTargetFrameworkAttributeVersionMismatch>true</ResolveAssemblyReferenceIgnoreTargetFrameworkAttributeVersionMismatch></PropertyGroup><PropertyGroup Condition=" '$(Configuration)' == 'Debug' "><DebugSymbols>true</DebugSymbols><DebugType>full</DebugType><Optimize>false</Optimize><OutputPath>.\bin\Debug\</OutputPath><EnableUnmanagedDebugging>false</EnableUnmanagedDebugging><DefineConstants>DEBUG;TRACE</DefineConstants><ErrorReport>prompt</ErrorReport><WarningLevel>4</WarningLevel></PropertyGroup><PropertyGroup Condition=" '$(Configuration)' == 'Release' "><DebugSymbols>false</DebugSymbols><Optimize>true</Optimize><OutputPath>.\bin\Release\</OutputPath><EnableUnmanagedDebugging>false</EnableUnmanagedDebugging><DefineConstants>TRACE</DefineConstants><ErrorReport>prompt</ErrorReport><WarningLevel>4</WarningLevel></PropertyGroup><ItemGroup><Reference Include="System" /><Reference Include="System.Data" /><Reference Include="System.Data.Linq" /><Reference Include="System.Windows.Forms" /><Reference Include="System.Xml" /><Reference Include="Microsoft.SqlServer.ManagedDTS, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91" /><Reference Include="Microsoft.SqlServer.ScriptTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91" /></ItemGroup><ItemGroup><AppDesigner Include="Properties\" /><Compile Include="MailingFile.cs" /><Compile Include="MedhokDataContext.cs" /><Compile Include="Properties\AssemblyInfo.cs"><SubType>Code</SubType></Compile><EmbeddedResource Include="Properties\Resources.resx"><Generator>ResXFileCodeGenerator</Generator><LastGenOutput>Resources.Designer.cs</LastGenOutput></EmbeddedResource><Compile Include="Properties\Resources.Designer.cs"><AutoGen>True</AutoGen><DependentUpon>Resources.resx</DependentUpon></Compile><None Include="Properties\Settings.settings"><Generator>SettingsSingleFileGenerator</Generator><LastGenOutput>Settings.Designer.cs</LastGenOutput></None><Compile Include="Properties\Settings.Designer.cs"><AutoGen>True</AutoGen><DependentUpon>Settings.settings</DependentUpon></Compile><Compile Include="ScriptMain.cs"><SubType>Code</SubType></Compile></ItemGroup><!-- Include the build rules for a C# project.--><Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" /><ProjectExtensions><VisualStudio><FlavorProperties GUID="{30D016F9-3734-4E33-A861-5E7D899E18F3}"><ProjectProperties HostName="VSTAHostName" HostPackage="{B3A685AA-7EAF-4BC6-9940-57959FA5AC07}" ApplicationType="usd" Language="cs" TemplatesPath="" DebugInfoExeName="#HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\VisualStudio\10.0\InstallDir#\devenv.exe" /><Host Name="ScriptTask" /><ProjectClient><HostIdentifier>SSIS_ST110</HostIdentifier></ProjectClient></FlavorProperties></VisualStudio></ProjectExtensions></Project>]]></ProjectItem>
+            Name="Project"
+            Encoding="UTF16LE"><![CDATA[<?xml version="1.0" encoding="UTF-16" standalone="yes"?>
+<c:Project xmlns:c="http://schemas.microsoft.com/codeprojectml/2010/08/main" xmlns:msb="http://schemas.microsoft.com/developer/msbuild/2003" runtimeVersion="3.0" schemaVersion="1.0">
+	<msb:PropertyGroup>
+		<msb:Language>msBuild</msb:Language>
+		<msb:CodeName>ST_3307461932e44a03b609c11708fbb74b</msb:CodeName>
+		<msb:DisplayName>ST_3307461932e44a03b609c11708fbb74b</msb:DisplayName>
+		<msb:ProjectId>{9ACD1694-9CD2-4842-833F-02B31EF365E0}</msb:ProjectId>
+	</msb:PropertyGroup>
+	<msb:ItemGroup>
+		<msb:Project Include="ST_d31b16b55dce40b3981da0ef3802a346.csproj"/>
+		<msb:File Include="Properties\Settings.settings"/>
+		<msb:File Include="Properties\AssemblyInfo.cs"/>
+		<msb:File Include="Properties\Resources.resx"/>
+		<msb:File Include="Properties\Resources.Designer.cs"/>
+		<msb:File Include="MedhokDataContext.cs"/>
+		<msb:File Include="MailingFile.cs"/>
+		<msb:File Include="Properties\Settings.Designer.cs"/>
+		<msb:File Include="ScriptMain.cs"/>
+	</msb:ItemGroup>
+</c:Project>]]></ProjectItem>
+          <ProjectItem
+            Name="Properties\Settings.Designer.cs"
+            Encoding="UTF8"><![CDATA[//------------------------------------------------------------------------------
+// <auto-generated>
+//     This code was generated by a tool.
+//
+//     Changes to this file may cause incorrect behavior and will be lost if
+//     the code is regenerated.
+// </auto-generated>
+//------------------------------------------------------------------------------
+
+[assembly: global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Scope="member", Target="ST_3307461932e44a03b609c11708fbb74b.Properties.Settings.get_Default():ST_3307461932e44a03b609c11708fbb74b.Properties.Sett" +
+    "ings")]
+
+namespace ST_3307461932e44a03b609c11708fbb74b.Properties {
+    
+    
+    internal sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase {
+        
+        [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
+        private static Settings defaultInstance = new Settings();
+        
+        public static Settings Default {
+            get {
+                return defaultInstance;
+            }
+        }
+    }
+}]]></ProjectItem>
           <ProjectItem
             Name="Properties\AssemblyInfo.cs"
             Encoding="UTF8"><![CDATA[using System.Reflection;
@@ -8068,15 +8210,6 @@ using System.Runtime.CompilerServices;
 // by using the '*' as shown below:
 
 [assembly: AssemblyVersion("1.0.*")]]]></ProjectItem>
-          <ProjectItem
-            Name="Properties\Settings.settings"
-            Encoding="UTF8"><![CDATA[<?xml version='1.0' encoding='iso-8859-1'?>
-<SettingsFile xmlns="uri:settings" CurrentProfile="(Default)">
-  <Profiles>
-    <Profile Name="(Default)" />
-  </Profiles>
-  <Settings />
-</SettingsFile>]]></ProjectItem>
           <ProjectItem
             Name="Properties\Resources.Designer.cs"
             Encoding="UTF8"><![CDATA[//------------------------------------------------------------------------------
@@ -8321,36 +8454,6 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==</BinaryItem>
           ReadOnlyVariables="System::TaskName,$Package::connection_string,$Package::limit_of_files_to_load"
           ReadWriteVariables="User::exception_message,User::registered_not_loaded_files">
           <ProjectItem
-            Name="Properties\AssemblyInfo.cs"
-            Encoding="UTF8"><![CDATA[using System.Reflection;
-using System.Runtime.CompilerServices;
-
-//
-// General Information about an assembly is controlled through the following 
-// set of attributes. Change these attribute values to modify the information
-// associated with an assembly.
-//
-[assembly: AssemblyTitle("ST_3307461932e44a03b609c11708fbb74b")]
-[assembly: AssemblyDescription("")]
-[assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("ST_3307461932e44a03b609c11708fbb74b")]
-[assembly: AssemblyCopyright("Copyright @  2016")]
-[assembly: AssemblyTrademark("")]
-[assembly: AssemblyCulture("")]
-//
-// Version information for an assembly consists of the following four values:
-//
-//      Major Version
-//      Minor Version 
-//      Build Number
-//      Revision
-//
-// You can specify all the values or you can default the Revision and Build Numbers 
-// by using the '*' as shown below:
-
-[assembly: AssemblyVersion("1.0.*")]]]></ProjectItem>
-          <ProjectItem
             Name="Properties\Resources.resx"
             Encoding="UTF8"><![CDATA[<?xml version="1.0" encoding="utf-8"?>
 <root>
@@ -8470,14 +8573,34 @@ using System.Runtime.CompilerServices;
   </resheader>
 </root>]]></ProjectItem>
           <ProjectItem
-            Name="Properties\Settings.settings"
-            Encoding="UTF8"><![CDATA[<?xml version='1.0' encoding='iso-8859-1'?>
-<SettingsFile xmlns="uri:settings" CurrentProfile="(Default)">
-  <Profiles>
-    <Profile Name="(Default)" />
-  </Profiles>
-  <Settings />
-</SettingsFile>]]></ProjectItem>
+            Name="Properties\Settings.Designer.cs"
+            Encoding="UTF8"><![CDATA[//------------------------------------------------------------------------------
+// <auto-generated>
+//     This code was generated by a tool.
+//
+//     Changes to this file may cause incorrect behavior and will be lost if
+//     the code is regenerated.
+// </auto-generated>
+//------------------------------------------------------------------------------
+
+[assembly: global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Scope="member", Target="ST_3307461932e44a03b609c11708fbb74b.Properties.Settings.get_Default():ST_3307461932e44a03b609c11708fbb74b.Properties.Sett" +
+    "ings")]
+
+namespace ST_3307461932e44a03b609c11708fbb74b.Properties {
+    
+    
+    internal sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase {
+        
+        [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
+        private static Settings defaultInstance = new Settings();
+        
+        public static Settings Default {
+            get {
+                return defaultInstance;
+            }
+        }
+    }
+}]]></ProjectItem>
           <ProjectItem
             Name="MedhokDataContext.cs"
             Encoding="UTF8"><![CDATA[using System.Data.Linq;
@@ -8634,82 +8757,6 @@ namespace ST_3307461932e44a03b609c11708fbb74b
 	}
 }]]></ProjectItem>
           <ProjectItem
-            Name="MailingFile.cs"
-            Encoding="UTF8"><![CDATA[using System.Data.Linq.Mapping;
-
-namespace ST_3307461932e44a03b609c11708fbb74b
-{
-    [Table(Name = "Medhok.Mailing_Data_File")]
-    public sealed class MailingFile
-    {
-        [Column(IsPrimaryKey = true)]
-        public int ID;
-
-        [Column]
-        public string FileName;
-
-        [Column]
-        public bool Loaded;
-
-        [Column]
-        public bool CounterpartFound;
-
-        [Column]
-        public bool Adjudicated;
-    }
-}]]></ProjectItem>
-          <ProjectItem
-            Name="Project"
-            Encoding="UTF16LE"><![CDATA[<?xml version="1.0" encoding="UTF-16" standalone="yes"?>
-<c:Project xmlns:c="http://schemas.microsoft.com/codeprojectml/2010/08/main" xmlns:msb="http://schemas.microsoft.com/developer/msbuild/2003" runtimeVersion="3.0" schemaVersion="1.0">
-	<msb:PropertyGroup>
-		<msb:CodeName>ST_3307461932e44a03b609c11708fbb74b</msb:CodeName>
-		<msb:Language>msBuild</msb:Language>
-		<msb:DisplayName>ST_3307461932e44a03b609c11708fbb74b</msb:DisplayName>
-		<msb:ProjectId>{9ACD1694-9CD2-4842-833F-02B31EF365E0}</msb:ProjectId>
-	</msb:PropertyGroup>
-	<msb:ItemGroup>
-		<msb:Project Include="ST_3307461932e44a03b609c11708fbb74b.csproj"/>
-		<msb:File Include="Properties\AssemblyInfo.cs"/>
-		<msb:File Include="Properties\Settings.settings"/>
-		<msb:File Include="Properties\Resources.resx"/>
-		<msb:File Include="MailingFile.cs"/>
-		<msb:File Include="MedhokDataContext.cs"/>
-		<msb:File Include="Properties\Resources.Designer.cs"/>
-		<msb:File Include="Properties\Settings.Designer.cs"/>
-		<msb:File Include="ScriptMain.cs"/>
-	</msb:ItemGroup>
-</c:Project>]]></ProjectItem>
-          <ProjectItem
-            Name="Properties\Settings.Designer.cs"
-            Encoding="UTF8"><![CDATA[//------------------------------------------------------------------------------
-// <auto-generated>
-//     This code was generated by a tool.
-//
-//     Changes to this file may cause incorrect behavior and will be lost if
-//     the code is regenerated.
-// </auto-generated>
-//------------------------------------------------------------------------------
-
-[assembly: global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Scope="member", Target="ST_3307461932e44a03b609c11708fbb74b.Properties.Settings.get_Default():ST_3307461932e44a03b609c11708fbb74b.Properties.Sett" +
-    "ings")]
-
-namespace ST_3307461932e44a03b609c11708fbb74b.Properties {
-    
-    
-    internal sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase {
-        
-        [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-        private static Settings defaultInstance = new Settings();
-        
-        public static Settings Default {
-            get {
-                return defaultInstance;
-            }
-        }
-    }
-}]]></ProjectItem>
-          <ProjectItem
             Name="ST_3307461932e44a03b609c11708fbb74b.csproj"
             Encoding="UTF8"><![CDATA[<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
@@ -8797,6 +8844,92 @@ namespace ST_3307461932e44a03b609c11708fbb74b.Properties {
     </VisualStudio>
   </ProjectExtensions>
 </Project>]]></ProjectItem>
+          <ProjectItem
+            Name="MailingFile.cs"
+            Encoding="UTF8"><![CDATA[using System.Data.Linq.Mapping;
+
+namespace ST_3307461932e44a03b609c11708fbb74b
+{
+    [Table(Name = "Medhok.Mailing_Data_File")]
+    public sealed class MailingFile
+    {
+        [Column(IsPrimaryKey = true)]
+        public int ID;
+
+        [Column]
+        public string FileName;
+
+        [Column]
+        public bool Loaded;
+
+        [Column]
+        public bool CounterpartFound;
+
+        [Column]
+        public bool Adjudicated;
+    }
+}]]></ProjectItem>
+          <ProjectItem
+            Name="Project"
+            Encoding="UTF16LE"><![CDATA[<?xml version="1.0" encoding="UTF-16" standalone="yes"?>
+<c:Project xmlns:c="http://schemas.microsoft.com/codeprojectml/2010/08/main" xmlns:msb="http://schemas.microsoft.com/developer/msbuild/2003" runtimeVersion="3.0" schemaVersion="1.0">
+	<msb:PropertyGroup>
+		<msb:CodeName>ST_3307461932e44a03b609c11708fbb74b</msb:CodeName>
+		<msb:Language>msBuild</msb:Language>
+		<msb:DisplayName>ST_3307461932e44a03b609c11708fbb74b</msb:DisplayName>
+		<msb:ProjectId>{9ACD1694-9CD2-4842-833F-02B31EF365E0}</msb:ProjectId>
+	</msb:PropertyGroup>
+	<msb:ItemGroup>
+		<msb:Project Include="ST_3307461932e44a03b609c11708fbb74b.csproj"/>
+		<msb:File Include="Properties\AssemblyInfo.cs"/>
+		<msb:File Include="Properties\Settings.settings"/>
+		<msb:File Include="Properties\Resources.resx"/>
+		<msb:File Include="MailingFile.cs"/>
+		<msb:File Include="MedhokDataContext.cs"/>
+		<msb:File Include="Properties\Resources.Designer.cs"/>
+		<msb:File Include="Properties\Settings.Designer.cs"/>
+		<msb:File Include="ScriptMain.cs"/>
+	</msb:ItemGroup>
+</c:Project>]]></ProjectItem>
+          <ProjectItem
+            Name="Properties\AssemblyInfo.cs"
+            Encoding="UTF8"><![CDATA[using System.Reflection;
+using System.Runtime.CompilerServices;
+
+//
+// General Information about an assembly is controlled through the following 
+// set of attributes. Change these attribute values to modify the information
+// associated with an assembly.
+//
+[assembly: AssemblyTitle("ST_3307461932e44a03b609c11708fbb74b")]
+[assembly: AssemblyDescription("")]
+[assembly: AssemblyConfiguration("")]
+[assembly: AssemblyCompany("")]
+[assembly: AssemblyProduct("ST_3307461932e44a03b609c11708fbb74b")]
+[assembly: AssemblyCopyright("Copyright @  2016")]
+[assembly: AssemblyTrademark("")]
+[assembly: AssemblyCulture("")]
+//
+// Version information for an assembly consists of the following four values:
+//
+//      Major Version
+//      Minor Version 
+//      Build Number
+//      Revision
+//
+// You can specify all the values or you can default the Revision and Build Numbers 
+// by using the '*' as shown below:
+
+[assembly: AssemblyVersion("1.0.*")]]]></ProjectItem>
+          <ProjectItem
+            Name="Properties\Settings.settings"
+            Encoding="UTF8"><![CDATA[<?xml version='1.0' encoding='iso-8859-1'?>
+<SettingsFile xmlns="uri:settings" CurrentProfile="(Default)">
+  <Profiles>
+    <Profile Name="(Default)" />
+  </Profiles>
+  <Settings />
+</SettingsFile>]]></ProjectItem>
           <ProjectItem
             Name="Properties\Resources.Designer.cs"
             Encoding="UTF8"><![CDATA[//------------------------------------------------------------------------------
@@ -9335,6 +9468,15 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==</BinaryItem>
               Language="CSharp"
               ReadOnlyVariables="User::last_batch_execution_successful">
               <ProjectItem
+                Name="Properties\Settings.settings"
+                Encoding="UTF8"><![CDATA[<?xml version='1.0' encoding='iso-8859-1'?>
+<SettingsFile xmlns="uri:settings" CurrentProfile="(Default)">
+  <Profiles>
+    <Profile Name="(Default)" />
+  </Profiles>
+  <Settings />
+</SettingsFile>]]></ProjectItem>
+              <ProjectItem
                 Name="Properties\Resources.resx"
                 Encoding="UTF8"><![CDATA[<?xml version="1.0" encoding="utf-8"?>
 <root>
@@ -9456,35 +9598,6 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==</BinaryItem>
               <ProjectItem
                 Name="ST_43b04d1212274e0883e2cb45444baa2b.csproj"
                 Encoding="UTF8"><![CDATA[<?xml version="1.0" encoding="utf-8"?><Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003"><PropertyGroup><ProjectTypeGuids>{30D016F9-3734-4E33-A861-5E7D899E18F3};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids><Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration><Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform><ProductVersion>8.0.30703</ProductVersion><SchemaVersion>2.0</SchemaVersion><ProjectGuid>{601988C0-19C0-4ED9-A17E-EC65ABB12F1E}</ProjectGuid><OutputType>Library</OutputType><AppDesignerFolder>Properties</AppDesignerFolder><RootNamespace>ST_ef037507a7b34a4990062b7be3fbcba2</RootNamespace><AssemblyName>ST_43b04d1212274e0883e2cb45444baa2b</AssemblyName><TargetFrameworkVersion>v4.0</TargetFrameworkVersion><FileAlignment>512</FileAlignment><ResolveAssemblyReferenceIgnoreTargetFrameworkAttributeVersionMismatch>true</ResolveAssemblyReferenceIgnoreTargetFrameworkAttributeVersionMismatch></PropertyGroup><PropertyGroup Condition=" '$(Configuration)' == 'Debug' "><DebugSymbols>true</DebugSymbols><DebugType>full</DebugType><Optimize>false</Optimize><OutputPath>.\bin\Debug\</OutputPath><EnableUnmanagedDebugging>false</EnableUnmanagedDebugging><DefineConstants>DEBUG;TRACE</DefineConstants><ErrorReport>prompt</ErrorReport><WarningLevel>4</WarningLevel></PropertyGroup><PropertyGroup Condition=" '$(Configuration)' == 'Release' "><DebugSymbols>false</DebugSymbols><Optimize>true</Optimize><OutputPath>.\bin\Release\</OutputPath><EnableUnmanagedDebugging>false</EnableUnmanagedDebugging><DefineConstants>TRACE</DefineConstants><ErrorReport>prompt</ErrorReport><WarningLevel>4</WarningLevel></PropertyGroup><ItemGroup><Reference Include="System" /><Reference Include="System.Data" /><Reference Include="System.Windows.Forms" /><Reference Include="System.Xml" /><Reference Include="Microsoft.SqlServer.ManagedDTS, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91" /><Reference Include="Microsoft.SqlServer.ScriptTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91" /></ItemGroup><ItemGroup><AppDesigner Include="Properties\" /><Compile Include="Properties\AssemblyInfo.cs"><SubType>Code</SubType></Compile><EmbeddedResource Include="Properties\Resources.resx"><Generator>ResXFileCodeGenerator</Generator><LastGenOutput>Resources.Designer.cs</LastGenOutput></EmbeddedResource><Compile Include="Properties\Resources.Designer.cs"><AutoGen>True</AutoGen><DependentUpon>Resources.resx</DependentUpon></Compile><None Include="Properties\Settings.settings"><Generator>SettingsSingleFileGenerator</Generator><LastGenOutput>Settings.Designer.cs</LastGenOutput></None><Compile Include="Properties\Settings.Designer.cs"><AutoGen>True</AutoGen><DependentUpon>Settings.settings</DependentUpon></Compile><Compile Include="ScriptMain.cs"><SubType>Code</SubType></Compile></ItemGroup><!-- Include the build rules for a C# project.--><Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" /><ProjectExtensions><VisualStudio><FlavorProperties GUID="{30D016F9-3734-4E33-A861-5E7D899E18F3}"><ProjectProperties HostName="VSTAHostName" HostPackage="{B3A685AA-7EAF-4BC6-9940-57959FA5AC07}" ApplicationType="usd" Language="cs" TemplatesPath="" DebugInfoExeName="#HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\VisualStudio\10.0\InstallDir#\devenv.exe" /><Host Name="ScriptTask" /><ProjectClient><HostIdentifier>SSIS_ST110</HostIdentifier></ProjectClient></FlavorProperties></VisualStudio></ProjectExtensions></Project>]]></ProjectItem>
-              <ProjectItem
-                Name="Properties\Settings.Designer.cs"
-                Encoding="UTF8"><![CDATA[//------------------------------------------------------------------------------
-// <auto-generated>
-//     This code was generated by a tool.
-//
-//     Changes to this file may cause incorrect behavior and will be lost if
-//     the code is regenerated.
-// </auto-generated>
-//------------------------------------------------------------------------------
-
-[assembly: global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Scope="member", Target="ST_ef037507a7b34a4990062b7be3fbcba2.Properties.Settings.get_Default():ST_ef037507a7b34a4990062b7be3fbcba2.Properties.Sett" +
-    "ings")]
-
-namespace ST_ef037507a7b34a4990062b7be3fbcba2.Properties {
-    
-    
-    internal sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase {
-        
-        [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-        private static Settings defaultInstance = new Settings();
-        
-        public static Settings Default {
-            get {
-                return defaultInstance;
-            }
-        }
-    }
-}]]></ProjectItem>
               <ProjectItem
                 Name="ScriptMain.cs"
                 Encoding="UTF8"><![CDATA[#region Help:  Introduction to the script task
@@ -9626,6 +9739,35 @@ namespace ST_ef037507a7b34a4990062b7be3fbcba2
 	</msb:ItemGroup>
 </c:Project>]]></ProjectItem>
               <ProjectItem
+                Name="Properties\Settings.Designer.cs"
+                Encoding="UTF8"><![CDATA[//------------------------------------------------------------------------------
+// <auto-generated>
+//     This code was generated by a tool.
+//
+//     Changes to this file may cause incorrect behavior and will be lost if
+//     the code is regenerated.
+// </auto-generated>
+//------------------------------------------------------------------------------
+
+[assembly: global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Scope="member", Target="ST_ef037507a7b34a4990062b7be3fbcba2.Properties.Settings.get_Default():ST_ef037507a7b34a4990062b7be3fbcba2.Properties.Sett" +
+    "ings")]
+
+namespace ST_ef037507a7b34a4990062b7be3fbcba2.Properties {
+    
+    
+    internal sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase {
+        
+        [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
+        private static Settings defaultInstance = new Settings();
+        
+        public static Settings Default {
+            get {
+                return defaultInstance;
+            }
+        }
+    }
+}]]></ProjectItem>
+              <ProjectItem
                 Name="Properties\AssemblyInfo.cs"
                 Encoding="UTF8"><![CDATA[using System.Reflection;
 using System.Runtime.CompilerServices;
@@ -9655,15 +9797,6 @@ using System.Runtime.CompilerServices;
 // by using the '*' as shown below:
 
 [assembly: AssemblyVersion("1.0.*")]]]></ProjectItem>
-              <ProjectItem
-                Name="Properties\Settings.settings"
-                Encoding="UTF8"><![CDATA[<?xml version='1.0' encoding='iso-8859-1'?>
-<SettingsFile xmlns="uri:settings" CurrentProfile="(Default)">
-  <Profiles>
-    <Profile Name="(Default)" />
-  </Profiles>
-  <Settings />
-</SettingsFile>]]></ProjectItem>
               <ProjectItem
                 Name="Properties\Resources.Designer.cs"
                 Encoding="UTF8"><![CDATA[//------------------------------------------------------------------------------
@@ -10559,7 +10692,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
         <NodeLayout
           Size="244.8,41.6"
           Id="Package\FELC - Traverse filenames collection to load its contecnt into the cache\DFT - Load mailing data into cache"
-          TopLeft="36.2340357619191,172.903085975063" />
+          TopLeft="42.75126798943,172.903085975063" />
         <NodeLayout
           Size="310.4,41.6"
           Id="Package\FELC - Traverse filenames collection to load its contecnt into the cache\SCR - Check if error limit reached"
@@ -10570,8 +10703,8 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
           TopLeft="459.828603809708,37.5529447885532" />
         <NodeLayout
           Size="244.8,41.6"
-          Id="Package\FELC - Traverse filenames collection to load its contecnt into the cache\SCR - Reset file error counter"
-          TopLeft="48.9285894705322,332.558830135834" />
+          Id="Package\FELC - Traverse filenames collection to load its contecnt into the cache\SCR - Reset file counters"
+          TopLeft="42.75126798943,332.558830135834" />
         <NodeLayout
           Size="166.4,41.6"
           Id="Package\FELC - Traverse filenames collection to load its contecnt into the cache\SQL - Clean cache"
@@ -10587,10 +10720,10 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
         <NodeLayout
           Size="244.8,41.6"
           Id="Package\FELC - Traverse filenames collection to load its contecnt into the cache\SQL - Update loaded status for file"
-          TopLeft="43.0911787358386,251.058831010971" />
+          TopLeft="42.75126798943,251.058831010971" />
         <EdgeLayout
           Id="Package\FELC - Traverse filenames collection to load its contecnt into the cache.PrecedenceConstraints[Constraint]"
-          TopLeft="162.062607248879,214.503085975063">
+          TopLeft="165.15126798943,214.503085975063">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
@@ -10612,13 +10745,13 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
         </EdgeLayout>
         <EdgeLayout
           Id="Package\FELC - Traverse filenames collection to load its contecnt into the cache.PrecedenceConstraints[Constraint 1]"
-          TopLeft="198.100702428586,172.903085975063">
+          TopLeft="204.617934656097,172.903085975063">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="322.794568047789,-93.7501411865098"
+              EndConnector="316.277335820278,-93.7501411865098"
               Start="0,0"
-              End="322.794568047789,-86.2501411865098">
+              End="316.277335820278,-86.2501411865098">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
@@ -10629,20 +10762,20 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
                     Point2="0,-46.7375362150383"
                     Point3="4,-46.7375362150383" />
                   <mssgle:LineSegment
-                    End="318.794568047789,-46.7375362150383" />
+                    End="312.277335820278,-46.7375362150383" />
                   <mssgle:CubicBezierSegment
-                    Point1="318.794568047789,-46.7375362150383"
-                    Point2="322.794568047789,-46.7375362150383"
-                    Point3="322.794568047789,-50.7375362150383" />
+                    Point1="312.277335820278,-46.7375362150383"
+                    Point2="316.277335820278,-46.7375362150383"
+                    Point3="316.277335820278,-50.7375362150383" />
                   <mssgle:LineSegment
-                    End="322.794568047789,-86.2501411865098" />
+                    End="316.277335820278,-86.2501411865098" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="146.155936367644,-41.7375362150383,30.4826953125,9.7490234375"
+              BoundingBox="142.897320253889,-41.7375362150383,30.4826953125,9.7490234375"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
@@ -10728,7 +10861,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
         </EdgeLayout>
         <EdgeLayout
           Id="Package\FELC - Traverse filenames collection to load its contecnt into the cache.PrecedenceConstraints[Constraint 5]"
-          TopLeft="118.555122052453,81.2235343880308">
+          TopLeft="121.813738166208,81.2235343880308">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
@@ -10750,7 +10883,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
         </EdgeLayout>
         <EdgeLayout
           Id="Package\FELC - Traverse filenames collection to load its contecnt into the cache.PrecedenceConstraints[Constraint 6]"
-          TopLeft="168.409884103185,292.658831010971">
+          TopLeft="165.15126798943,292.658831010971">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
@@ -11112,33 +11245,33 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="520.759877450182,-228.830534339648"
+              EndConnector="520.759877450187,-228.830534339648"
               Start="0,0"
-              End="520.759877450182,-221.330534339648">
+              End="520.759877450187,-221.330534339648">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,-87.8518838653209" />
+                    End="0,-87.851883865321" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,-87.8518838653209"
-                    Point2="0,-91.8518838653209"
-                    Point3="4,-91.8518838653209" />
+                    Point1="0,-87.851883865321"
+                    Point2="0,-91.851883865321"
+                    Point3="4,-91.851883865321" />
                   <mssgle:LineSegment
-                    End="516.759877450182,-91.8518838653209" />
+                    End="516.759877450187,-91.851883865321" />
                   <mssgle:CubicBezierSegment
-                    Point1="516.759877450182,-91.8518838653209"
-                    Point2="520.759877450182,-91.8518838653209"
-                    Point3="520.759877450182,-95.8518838653209" />
+                    Point1="516.759877450187,-91.851883865321"
+                    Point2="520.759877450187,-91.851883865321"
+                    Point3="520.759877450187,-95.851883865321" />
                   <mssgle:LineSegment
-                    End="520.759877450182,-221.330534339648" />
+                    End="520.759877450187,-221.330534339648" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="245.138591068841,-86.8518838653209,30.4826953125,9.7490234375"
+              BoundingBox="245.138591068843,-86.851883865321,30.4826953125,9.7490234375"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
@@ -11208,21 +11341,21 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,56.7204246696854"
+              EndConnector="0,56.720424669686"
               Start="0,0"
-              End="0,49.2204246696854">
+              End="0,49.220424669686">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,49.2204246696854" />
+                    End="0,49.220424669686" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="-25.304453125,18.8055248348427,50.60890625,11.609375"
+              BoundingBox="-25.304453125,18.805524834843,50.60890625,11.609375"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
@@ -11476,26 +11609,26 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="131.259860545162,-91.3008171768889"
+              EndConnector="131.25986054516,-91.300817176889"
               Start="0,0"
-              End="123.759860545162,-91.3008171768889">
+              End="123.75986054516,-91.300817176889">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="61.6299302725809,0" />
+                    End="61.6299302725799,0" />
                   <mssgle:CubicBezierSegment
-                    Point1="61.6299302725809,0"
-                    Point2="65.6299302725809,0"
-                    Point3="65.6299302725809,-4" />
+                    Point1="61.6299302725799,0"
+                    Point2="65.6299302725799,0"
+                    Point3="65.6299302725799,-4" />
                   <mssgle:LineSegment
-                    End="65.6299302725809,-87.3008171768889" />
+                    End="65.6299302725799,-87.300817176889" />
                   <mssgle:CubicBezierSegment
-                    Point1="65.6299302725809,-87.3008171768889"
-                    Point2="65.6299302725809,-91.3008171768889"
-                    Point3="69.6299302725809,-91.3008171768889" />
+                    Point1="65.6299302725799,-87.300817176889"
+                    Point2="65.6299302725799,-91.300817176889"
+                    Point3="69.6299302725799,-91.300817176889" />
                   <mssgle:LineSegment
-                    End="123.759860545162,-91.3008171768889" />
+                    End="123.75986054516,-91.300817176889" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -11549,65 +11682,65 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
         <NodeLayout
           Size="228.8,41.6"
           Id="Package\FELC - Traverse filenames collection to load its contecnt into the cache\DFT - Load mailing data into cache\FF_SRC - Read mailing data file"
-          TopLeft="30.9047624310667,28" />
+          TopLeft="33.3814628984941,28" />
         <NodeLayout
           Size="337.6,41.6"
           Id="Package\FELC - Traverse filenames collection to load its contecnt into the cache\DFT - Load mailing data into cache\OLE_DST - Save mailing data 'wrong length' exception"
-          TopLeft="1146.00682223747,111.392716831485" />
+          TopLeft="1386.48301680894,107.008403044507" />
         <NodeLayout
           Size="264,41.6"
           Id="Package\FELC - Traverse filenames collection to load its contecnt into the cache\DFT - Load mailing data into cache\DER - Add empty exception description"
-          TopLeft="802.721102105633,34.9579836835498" />
+          TopLeft="1061.76872556481,29.0442581104159" />
         <NodeLayout
           Size="228.8,41.6"
           Id="Package\FELC - Traverse filenames collection to load its contecnt into the cache\DFT - Load mailing data into cache\OLE_DST - Store file errors"
-          TopLeft="36.1904768067963,303.988799781535" />
+          TopLeft="33.3814628984941,303.988799781535" />
         <NodeLayout
           Size="323.2,41.6"
           Id="Package\FELC - Traverse filenames collection to load its contecnt into the cache\DFT - Load mailing data into cache\OLE_DST - Load mailing data to cache"
-          TopLeft="307.02948368673,305.712048712734" />
+          TopLeft="535.346947892414,388.941181532652" />
         <NodeLayout
           Size="228.8,41.6"
           Id="Package\FELC - Traverse filenames collection to load its contecnt into the cache\DFT - Load mailing data into cache\DER - Add process related data"
-          TopLeft="34.8877545807173,121.869748689725" />
+          TopLeft="33.3814628984941,121.869748689725" />
         <NodeLayout
           Size="323.2,41.6"
           Id="Package\FELC - Traverse filenames collection to load its contecnt into the cache\DFT - Load mailing data into cache\CSPL - Check length of incoming mailing date value"
-          TopLeft="307.029483686731,117.109245339892" />
+          TopLeft="535.346947892414,116.089637482455" />
         <NodeLayout
           Size="337.6,41.6"
           Id="Package\FELC - Traverse filenames collection to load its contecnt into the cache\DFT - Load mailing data into cache\OLE_DST - Save mailing data 'empty fields' exception"
-          TopLeft="1143.12927116806,34.9579836835498" />
+          TopLeft="1382.17689428664,30.5736698965713" />
         <NodeLayout
           Size="323.2,41.6"
           Id="Package\FELC - Traverse filenames collection to load its contecnt into the cache\DFT - Load mailing data into cache\DER - Add parent file ID"
-          TopLeft="305.578236496483,211.495801285476" />
+          TopLeft="535.346947892414,210.476193428039" />
         <NodeLayout
           Size="323.2,41.6"
           Id="Package\FELC - Traverse filenames collection to load its contecnt into the cache\DFT - Load mailing data into cache\CSPL - Check empty fields"
-          TopLeft="307.029483686731,31.1680672713217" />
+          TopLeft="535.346947892414,30.1484594138848" />
         <NodeLayout
           Size="264,41.6"
           Id="Package\FELC - Traverse filenames collection to load its contecnt into the cache\DFT - Load mailing data into cache\DER - Add length exception description"
-          TopLeft="802.721102105633,118.857144524069" />
+          TopLeft="1061.76872556481,112.943418950935" />
         <NodeLayout
           Size="217.6,41.6"
           Id="Package\FELC - Traverse filenames collection to load its contecnt into the cache\DFT - Load mailing data into cache\CNT - Count rows with errors"
-          TopLeft="37.1428577753962,212.078434346869" />
+          TopLeft="38.9814628984941,212.078434346869" />
         <EdgeLayout
           Id="Package\FELC - Traverse filenames collection to load its contecnt into the cache\DFT - Load mailing data into cache.Paths[Row Count Output 1]"
-          TopLeft="148.266667291096,253.678434346869">
+          TopLeft="147.781462898494,253.678434346869">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,50.3103654346662"
+              EndConnector="0,50.310365434666"
               Start="0,0"
-              End="0,42.8103654346662">
+              End="0,42.810365434666">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,42.8103654346662" />
+                    End="0,42.810365434666" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -11618,18 +11751,18 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
         </EdgeLayout>
         <EdgeLayout
           Id="Package\FELC - Traverse filenames collection to load its contecnt into the cache\DFT - Load mailing data into cache.Paths[Non Empty Fields]"
-          TopLeft="468.629483686731,72.7680672713217">
+          TopLeft="696.946947892414,71.7484594138848">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,44.3411780685703"
+              EndConnector="0,44.3411780685704"
               Start="0,0"
-              End="0,36.8411780685703">
+              End="0,36.8411780685704">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,36.8411780685703" />
+                    End="0,36.8411780685704" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -11641,54 +11774,8 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
-          Id="Package\FELC - Traverse filenames collection to load its contecnt into the cache\DFT - Load mailing data into cache.Paths[Incorrect Mailing Date Length]"
-          TopLeft="630.229483686731,138.783194931981">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="172.491618418902,0"
-              Start="0,0"
-              End="164.991618418902,0">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="164.991618418902,0" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="16.542274053201,5,131.9070703125,11.6630859375"
-              RelativePosition="Any" />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package\FELC - Traverse filenames collection to load its contecnt into the cache\DFT - Load mailing data into cache.Paths[Flat File Source Output]"
-          TopLeft="259.704762431067,50.3840336356608">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="47.3247212556643,0"
-              Start="0,0"
-              End="39.8247212556643,0">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="39.8247212556643,0" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
           Id="Package\FELC - Traverse filenames collection to load its contecnt into the cache\DFT - Load mailing data into cache.Paths[Flat File Source Error Output]"
-          TopLeft="147.296258505892,69.6">
+          TopLeft="147.781462898494,69.6">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
@@ -11711,109 +11798,19 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
-          Id="Package\FELC - Traverse filenames collection to load its contecnt into the cache\DFT - Load mailing data into cache.Paths[Empty Fields]"
-          TopLeft="630.229483686731,53.8630254774357">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="172.491618418902,0"
-              Start="0,0"
-              End="164.991618418902,0">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="164.991618418902,0" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="53.943231084451,5,57.10515625,11.609375"
-              RelativePosition="Any" />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package\FELC - Traverse filenames collection to load its contecnt into the cache\DFT - Load mailing data into cache.Paths[Derived Column Output3]"
-          TopLeft="147.615306178057,163.469748689725">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,48.6086856571447"
-              Start="0,0"
-              End="0,41.1086856571447">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,41.1086856571447" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package\FELC - Traverse filenames collection to load its contecnt into the cache\DFT - Load mailing data into cache.Paths[Derived Column Output2]"
-          TopLeft="467.903860091606,253.095801285476">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,52.616247427258"
-              Start="0,0"
-              End="0,45.116247427258">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,45.116247427258" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package\FELC - Traverse filenames collection to load its contecnt into the cache\DFT - Load mailing data into cache.Paths[Derived Column Output1]"
-          TopLeft="1066.72110210563,135.924930677777">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="79.285720131837,0"
-              Start="0,0"
-              End="71.785720131837,0">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="71.785720131837,0" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
           Id="Package\FELC - Traverse filenames collection to load its contecnt into the cache\DFT - Load mailing data into cache.Paths[Derived Column Output]"
-          TopLeft="1066.72110210563,55.7579836835498">
+          TopLeft="147.781462898494,163.469748689725">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="76.4081690624271,0"
+              EndConnector="0,48.608685657144"
               Start="0,0"
-              End="68.9081690624271,0">
+              End="0,41.108685657144">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="68.9081690624271,0" />
+                    End="0,41.108685657144" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -11824,26 +11821,214 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
         </EdgeLayout>
         <EdgeLayout
           Id="Package\FELC - Traverse filenames collection to load its contecnt into the cache\DFT - Load mailing data into cache.Paths[Correct Mailing Date Length]"
-          TopLeft="467.903860091607,158.709245339892">
+          TopLeft="696.946947892414,157.689637482455">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,52.7865559455845"
+              EndConnector="0,52.7865559455839"
               Start="0,0"
-              End="0,45.2865559455845">
+              End="0,45.2865559455839">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,45.2865559455845" />
+                    End="0,45.2865559455839" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="-62.064453125,16.8117350040423,124.12890625,11.6630859375"
+              BoundingBox="-62.064453125,16.811735004042,124.12890625,11.6630859375"
               RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="164.8,41.6"
+          Id="Package\FELC - Traverse filenames collection to load its contecnt into the cache\DFT - Load mailing data into cache\CNT - Count rows"
+          TopLeft="321.904767386767,34.6666671528535" />
+        <EdgeLayout
+          Id="Package\FELC - Traverse filenames collection to load its contecnt into the cache\DFT - Load mailing data into cache.Paths[Flat File Source Output]"
+          TopLeft="262.181462898494,52.1333335764268">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="59.723304488273,0"
+              Start="0,0"
+              End="52.223304488273,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="52.223304488273,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\FELC - Traverse filenames collection to load its contecnt into the cache\DFT - Load mailing data into cache.Paths[Row Count Output 11]"
+          TopLeft="486.704767386767,53.2075632833692">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="48.6421805056469,0"
+              Start="0,0"
+              End="41.1421805056469,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="41.1421805056469,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\FELC - Traverse filenames collection to load its contecnt into the cache\DFT - Load mailing data into cache.Paths[Derived Column Output1]"
+          TopLeft="1325.76872556481,50.6089640034936">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="56.4081687218281,0"
+              Start="0,0"
+              End="48.9081687218281,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="48.9081687218281,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\FELC - Traverse filenames collection to load its contecnt into the cache\DFT - Load mailing data into cache.Paths[Derived Column Output2]"
+          TopLeft="1325.76872556481,130.775910997721">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="60.7142912441379,0"
+              Start="0,0"
+              End="53.2142912441379,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="53.2142912441379,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\FELC - Traverse filenames collection to load its contecnt into the cache\DFT - Load mailing data into cache.Paths[Empty Fields]"
+          TopLeft="858.546947892414,50.3963587621504">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="203.221777672393,0"
+              Start="0,0"
+              End="195.721777672393,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="195.721777672393,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="69.3083107111965,5,57.10515625,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\FELC - Traverse filenames collection to load its contecnt into the cache\DFT - Load mailing data into cache.Paths[Incorrect Mailing Date Length]"
+          TopLeft="858.546947892414,135.316528216695">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="203.221777672393,0"
+              Start="0,0"
+              End="195.721777672393,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="195.721777672393,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="31.9073536799465,5,131.9070703125,11.6630859375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="323.2,41.6"
+          Id="Package\FELC - Traverse filenames collection to load its contecnt into the cache\DFT - Load mailing data into cache\CNT - Count total good rows"
+          TopLeft="535.346947892414,300.988239515364" />
+        <EdgeLayout
+          Id="Package\FELC - Traverse filenames collection to load its contecnt into the cache\DFT - Load mailing data into cache.Paths[Derived Column Output3]"
+          TopLeft="696.946947892414,252.076193428039">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,48.9120460873248"
+              Start="0,0"
+              End="0,41.4120460873248">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,41.4120460873248" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\FELC - Traverse filenames collection to load its contecnt into the cache\DFT - Load mailing data into cache.Paths[Row Count Output 12]"
+          TopLeft="696.946947892414,342.588239515364">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,46.3529420172883"
+              Start="0,0"
+              End="0,38.8529420172883">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,38.8529420172883" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>
