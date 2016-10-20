@@ -11,8 +11,8 @@
   DTS:LocaleID="1033"
   DTS:ObjectName="ETL_Letter_Mailing_Data_Load"
   DTS:PackageType="5"
-  DTS:VersionBuild="528"
-  DTS:VersionGUID="{9C261011-5E10-4FD8-AC4A-0EE1E525FC92}">
+  DTS:VersionBuild="533"
+  DTS:VersionGUID="{CE686764-0861-4D8C-AB00-880C251B9B3D}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">6</DTS:Property>
   <DTS:ConnectionManagers>
@@ -119,7 +119,7 @@
           <DTS:Password
             DTS:Name="Password"
             Sensitive="1"
-            Encrypted="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAPXQ7jZTnV0GKV9nuEcqtfwAAAAAIAAAARABUAFMAAAAQZgAAAAEAACAAAADP3CELDaHGlH0B2zWSg3LiZ5aomLN7YvHbZ+/RDYnuEwAAAAAOgAAAAAIAACAAAACnjnr2nKZl1pDwVNPpBzUvBcQKlnlLJF4Q2Cuwg07TGRAAAAB0fczPnk1RGbvl2uCRbiUEQAAAAJeGOkraEso339QV+aCsGhLkTNs903Pa/sOBiDgbbGGpF3hJqMrq8j3zTrL2w0oCxxH5EuPIaRG/7s1LEWtvRIs</DTS:Password>
+            Encrypted="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAPXQ7jZTnV0GKV9nuEcqtfwAAAAAIAAAARABUAFMAAAAQZgAAAAEAACAAAABI+P4J+v+LNZXO7k7JtdPd80SdpgkNZMUhBXvmJ6i8pgAAAAAOgAAAAAIAACAAAABgwFQseE26fJhsaRY4rozPIy2zl8R9xDk2AWgpeuuNtBAAAADgifK2aDJvMYTDinV7nss7QAAAAPQJG/IojYa1uAudpO5ZWtfYva3POm7MCEN0mQ0u3SqS6uI8+1F1AYeMZOfE4gS3AQFtJfkpOrNNqtpob7k5J3w</DTS:Password>
         </DTS:ConnectionManager>
       </DTS:ObjectData>
     </DTS:ConnectionManager>
@@ -141,7 +141,7 @@
       DTS:ObjectName="execution_log_id">
       <DTS:Property
         DTS:DataType="3"
-        DTS:Name="ParameterValue">9999332</DTS:Property>
+        DTS:Name="ParameterValue">9999334</DTS:Property>
     </DTS:PackageParameter>
     <DTS:PackageParameter
       DTS:CreationName=""
@@ -323,6 +323,17 @@
       DTS:IncludeInDebugDump="2345"
       DTS:Namespace="User"
       DTS:ObjectName="file_total_rows_excluded">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{A256F0EC-CDF3-4E5B-A77E-22F3486C3189}"
+      DTS:EvaluateAsExpression="True"
+      DTS:Expression="@[User::file_total_row_count] -  @[User::file_total_rows_excluded]"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="file_total_rows_processed">
       <DTS:VariableValue
         DTS:DataType="3">0</DTS:VariableValue>
     </DTS:Variable>
@@ -3197,6 +3208,50 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA</BinaryItem>
                               name="FriendlyExpression">"Empty values were found in mailing data row."</property>
                           </properties>
                         </outputColumn>
+                        <outputColumn
+                          refId="Package\FELC - Traverse filenames collection to load its contecnt into the cache\DFT - Load mailing data into cache\DER - Add empty exception description.Outputs[Derived Column Output].Columns[ExecutionLogID]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Computation"
+                          errorRowDisposition="FailComponent"
+                          lineageId="Package\FELC - Traverse filenames collection to load its contecnt into the cache\DFT - Load mailing data into cache\DER - Add empty exception description.Outputs[Derived Column Output].Columns[ExecutionLogID]"
+                          name="ExecutionLogID"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Expression"
+                              name="Expression">@[$Package::execution_log_id]</property>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Friendly Expression"
+                              expressionType="Notify"
+                              name="FriendlyExpression">@[$Package::execution_log_id]</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\FELC - Traverse filenames collection to load its contecnt into the cache\DFT - Load mailing data into cache\DER - Add empty exception description.Outputs[Derived Column Output].Columns[ParentID]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Computation"
+                          errorRowDisposition="FailComponent"
+                          lineageId="Package\FELC - Traverse filenames collection to load its contecnt into the cache\DFT - Load mailing data into cache\DER - Add empty exception description.Outputs[Derived Column Output].Columns[ParentID]"
+                          name="ParentID"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Expression"
+                              name="Expression">@[User::file_id]</property>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Friendly Expression"
+                              expressionType="Notify"
+                              name="FriendlyExpression">@[User::file_id]</property>
+                          </properties>
+                        </outputColumn>
                       </outputColumns>
                       <externalMetadataColumns />
                     </output>
@@ -3269,6 +3324,50 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA</BinaryItem>
                               description="Derived Column Friendly Expression"
                               expressionType="Notify"
                               name="FriendlyExpression">"Length of mailing date is not correct, length must be at least 14 digits."</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\FELC - Traverse filenames collection to load its contecnt into the cache\DFT - Load mailing data into cache\DER - Add length exception description.Outputs[Derived Column Output].Columns[ExecutionLogID]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Computation"
+                          errorRowDisposition="FailComponent"
+                          lineageId="Package\FELC - Traverse filenames collection to load its contecnt into the cache\DFT - Load mailing data into cache\DER - Add length exception description.Outputs[Derived Column Output].Columns[ExecutionLogID]"
+                          name="ExecutionLogID"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Expression"
+                              name="Expression">@[$Package::execution_log_id]</property>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Friendly Expression"
+                              expressionType="Notify"
+                              name="FriendlyExpression">@[$Package::execution_log_id]</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\FELC - Traverse filenames collection to load its contecnt into the cache\DFT - Load mailing data into cache\DER - Add length exception description.Outputs[Derived Column Output].Columns[ParentID]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Computation"
+                          errorRowDisposition="FailComponent"
+                          lineageId="Package\FELC - Traverse filenames collection to load its contecnt into the cache\DFT - Load mailing data into cache\DER - Add length exception description.Outputs[Derived Column Output].Columns[ParentID]"
+                          name="ParentID"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Expression"
+                              name="Expression">@[User::file_id]</property>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Friendly Expression"
+                              expressionType="Notify"
+                              name="FriendlyExpression">@[User::file_id]</property>
                           </properties>
                         </outputColumn>
                       </outputColumns>
@@ -3927,6 +4026,18 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA</BinaryItem>
                           cachedName="Description"
                           externalMetadataColumnId="Package\FELC - Traverse filenames collection to load its contecnt into the cache\DFT - Load mailing data into cache\OLE_DST - Save mailing data 'empty fields' exception.Inputs[OLE DB Destination Input].ExternalColumns[Description]"
                           lineageId="Package\FELC - Traverse filenames collection to load its contecnt into the cache\DFT - Load mailing data into cache\DER - Add empty exception description.Outputs[Derived Column Output].Columns[Description]" />
+                        <inputColumn
+                          refId="Package\FELC - Traverse filenames collection to load its contecnt into the cache\DFT - Load mailing data into cache\OLE_DST - Save mailing data 'empty fields' exception.Inputs[OLE DB Destination Input].Columns[ExecutionLogID]"
+                          cachedDataType="i4"
+                          cachedName="ExecutionLogID"
+                          externalMetadataColumnId="Package\FELC - Traverse filenames collection to load its contecnt into the cache\DFT - Load mailing data into cache\OLE_DST - Save mailing data 'empty fields' exception.Inputs[OLE DB Destination Input].ExternalColumns[ExecutionLogID]"
+                          lineageId="Package\FELC - Traverse filenames collection to load its contecnt into the cache\DFT - Load mailing data into cache\DER - Add empty exception description.Outputs[Derived Column Output].Columns[ExecutionLogID]" />
+                        <inputColumn
+                          refId="Package\FELC - Traverse filenames collection to load its contecnt into the cache\DFT - Load mailing data into cache\OLE_DST - Save mailing data 'empty fields' exception.Inputs[OLE DB Destination Input].Columns[ParentID]"
+                          cachedDataType="i4"
+                          cachedName="ParentID"
+                          externalMetadataColumnId="Package\FELC - Traverse filenames collection to load its contecnt into the cache\DFT - Load mailing data into cache\OLE_DST - Save mailing data 'empty fields' exception.Inputs[OLE DB Destination Input].ExternalColumns[ParentID]"
+                          lineageId="Package\FELC - Traverse filenames collection to load its contecnt into the cache\DFT - Load mailing data into cache\DER - Add empty exception description.Outputs[Derived Column Output].Columns[ParentID]" />
                       </inputColumns>
                       <externalMetadataColumns
                         isUsed="True">
@@ -3957,6 +4068,14 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA</BinaryItem>
                           dataType="wstr"
                           length="1024"
                           name="Description" />
+                        <externalMetadataColumn
+                          refId="Package\FELC - Traverse filenames collection to load its contecnt into the cache\DFT - Load mailing data into cache\OLE_DST - Save mailing data 'empty fields' exception.Inputs[OLE DB Destination Input].ExternalColumns[ExecutionLogID]"
+                          dataType="i4"
+                          name="ExecutionLogID" />
+                        <externalMetadataColumn
+                          refId="Package\FELC - Traverse filenames collection to load its contecnt into the cache\DFT - Load mailing data into cache\OLE_DST - Save mailing data 'empty fields' exception.Inputs[OLE DB Destination Input].ExternalColumns[ParentID]"
+                          dataType="i4"
+                          name="ParentID" />
                       </externalMetadataColumns>
                     </input>
                   </inputs>
@@ -4088,6 +4207,18 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA</BinaryItem>
                           cachedName="Description"
                           externalMetadataColumnId="Package\FELC - Traverse filenames collection to load its contecnt into the cache\DFT - Load mailing data into cache\OLE_DST - Save mailing data 'wrong length' exception.Inputs[OLE DB Destination Input].ExternalColumns[Description]"
                           lineageId="Package\FELC - Traverse filenames collection to load its contecnt into the cache\DFT - Load mailing data into cache\DER - Add length exception description.Outputs[Derived Column Output].Columns[Description]" />
+                        <inputColumn
+                          refId="Package\FELC - Traverse filenames collection to load its contecnt into the cache\DFT - Load mailing data into cache\OLE_DST - Save mailing data 'wrong length' exception.Inputs[OLE DB Destination Input].Columns[ExecutionLogID]"
+                          cachedDataType="i4"
+                          cachedName="ExecutionLogID"
+                          externalMetadataColumnId="Package\FELC - Traverse filenames collection to load its contecnt into the cache\DFT - Load mailing data into cache\OLE_DST - Save mailing data 'wrong length' exception.Inputs[OLE DB Destination Input].ExternalColumns[ExecutionLogID]"
+                          lineageId="Package\FELC - Traverse filenames collection to load its contecnt into the cache\DFT - Load mailing data into cache\DER - Add length exception description.Outputs[Derived Column Output].Columns[ExecutionLogID]" />
+                        <inputColumn
+                          refId="Package\FELC - Traverse filenames collection to load its contecnt into the cache\DFT - Load mailing data into cache\OLE_DST - Save mailing data 'wrong length' exception.Inputs[OLE DB Destination Input].Columns[ParentID]"
+                          cachedDataType="i4"
+                          cachedName="ParentID"
+                          externalMetadataColumnId="Package\FELC - Traverse filenames collection to load its contecnt into the cache\DFT - Load mailing data into cache\OLE_DST - Save mailing data 'wrong length' exception.Inputs[OLE DB Destination Input].ExternalColumns[ParentID]"
+                          lineageId="Package\FELC - Traverse filenames collection to load its contecnt into the cache\DFT - Load mailing data into cache\DER - Add length exception description.Outputs[Derived Column Output].Columns[ParentID]" />
                       </inputColumns>
                       <externalMetadataColumns
                         isUsed="True">
@@ -4118,6 +4249,14 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA</BinaryItem>
                           dataType="wstr"
                           length="1024"
                           name="Description" />
+                        <externalMetadataColumn
+                          refId="Package\FELC - Traverse filenames collection to load its contecnt into the cache\DFT - Load mailing data into cache\OLE_DST - Save mailing data 'wrong length' exception.Inputs[OLE DB Destination Input].ExternalColumns[ExecutionLogID]"
+                          dataType="i4"
+                          name="ExecutionLogID" />
+                        <externalMetadataColumn
+                          refId="Package\FELC - Traverse filenames collection to load its contecnt into the cache\DFT - Load mailing data into cache\OLE_DST - Save mailing data 'wrong length' exception.Inputs[OLE DB Destination Input].ExternalColumns[ParentID]"
+                          dataType="i4"
+                          name="ParentID" />
                       </externalMetadataColumns>
                     </input>
                   </inputs>
@@ -5636,7 +5775,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
               VSTAMajorVersion="3"
               VSTAMinorVersion="0"
               Language="CSharp"
-              ReadWriteVariables="User::file_row_count,User::file_row_error_count,User::file_total_good_rows,User::file_total_row_count,User::file_total_rows_excluded">
+              ReadWriteVariables="User::file_row_count,User::file_row_error_count,User::file_total_good_rows,User::file_total_row_count,User::file_total_rows_excluded,User::file_total_rows_processed">
               <ProjectItem
                 Name="Properties\Settings.settings"
                 Encoding="UTF8"><![CDATA[<?xml version='1.0' encoding='iso-8859-1'?>
@@ -5882,9 +6021,7 @@ namespace ST_5d7cc3ad736244c7a5a4dce703c66c8f
 
 
 		/// <summary>
-        /// This method is called when this script task executes in the control flow.
-        /// Before returning from this method, set the value of Dts.TaskResult to indicate success or failure.
-        /// To open Help, press F1.
+        /// This method is called to reset to zero file counters.
         /// </summary>
 		public void Main()
 		{
@@ -5893,6 +6030,7 @@ namespace ST_5d7cc3ad736244c7a5a4dce703c66c8f
             Dts.Variables["User::file_row_count"].Value = 0;
             Dts.Variables["User::file_total_good_rows"].Value = 0;
             Dts.Variables["User::file_total_rows_excluded"].Value = 0;
+            Dts.Variables["User::file_total_rows_processed"].Value = 0;
 			Dts.TaskResult = (int)ScriptResults.Success;
 		}
 
@@ -5917,15 +6055,15 @@ namespace ST_5d7cc3ad736244c7a5a4dce703c66c8f
                 Encoding="UTF16LE"><![CDATA[<?xml version="1.0" encoding="UTF-16" standalone="yes"?>
 <c:Project xmlns:c="http://schemas.microsoft.com/codeprojectml/2010/08/main" xmlns:msb="http://schemas.microsoft.com/developer/msbuild/2003" runtimeVersion="3.0" schemaVersion="1.0">
 	<msb:PropertyGroup>
-		<msb:Language>msBuild</msb:Language>
 		<msb:CodeName>ST_5d7cc3ad736244c7a5a4dce703c66c8f</msb:CodeName>
+		<msb:Language>msBuild</msb:Language>
 		<msb:DisplayName>ST_5d7cc3ad736244c7a5a4dce703c66c8f</msb:DisplayName>
 		<msb:ProjectId>{D90045BF-976D-490C-AB63-76AA65D7B907}</msb:ProjectId>
 	</msb:PropertyGroup>
 	<msb:ItemGroup>
 		<msb:Project Include="ST_5d7cc3ad736244c7a5a4dce703c66c8f.csproj"/>
-		<msb:File Include="Properties\Settings.settings"/>
 		<msb:File Include="Properties\AssemblyInfo.cs"/>
+		<msb:File Include="Properties\Settings.settings"/>
 		<msb:File Include="Properties\Resources.resx"/>
 		<msb:File Include="Properties\Resources.Designer.cs"/>
 		<msb:File Include="Properties\Settings.Designer.cs"/>
@@ -6118,94 +6256,94 @@ namespace ST_5d7cc3ad736244c7a5a4dce703c66c8f.Properties {
               <BinaryItem
                 Name="ST_5d7cc3ad736244c7a5a4dce703c66c8f.dll">TVqQAAMAAAAEAAAA//8AALgAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 AAAAgAAAAA4fug4AtAnNIbgBTM0hVGhpcyBwcm9ncmFtIGNhbm5vdCBiZSBydW4gaW4gRE9TIG1v
-ZGUuDQ0KJAAAAAAAAABQRQAATAEDAA/bCFgAAAAAAAAAAOAAAiELAQsAABAAAAAIAAAAAAAATi8A
+ZGUuDQ0KJAAAAAAAAABQRQAATAEDAEgOCVgAAAAAAAAAAOAAAiELAQsAABAAAAAIAAAAAAAAri8A
 AAAgAAAAQAAAAAAAEAAgAAAAAgAABAAAAAAAAAAEAAAAAAAAAACAAAAAAgAAAAAAAAMAQIUAABAA
-ABAAAAAAEAAAEAAAAAAAABAAAAAAAAAAAAAAAPQuAABXAAAAAEAAAAgEAAAAAAAAAAAAAAAAAAAA
+ABAAAAAAEAAAEAAAAAAAABAAAAAAAAAAAAAAAFQvAABXAAAAAEAAAAgEAAAAAAAAAAAAAAAAAAAA
 AAAAAGAAAAwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAIAAACAAAAAAAAAAAAAAACCAAAEgAAAAAAAAAAAAAAC50ZXh0AAAAVA8AAAAgAAAAEAAAAAIA
+AAAAIAAACAAAAAAAAAAAAAAACCAAAEgAAAAAAAAAAAAAAC50ZXh0AAAAtA8AAAAgAAAAEAAAAAIA
 AAAAAAAAAAAAAAAAACAAAGAucnNyYwAAAAgEAAAAQAAAAAYAAAASAAAAAAAAAAAAAAAAAABAAABA
-LnJlbG9jAAAMAAAAAGAAAAACAAAAGAAAAAAAAAAAAAAAAAAAQAAAQgAAAAAAAAAAAAAAAAAAAAAw
-LwAAAAAAAEgAAAACAAUAOCIAALwMAAABAAAAAAAAAIAhAAC4AAAAAAAAAAAAAAAAAAAAAAAAAAAA
+LnJlbG9jAAAMAAAAAGAAAAACAAAAGAAAAAAAAAAAAAAAAAAAQAAAQgAAAAAAAAAAAAAAAAAAAACQ
+LwAAAAAAAEgAAAACAAUAWCIAAPwMAAABAAAAAAAAAKAhAAC4AAAAAAAAAAAAAAAAAAAAAAAAAAAA
 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAB4CKA4AAAoqEzACAC0AAAABAAARfgEAAAQtIHIBAABw0AIA
 AAIoDwAACm8QAAAKcxEAAAoKBoABAAAEfgEAAAQqGn4CAAAEKh4CgAIAAAQqGn4DAAAEKi5zBgAA
-BoADAAAEKh4CKBQAAAoqAAMwAgCtAAAAAAAAAAIoFgAACm8XAAAKcnMAAHBvGAAAChaMHgAAAW8Z
+BoADAAAEKh4CKBQAAAoqAAMwAgDNAAAAAAAAAAIoFgAACm8XAAAKcnMAAHBvGAAAChaMHgAAAW8Z
 AAAKAigWAAAKbxcAAApyqQAAcG8YAAAKFoweAAABbxkAAAoCKBYAAApvFwAACnLfAABwbxgAAAoW
 jB4AAAFvGQAACgIoFgAACm8XAAAKcgkBAHBvGAAAChaMHgAAAW8ZAAAKAigWAAAKbxcAAApyPwEA
-cG8YAAAKFoweAAABbxkAAAoCKBYAAAoWbxoAAAoqHgIoGwAACioAAAC0AAAAzsrvvgEAAACRAAAA
-bFN5c3RlbS5SZXNvdXJjZXMuUmVzb3VyY2VSZWFkZXIsIG1zY29ybGliLCBWZXJzaW9uPTQuMC4w
-LjAsIEN1bHR1cmU9bmV1dHJhbCwgUHVibGljS2V5VG9rZW49Yjc3YTVjNTYxOTM0ZTA4OSNTeXN0
-ZW0uUmVzb3VyY2VzLlJ1bnRpbWVSZXNvdXJjZVNldAIAAAAAAAAAAAAAAFBBRFBBRFC0AAAAQlNK
-QgEAAQAAAAAADAAAAHY0LjAuMzAzMTkAAAAABQBsAAAAvAMAACN+AAAoBAAArAUAACNTdHJpbmdz
-AAAAANQJAACAAQAAI1VTAFQLAAAQAAAAI0dVSUQAAABkCwAAWAEAACNCbG9iAAAAAAAAAAIAAAFX
-HaIBCQMAAAD6JTMAFgAAAQAAAB4AAAAFAAAABgAAAAkAAAABAAAAGwAAAAIAAAAPAAAAAQAAAAIA
-AAADAAAABAAAAAEAAAAEAAAAAQAAAAEAAAAAAAoAAQAAAAAABgDBALoACgDdAMgADgA9ARQBBgBZ
-AboABgBvAV4BBgCgAYsBBgBXAj0CBgCCAnACBgCZAnACBgC2AnACBgDVAnACBgDuAnACBgAHA3AC
-BgAiA3ACBgA9A3ACBgBWA3ACBgCPA28DBgCvA28DBgDgA80DBgD9A7oABgACBLoABgAmBHACCgBS
-BDwECgBrBDwEBgCABG8DDgCiBBQBDgDEBBQBEgAdBf0EEgA1Bf0EBgBHBboAAAAAAAEAAAAAAAEA
-AQAAABAAMgA8AAUAAQABAAABEABrADwACQADAAUAAQAQAHQAfwANAAQACAADAQAAowAAABEABAAK
-ABEAfwETABEArAEXABEA9gE5AAYGHwJHAFaAJwJKAFaALwJKAFAgAAAAAIMYvAEbAAEAWCAAAAAA
-kwjCAR8AAQCRIAAAAACTCNYBJAABAJggAAAAAJMI4gEpAAEAoCAAAAAAlggGAj0AAgCzIAAAAACG
-GLwBGwACAKcgAAAAAJEYmwSJAAIAvCAAAAAAhgAaAhsAAgB1IQAAAACGGLwBGwACAAAAAQA3AjkA
-vAFYAEEAvAFYAEkAvAFYAFEAvAFYAFkAvAFYAGEAvAFYAGkAvAFYAHEAvAFYAHkAvAFYAIEAvAFY
-AIkAvAFdAJEAvAEbAJkAvAEbAAkAvAEbAKEAFARiAKEALwRpACkAvAFuALkAvAF6AMkAvAEbABEA
-vAEbANEAvAEbABkA1gSNANkAJwWSAOEAPgWXAOkATQWdANkAVwVdABkAvAEbAAgAFABOAAgAGABT
-ACkAkwCAAC4AGwATAS4AIwATAS4AYwA5AS4ACwCiAC4AEwDqAC4AMwDqAC4AKwATAS4AOwAZAS4A
-QwATAS4AWwAwAUMAawBTAEkAkwCAAGEAmwBTAIMAqwBTAHUAAgABAAMAAwAAAG8BLwAAAO4BNAAA
-ABICQgACAAIAAwACAAMABQABAAQABQACAAUABwAEgAAAAQAAAPkX50wAAAAAAAB/AAAABAAAAAAA
-AAAAAAAAAQCxAAAAAAAEAAAAAAAAAAAAAAABALoAAAAAAAsAAAAAAAAAAAAAAAoA9QAAAAAACwAA
-AAAAAAAAAAAACgDeBAAAAAAAAAAAAQAAAGYFAAAFAAQAAAAAPE1vZHVsZT4AU1RfNWQ3Y2MzYWQ3
-MzYyNDRjN2E1YTRkY2U3MDNjNjZjOGYuZGxsAFJlc291cmNlcwBTVF81ZDdjYzNhZDczNjI0NGM3
-YTVhNGRjZTcwM2M2NmM4Zi5Qcm9wZXJ0aWVzAFNldHRpbmdzAFNjcmlwdE1haW4AU1RfNWQ3Y2Mz
-YWQ3MzYyNDRjN2E1YTRkY2U3MDNjNjZjOGYAU2NyaXB0UmVzdWx0cwBtc2NvcmxpYgBTeXN0ZW0A
-T2JqZWN0AFN5c3RlbS5Db25maWd1cmF0aW9uAEFwcGxpY2F0aW9uU2V0dGluZ3NCYXNlAE1pY3Jv
-c29mdC5TcWxTZXJ2ZXIuU2NyaXB0VGFzawBNaWNyb3NvZnQuU3FsU2VydmVyLkR0cy5UYXNrcy5T
-Y3JpcHRUYXNrAFZTVEFSVFNjcmlwdE9iamVjdE1vZGVsQmFzZQBFbnVtAFN5c3RlbS5SZXNvdXJj
-ZXMAUmVzb3VyY2VNYW5hZ2VyAHJlc291cmNlTWFuAFN5c3RlbS5HbG9iYWxpemF0aW9uAEN1bHR1
-cmVJbmZvAHJlc291cmNlQ3VsdHVyZQAuY3RvcgBnZXRfUmVzb3VyY2VNYW5hZ2VyAGdldF9DdWx0
-dXJlAHNldF9DdWx0dXJlAEN1bHR1cmUAZGVmYXVsdEluc3RhbmNlAGdldF9EZWZhdWx0AERlZmF1
-bHQATWFpbgB2YWx1ZV9fAFN1Y2Nlc3MARmFpbHVyZQB2YWx1ZQBTeXN0ZW0uUnVudGltZS5WZXJz
-aW9uaW5nAFRhcmdldEZyYW1ld29ya0F0dHJpYnV0ZQBTeXN0ZW0uUmVmbGVjdGlvbgBBc3NlbWJs
-eVRpdGxlQXR0cmlidXRlAEFzc2VtYmx5RGVzY3JpcHRpb25BdHRyaWJ1dGUAQXNzZW1ibHlDb25m
-aWd1cmF0aW9uQXR0cmlidXRlAEFzc2VtYmx5Q29tcGFueUF0dHJpYnV0ZQBBc3NlbWJseVByb2R1
-Y3RBdHRyaWJ1dGUAQXNzZW1ibHlDb3B5cmlnaHRBdHRyaWJ1dGUAQXNzZW1ibHlUcmFkZW1hcmtB
-dHRyaWJ1dGUAQXNzZW1ibHlDdWx0dXJlQXR0cmlidXRlAEFzc2VtYmx5VmVyc2lvbkF0dHJpYnV0
-ZQBTeXN0ZW0uUnVudGltZS5Db21waWxlclNlcnZpY2VzAENvbXBpbGF0aW9uUmVsYXhhdGlvbnNB
-dHRyaWJ1dGUAUnVudGltZUNvbXBhdGliaWxpdHlBdHRyaWJ1dGUAU3lzdGVtLkRpYWdub3N0aWNz
-AERlYnVnZ2VyTm9uVXNlckNvZGVBdHRyaWJ1dGUAVHlwZQBSdW50aW1lVHlwZUhhbmRsZQBHZXRU
-eXBlRnJvbUhhbmRsZQBBc3NlbWJseQBnZXRfQXNzZW1ibHkAU3lzdGVtLkNvbXBvbmVudE1vZGVs
-AEVkaXRvckJyb3dzYWJsZUF0dHJpYnV0ZQBFZGl0b3JCcm93c2FibGVTdGF0ZQBDb21waWxlckdl
-bmVyYXRlZEF0dHJpYnV0ZQAuY2N0b3IAU1NJU1NjcmlwdFRhc2tFbnRyeVBvaW50QXR0cmlidXRl
-AFNjcmlwdE9iamVjdE1vZGVsAGdldF9EdHMATWljcm9zb2Z0LlNxbFNlcnZlci5NYW5hZ2VkRFRT
-AE1pY3Jvc29mdC5TcWxTZXJ2ZXIuRHRzLlJ1bnRpbWUAVmFyaWFibGVzAGdldF9WYXJpYWJsZXMA
-VmFyaWFibGUAZ2V0X0l0ZW0ASW50MzIAc2V0X1ZhbHVlAHNldF9UYXNrUmVzdWx0AFNUXzVkN2Nj
-M2FkNzM2MjQ0YzdhNWE0ZGNlNzAzYzY2YzhmLlByb3BlcnRpZXMuUmVzb3VyY2VzLnJlc291cmNl
-cwAAAAAAcVMAVABfADUAZAA3AGMAYwAzAGEAZAA3ADMANgAyADQANABjADcAYQA1AGEANABkAGMA
-ZQA3ADAAMwBjADYANgBjADgAZgAuAFAAcgBvAHAAZQByAHQAaQBlAHMALgBSAGUAcwBvAHUAcgBj
-AGUAcwAANVUAcwBlAHIAOgA6AGYAaQBsAGUAXwByAG8AdwBfAGUAcgByAG8AcgBfAGMAbwB1AG4A
-dAAANVUAcwBlAHIAOgA6AGYAaQBsAGUAXwB0AG8AdABhAGwAXwByAG8AdwBfAGMAbwB1AG4AdAAA
-KVUAcwBlAHIAOgA6AGYAaQBsAGUAXwByAG8AdwBfAGMAbwB1AG4AdAAANVUAcwBlAHIAOgA6AGYA
-aQBsAGUAXwB0AG8AdABhAGwAXwBnAG8AbwBkAF8AcgBvAHcAcwAAPVUAcwBlAHIAOgA6AGYAaQBs
-AGUAXwB0AG8AdABhAGwAXwByAG8AdwBzAF8AZQB4AGMAbAB1AGQAZQBkAAAAAAA8r+FB0YALTLV2
-2uHNuE3FAAi3elxWGTTgiQiJhF3NgIDMkQMGEhUDBhIZAyAAAQQAABIVBAAAEhkFAAEBEhkECAAS
-FQQIABIZAwYSDAQAABIMBAgAEgwCBggDBhEUBAAAAAAEAQAAAAQgAQEOBCABAQgGAAESURFVBCAA
-ElkGIAIBDhJZBAcBEhUFIAEBEWEIAQACAAAAAAADAAABBCAAEm0EIAAScQUgARJ1HAQgAQEcRwEA
-Gi5ORVRGcmFtZXdvcmssVmVyc2lvbj12NC4wAQBUDhRGcmFtZXdvcmtEaXNwbGF5TmFtZRAuTkVU
-IEZyYW1ld29yayA0KAEAI1NUXzVkN2NjM2FkNzM2MjQ0YzdhNWE0ZGNlNzAzYzY2YzhmAAAFAQAA
-AAAWAQARQ29weXJpZ2h0IEAgIDIwMTYAAAgBAAgAAAAAAB4BAAEAVAIWV3JhcE5vbkV4Y2VwdGlv
-blRocm93cwEcLwAAAAAAAAAAAAA+LwAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAMC8AAAAAAAAA
-AAAAAAAAAAAAAAAAAF9Db3JEbGxNYWluAG1zY29yZWUuZGxsAAAAAAD/JQAgABAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+cG8YAAAKFoweAAABbxkAAAoCKBYAAApvFwAACnJ9AQBwbxgAAAoWjB4AAAFvGQAACgIoFgAAChZv
+GgAACioeAigbAAAKKgAAALQAAADOyu++AQAAAJEAAABsU3lzdGVtLlJlc291cmNlcy5SZXNvdXJj
+ZVJlYWRlciwgbXNjb3JsaWIsIFZlcnNpb249NC4wLjAuMCwgQ3VsdHVyZT1uZXV0cmFsLCBQdWJs
+aWNLZXlUb2tlbj1iNzdhNWM1NjE5MzRlMDg5I1N5c3RlbS5SZXNvdXJjZXMuUnVudGltZVJlc291
+cmNlU2V0AgAAAAAAAAAAAAAAUEFEUEFEULQAAABCU0pCAQABAAAAAAAMAAAAdjQuMC4zMDMxOQAA
+AAAFAGwAAAC8AwAAI34AACgEAACsBQAAI1N0cmluZ3MAAAAA1AkAAMABAAAjVVMAlAsAABAAAAAj
+R1VJRAAAAKQLAABYAQAAI0Jsb2IAAAAAAAAAAgAAAVcdogEJAwAAAPolMwAWAAABAAAAHgAAAAUA
+AAAGAAAACQAAAAEAAAAbAAAAAgAAAA8AAAABAAAAAgAAAAMAAAAEAAAAAQAAAAQAAAABAAAAAQAA
+AAAACgABAAAAAAAGAMEAugAKAN0AyAAOAD0BFAEGAFkBugAGAG8BXgEGAKABiwEGAFcCPQIGAIIC
+cAIGAJkCcAIGALYCcAIGANUCcAIGAO4CcAIGAAcDcAIGACIDcAIGAD0DcAIGAFYDcAIGAI8DbwMG
+AK8DbwMGAOADzQMGAP0DugAGAAIEugAGACYEcAIKAFIEPAQKAGsEPAQGAIAEbwMOAKIEFAEOAMQE
+FAESAB0F/QQSADUF/QQGAEcFugAAAAAAAQAAAAAAAQABAAAAEAAyADwABQABAAEAAAEQAGsAPAAJ
+AAMABQABABAAdAB/AA0ABAAIAAMBAACjAAAAEQAEAAoAEQB/ARMAEQCsARcAEQD2ATkABgYfAkcA
+VoAnAkoAVoAvAkoAUCAAAAAAgxi8ARsAAQBYIAAAAACTCMIBHwABAJEgAAAAAJMI1gEkAAEAmCAA
+AAAAkwjiASkAAQCgIAAAAACWCAYCPQACALMgAAAAAIYYvAEbAAIApyAAAAAAkRibBIkAAgC8IAAA
+AACGABoCGwACAJUhAAAAAIYYvAEbAAIAAAABADcCOQC8AVgAQQC8AVgASQC8AVgAUQC8AVgAWQC8
+AVgAYQC8AVgAaQC8AVgAcQC8AVgAeQC8AVgAgQC8AVgAiQC8AV0AkQC8ARsAmQC8ARsACQC8ARsA
+oQAUBGIAoQAvBGkAKQC8AW4AuQC8AXoAyQC8ARsAEQC8ARsA0QC8ARsAGQDWBI0A2QAnBZIA4QA+
+BZcA6QBNBZ0A2QBXBV0AGQC8ARsACAAUAE4ACAAYAFMAKQCTAIAALgAbABMBLgAjABMBLgBjADkB
+LgALAKIALgATAOoALgAzAOoALgArABMBLgA7ABkBLgBDABMBLgBbADABQwBrAFMASQCTAIAAYQCb
+AFMAgwCrAFMAdQACAAEAAwADAAAAbwEvAAAA7gE0AAAAEgJCAAIAAgADAAIAAwAFAAEABAAFAAIA
+BQAHAASAAAABAAAA+ReEZgAAAAAAAH8AAAAEAAAAAAAAAAAAAAABALEAAAAAAAQAAAAAAAAAAAAA
+AAEAugAAAAAACwAAAAAAAAAAAAAACgD1AAAAAAALAAAAAAAAAAAAAAAKAN4EAAAAAAAAAAABAAAA
+ZgUAAAUABAAAAAA8TW9kdWxlPgBTVF81ZDdjYzNhZDczNjI0NGM3YTVhNGRjZTcwM2M2NmM4Zi5k
+bGwAUmVzb3VyY2VzAFNUXzVkN2NjM2FkNzM2MjQ0YzdhNWE0ZGNlNzAzYzY2YzhmLlByb3BlcnRp
+ZXMAU2V0dGluZ3MAU2NyaXB0TWFpbgBTVF81ZDdjYzNhZDczNjI0NGM3YTVhNGRjZTcwM2M2NmM4
+ZgBTY3JpcHRSZXN1bHRzAG1zY29ybGliAFN5c3RlbQBPYmplY3QAU3lzdGVtLkNvbmZpZ3VyYXRp
+b24AQXBwbGljYXRpb25TZXR0aW5nc0Jhc2UATWljcm9zb2Z0LlNxbFNlcnZlci5TY3JpcHRUYXNr
+AE1pY3Jvc29mdC5TcWxTZXJ2ZXIuRHRzLlRhc2tzLlNjcmlwdFRhc2sAVlNUQVJUU2NyaXB0T2Jq
+ZWN0TW9kZWxCYXNlAEVudW0AU3lzdGVtLlJlc291cmNlcwBSZXNvdXJjZU1hbmFnZXIAcmVzb3Vy
+Y2VNYW4AU3lzdGVtLkdsb2JhbGl6YXRpb24AQ3VsdHVyZUluZm8AcmVzb3VyY2VDdWx0dXJlAC5j
+dG9yAGdldF9SZXNvdXJjZU1hbmFnZXIAZ2V0X0N1bHR1cmUAc2V0X0N1bHR1cmUAQ3VsdHVyZQBk
+ZWZhdWx0SW5zdGFuY2UAZ2V0X0RlZmF1bHQARGVmYXVsdABNYWluAHZhbHVlX18AU3VjY2VzcwBG
+YWlsdXJlAHZhbHVlAFN5c3RlbS5SdW50aW1lLlZlcnNpb25pbmcAVGFyZ2V0RnJhbWV3b3JrQXR0
+cmlidXRlAFN5c3RlbS5SZWZsZWN0aW9uAEFzc2VtYmx5VGl0bGVBdHRyaWJ1dGUAQXNzZW1ibHlE
+ZXNjcmlwdGlvbkF0dHJpYnV0ZQBBc3NlbWJseUNvbmZpZ3VyYXRpb25BdHRyaWJ1dGUAQXNzZW1i
+bHlDb21wYW55QXR0cmlidXRlAEFzc2VtYmx5UHJvZHVjdEF0dHJpYnV0ZQBBc3NlbWJseUNvcHly
+aWdodEF0dHJpYnV0ZQBBc3NlbWJseVRyYWRlbWFya0F0dHJpYnV0ZQBBc3NlbWJseUN1bHR1cmVB
+dHRyaWJ1dGUAQXNzZW1ibHlWZXJzaW9uQXR0cmlidXRlAFN5c3RlbS5SdW50aW1lLkNvbXBpbGVy
+U2VydmljZXMAQ29tcGlsYXRpb25SZWxheGF0aW9uc0F0dHJpYnV0ZQBSdW50aW1lQ29tcGF0aWJp
+bGl0eUF0dHJpYnV0ZQBTeXN0ZW0uRGlhZ25vc3RpY3MARGVidWdnZXJOb25Vc2VyQ29kZUF0dHJp
+YnV0ZQBUeXBlAFJ1bnRpbWVUeXBlSGFuZGxlAEdldFR5cGVGcm9tSGFuZGxlAEFzc2VtYmx5AGdl
+dF9Bc3NlbWJseQBTeXN0ZW0uQ29tcG9uZW50TW9kZWwARWRpdG9yQnJvd3NhYmxlQXR0cmlidXRl
+AEVkaXRvckJyb3dzYWJsZVN0YXRlAENvbXBpbGVyR2VuZXJhdGVkQXR0cmlidXRlAC5jY3RvcgBT
+U0lTU2NyaXB0VGFza0VudHJ5UG9pbnRBdHRyaWJ1dGUAU2NyaXB0T2JqZWN0TW9kZWwAZ2V0X0R0
+cwBNaWNyb3NvZnQuU3FsU2VydmVyLk1hbmFnZWREVFMATWljcm9zb2Z0LlNxbFNlcnZlci5EdHMu
+UnVudGltZQBWYXJpYWJsZXMAZ2V0X1ZhcmlhYmxlcwBWYXJpYWJsZQBnZXRfSXRlbQBJbnQzMgBz
+ZXRfVmFsdWUAc2V0X1Rhc2tSZXN1bHQAU1RfNWQ3Y2MzYWQ3MzYyNDRjN2E1YTRkY2U3MDNjNjZj
+OGYuUHJvcGVydGllcy5SZXNvdXJjZXMucmVzb3VyY2VzAAAAAABxUwBUAF8ANQBkADcAYwBjADMA
+YQBkADcAMwA2ADIANAA0AGMANwBhADUAYQA0AGQAYwBlADcAMAAzAGMANgA2AGMAOABmAC4AUABy
+AG8AcABlAHIAdABpAGUAcwAuAFIAZQBzAG8AdQByAGMAZQBzAAA1VQBzAGUAcgA6ADoAZgBpAGwA
+ZQBfAHIAbwB3AF8AZQByAHIAbwByAF8AYwBvAHUAbgB0AAA1VQBzAGUAcgA6ADoAZgBpAGwAZQBf
+AHQAbwB0AGEAbABfAHIAbwB3AF8AYwBvAHUAbgB0AAApVQBzAGUAcgA6ADoAZgBpAGwAZQBfAHIA
+bwB3AF8AYwBvAHUAbgB0AAA1VQBzAGUAcgA6ADoAZgBpAGwAZQBfAHQAbwB0AGEAbABfAGcAbwBv
+AGQAXwByAG8AdwBzAAA9VQBzAGUAcgA6ADoAZgBpAGwAZQBfAHQAbwB0AGEAbABfAHIAbwB3AHMA
+XwBlAHgAYwBsAHUAZABlAGQAAD9VAHMAZQByADoAOgBmAGkAbABlAF8AdABvAHQAYQBsAF8AcgBv
+AHcAcwBfAHAAcgBvAGMAZQBzAHMAZQBkAAAAAADE3mJJhT4+SrZsh+w8svqlAAi3elxWGTTgiQiJ
+hF3NgIDMkQMGEhUDBhIZAyAAAQQAABIVBAAAEhkFAAEBEhkECAASFQQIABIZAwYSDAQAABIMBAgA
+EgwCBggDBhEUBAAAAAAEAQAAAAQgAQEOBCABAQgGAAESURFVBCAAElkGIAIBDhJZBAcBEhUFIAEB
+EWEIAQACAAAAAAADAAABBCAAEm0EIAAScQUgARJ1HAQgAQEcRwEAGi5ORVRGcmFtZXdvcmssVmVy
+c2lvbj12NC4wAQBUDhRGcmFtZXdvcmtEaXNwbGF5TmFtZRAuTkVUIEZyYW1ld29yayA0KAEAI1NU
+XzVkN2NjM2FkNzM2MjQ0YzdhNWE0ZGNlNzAzYzY2YzhmAAAFAQAAAAAWAQARQ29weXJpZ2h0IEAg
+IDIwMTYAAAgBAAgAAAAAAB4BAAEAVAIWV3JhcE5vbkV4Y2VwdGlvblRocm93cwF8LwAAAAAAAAAA
+AACeLwAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAkC8AAAAAAAAAAAAAAAAAAAAAAAAAAF9Db3JE
+bGxNYWluAG1zY29yZWUuZGxsAAAAAAD/JQAgABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 AAAAAAABABAAAAAYAACAAAAAAAAAAAAAAAAAAAABAAEAAAAwAACAAAAAAAAAAAAAAAAAAAABAAAA
 AABIAAAAWEAAALADAAAAAAAAAAAAALADNAAAAFYAUwBfAFYARQBSAFMASQBPAE4AXwBJAE4ARgBP
-AAAAAAC9BO/+AAABAAAAAQDnTPkXAAABAOdM+Rc/AAAAAAAAAAQAAAACAAAAAAAAAAAAAAAAAAAA
+AAAAAAC9BO/+AAABAAAAAQCEZvkXAAABAIRm+Rc/AAAAAAAAAAQAAAACAAAAAAAAAAAAAAAAAAAA
 RAAAAAEAVgBhAHIARgBpAGwAZQBJAG4AZgBvAAAAAAAkAAQAAABUAHIAYQBuAHMAbABhAHQAaQBv
 AG4AAAAAAAAAsAQQAwAAAQBTAHQAcgBpAG4AZwBGAGkAbABlAEkAbgBmAG8AAADsAgAAAQAwADAA
 MAAwADAANABiADAAAABwACQAAQBGAGkAbABlAEQAZQBzAGMAcgBpAHAAdABpAG8AbgAAAAAAUwBU
 AF8ANQBkADcAYwBjADMAYQBkADcAMwA2ADIANAA0AGMANwBhADUAYQA0AGQAYwBlADcAMAAzAGMA
 NgA2AGMAOABmAAAAQAAPAAEARgBpAGwAZQBWAGUAcgBzAGkAbwBuAAAAAAAxAC4AMAAuADYAMQAz
-ADcALgAxADkANgA4ADcAAAAAAHAAKAABAEkAbgB0AGUAcgBuAGEAbABOAGEAbQBlAAAAUwBUAF8A
+ADcALgAyADYAMgA0ADQAAAAAAHAAKAABAEkAbgB0AGUAcgBuAGEAbABOAGEAbQBlAAAAUwBUAF8A
 NQBkADcAYwBjADMAYQBkADcAMwA2ADIANAA0AGMANwBhADUAYQA0AGQAYwBlADcAMAAzAGMANgA2
 AGMAOABmAC4AZABsAGwAAABIABIAAQBMAGUAZwBhAGwAQwBvAHAAeQByAGkAZwBoAHQAAABDAG8A
 cAB5AHIAaQBnAGgAdAAgAEAAIAAgADIAMAAxADYAAAB4ACgAAQBPAHIAaQBnAGkAbgBhAGwARgBp
@@ -6213,8 +6351,8 @@ AGwAZQBuAGEAbQBlAAAAUwBUAF8ANQBkADcAYwBjADMAYQBkADcAMwA2ADIANAA0AGMANwBhADUA
 YQA0AGQAYwBlADcAMAAzAGMANgA2AGMAOABmAC4AZABsAGwAAABoACQAAQBQAHIAbwBkAHUAYwB0
 AE4AYQBtAGUAAAAAAFMAVABfADUAZAA3AGMAYwAzAGEAZAA3ADMANgAyADQANABjADcAYQA1AGEA
 NABkAGMAZQA3ADAAMwBjADYANgBjADgAZgAAAEQADwABAFAAcgBvAGQAdQBjAHQAVgBlAHIAcwBp
-AG8AbgAAADEALgAwAC4ANgAxADMANwAuADEAOQA2ADgANwAAAAAASAAPAAEAQQBzAHMAZQBtAGIA
-bAB5ACAAVgBlAHIAcwBpAG8AbgAAADEALgAwAC4ANgAxADMANwAuADEAOQA2ADgANwAAAAAAAAAA
+AG8AbgAAADEALgAwAC4ANgAxADMANwAuADIANgAyADQANAAAAAAASAAPAAEAQQBzAHMAZQBtAGIA
+bAB5ACAAVgBlAHIAcwBpAG8AbgAAADEALgAwAC4ANgAxADMANwAuADIANgAyADQANAAAAAAAAAAA
 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
@@ -6223,7 +6361,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAwAAABQPwAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAwAAACwPwAA
 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
@@ -6335,9 +6473,9 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
             <SQLTask:SqlTaskData
               SQLTask:Connection="{879CBFE3-8828-45E8-BB2C-3F9D632D4E68}"
               SQLTask:BypassPrepare="False"
-              SQLTask:SqlStatementSource="UPDATE &#xA;  Medhok.Mailing_Data_File&#xA;SET &#xA;  Loaded = 1,&#xA;  ErrorsFound = ?,&#xA;  TotalRecords = ?,&#xA;  TotalRecordsExcluded = ?&#xA;WHERE&#xA;  FileName = ?;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              SQLTask:SqlStatementSource="UPDATE &#xA;  Medhok.Mailing_Data_File&#xA;SET &#xA;  Loaded = 1,&#xA;  ErrorsFound = ?,&#xA;  TotalRecords = ?,&#xA;  TotalRecordsExcluded = ?,&#xA;  TotalRecordsProcessed = ?&#xA;WHERE&#xA;  FileName = ?;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
               <SQLTask:ParameterBinding
-                SQLTask:ParameterName="3"
+                SQLTask:ParameterName="4"
                 SQLTask:DtsVariableName="User::file_name"
                 SQLTask:ParameterDirection="Input"
                 SQLTask:DataType="129"
@@ -6357,6 +6495,12 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
               <SQLTask:ParameterBinding
                 SQLTask:ParameterName="2"
                 SQLTask:DtsVariableName="User::file_total_rows_excluded"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="20"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="3"
+                SQLTask:DtsVariableName="User::file_total_rows_processed"
                 SQLTask:ParameterDirection="Input"
                 SQLTask:DataType="20"
                 SQLTask:ParameterSize="-1" />
