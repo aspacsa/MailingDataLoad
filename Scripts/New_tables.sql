@@ -105,6 +105,75 @@ CREATE TABLE Medhok.Mailing_Data_File_Error
 );
 GO
 
+CREATE TABLE Medhok.Mailing_Data_File_Dest
+(
+    ID INT IDENTITY(1,1) NOT NULL
+      CONSTRAINT idx__mailing_data_file_dest__id
+      PRIMARY KEY CLUSTERED (ID),
+    DestPath VARCHAR(750) NOT NULL,
+      CONSTRAINT unq___mailing_data_file_dest__destpath
+      UNIQUE (DestPath),
+    IndexFilePrefix VARCHAR(15) NOT NULL
+);
+GO
+
+INSERT INTO  Medhok.Mailing_Data_File_Dest
+    VALUES
+      ('\DIP\MEDHOK\BH_Mailing_Data', 'BHMD'),
+      ('\DIP\MEDHOK\CM_Mailing_Data', 'CMMD'),
+      ('\DIP\MEDHOK\PA_Mailing_Data', 'PAMD'),
+      ('\DIP\MEDHOK\RX_Mailing_Data', 'RXMD')
+;
+GO
+
+CREATE TABLE Medhok.Mailing_Data_File_Type
+(
+    ID INT IDENTITY(1,1) NOT NULL
+      CONSTRAINT idx__mailing_data_file_type__id
+      PRIMARY KEY CLUSTERED (ID),
+    FileTypePrefix VARCHAR(15) NOT NULL,
+    DestID INT DEFAULT 0
+    CONSTRAINT fk__mailing_data_file_dest__id
+        FOREIGN KEY REFERENCES Medhok.Mailing_Data_File_Dest (ID)
+        ON DELETE SET DEFAULT,
+    CONSTRAINT unq__mailing_data_file_type__filetypeprefix
+        UNIQUE (FileTypePrefix)
+);
+GO
+
+INSERT INTO Medhok.Mailing_Data_File_Type
+    VALUES
+      ('BHAUT', 1),
+      ('BHPHPAUT', 1),
+      ('BHDEN', 1),
+      ('BHPHPDEN', 1),
+      ('BHCMCL', 1),
+      ('BHCMWC', 1),
+      ('BHCMNC', 1),
+      ('BHCMEM', 1),
+      ('BHCMLT', 1),
+      ('BHCMCP', 1),
+      ('ICP', 2),
+      ('NC', 2),
+      ('CMICT', 2),
+      ('CMWC', 2),
+      ('CMCP', 2),
+      ('CMCL', 2),
+      ('CMNC', 2),
+      ('DMCP', 2),
+      ('DPUDS', 2),
+      ('SSDW', 2),
+      ('SSDCL', 2),
+      ('SSDUR', 2),
+      ('SSDCOR', 2),
+      ('UMNDEN', 3),
+      ('UMDEN', 3),
+      ('UMAUT', 3),
+      ('RX', 4),
+      ('RXREJECTS', 4)
+;
+GO
+
 ALTER TABLE
   Medhok.Letter
 ADD
