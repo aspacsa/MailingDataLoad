@@ -4,7 +4,7 @@
     <Configuration>
       <Name>Development</Name>
       <Options>
-        <StartObjectID>ETL_Mailing_Data_File_Segregator.dtsx</StartObjectID>
+        <StartObjectID>ETL_Mailing_Data_File_Indexing.dtsx</StartObjectID>
         <Run64BitRuntime>true</Run64BitRuntime>
         <UserIDs />
         <UserPasswords />
