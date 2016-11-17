@@ -11,11 +11,160 @@
   DTS:LocaleID="1033"
   DTS:ObjectName="ETL_Mailing_Data_File_Indexing"
   DTS:PackageType="5"
-  DTS:VersionBuild="70"
-  DTS:VersionGUID="{32F30E8F-76AC-4D87-9D07-D93B6A6A7CCA}">
+  DTS:VersionBuild="100"
+  DTS:VersionGUID="{8A3513FF-62E8-4657-BEB0-7B7612590CB7}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">6</DTS:Property>
   <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[Flat File Connection Manager for Current Manifest]"
+      DTS:CreationName="FLATFILE"
+      DTS:DTSID="{3BA9D426-C21A-460D-A571-004A73B5CFD5}"
+      DTS:ObjectName="Flat File Connection Manager for Current Manifest">
+      <DTS:PropertyExpression
+        DTS:Name="ConnectionString">@[User::file_name]</DTS:PropertyExpression>
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:Format="Delimited"
+          DTS:LocaleID="1033"
+          DTS:HeaderRowDelimiter="_x000D__x000A_"
+          DTS:ColumnNamesInFirstDataRow="True"
+          DTS:RowDelimiter=""
+          DTS:TextQualifier="_x003C_none_x003E_"
+          DTS:CodePage="1252"
+          DTS:ConnectionString="Default">
+          <DTS:FlatFileColumns>
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="BatchID"
+              DTS:DTSID="{7EF7FAB0-9378-4151-8906-FEADEBC0C16E}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="CorrespondenceID"
+              DTS:DTSID="{C5854D63-DA17-485A-A292-B5E324AAFCB3}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Page_Count"
+              DTS:DTSID="{FE215D65-B245-44C4-AB18-E684E7A70C12}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Case#"
+              DTS:DTSID="{D0C6D83E-5FB5-47F7-A07B-2E5B24EF784F}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="MemberID"
+              DTS:DTSID="{902AC554-60F4-4A4E-9113-07993875E7DB}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Creation_Time"
+              DTS:DTSID="{45D85F3D-56BC-4D7B-BCDD-D3CBB3E9771F}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Fulfillment_Time"
+              DTS:DTSID="{4320BDA5-13CA-438E-9CA8-CAC38E2E3F33}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x000D__x000A_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="FileName"
+              DTS:DTSID="{DCED474A-2883-49E0-BC74-BC80D2B43056}"
+              DTS:CreationName="" />
+          </DTS:FlatFileColumns>
+        </DTS:ConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[Flat File Connection Manager for New Index]"
+      DTS:CreationName="FLATFILE"
+      DTS:DTSID="{FD1F9734-DD17-43FC-A2B1-F71042147C10}"
+      DTS:ObjectName="Flat File Connection Manager for New Index">
+      <DTS:PropertyExpression
+        DTS:Name="ConnectionString">@[User::new_index_full_path]</DTS:PropertyExpression>
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:Format="Delimited"
+          DTS:LocaleID="1033"
+          DTS:HeaderRowDelimiter="_x000D__x000A_"
+          DTS:RowDelimiter=""
+          DTS:TextQualifier="_x003C_none_x003E_"
+          DTS:CodePage="1252">
+          <DTS:FlatFileColumns>
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x007C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Case_Number"
+              DTS:DTSID="{A0FC26B5-74D4-4999-94D1-5E745B428406}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x007C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Member_ID"
+              DTS:DTSID="{93230109-9933-431D-B51E-CA03CEE81918}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x007C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Fullfilment_Date"
+              DTS:DTSID="{7D0F09B1-D797-48FA-8C1C-0C52DBF4022A}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x000D__x000A_"
+              DTS:DataType="130"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Manifest_Name"
+              DTS:DTSID="{D3002413-A787-4DBF-A14A-C304921F80B6}"
+              DTS:CreationName="" />
+          </DTS:FlatFileColumns>
+        </DTS:ConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
     <DTS:ConnectionManager
       DTS:refId="Package.ConnectionManagers[MSSQLSERVER.testdb.sa]"
       DTS:CreationName="OLEDB"
@@ -27,7 +176,7 @@
           <DTS:Password
             DTS:Name="Password"
             Sensitive="1"
-            Encrypted="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAPXQ7jZTnV0GKV9nuEcqtfwAAAAAIAAAARABUAFMAAAAQZgAAAAEAACAAAAAPwYf5d5kBKEk7FDXgO+IccqIGxjUYq5hPASWVmVhnbgAAAAAOgAAAAAIAACAAAABaVIBXc56GVZ9TDxkq6s/Owx3rEW29wgJyPDtzUKEU/hAAAADccnEffsXcOIHgik0ULbiLQAAAABI/Omxpgjq5ftivtaqFlFf3g7ZEaeqZ4fdewfBY7utrMar2voJkUgPSsNoaSv9MxBE0OB1xg6tBXo0NJtIutVE</DTS:Password>
+            Encrypted="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAPXQ7jZTnV0GKV9nuEcqtfwAAAAAIAAAARABUAFMAAAAQZgAAAAEAACAAAACFYfPyUvWodGG30Ks/X2hgKpcImDMS5QN/+JyPpdtH4wAAAAAOgAAAAAIAACAAAABicxV/b8tYi5M2mWzCLtWxjpk/IvjXqBGuMoqR0MoSPxAAAAD6iGjWPr559FtMpw/jH6tVQAAAAEmWafHtJenUoB3q8P9PmNUtLBWdFRPEkACTZzGEd1AiScReb1spExUsDbWOTkXObIrI2RD3fgOID5K+yJ76prs</DTS:Password>
         </DTS:ConnectionManager>
       </DTS:ObjectData>
     </DTS:ConnectionManager>
@@ -74,6 +223,35 @@
   <DTS:Variables>
     <DTS:Variable
       DTS:CreationName=""
+      DTS:DTSID="{C69BF930-F99F-4BE8-A364-D1599C67C7FB}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="current_file_name">
+      <DTS:VariableValue
+        DTS:DataType="8">"                                                  "</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{D30C68BD-87C7-4A7A-889A-8E0127F1C3F1}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="current_index_destination">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{5B45DF1F-7A67-44F7-B97C-13E597DAA187}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="current_index_prefix">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
       DTS:DTSID="{5612BC14-656D-4FD3-8035-33311E620AE9}"
       DTS:IncludeInDebugDump="2345"
       DTS:Namespace="User"
@@ -97,6 +275,34 @@
       DTS:IncludeInDebugDump="6789"
       DTS:Namespace="User"
       DTS:ObjectName="index_prefixes">
+      <DTS:VariableValue
+        DTS:DataSubType="ManagedSerializable"
+        DTS:DataType="13">
+        <SOAP-ENV:Envelope xmlns:clr="http://schemas.microsoft.com/soap/encoding/clr/1.0" xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/" xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          SOAP-ENV:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">
+          <SOAP-ENV:Body>
+            <xsd:anyType
+              id="ref-1"></xsd:anyType>
+          </SOAP-ENV:Body>
+        </SOAP-ENV:Envelope>
+      </DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{F0630E6F-7315-4D02-825F-D6BB7B16BC03}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="new_index_full_path">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{EEC284A1-C3CE-49A1-9F5A-F85F3516F773}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="new_index_full_paths">
       <DTS:VariableValue
         DTS:DataSubType="ManagedSerializable"
         DTS:DataType="13">
@@ -226,13 +432,388 @@
           <DTS:Variables />
           <DTS:Executables>
             <DTS:Executable
-              DTS:refId="Package\SEQC - Index Generation\FELC - Iterate the manifest directory\Script Task"
+              DTS:refId="Package\SEQC - Index Generation\FELC - Iterate the manifest directory\DFT - Write manifest data into index"
+              DTS:CreationName="SSIS.Pipeline.3"
+              DTS:Description="Data Flow Task"
+              DTS:DTSID="{E2113EDD-678D-4588-96A6-74F117E249A1}"
+              DTS:ExecutableType="SSIS.Pipeline.3"
+              DTS:LocaleID="-1"
+              DTS:ObjectName="DFT - Write manifest data into index"
+              DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+              <DTS:Variables />
+              <DTS:ObjectData>
+                <pipeline
+                  version="1">
+                  <components>
+                    <component
+                      refId="Package\SEQC - Index Generation\FELC - Iterate the manifest directory\DFT - Write manifest data into index\DER - Add manifest name"
+                      componentClassID="{49928E82-9C4E-49F0-AABE-3812B82707EC}"
+                      contactInfo="Derived Column;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+                      description="Creates new column values by applying expressions to transformation input columns. Create new columns or overwrite existing ones. For example, concatenate the values from the 'first name' and 'last name' column to make a 'full name' column."
+                      name="DER - Add manifest name"
+                      usesDispositions="true">
+                      <inputs>
+                        <input
+                          refId="Package\SEQC - Index Generation\FELC - Iterate the manifest directory\DFT - Write manifest data into index\DER - Add manifest name.Inputs[Derived Column Input]"
+                          description="Input to the Derived Column Transformation"
+                          name="Derived Column Input">
+                          <externalMetadataColumns />
+                        </input>
+                      </inputs>
+                      <outputs>
+                        <output
+                          refId="Package\SEQC - Index Generation\FELC - Iterate the manifest directory\DFT - Write manifest data into index\DER - Add manifest name.Outputs[Derived Column Output]"
+                          description="Default Output of the Derived Column Transformation"
+                          exclusionGroup="1"
+                          name="Derived Column Output"
+                          synchronousInputId="Package\SEQC - Index Generation\FELC - Iterate the manifest directory\DFT - Write manifest data into index\DER - Add manifest name.Inputs[Derived Column Input]">
+                          <outputColumns>
+                            <outputColumn
+                              refId="Package\SEQC - Index Generation\FELC - Iterate the manifest directory\DFT - Write manifest data into index\DER - Add manifest name.Outputs[Derived Column Output].Columns[Name_Current_Manifest]"
+                              dataType="wstr"
+                              errorOrTruncationOperation="Computation"
+                              errorRowDisposition="FailComponent"
+                              length="52"
+                              lineageId="Package\SEQC - Index Generation\FELC - Iterate the manifest directory\DFT - Write manifest data into index\DER - Add manifest name.Outputs[Derived Column Output].Columns[Name_Current_Manifest]"
+                              name="Name_Current_Manifest"
+                              truncationRowDisposition="FailComponent">
+                              <properties>
+                                <property
+                                  containsID="true"
+                                  dataType="System.String"
+                                  description="Derived Column Expression"
+                                  name="Expression">@[User::current_file_name]</property>
+                                <property
+                                  containsID="true"
+                                  dataType="System.String"
+                                  description="Derived Column Friendly Expression"
+                                  expressionType="Notify"
+                                  name="FriendlyExpression">@[User::current_file_name]</property>
+                              </properties>
+                            </outputColumn>
+                          </outputColumns>
+                          <externalMetadataColumns />
+                        </output>
+                        <output
+                          refId="Package\SEQC - Index Generation\FELC - Iterate the manifest directory\DFT - Write manifest data into index\DER - Add manifest name.Outputs[Derived Column Error Output]"
+                          description="Error Output of the Derived Column Transformation"
+                          exclusionGroup="1"
+                          isErrorOut="true"
+                          name="Derived Column Error Output"
+                          synchronousInputId="Package\SEQC - Index Generation\FELC - Iterate the manifest directory\DFT - Write manifest data into index\DER - Add manifest name.Inputs[Derived Column Input]">
+                          <outputColumns>
+                            <outputColumn
+                              refId="Package\SEQC - Index Generation\FELC - Iterate the manifest directory\DFT - Write manifest data into index\DER - Add manifest name.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                              dataType="i4"
+                              lineageId="Package\SEQC - Index Generation\FELC - Iterate the manifest directory\DFT - Write manifest data into index\DER - Add manifest name.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                              name="ErrorCode"
+                              specialFlags="1" />
+                            <outputColumn
+                              refId="Package\SEQC - Index Generation\FELC - Iterate the manifest directory\DFT - Write manifest data into index\DER - Add manifest name.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                              dataType="i4"
+                              lineageId="Package\SEQC - Index Generation\FELC - Iterate the manifest directory\DFT - Write manifest data into index\DER - Add manifest name.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                              name="ErrorColumn"
+                              specialFlags="2" />
+                          </outputColumns>
+                          <externalMetadataColumns />
+                        </output>
+                      </outputs>
+                    </component>
+                    <component
+                      refId="Package\SEQC - Index Generation\FELC - Iterate the manifest directory\DFT - Write manifest data into index\FF_DST - Write data to index"
+                      componentClassID="{8DA75FED-1B7C-407D-B2AD-2B24209CCCA4}"
+                      contactInfo="Flat File Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+                      description="Flat File Destination"
+                      localeId="1033"
+                      name="FF_DST - Write data to index">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Specifies whether the data will overwrite or append to the destination file."
+                          name="Overwrite">false</property>
+                        <property
+                          dataType="System.Null"
+                          description="Specifies the text to write to the destination file before any data is written."
+                          expressionType="Notify"
+                          name="Header" />
+                      </properties>
+                      <connections>
+                        <connection
+                          refId="Package\SEQC - Index Generation\FELC - Iterate the manifest directory\DFT - Write manifest data into index\FF_DST - Write data to index.Connections[FlatFileConnection]"
+                          connectionManagerID="Package.ConnectionManagers[Flat File Connection Manager for New Index]"
+                          connectionManagerRefId="Package.ConnectionManagers[Flat File Connection Manager for New Index]"
+                          name="FlatFileConnection" />
+                      </connections>
+                      <inputs>
+                        <input
+                          refId="Package\SEQC - Index Generation\FELC - Iterate the manifest directory\DFT - Write manifest data into index\FF_DST - Write data to index.Inputs[Flat File Destination Input]"
+                          hasSideEffects="true"
+                          name="Flat File Destination Input">
+                          <inputColumns>
+                            <inputColumn
+                              refId="Package\SEQC - Index Generation\FELC - Iterate the manifest directory\DFT - Write manifest data into index\FF_DST - Write data to index.Inputs[Flat File Destination Input].Columns[Case#]"
+                              cachedCodepage="1252"
+                              cachedDataType="str"
+                              cachedLength="50"
+                              cachedName="Case#"
+                              externalMetadataColumnId="Package\SEQC - Index Generation\FELC - Iterate the manifest directory\DFT - Write manifest data into index\FF_DST - Write data to index.Inputs[Flat File Destination Input].ExternalColumns[Case_Number]"
+                              lineageId="Package\SEQC - Index Generation\FELC - Iterate the manifest directory\DFT - Write manifest data into index\FF_SRC - Manifest file.Outputs[Flat File Source Output].Columns[Case#]" />
+                            <inputColumn
+                              refId="Package\SEQC - Index Generation\FELC - Iterate the manifest directory\DFT - Write manifest data into index\FF_DST - Write data to index.Inputs[Flat File Destination Input].Columns[MemberID]"
+                              cachedCodepage="1252"
+                              cachedDataType="str"
+                              cachedLength="50"
+                              cachedName="MemberID"
+                              externalMetadataColumnId="Package\SEQC - Index Generation\FELC - Iterate the manifest directory\DFT - Write manifest data into index\FF_DST - Write data to index.Inputs[Flat File Destination Input].ExternalColumns[Member_ID]"
+                              lineageId="Package\SEQC - Index Generation\FELC - Iterate the manifest directory\DFT - Write manifest data into index\FF_SRC - Manifest file.Outputs[Flat File Source Output].Columns[MemberID]" />
+                            <inputColumn
+                              refId="Package\SEQC - Index Generation\FELC - Iterate the manifest directory\DFT - Write manifest data into index\FF_DST - Write data to index.Inputs[Flat File Destination Input].Columns[Fulfillment_Time]"
+                              cachedCodepage="1252"
+                              cachedDataType="str"
+                              cachedLength="50"
+                              cachedName="Fulfillment_Time"
+                              externalMetadataColumnId="Package\SEQC - Index Generation\FELC - Iterate the manifest directory\DFT - Write manifest data into index\FF_DST - Write data to index.Inputs[Flat File Destination Input].ExternalColumns[Fullfilment_Date]"
+                              lineageId="Package\SEQC - Index Generation\FELC - Iterate the manifest directory\DFT - Write manifest data into index\FF_SRC - Manifest file.Outputs[Flat File Source Output].Columns[Fulfillment_Time]" />
+                            <inputColumn
+                              refId="Package\SEQC - Index Generation\FELC - Iterate the manifest directory\DFT - Write manifest data into index\FF_DST - Write data to index.Inputs[Flat File Destination Input].Columns[Name_Current_Manifest]"
+                              cachedDataType="wstr"
+                              cachedLength="52"
+                              cachedName="Name_Current_Manifest"
+                              externalMetadataColumnId="Package\SEQC - Index Generation\FELC - Iterate the manifest directory\DFT - Write manifest data into index\FF_DST - Write data to index.Inputs[Flat File Destination Input].ExternalColumns[Manifest_Name]"
+                              lineageId="Package\SEQC - Index Generation\FELC - Iterate the manifest directory\DFT - Write manifest data into index\DER - Add manifest name.Outputs[Derived Column Output].Columns[Name_Current_Manifest]" />
+                          </inputColumns>
+                          <externalMetadataColumns
+                            isUsed="True">
+                            <externalMetadataColumn
+                              refId="Package\SEQC - Index Generation\FELC - Iterate the manifest directory\DFT - Write manifest data into index\FF_DST - Write data to index.Inputs[Flat File Destination Input].ExternalColumns[Case_Number]"
+                              codePage="1252"
+                              dataType="str"
+                              length="50"
+                              name="Case_Number" />
+                            <externalMetadataColumn
+                              refId="Package\SEQC - Index Generation\FELC - Iterate the manifest directory\DFT - Write manifest data into index\FF_DST - Write data to index.Inputs[Flat File Destination Input].ExternalColumns[Member_ID]"
+                              codePage="1252"
+                              dataType="str"
+                              length="50"
+                              name="Member_ID" />
+                            <externalMetadataColumn
+                              refId="Package\SEQC - Index Generation\FELC - Iterate the manifest directory\DFT - Write manifest data into index\FF_DST - Write data to index.Inputs[Flat File Destination Input].ExternalColumns[Fullfilment_Date]"
+                              codePage="1252"
+                              dataType="str"
+                              length="50"
+                              name="Fullfilment_Date" />
+                            <externalMetadataColumn
+                              refId="Package\SEQC - Index Generation\FELC - Iterate the manifest directory\DFT - Write manifest data into index\FF_DST - Write data to index.Inputs[Flat File Destination Input].ExternalColumns[Manifest_Name]"
+                              dataType="wstr"
+                              length="255"
+                              name="Manifest_Name" />
+                          </externalMetadataColumns>
+                        </input>
+                      </inputs>
+                    </component>
+                    <component
+                      refId="Package\SEQC - Index Generation\FELC - Iterate the manifest directory\DFT - Write manifest data into index\FF_SRC - Manifest file"
+                      componentClassID="{D23FD76B-F51D-420F-BBCB-19CBF6AC1AB4}"
+                      contactInfo="Flat File Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+                      description="Flat File Source"
+                      localeId="1033"
+                      name="FF_SRC - Manifest file"
+                      usesDispositions="true"
+                      version="1">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Specifies whether zero-length columns are treated as null."
+                          name="RetainNulls">false</property>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the name of an output column containing the file name. If no name is specified, no output column containing the file name will be generated."
+                          name="FileNameColumnName"></property>
+                      </properties>
+                      <connections>
+                        <connection
+                          refId="Package\SEQC - Index Generation\FELC - Iterate the manifest directory\DFT - Write manifest data into index\FF_SRC - Manifest file.Connections[FlatFileConnection]"
+                          connectionManagerID="Package.ConnectionManagers[Flat File Connection Manager for Current Manifest]"
+                          connectionManagerRefId="Package.ConnectionManagers[Flat File Connection Manager for Current Manifest]"
+                          name="FlatFileConnection" />
+                      </connections>
+                      <outputs>
+                        <output
+                          refId="Package\SEQC - Index Generation\FELC - Iterate the manifest directory\DFT - Write manifest data into index\FF_SRC - Manifest file.Outputs[Flat File Source Output]"
+                          name="Flat File Source Output">
+                          <outputColumns>
+                            <outputColumn
+                              refId="Package\SEQC - Index Generation\FELC - Iterate the manifest directory\DFT - Write manifest data into index\FF_SRC - Manifest file.Outputs[Flat File Source Output].Columns[Case#]"
+                              codePage="1252"
+                              dataType="str"
+                              errorOrTruncationOperation="Conversion"
+                              errorRowDisposition="FailComponent"
+                              externalMetadataColumnId="Package\SEQC - Index Generation\FELC - Iterate the manifest directory\DFT - Write manifest data into index\FF_SRC - Manifest file.Outputs[Flat File Source Output].ExternalColumns[Case#]"
+                              length="50"
+                              lineageId="Package\SEQC - Index Generation\FELC - Iterate the manifest directory\DFT - Write manifest data into index\FF_SRC - Manifest file.Outputs[Flat File Source Output].Columns[Case#]"
+                              name="Case#"
+                              truncationRowDisposition="FailComponent">
+                              <properties>
+                                <property
+                                  dataType="System.Boolean"
+                                  description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                                  name="FastParse">false</property>
+                                <property
+                                  dataType="System.Boolean"
+                                  description="Indicates whether the data is in binary format."
+                                  name="UseBinaryFormat">false</property>
+                              </properties>
+                            </outputColumn>
+                            <outputColumn
+                              refId="Package\SEQC - Index Generation\FELC - Iterate the manifest directory\DFT - Write manifest data into index\FF_SRC - Manifest file.Outputs[Flat File Source Output].Columns[MemberID]"
+                              codePage="1252"
+                              dataType="str"
+                              errorOrTruncationOperation="Conversion"
+                              errorRowDisposition="FailComponent"
+                              externalMetadataColumnId="Package\SEQC - Index Generation\FELC - Iterate the manifest directory\DFT - Write manifest data into index\FF_SRC - Manifest file.Outputs[Flat File Source Output].ExternalColumns[MemberID]"
+                              length="50"
+                              lineageId="Package\SEQC - Index Generation\FELC - Iterate the manifest directory\DFT - Write manifest data into index\FF_SRC - Manifest file.Outputs[Flat File Source Output].Columns[MemberID]"
+                              name="MemberID"
+                              truncationRowDisposition="FailComponent">
+                              <properties>
+                                <property
+                                  dataType="System.Boolean"
+                                  description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                                  name="FastParse">false</property>
+                                <property
+                                  dataType="System.Boolean"
+                                  description="Indicates whether the data is in binary format."
+                                  name="UseBinaryFormat">false</property>
+                              </properties>
+                            </outputColumn>
+                            <outputColumn
+                              refId="Package\SEQC - Index Generation\FELC - Iterate the manifest directory\DFT - Write manifest data into index\FF_SRC - Manifest file.Outputs[Flat File Source Output].Columns[Fulfillment_Time]"
+                              codePage="1252"
+                              dataType="str"
+                              errorOrTruncationOperation="Conversion"
+                              errorRowDisposition="FailComponent"
+                              externalMetadataColumnId="Package\SEQC - Index Generation\FELC - Iterate the manifest directory\DFT - Write manifest data into index\FF_SRC - Manifest file.Outputs[Flat File Source Output].ExternalColumns[Fulfillment_Time]"
+                              length="50"
+                              lineageId="Package\SEQC - Index Generation\FELC - Iterate the manifest directory\DFT - Write manifest data into index\FF_SRC - Manifest file.Outputs[Flat File Source Output].Columns[Fulfillment_Time]"
+                              name="Fulfillment_Time"
+                              truncationRowDisposition="FailComponent">
+                              <properties>
+                                <property
+                                  dataType="System.Boolean"
+                                  description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                                  name="FastParse">false</property>
+                                <property
+                                  dataType="System.Boolean"
+                                  description="Indicates whether the data is in binary format."
+                                  name="UseBinaryFormat">false</property>
+                              </properties>
+                            </outputColumn>
+                          </outputColumns>
+                          <externalMetadataColumns
+                            isUsed="True">
+                            <externalMetadataColumn
+                              refId="Package\SEQC - Index Generation\FELC - Iterate the manifest directory\DFT - Write manifest data into index\FF_SRC - Manifest file.Outputs[Flat File Source Output].ExternalColumns[BatchID]"
+                              codePage="1252"
+                              dataType="str"
+                              length="50"
+                              name="BatchID" />
+                            <externalMetadataColumn
+                              refId="Package\SEQC - Index Generation\FELC - Iterate the manifest directory\DFT - Write manifest data into index\FF_SRC - Manifest file.Outputs[Flat File Source Output].ExternalColumns[CorrespondenceID]"
+                              codePage="1252"
+                              dataType="str"
+                              length="50"
+                              name="CorrespondenceID" />
+                            <externalMetadataColumn
+                              refId="Package\SEQC - Index Generation\FELC - Iterate the manifest directory\DFT - Write manifest data into index\FF_SRC - Manifest file.Outputs[Flat File Source Output].ExternalColumns[Page_Count]"
+                              codePage="1252"
+                              dataType="str"
+                              length="50"
+                              name="Page_Count" />
+                            <externalMetadataColumn
+                              refId="Package\SEQC - Index Generation\FELC - Iterate the manifest directory\DFT - Write manifest data into index\FF_SRC - Manifest file.Outputs[Flat File Source Output].ExternalColumns[Case#]"
+                              codePage="1252"
+                              dataType="str"
+                              length="50"
+                              name="Case#" />
+                            <externalMetadataColumn
+                              refId="Package\SEQC - Index Generation\FELC - Iterate the manifest directory\DFT - Write manifest data into index\FF_SRC - Manifest file.Outputs[Flat File Source Output].ExternalColumns[MemberID]"
+                              codePage="1252"
+                              dataType="str"
+                              length="50"
+                              name="MemberID" />
+                            <externalMetadataColumn
+                              refId="Package\SEQC - Index Generation\FELC - Iterate the manifest directory\DFT - Write manifest data into index\FF_SRC - Manifest file.Outputs[Flat File Source Output].ExternalColumns[Creation_Time]"
+                              codePage="1252"
+                              dataType="str"
+                              length="50"
+                              name="Creation_Time" />
+                            <externalMetadataColumn
+                              refId="Package\SEQC - Index Generation\FELC - Iterate the manifest directory\DFT - Write manifest data into index\FF_SRC - Manifest file.Outputs[Flat File Source Output].ExternalColumns[Fulfillment_Time]"
+                              codePage="1252"
+                              dataType="str"
+                              length="50"
+                              name="Fulfillment_Time" />
+                            <externalMetadataColumn
+                              refId="Package\SEQC - Index Generation\FELC - Iterate the manifest directory\DFT - Write manifest data into index\FF_SRC - Manifest file.Outputs[Flat File Source Output].ExternalColumns[FileName]"
+                              codePage="1252"
+                              dataType="str"
+                              length="50"
+                              name="FileName" />
+                          </externalMetadataColumns>
+                        </output>
+                        <output
+                          refId="Package\SEQC - Index Generation\FELC - Iterate the manifest directory\DFT - Write manifest data into index\FF_SRC - Manifest file.Outputs[Flat File Source Error Output]"
+                          isErrorOut="true"
+                          name="Flat File Source Error Output">
+                          <outputColumns>
+                            <outputColumn
+                              refId="Package\SEQC - Index Generation\FELC - Iterate the manifest directory\DFT - Write manifest data into index\FF_SRC - Manifest file.Outputs[Flat File Source Error Output].Columns[Flat File Source Error Output Column]"
+                              codePage="1252"
+                              dataType="text"
+                              description="Flat File Source Error Output Column"
+                              lineageId="Package\SEQC - Index Generation\FELC - Iterate the manifest directory\DFT - Write manifest data into index\FF_SRC - Manifest file.Outputs[Flat File Source Error Output].Columns[Flat File Source Error Output Column]"
+                              name="Flat File Source Error Output Column" />
+                            <outputColumn
+                              refId="Package\SEQC - Index Generation\FELC - Iterate the manifest directory\DFT - Write manifest data into index\FF_SRC - Manifest file.Outputs[Flat File Source Error Output].Columns[ErrorCode]"
+                              dataType="i4"
+                              lineageId="Package\SEQC - Index Generation\FELC - Iterate the manifest directory\DFT - Write manifest data into index\FF_SRC - Manifest file.Outputs[Flat File Source Error Output].Columns[ErrorCode]"
+                              name="ErrorCode"
+                              specialFlags="1" />
+                            <outputColumn
+                              refId="Package\SEQC - Index Generation\FELC - Iterate the manifest directory\DFT - Write manifest data into index\FF_SRC - Manifest file.Outputs[Flat File Source Error Output].Columns[ErrorColumn]"
+                              dataType="i4"
+                              lineageId="Package\SEQC - Index Generation\FELC - Iterate the manifest directory\DFT - Write manifest data into index\FF_SRC - Manifest file.Outputs[Flat File Source Error Output].Columns[ErrorColumn]"
+                              name="ErrorColumn"
+                              specialFlags="2" />
+                          </outputColumns>
+                          <externalMetadataColumns />
+                        </output>
+                      </outputs>
+                    </component>
+                  </components>
+                  <paths>
+                    <path
+                      refId="Package\SEQC - Index Generation\FELC - Iterate the manifest directory\DFT - Write manifest data into index.Paths[Derived Column Output]"
+                      endId="Package\SEQC - Index Generation\FELC - Iterate the manifest directory\DFT - Write manifest data into index\FF_DST - Write data to index.Inputs[Flat File Destination Input]"
+                      name="Derived Column Output"
+                      startId="Package\SEQC - Index Generation\FELC - Iterate the manifest directory\DFT - Write manifest data into index\DER - Add manifest name.Outputs[Derived Column Output]" />
+                    <path
+                      refId="Package\SEQC - Index Generation\FELC - Iterate the manifest directory\DFT - Write manifest data into index.Paths[Flat File Source Output]"
+                      endId="Package\SEQC - Index Generation\FELC - Iterate the manifest directory\DFT - Write manifest data into index\DER - Add manifest name.Inputs[Derived Column Input]"
+                      name="Flat File Source Output"
+                      startId="Package\SEQC - Index Generation\FELC - Iterate the manifest directory\DFT - Write manifest data into index\FF_SRC - Manifest file.Outputs[Flat File Source Output]" />
+                  </paths>
+                </pipeline>
+              </DTS:ObjectData>
+            </DTS:Executable>
+            <DTS:Executable
+              DTS:refId="Package\SEQC - Index Generation\FELC - Iterate the manifest directory\SCR - Get index specs"
               DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ScriptTask.ScriptTask, Microsoft.SqlServer.ScriptTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
               DTS:Description="Script Task"
               DTS:DTSID="{35E8B368-6185-4701-9641-451F16A9E1B1}"
               DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ScriptTask.ScriptTask, Microsoft.SqlServer.ScriptTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
               DTS:LocaleID="-1"
-              DTS:ObjectName="Script Task"
+              DTS:ObjectName="SCR - Get index specs"
               DTS:ThreadHint="0">
               <DTS:Variables />
               <DTS:ObjectData>
@@ -241,7 +822,8 @@
                   VSTAMajorVersion="3"
                   VSTAMinorVersion="0"
                   Language="CSharp"
-                  ReadOnlyVariables="User::file_name,User::prefixes_and_destinations_paths">
+                  ReadOnlyVariables="User::file_name,User::new_index_full_paths,User::prefixes_and_destinations_paths"
+                  ReadWriteVariables="User::current_file_name,User::current_index_destination,User::current_index_prefix,User::new_index_full_path">
                   <ProjectItem
                     Name="Properties\Resources.resx"
                     Encoding="UTF8"><![CDATA[<?xml version="1.0" encoding="utf-8"?>
@@ -486,14 +1068,35 @@ namespace ST_0189a9b6e7394e689eb9e69765fb2632
         /// </summary>
 		public void Main()
 		{
+            int result = (int)ScriptResults.Failure;
             List<Tuple<string, string, string>> args = 
-                (List<Tuple<string, string, string>>)Dts.Variables["User::prefixes_and_destinations_paths"].Value;
-            string file_name = Dts.Variables["User::file_name"].Value.ToString();
-            file_name = Path.GetFileName(file_name);
-            string[] tokens = file_name.Split('_');
-            string curr_file_prefix = tokens[0];
+                (List<Tuple<string, string, string>>)Dts.Variables["User::prefixes_and_destinations_paths"].Value;      //Get arguments for index file
+            Dictionary<string, string> new_index_full_paths =
+                (Dictionary<string, string>)Dts.Variables["User::new_index_full_paths"].Value;                          //Get indexes full paths
+            string file_name = Dts.Variables["User::file_name"].Value.ToString();                                       //Get full path of current file
+            file_name = Path.GetFileName(file_name);                                                                    //Get rid of the path and leave file name
+            string[] tokens = file_name.Split('_');                                                                     //Tokenize file name to get prefix
+            string curr_file_prefix = tokens[0];                                                                        //Get file prefix
 
-			Dts.TaskResult = (int)ScriptResults.Success;
+            Tuple<string, string, string> arg = null;
+            arg = args.Find(x => x.Item1 == curr_file_prefix);                                                          //Using current file prefix get arguments
+                                                                                                                        //for index file.
+            if (arg != null)
+            {
+                string new_index_full_path;
+                if (new_index_full_paths.TryGetValue(arg.Item2, out new_index_full_path))
+                {
+                    Dts.Variables["User::current_file_name"].Value = file_name;                                             //Name of current manifest
+                    Dts.Variables["User::current_index_prefix"].Value = arg.Item2;
+                    Dts.Variables["User::current_index_destination"].Value = arg.Item3;
+                    Dts.Variables["User::new_index_full_path"].Value = new_index_full_path;
+                    result = (int)ScriptResults.Success;
+                }
+            }
+
+            Dts.TaskResult = result;
+
+
 		}
 
         #region ScriptResults declaration
@@ -598,17 +1201,6 @@ namespace ST_0189a9b6e7394e689eb9e69765fb2632.Properties {
 		<msb:File Include="Properties\Resources.Designer.cs"/>
 		<msb:File Include="Properties\Settings.Designer.cs"/>
 		<msb:File Include="ScriptMain.cs"/>
-		<msb:Breakpoint Include="c1b3571ce1114050884a94d375e61b99">
-			<msb:FileName>ScriptMain.cs</msb:FileName>
-			<msb:ColumnNumber>4</msb:ColumnNumber>
-			<msb:Enabled>True</msb:Enabled>
-			<msb:LineNumber>102</msb:LineNumber>
-			<msb:Condition></msb:Condition>
-			<msb:ConditionType>1</msb:ConditionType>
-			<msb:Language>C#</msb:Language>
-			<msb:HitCountType>1</msb:HitCountType>
-			<msb:HitCountTarget>1</msb:HitCountTarget>
-		</msb:Breakpoint>
 	</msb:ItemGroup>
 </c:Project>]]></ProjectItem>
                   <ProjectItem
@@ -738,112 +1330,130 @@ using System.Runtime.CompilerServices;
                   <BinaryItem
                     Name="ST_0189a9b6e7394e689eb9e69765fb2632.dll">TVqQAAMAAAAEAAAA//8AALgAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 AAAAgAAAAA4fug4AtAnNIbgBTM0hVGhpcyBwcm9ncmFtIGNhbm5vdCBiZSBydW4gaW4gRE9TIG1v
-ZGUuDQ0KJAAAAAAAAABQRQAATAEDAJi/LFgAAAAAAAAAAOAAAiELAQsAABAAAAAIAAAAAAAAHi8A
+ZGUuDQ0KJAAAAAAAAABQRQAATAEDAH75LVgAAAAAAAAAAOAAAiELAQsAABQAAAAIAAAAAAAArjIA
 AAAgAAAAQAAAAAAAEAAgAAAAAgAABAAAAAAAAAAEAAAAAAAAAACAAAAAAgAAAAAAAAMAQIUAABAA
-ABAAAAAAEAAAEAAAAAAAABAAAAAAAAAAAAAAAMQuAABXAAAAAEAAAAgEAAAAAAAAAAAAAAAAAAAA
+ABAAAAAAEAAAEAAAAAAAABAAAAAAAAAAAAAAAFwyAABPAAAAAEAAAAgEAAAAAAAAAAAAAAAAAAAA
 AAAAAGAAAAwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAIAAACAAAAAAAAAAAAAAACCAAAEgAAAAAAAAAAAAAAC50ZXh0AAAAJA8AAAAgAAAAEAAAAAIA
-AAAAAAAAAAAAAAAAACAAAGAucnNyYwAAAAgEAAAAQAAAAAYAAAASAAAAAAAAAAAAAAAAAABAAABA
-LnJlbG9jAAAMAAAAAGAAAAACAAAAGAAAAAAAAAAAAAAAAAAAQAAAQgAAAAAAAAAAAAAAAAAAAAAA
-LwAAAAAAAEgAAAACAAUA+CEAAMwMAAABAAAAAAAAAEAhAAC4AAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAIAAACAAAAAAAAAAAAAAACCAAAEgAAAAAAAAAAAAAAC50ZXh0AAAAtBIAAAAgAAAAFAAAAAIA
+AAAAAAAAAAAAAAAAACAAAGAucnNyYwAAAAgEAAAAQAAAAAYAAAAWAAAAAAAAAAAAAAAAAABAAABA
+LnJlbG9jAAAMAAAAAGAAAAACAAAAHAAAAAAAAAAAAAAAAAAAQAAAQgAAAAAAAAAAAAAAAAAAAACQ
+MgAAAAAAAEgAAAACAAUA8CIAAGwPAAABAAAAAAAAADgiAAC4AAAAAAAAAAAAAAAAAAAAAAAAAAAA
 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAB4CKA4AAAoqEzACAC0AAAABAAARfgEAAAQtIHIBAABw0AIA
 AAIoDwAACm8QAAAKcxEAAAoKBoABAAAEfgEAAAQqGn4CAAAEKh4CgAIAAAQqGn4DAAAEKi5zBgAA
-BoADAAAEKh4CKBQAAAoqABMwBABsAAAAAgAAEQIoFgAACm8XAAAKcnMAAHBvGAAACm8ZAAAKdAEA
-ABsmAigWAAAKbxcAAApyvwAAcG8YAAAKbxkAAApvGgAACgoGKBsAAAoKBheNIQAAAQwIFh9fnQhv
-HAAACgsHFpomAigWAAAKFm8dAAAKKh4CKB4AAAoqAAAAALQAAADOyu++AQAAAJEAAABsU3lzdGVt
-LlJlc291cmNlcy5SZXNvdXJjZVJlYWRlciwgbXNjb3JsaWIsIFZlcnNpb249NC4wLjAuMCwgQ3Vs
-dHVyZT1uZXV0cmFsLCBQdWJsaWNLZXlUb2tlbj1iNzdhNWM1NjE5MzRlMDg5I1N5c3RlbS5SZXNv
-dXJjZXMuUnVudGltZVJlc291cmNlU2V0AgAAAAAAAAAAAAAAUEFEUEFEULQAAABCU0pCAQABAAAA
-AAAMAAAAdjQuMC4zMDMxOQAAAAAFAGwAAADwAwAAI34AAFwEAAAEBgAAI1N0cmluZ3MAAAAAYAoA
-AOAAAAAjVVMAQAsAABAAAAAjR1VJRAAAAFALAAB8AQAAI0Jsb2IAAAAAAAAAAgAAAVcdogkJAwAA
-APolMwAWAAABAAAAIgAAAAUAAAAGAAAACQAAAAEAAAAeAAAAAgAAAA8AAAACAAAAAgAAAAMAAAAE
-AAAAAQAAAAEAAAAEAAAAAQAAAAEAAAAAAAoAAQAAAAAABgDBALoACgDdAMgADgA9ARQBBgBZAboA
-BgBvAV4BBgCgAYsBBgBXAj0CBgCCAnACBgCZAnACBgC2AnACBgDVAnACBgDuAnACBgAHA3ACBgAi
-A3ACBgA9A3ACBgBWA3ACBgCPA28DBgCvA28DBgDgA80DBgD9A7oABgACBLoABgAmBHACCgBSBDwE
-CgBrBDwEBgCABG8DDgCiBBQBDgDEBBQBEgAdBf0EEgA1Bf0EBgBsBVEFBgBzBboABgCOBYQFBgCf
-BboABgCkBboAAAAAAAEAAAAAAAEAAQAAABAAMgA8AAUAAQABAAABEABrADwACQADAAUAAQAQAHQA
-fwANAAQACAADAQAAowAAABEABAAKABEAfwETABEArAEXABEA9gE5AAYGHwJHAFaAJwJKAFaALwJK
-AFAgAAAAAIMYvAEbAAEAWCAAAAAAkwjCAR8AAQCRIAAAAACTCNYBJAABAJggAAAAAJMI4gEpAAEA
-oCAAAAAAlggGAj0AAgCzIAAAAACGGLwBGwACAKcgAAAAAJEYmwSJAAIAvCAAAAAAhgAaAhsAAgA0
-IQAAAACGGLwBGwACAAAAAQA3AjkAvAFYAEEAvAFYAEkAvAFYAFEAvAFYAFkAvAFYAGEAvAFYAGkA
-vAFYAHEAvAFYAHkAvAFYAIEAvAFYAIkAvAFdAJEAvAEbAJkAvAEbAAkAvAEbAKEAFARiAKEALwRp
-ACkAvAFuALkAvAF6AMkAvAEbABEAvAEbANEAvAEbABkA1gSNANkAJwWSAOEAPgWXAOkARwWdAAkA
-ewWtAAEBkwWxABEBqwW2ANkAsQVdABkAvAEbAAgAFABOAAgAGABTACkAkwCAAC4AGwA2AS4AIwA2
-AS4AYwBcAS4ACwDFAC4AEwANAS4AMwANAS4AKwA2AS4AOwA8AS4AQwA2AS4AWwBTAUMAawBTAEkA
-kwCAAGEAmwBTAIMAqwBTAHUAvQACAAEAAwADAAAAbwEvAAAA7gE0AAAAEgJCAAIAAgADAAIAAwAF
-AAEABAAFAAIABQAHAKEABIAAAAEAAAAUGOxyAAAAAAAAfwAAAAQAAAAAAAAAAAAAAAEAsQAAAAAA
-BAAAAAAAAAAAAAAAAQC6AAAAAAALAAAAAAAAAAAAAAAKAPUAAAAAAAsAAAAAAAAAAAAAAAoA3gQA
-AAAAAAAAAAEAAADABQAABQAEAAAAAAAAPE1vZHVsZT4AU1RfMDE4OWE5YjZlNzM5NGU2ODllYjll
-Njk3NjVmYjI2MzIuZGxsAFJlc291cmNlcwBTVF8wMTg5YTliNmU3Mzk0ZTY4OWViOWU2OTc2NWZi
-MjYzMi5Qcm9wZXJ0aWVzAFNldHRpbmdzAFNjcmlwdE1haW4AU1RfMDE4OWE5YjZlNzM5NGU2ODll
-YjllNjk3NjVmYjI2MzIAU2NyaXB0UmVzdWx0cwBtc2NvcmxpYgBTeXN0ZW0AT2JqZWN0AFN5c3Rl
-bS5Db25maWd1cmF0aW9uAEFwcGxpY2F0aW9uU2V0dGluZ3NCYXNlAE1pY3Jvc29mdC5TcWxTZXJ2
-ZXIuU2NyaXB0VGFzawBNaWNyb3NvZnQuU3FsU2VydmVyLkR0cy5UYXNrcy5TY3JpcHRUYXNrAFZT
-VEFSVFNjcmlwdE9iamVjdE1vZGVsQmFzZQBFbnVtAFN5c3RlbS5SZXNvdXJjZXMAUmVzb3VyY2VN
-YW5hZ2VyAHJlc291cmNlTWFuAFN5c3RlbS5HbG9iYWxpemF0aW9uAEN1bHR1cmVJbmZvAHJlc291
-cmNlQ3VsdHVyZQAuY3RvcgBnZXRfUmVzb3VyY2VNYW5hZ2VyAGdldF9DdWx0dXJlAHNldF9DdWx0
-dXJlAEN1bHR1cmUAZGVmYXVsdEluc3RhbmNlAGdldF9EZWZhdWx0AERlZmF1bHQATWFpbgB2YWx1
-ZV9fAFN1Y2Nlc3MARmFpbHVyZQB2YWx1ZQBTeXN0ZW0uUnVudGltZS5WZXJzaW9uaW5nAFRhcmdl
-dEZyYW1ld29ya0F0dHJpYnV0ZQBTeXN0ZW0uUmVmbGVjdGlvbgBBc3NlbWJseVRpdGxlQXR0cmli
-dXRlAEFzc2VtYmx5RGVzY3JpcHRpb25BdHRyaWJ1dGUAQXNzZW1ibHlDb25maWd1cmF0aW9uQXR0
-cmlidXRlAEFzc2VtYmx5Q29tcGFueUF0dHJpYnV0ZQBBc3NlbWJseVByb2R1Y3RBdHRyaWJ1dGUA
-QXNzZW1ibHlDb3B5cmlnaHRBdHRyaWJ1dGUAQXNzZW1ibHlUcmFkZW1hcmtBdHRyaWJ1dGUAQXNz
-ZW1ibHlDdWx0dXJlQXR0cmlidXRlAEFzc2VtYmx5VmVyc2lvbkF0dHJpYnV0ZQBTeXN0ZW0uUnVu
-dGltZS5Db21waWxlclNlcnZpY2VzAENvbXBpbGF0aW9uUmVsYXhhdGlvbnNBdHRyaWJ1dGUAUnVu
-dGltZUNvbXBhdGliaWxpdHlBdHRyaWJ1dGUAU3lzdGVtLkRpYWdub3N0aWNzAERlYnVnZ2VyTm9u
-VXNlckNvZGVBdHRyaWJ1dGUAVHlwZQBSdW50aW1lVHlwZUhhbmRsZQBHZXRUeXBlRnJvbUhhbmRs
-ZQBBc3NlbWJseQBnZXRfQXNzZW1ibHkAU3lzdGVtLkNvbXBvbmVudE1vZGVsAEVkaXRvckJyb3dz
-YWJsZUF0dHJpYnV0ZQBFZGl0b3JCcm93c2FibGVTdGF0ZQBDb21waWxlckdlbmVyYXRlZEF0dHJp
-YnV0ZQAuY2N0b3IAU1NJU1NjcmlwdFRhc2tFbnRyeVBvaW50QXR0cmlidXRlAFNjcmlwdE9iamVj
-dE1vZGVsAGdldF9EdHMATWljcm9zb2Z0LlNxbFNlcnZlci5NYW5hZ2VkRFRTAE1pY3Jvc29mdC5T
-cWxTZXJ2ZXIuRHRzLlJ1bnRpbWUAVmFyaWFibGVzAGdldF9WYXJpYWJsZXMAVmFyaWFibGUAZ2V0
-X0l0ZW0AZ2V0X1ZhbHVlAFN5c3RlbS5Db2xsZWN0aW9ucy5HZW5lcmljAExpc3RgMQBUdXBsZWAz
-AFRvU3RyaW5nAFN5c3RlbS5JTwBQYXRoAEdldEZpbGVOYW1lAENoYXIAU3RyaW5nAFNwbGl0AHNl
-dF9UYXNrUmVzdWx0AFNUXzAxODlhOWI2ZTczOTRlNjg5ZWI5ZTY5NzY1ZmIyNjMyLlByb3BlcnRp
-ZXMuUmVzb3VyY2VzLnJlc291cmNlcwAAAHFTAFQAXwAwADEAOAA5AGEAOQBiADYAZQA3ADMAOQA0
-AGUANgA4ADkAZQBiADkAZQA2ADkANwA2ADUAZgBiADIANgAzADIALgBQAHIAbwBwAGUAcgB0AGkA
-ZQBzAC4AUgBlAHMAbwB1AHIAYwBlAHMAAEtVAHMAZQByADoAOgBwAHIAZQBmAGkAeABlAHMAXwBh
-AG4AZABfAGQAZQBzAHQAaQBuAGEAdABpAG8AbgBzAF8AcABhAHQAaABzAAAfVQBzAGUAcgA6ADoA
-ZgBpAGwAZQBfAG4AYQBtAGUAAAA++h1y+Kv8ToDd4SJrgmJoAAi3elxWGTTgiQiJhF3NgIDMkQMG
-EhUDBhIZAyAAAQQAABIVBAAAEhkFAAEBEhkECAASFQQIABIZAwYSDAQAABIMBAgAEgwCBggDBhEU
-BAAAAAAEAQAAAAQgAQEOBCABAQgGAAESURFVBCAAElkGIAIBDhJZBAcBEhUFIAEBEWEIAQACAAAA
-AAADAAABBCAAEm0EIAAScQUgARJ1HAMgABwLFRJ5ARUSfQMODg4DIAAOBAABDg4GIAEdDh0DBwcD
-Dh0OHQNHAQAaLk5FVEZyYW1ld29yayxWZXJzaW9uPXY0LjABAFQOFEZyYW1ld29ya0Rpc3BsYXlO
-YW1lEC5ORVQgRnJhbWV3b3JrIDQoAQAjU1RfMDE4OWE5YjZlNzM5NGU2ODllYjllNjk3NjVmYjI2
-MzIAAAUBAAAAABYBABFDb3B5cmlnaHQgQCAgMjAxNgAACAEACAAAAAAAHgEAAQBUAhZXcmFwTm9u
-RXhjZXB0aW9uVGhyb3dzAQDsLgAAAAAAAAAAAAAOLwAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AC8AAAAAAAAAAAAAAAAAAAAAAAAAAF9Db3JEbGxNYWluAG1zY29yZWUuZGxsAAAAAAD/JQAgABAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAABABAAAAAYAACAAAAAAAAAAAAAAAAAAAABAAEAAAAwAACAAAAAAAAAAAAAAAAAAAABAAAA
-AABIAAAAWEAAALADAAAAAAAAAAAAALADNAAAAFYAUwBfAFYARQBSAFMASQBPAE4AXwBJAE4ARgBP
-AAAAAAC9BO/+AAABAAAAAQDschQYAAABAOxyFBg/AAAAAAAAAAQAAAACAAAAAAAAAAAAAAAAAAAA
-RAAAAAEAVgBhAHIARgBpAGwAZQBJAG4AZgBvAAAAAAAkAAQAAABUAHIAYQBuAHMAbABhAHQAaQBv
-AG4AAAAAAAAAsAQQAwAAAQBTAHQAcgBpAG4AZwBGAGkAbABlAEkAbgBmAG8AAADsAgAAAQAwADAA
-MAAwADAANABiADAAAABwACQAAQBGAGkAbABlAEQAZQBzAGMAcgBpAHAAdABpAG8AbgAAAAAAUwBU
-AF8AMAAxADgAOQBhADkAYgA2AGUANwAzADkANABlADYAOAA5AGUAYgA5AGUANgA5ADcANgA1AGYA
-YgAyADYAMwAyAAAAQAAPAAEARgBpAGwAZQBWAGUAcgBzAGkAbwBuAAAAAAAxAC4AMAAuADYAMQA2
-ADQALgAyADkANAAyADAAAAAAAHAAKAABAEkAbgB0AGUAcgBuAGEAbABOAGEAbQBlAAAAUwBUAF8A
-MAAxADgAOQBhADkAYgA2AGUANwAzADkANABlADYAOAA5AGUAYgA5AGUANgA5ADcANgA1AGYAYgAy
-ADYAMwAyAC4AZABsAGwAAABIABIAAQBMAGUAZwBhAGwAQwBvAHAAeQByAGkAZwBoAHQAAABDAG8A
-cAB5AHIAaQBnAGgAdAAgAEAAIAAgADIAMAAxADYAAAB4ACgAAQBPAHIAaQBnAGkAbgBhAGwARgBp
-AGwAZQBuAGEAbQBlAAAAUwBUAF8AMAAxADgAOQBhADkAYgA2AGUANwAzADkANABlADYAOAA5AGUA
-YgA5AGUANgA5ADcANgA1AGYAYgAyADYAMwAyAC4AZABsAGwAAABoACQAAQBQAHIAbwBkAHUAYwB0
-AE4AYQBtAGUAAAAAAFMAVABfADAAMQA4ADkAYQA5AGIANgBlADcAMwA5ADQAZQA2ADgAOQBlAGIA
-OQBlADYAOQA3ADYANQBmAGIAMgA2ADMAMgAAAEQADwABAFAAcgBvAGQAdQBjAHQAVgBlAHIAcwBp
-AG8AbgAAADEALgAwAC4ANgAxADYANAAuADIAOQA0ADIAMAAAAAAASAAPAAEAQQBzAHMAZQBtAGIA
-bAB5ACAAVgBlAHIAcwBpAG8AbgAAADEALgAwAC4ANgAxADYANAAuADIAOQA0ADIAMAAAAAAAAAAA
+BoADAAAEKh4CKBQAAAoqHgIoDgAACipKA28WAAAKAnsHAAAEKBcAAAoqAAATMAQASwEAAAIAABFz
+CgAABhMHFwoCKBgAAApvGQAACnJzAABwbxoAAApvGwAACnQCAAAbCwIoGAAACm8ZAAAKcr8AAHBv
+GgAACm8bAAAKdAMAABsMAigYAAAKbxkAAApy9QAAcG8aAAAKbxsAAApvHAAACg0JKB0AAAoNCReN
+IwAAARMIEQgWH1+dEQhvHgAAChMEEQcRBBaafQcAAAQUEwUHEQf+BgsAAAZzHwAACm8gAAAKEwUR
+BTmMAAAACBEFbyEAAAoSBm8iAAAKLHsCKBgAAApvGQAACnIVAQBwbxoAAAoJbyMAAAoCKBgAAApv
+GQAACnJFAQBwbxoAAAoRBW8hAAAKbyMAAAoCKBgAAApvGQAACnJ7AQBwbxoAAAoRBW8kAAAKbyMA
+AAoCKBgAAApvGQAACnK7AQBwbxoAAAoRBm8jAAAKFgoCKBgAAAoGbyUAAAoqHgIoJgAACioAtAAA
+AM7K774BAAAAkQAAAGxTeXN0ZW0uUmVzb3VyY2VzLlJlc291cmNlUmVhZGVyLCBtc2NvcmxpYiwg
+VmVyc2lvbj00LjAuMC4wLCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWI3N2E1YzU2
+MTkzNGUwODkjU3lzdGVtLlJlc291cmNlcy5SdW50aW1lUmVzb3VyY2VTZXQCAAAAAAAAAAAAAABQ
+QURQQURQtAAAAEJTSkIBAAEAAAAAAAwAAAB2NC4wLjMwMzE5AAAAAAUAbAAAAHAEAAAjfgAA3AQA
+AJQGAAAjU3RyaW5ncwAAAABwCwAA8AEAACNVUwBgDQAAEAAAACNHVUlEAAAAcA0AAPwBAAAjQmxv
+YgAAAAAAAAACAAABVx2iCQkDAAAA+iUzABYAAAEAAAAkAAAABgAAAAcAAAALAAAAAgAAACYAAAAC
+AAAAEAAAAAIAAAACAAAAAwAAAAQAAAAEAAAAAQAAAAQAAAABAAAAAgAAAAAACgABAAAAAAAGAMEA
+ugAKAN0AyAAOAD0BFAEGAFkBugAGAG8BXgEGAKABiwEGAFcCPQIGAIICcAIGAJkCcAIGALYCcAIG
+ANUCcAIGAO4CcAIGAAcDcAIGACIDcAIGAD0DcAIGAFYDcAIGAI8DbwMGAK8DbwMGAOADzQMGAP0D
+ugAGAAIEugAGACYEcAIKAFIEPAQKAGsEPAQGAIAEbwMOAKIEFAEGAOgEugAGAAcFugAOABoFFAES
+AHMFUwUSAIsFUwUGAMIFpwUGAMkFpwUGAOkF3wUGAPoFugAGAAUGugAAAAAAAQAAAAAAAQABAAAA
+EAAyADwABQABAAEAAAEQAGsAPAAJAAMABQABABAAdAB/AA0ABAAIAAMBAACjAAAAEQAEAAoAAwEQ
+AMQEAAAFAAcACgARAH8BEwARAKwBFwARAPYBOQAGBh8CRwBWgCcCSgBWgC8CSgAGANcEjQBQIAAA
+AACDGLwBGwABAFggAAAAAJMIwgEfAAEAkSAAAAAAkwjWASQAAQCYIAAAAACTCOIBKQABAKAgAAAA
+AJYIBgI9AAIAsyAAAAAAhhi8ARsAAgCnIAAAAACRGJsEiQACANggAAAAAIYAGgIbAAIALyIAAAAA
+hhi8ARsAAgC7IAAAAACGGLwBGwACAMMgAAAAAIYA8ASQAAIAAAABADcCAAABAPsEOQC8AVgAQQC8
+AVgASQC8AVgAUQC8AVgAWQC8AVgAYQC8AVgAaQC8AVgAcQC8AVgAeQC8AVgAgQC8AVgAiQC8AV0A
+kQC8ARsAmQC8ARsACQC8ARsAoQAUBGIAoQAvBGkAKQC8AW4AuQC8AXoAyQC8ARsAEQC8ARsA0QC8
+ARsADAD9BKMA4QAOBagAGQAsBa4A6QB9BbMA8QCUBbgA+QCdBb4ACQDWBdcAEQHuBdsA4QD/BeAA
+JAC8AfQAFAARBvoADAAWBgYBHAAgBgsB+QAsBhQBDAA2BhkB6QBABl0AGQC8ARsACAAUAE4ACAAY
+AFMAKQCTAIAALgATAIwBLgAbALUBLgAjALUBLgBjANsBLgALAEQBLgAzAIwBLgBbANIBLgArALUB
+LgA7ALsBLgBDALUBQwBrAFMASQCTAIAAYQCbAFMAgwCrAFMAwwCbAFMAdQAeAQIAAQADAAMAAABv
+AS8AAADuATQAAAASAkIAAgACAAMAAgADAAUAAQAEAAUAAgAFAAcAmwDCAM8A5wAEgAAAAQAAABUY
+H2cAAAAAAAB/AAAABAAAAAAAAAAAAAAAAQCxAAAAAAAEAAAAAAAAAAAAAAABALoAAAAAAAsAAAAA
+AAAAAAAAAAoA9QAAAAAACwAAAAAAAAAAAAAACgA0BQAAAAAAAAAAAQAAAE8GAAAFAAQABgAEAAAA
+ADxNb2R1bGU+AFNUXzAxODlhOWI2ZTczOTRlNjg5ZWI5ZTY5NzY1ZmIyNjMyLmRsbABSZXNvdXJj
+ZXMAU1RfMDE4OWE5YjZlNzM5NGU2ODllYjllNjk3NjVmYjI2MzIuUHJvcGVydGllcwBTZXR0aW5n
+cwBTY3JpcHRNYWluAFNUXzAxODlhOWI2ZTczOTRlNjg5ZWI5ZTY5NzY1ZmIyNjMyAFNjcmlwdFJl
+c3VsdHMAbXNjb3JsaWIAU3lzdGVtAE9iamVjdABTeXN0ZW0uQ29uZmlndXJhdGlvbgBBcHBsaWNh
+dGlvblNldHRpbmdzQmFzZQBNaWNyb3NvZnQuU3FsU2VydmVyLlNjcmlwdFRhc2sATWljcm9zb2Z0
+LlNxbFNlcnZlci5EdHMuVGFza3MuU2NyaXB0VGFzawBWU1RBUlRTY3JpcHRPYmplY3RNb2RlbEJh
+c2UARW51bQBTeXN0ZW0uUmVzb3VyY2VzAFJlc291cmNlTWFuYWdlcgByZXNvdXJjZU1hbgBTeXN0
+ZW0uR2xvYmFsaXphdGlvbgBDdWx0dXJlSW5mbwByZXNvdXJjZUN1bHR1cmUALmN0b3IAZ2V0X1Jl
+c291cmNlTWFuYWdlcgBnZXRfQ3VsdHVyZQBzZXRfQ3VsdHVyZQBDdWx0dXJlAGRlZmF1bHRJbnN0
+YW5jZQBnZXRfRGVmYXVsdABEZWZhdWx0AE1haW4AdmFsdWVfXwBTdWNjZXNzAEZhaWx1cmUAdmFs
+dWUAU3lzdGVtLlJ1bnRpbWUuVmVyc2lvbmluZwBUYXJnZXRGcmFtZXdvcmtBdHRyaWJ1dGUAU3lz
+dGVtLlJlZmxlY3Rpb24AQXNzZW1ibHlUaXRsZUF0dHJpYnV0ZQBBc3NlbWJseURlc2NyaXB0aW9u
+QXR0cmlidXRlAEFzc2VtYmx5Q29uZmlndXJhdGlvbkF0dHJpYnV0ZQBBc3NlbWJseUNvbXBhbnlB
+dHRyaWJ1dGUAQXNzZW1ibHlQcm9kdWN0QXR0cmlidXRlAEFzc2VtYmx5Q29weXJpZ2h0QXR0cmli
+dXRlAEFzc2VtYmx5VHJhZGVtYXJrQXR0cmlidXRlAEFzc2VtYmx5Q3VsdHVyZUF0dHJpYnV0ZQBB
+c3NlbWJseVZlcnNpb25BdHRyaWJ1dGUAU3lzdGVtLlJ1bnRpbWUuQ29tcGlsZXJTZXJ2aWNlcwBD
+b21waWxhdGlvblJlbGF4YXRpb25zQXR0cmlidXRlAFJ1bnRpbWVDb21wYXRpYmlsaXR5QXR0cmli
+dXRlAFN5c3RlbS5EaWFnbm9zdGljcwBEZWJ1Z2dlck5vblVzZXJDb2RlQXR0cmlidXRlAFR5cGUA
+UnVudGltZVR5cGVIYW5kbGUAR2V0VHlwZUZyb21IYW5kbGUAQXNzZW1ibHkAZ2V0X0Fzc2VtYmx5
+AFN5c3RlbS5Db21wb25lbnRNb2RlbABFZGl0b3JCcm93c2FibGVBdHRyaWJ1dGUARWRpdG9yQnJv
+d3NhYmxlU3RhdGUAQ29tcGlsZXJHZW5lcmF0ZWRBdHRyaWJ1dGUALmNjdG9yAFNTSVNTY3JpcHRU
+YXNrRW50cnlQb2ludEF0dHJpYnV0ZQA8PmNfX0Rpc3BsYXlDbGFzczEAY3Vycl9maWxlX3ByZWZp
+eABUdXBsZWAzADxNYWluPmJfXzAAeABnZXRfSXRlbTEAU3RyaW5nAG9wX0VxdWFsaXR5AFNjcmlw
+dE9iamVjdE1vZGVsAGdldF9EdHMATWljcm9zb2Z0LlNxbFNlcnZlci5NYW5hZ2VkRFRTAE1pY3Jv
+c29mdC5TcWxTZXJ2ZXIuRHRzLlJ1bnRpbWUAVmFyaWFibGVzAGdldF9WYXJpYWJsZXMAVmFyaWFi
+bGUAZ2V0X0l0ZW0AZ2V0X1ZhbHVlAFN5c3RlbS5Db2xsZWN0aW9ucy5HZW5lcmljAExpc3RgMQBE
+aWN0aW9uYXJ5YDIAVG9TdHJpbmcAU3lzdGVtLklPAFBhdGgAR2V0RmlsZU5hbWUAQ2hhcgBTcGxp
+dABQcmVkaWNhdGVgMQBGaW5kAGdldF9JdGVtMgBUcnlHZXRWYWx1ZQBzZXRfVmFsdWUAZ2V0X0l0
+ZW0zAHNldF9UYXNrUmVzdWx0AFNUXzAxODlhOWI2ZTczOTRlNjg5ZWI5ZTY5NzY1ZmIyNjMyLlBy
+b3BlcnRpZXMuUmVzb3VyY2VzLnJlc291cmNlcwAAAABxUwBUAF8AMAAxADgAOQBhADkAYgA2AGUA
+NwAzADkANABlADYAOAA5AGUAYgA5AGUANgA5ADcANgA1AGYAYgAyADYAMwAyAC4AUAByAG8AcABl
+AHIAdABpAGUAcwAuAFIAZQBzAG8AdQByAGMAZQBzAABLVQBzAGUAcgA6ADoAcAByAGUAZgBpAHgA
+ZQBzAF8AYQBuAGQAXwBkAGUAcwB0AGkAbgBhAHQAaQBvAG4AcwBfAHAAYQB0AGgAcwAANVUAcwBl
+AHIAOgA6AG4AZQB3AF8AaQBuAGQAZQB4AF8AZgB1AGwAbABfAHAAYQB0AGgAcwAAH1UAcwBlAHIA
+OgA6AGYAaQBsAGUAXwBuAGEAbQBlAAAvVQBzAGUAcgA6ADoAYwB1AHIAcgBlAG4AdABfAGYAaQBs
+AGUAXwBuAGEAbQBlAAA1VQBzAGUAcgA6ADoAYwB1AHIAcgBlAG4AdABfAGkAbgBkAGUAeABfAHAA
+cgBlAGYAaQB4AAA/VQBzAGUAcgA6ADoAYwB1AHIAcgBlAG4AdABfAGkAbgBkAGUAeABfAGQAZQBz
+AHQAaQBuAGEAdABpAG8AbgAAM1UAcwBlAHIAOgA6AG4AZQB3AF8AaQBuAGQAZQB4AF8AZgB1AGwA
+bABfAHAAYQB0AGgAAAB7LLWxrQFHQ5+d0x2lSAUaAAi3elxWGTTgiQiJhF3NgIDMkQMGEhUDBhIZ
+AyAAAQQAABIVBAAAEhkFAAEBEhkECAASFQQIABIZAwYSDAQAABIMBAgAEgwCBggDBhEUBAAAAAAE
+AQAAAAQgAQEOBCABAQgGAAESURFVBCAAElkGIAIBDhJZBAcBEhUFIAEBEWEIAQACAAAAAAADAAAB
+AgYOCiABAhUSbQMODg4HFRJtAw4ODgQgABMABQACAg4OBCAAEnUEIAASeQUgARJ9HAMgABwMFRKA
+gQEVEm0DDg4OBxUSgIUCDg4DIAAOBAABDg4GIAEdDh0DDBUSgJEBFRJtAw4ODgUgAgEcGAsgARMA
+FRKAkQETAAQgABMBCCACAhMAEBMBBCABARwEIAATAiUHCQgVEoCBARUSbQMODg4VEoCFAg4ODh0O
+FRJtAw4ODg4SGB0DRwEAGi5ORVRGcmFtZXdvcmssVmVyc2lvbj12NC4wAQBUDhRGcmFtZXdvcmtE
+aXNwbGF5TmFtZRAuTkVUIEZyYW1ld29yayA0KAEAI1NUXzAxODlhOWI2ZTczOTRlNjg5ZWI5ZTY5
+NzY1ZmIyNjMyAAAFAQAAAAAWAQARQ29weXJpZ2h0IEAgIDIwMTYAAAgBAAgAAAAAAB4BAAEAVAIW
+V3JhcE5vbkV4Y2VwdGlvblRocm93cwEAAIQyAAAAAAAAAAAAAJ4yAAAAIAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAACQMgAAAAAAAAAAAAAAAF9Db3JEbGxNYWluAG1zY29yZWUuZGxsAAAAAAD/JQAgABAA
 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAQAQAAAAGAAAgAAAAAAAAAAAAAAAAAAAAQABAAAAMAAAgAAAAAAAAAAAAAAAAAAAAQAAAAAA
+SAAAAFhAAACwAwAAAAAAAAAAAACwAzQAAABWAFMAXwBWAEUAUgBTAEkATwBOAF8ASQBOAEYATwAA
+AAAAvQTv/gAAAQAAAAEAH2cVGAAAAQAfZxUYPwAAAAAAAAAEAAAAAgAAAAAAAAAAAAAAAAAAAEQA
+AAABAFYAYQByAEYAaQBsAGUASQBuAGYAbwAAAAAAJAAEAAAAVAByAGEAbgBzAGwAYQB0AGkAbwBu
+AAAAAAAAALAEEAMAAAEAUwB0AHIAaQBuAGcARgBpAGwAZQBJAG4AZgBvAAAA7AIAAAEAMAAwADAA
+MAAwADQAYgAwAAAAcAAkAAEARgBpAGwAZQBEAGUAcwBjAHIAaQBwAHQAaQBvAG4AAAAAAFMAVABf
+ADAAMQA4ADkAYQA5AGIANgBlADcAMwA5ADQAZQA2ADgAOQBlAGIAOQBlADYAOQA3ADYANQBmAGIA
+MgA2ADMAMgAAAEAADwABAEYAaQBsAGUAVgBlAHIAcwBpAG8AbgAAAAAAMQAuADAALgA2ADEANgA1
+AC4AMgA2ADMAOQA5AAAAAABwACgAAQBJAG4AdABlAHIAbgBhAGwATgBhAG0AZQAAAFMAVABfADAA
+MQA4ADkAYQA5AGIANgBlADcAMwA5ADQAZQA2ADgAOQBlAGIAOQBlADYAOQA3ADYANQBmAGIAMgA2
+ADMAMgAuAGQAbABsAAAASAASAAEATABlAGcAYQBsAEMAbwBwAHkAcgBpAGcAaAB0AAAAQwBvAHAA
+eQByAGkAZwBoAHQAIABAACAAIAAyADAAMQA2AAAAeAAoAAEATwByAGkAZwBpAG4AYQBsAEYAaQBs
+AGUAbgBhAG0AZQAAAFMAVABfADAAMQA4ADkAYQA5AGIANgBlADcAMwA5ADQAZQA2ADgAOQBlAGIA
+OQBlADYAOQA3ADYANQBmAGIAMgA2ADMAMgAuAGQAbABsAAAAaAAkAAEAUAByAG8AZAB1AGMAdABO
+AGEAbQBlAAAAAABTAFQAXwAwADEAOAA5AGEAOQBiADYAZQA3ADMAOQA0AGUANgA4ADkAZQBiADkA
+ZQA2ADkANwA2ADUAZgBiADIANgAzADIAAABEAA8AAQBQAHIAbwBkAHUAYwB0AFYAZQByAHMAaQBv
+AG4AAAAxAC4AMAAuADYAMQA2ADUALgAyADYAMwA5ADkAAAAAAEgADwABAEEAcwBzAGUAbQBiAGwA
+eQAgAFYAZQByAHMAaQBvAG4AAAAxAC4AMAAuADYAMQA2ADUALgAyADYAMwA5ADkAAAAAAAAAAAAA
 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAwAAAAgPwAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAwAAAMAAAAsDIAAAAA
 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
@@ -852,16 +1462,21 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
-                  <Breakpoint
-                    Enabled="True"
-                    File="ScriptMain.cs"
-                    Line="102"
-                    Column="4" />
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA</BinaryItem>
                 </ScriptProject>
               </DTS:ObjectData>
             </DTS:Executable>
           </DTS:Executables>
+          <DTS:PrecedenceConstraints>
+            <DTS:PrecedenceConstraint
+              DTS:refId="Package\SEQC - Index Generation\FELC - Iterate the manifest directory.PrecedenceConstraints[Constraint]"
+              DTS:CreationName=""
+              DTS:DTSID="{C944A1DB-4E6F-44C9-9EB8-ED902DFFC7C2}"
+              DTS:From="Package\SEQC - Index Generation\FELC - Iterate the manifest directory\SCR - Get index specs"
+              DTS:LogicalAnd="True"
+              DTS:ObjectName="Constraint"
+              DTS:To="Package\SEQC - Index Generation\FELC - Iterate the manifest directory\DFT - Write manifest data into index" />
+          </DTS:PrecedenceConstraints>
           <DTS:ForEachVariableMappings>
             <DTS:ForEachVariableMapping
               DTS:CreationName=""
@@ -888,7 +1503,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
               VSTAMinorVersion="0"
               Language="CSharp"
               ReadOnlyVariables="System::TaskName,User::index_prefixes,$Package::index_path"
-              ReadWriteVariables="User::exception_message">
+              ReadWriteVariables="User::exception_message,User::new_index_full_paths">
               <ProjectItem
                 Name="Properties\Resources.resx"
                 Encoding="UTF8"><![CDATA[<?xml version="1.0" encoding="utf-8"?>
@@ -1236,23 +1851,28 @@ namespace ST_2003c36a3ba04f01a079282f39f59ed3
 
 
 		/// <summary>
-        /// This method is called when this script task executes in the control flow.
-        /// Before returning from this method, set the value of Dts.TaskResult to indicate success or failure.
-        /// To open Help, press F1.
+        /// This method is called to create the initial empty index file.
         /// </summary>
 		public void Main()
 		{
-            string index_path = Dts.Variables["$Package::index_path"].Value.ToString();
-            List<string> index_prefixes = (List<string>)Dts.Variables["User::index_prefixes"].Value;
+            const string INDEX_HEADER = "CASE_NUMBER|MEMBER_ID|FULLFILMENT_DATE|MANIFEST_NAME";
+            string index_path = Dts.Variables["$Package::index_path"].Value.ToString();                 //Get path of indexes
+            List<string> index_prefixes = (List<string>)Dts.Variables["User::index_prefixes"].Value;    //Get list of index prefixes
+            Dictionary<string, string> new_index_full_paths = new Dictionary<string, string>();
             int result = (int)ScriptResults.Success;
 
             try
             {
-                foreach (string prefix in index_prefixes)
+                foreach (string prefix in index_prefixes)                                               //Iterate prefixes collection
                 {
-                    string full_path = index_path + @"\" + prefix + "-" + GetTimeStamp(DateTime.Now) + ".csv";
-                    using (StreamWriter sw = File.CreateText(full_path)) { }
+                    string full_path = GetFullPath(index_path, prefix);                                 //Get full path and name of new index file
+                    using (StreamWriter sw = File.CreateText(full_path))                                //Create (empty) index file
+                    {
+                        sw.WriteLine(INDEX_HEADER);                                                     //Write header into the new index
+                        new_index_full_paths.Add(prefix, full_path);                                    //Store full path of new index file 
+                    }
                 }
+                Dts.Variables["User::new_index_full_paths"].Value = new_index_full_paths;
             }
             catch(Exception e)
             {
@@ -1265,13 +1885,26 @@ namespace ST_2003c36a3ba04f01a079282f39f59ed3
             {
                 Dts.TaskResult = result;
             }
-            
-           
-
 		}
 
+        /// <summary>
+        /// Construct the new index full path.    
+        /// </summary>
+        /// <param name="partial_path"></param>
+        /// <param name="file_prefix"></param>
+        /// <returns>Full index path.</returns>
+        private string GetFullPath(string partial_path, string file_prefix)
+        {
+            return partial_path + @"\" + file_prefix + "-" + GetTimeStamp(DateTime.Now) + ".csv";
+        }
 
-        string GetTimeStamp(DateTime value)
+        /// <summary>
+        /// Gets the current date and time to be added 
+        /// as part of the new index file.
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns>Current date formated.</returns>
+        private string GetTimeStamp(DateTime value)
         {
             return value.ToString("yyyyMMddHHmmss");
         }
@@ -1297,19 +1930,19 @@ namespace ST_2003c36a3ba04f01a079282f39f59ed3
                 Encoding="UTF16LE"><![CDATA[<?xml version="1.0" encoding="UTF-16" standalone="yes"?>
 <c:Project xmlns:c="http://schemas.microsoft.com/codeprojectml/2010/08/main" xmlns:msb="http://schemas.microsoft.com/developer/msbuild/2003" runtimeVersion="3.0" schemaVersion="1.0">
 	<msb:PropertyGroup>
-		<msb:Language>msBuild</msb:Language>
 		<msb:CodeName>ST_2003c36a3ba04f01a079282f39f59ed3</msb:CodeName>
+		<msb:Language>msBuild</msb:Language>
 		<msb:DisplayName>ST_2003c36a3ba04f01a079282f39f59ed3</msb:DisplayName>
 		<msb:ProjectId>{1335D4F0-90B2-410E-9033-4C6AE7DF2418}</msb:ProjectId>
 	</msb:PropertyGroup>
 	<msb:ItemGroup>
 		<msb:Project Include="ST_2003c36a3ba04f01a079282f39f59ed3.csproj"/>
-		<msb:File Include="Properties\Settings.settings"/>
 		<msb:File Include="Properties\AssemblyInfo.cs"/>
+		<msb:File Include="Properties\Settings.settings"/>
 		<msb:File Include="Properties\Resources.resx"/>
 		<msb:File Include="Properties\Resources.Designer.cs"/>
-		<msb:File Include="Properties\Settings.Designer.cs"/>
 		<msb:File Include="Argument.cs"/>
+		<msb:File Include="Properties\Settings.Designer.cs"/>
 		<msb:File Include="ScriptMain.cs"/>
 	</msb:ItemGroup>
 </c:Project>]]></ProjectItem>
@@ -1423,121 +2056,121 @@ namespace ST_2003c36a3ba04f01a079282f39f59ed3.Properties {
               <BinaryItem
                 Name="ST_2003c36a3ba04f01a079282f39f59ed3.dll">TVqQAAMAAAAEAAAA//8AALgAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 AAAAgAAAAA4fug4AtAnNIbgBTM0hVGhpcyBwcm9ncmFtIGNhbm5vdCBiZSBydW4gaW4gRE9TIG1v
-ZGUuDQ0KJAAAAAAAAABQRQAATAEDAIy3LFgAAAAAAAAAAOAAAiELAQsAABYAAAAIAAAAAAAALjQA
+ZGUuDQ0KJAAAAAAAAABQRQAATAEDAE3rLVgAAAAAAAAAAOAAAiELAQsAABYAAAAIAAAAAAAAvjUA
 AAAgAAAAQAAAAAAAEAAgAAAAAgAABAAAAAAAAAAEAAAAAAAAAACAAAAAAgAAAAAAAAMAQIUAABAA
-ABAAAAAAEAAAEAAAAAAAABAAAAAAAAAAAAAAANQzAABXAAAAAEAAAAgEAAAAAAAAAAAAAAAAAAAA
+ABAAAAAAEAAAEAAAAAAAABAAAAAAAAAAAAAAAGQ1AABXAAAAAEAAAAgEAAAAAAAAAAAAAAAAAAAA
 AAAAAGAAAAwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAIAAACAAAAAAAAAAAAAAACCAAAEgAAAAAAAAAAAAAAC50ZXh0AAAANBQAAAAgAAAAFgAAAAIA
+AAAAIAAACAAAAAAAAAAAAAAACCAAAEgAAAAAAAAAAAAAAC50ZXh0AAAAxBUAAAAgAAAAFgAAAAIA
 AAAAAAAAAAAAAAAAACAAAGAucnNyYwAAAAgEAAAAQAAAAAYAAAAYAAAAAAAAAAAAAAAAAABAAABA
-LnJlbG9jAAAMAAAAAGAAAAACAAAAHgAAAAAAAAAAAAAAAAAAQAAAQgAAAAAAAAAAAAAAAAAAAAAQ
-NAAAAAAAAEgAAAACAAUAUCMAAIQQAAABAAAAAAAAAJgiAAC4AAAAAAAAAAAAAAAAAAAAAAAAAAAA
+LnJlbG9jAAAMAAAAAGAAAAACAAAAHgAAAAAAAAAAAAAAAAAAQAAAQgAAAAAAAAAAAAAAAAAAAACg
+NQAAAAAAAEgAAAACAAUAmCMAAMwRAAABAAAAAAAAAOAiAAC4AAAAAAAAAAAAAAAAAAAAAAAAAAAA
 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAHICKA0AAAoCAygDAAAGAgQoBQAABgIFKAcAAAYqHgJ7AQAA
 BCoiAgN9AQAABCoeAnsCAAAEKiICA30CAAAEKh4CewMAAAQqIgIDfQMAAAQqHgIoDQAACioTMAIA
 LQAAAAEAABF+BAAABC0gcgEAAHDQAwAAAigQAAAKbxEAAApzEgAACgoGgAQAAAR+BAAABCoafgUA
-AAQqHgKABQAABCoafgYAAAQqLnMNAAAGgAYAAAQqHgIoFAAACioAGzAEAC8BAAACAAARAigWAAAK
+AAQqHgKABQAABCoafgYAAAQqLnMNAAAGgAYAAAQqHgIoFAAACioAGzAEAC0BAAACAAARAigWAAAK
 bxcAAApycwAAcG8YAAAKbxkAAApvGgAACgoCKBYAAApvFwAACnKdAABwbxgAAApvGQAACnQBAAAb
-CxYMB28bAAAKEwgrZBIIKBwAAAoNHI0hAAABEwkRCRYGohEJF3LHAABwohEJGAmiEQkZcssAAHCi
-EQkaAigdAAAKKBAAAAaiEQkbcs8AAHCiEQkoHgAAChMEEQQoHwAAChMF3gwRBSwHEQVvIAAACtwS
-CCghAAAKLZPeDhII/hYCAAAbbyAAAArc3lQTBgIoFgAACm8XAAAKctkAAHBvGAAACm8ZAAAKbxoA
-AAoTBwIoFgAACm8XAAAKcvsAAHBvGAAACnIrAQBwEQcRBm8iAAAKKCMAAApvJAAAChcM3gDeDQIo
-FgAACghvJQAACtwqAAE0AAACAKIAAqQADAAAAAACAEoAcbsADgAAAAAAAEIAicsAVCUAAAECAEIA
-3yEBDQAAAAA2DwFyZQEAcCgmAAAKKh4CKCcAAAoqAAAAAAAAtAAAAM7K774BAAAAkQAAAGxTeXN0
-ZW0uUmVzb3VyY2VzLlJlc291cmNlUmVhZGVyLCBtc2NvcmxpYiwgVmVyc2lvbj00LjAuMC4wLCBD
-dWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWI3N2E1YzU2MTkzNGUwODkjU3lzdGVtLlJl
-c291cmNlcy5SdW50aW1lUmVzb3VyY2VTZXQCAAAAAAAAAAAAAABQQURQQURQtAAAAEJTSkIBAAEA
-AAAAAAwAAAB2NC4wLjMwMzE5AAAAAAUAbAAAAGQFAAAjfgAA0AUAAFAHAAAjU3RyaW5ncwAAAAAg
-DQAAhAEAACNVUwCkDgAAEAAAACNHVUlEAAAAtA4AANABAAAjQmxvYgAAAAAAAAACAAABVx2iCQkD
-AAAA+iUzABYAAAEAAAAlAAAABgAAAAkAAAARAAAACAAAACcAAAACAAAAGAAAAAIAAAADAAAABgAA
-AAoAAAACAAAAAQAAAAQAAAABAAAAAQAAAAAACgABAAAAAAAGAMoAwwAKAOYA0QAOAEYBHQEGAGIB
-wwAGADkCKAIGAGoCVQIGAOMCwwAGADEDFwMGAFwDSgMGAHMDSgMGAJADSgMGAK8DSgMGAMgDSgMG
-AOEDSgMGAPwDSgMGABcESgMGADAESgMGAGkESQQGAIkESQQGAKcESQQGANUEwgQGAPIEwwAGAPcE
-wwAGABsFSgMKAEcFMQUKAGAFMQUOAHwFHQEOAJ4FHQESAPcF1wUSAA8G1wUGAE8GNAZ/AFYGAAAG
-AHsGwwAGAJsGkQYGAKAGkQYGALgGwwAGANUGwwAAAAAAAQAAAAAAAQABAAEBEAAyADsABQABAAEA
-AAAQAF8AaQAFAAQACAAAARAAmABpAAkABgAMAAEAEAChADsADQAHAA8AAwEAAKwAAAARAAcAEgAB
-AL0BIwABANkBIwABAPYBIwARAEkCKgARAHYCLgARALoCUAAGBvkCZABWgAEDZwBWgAkDZwBQIAAA
-AACGGGcBEwABAG0gAAAAAIYIbQEaAAQAdSAAAAAAhgh8AR4ABAB+IAAAAACGCIsBGgAFAIYgAAAA
-AIYImwEeAAUAjyAAAAAAhgirARoABgCXIAAAAACGCLQBHgAGAKAgAAAAAIMYZwEyAAcAqCAAAAAA
-kwiGAjYABwDhIAAAAACTCJoCOwAHAOggAAAAAJMIpgJAAAcA8CAAAAAAlgjKAlQACAADIQAAAACG
-GGcBMgAIAPcgAAAAAJEYdQWhAAgADCEAAAAAhgDeAjIACAB8IgAAAACBAOwCXgAIAIoiAAAAAIYY
-ZwEyAAkAAAABAAwCAAACABcCAAADACMCAAABABEDAAABABEDAAABABEDAAABABEDAAABABEDQQBn
-AR4ASQBnAR4AUQBnAR4AWQBnAR4AYQBnAR4AaQBnAR4AcQBnAR4AeQBnAR4AgQBnAR4AiQBnAR4A
-kQBnAXUAmQBnATIACQBnATIAoQBnATIAqQBnATIAsQAJBXoAsQAkBYEAKQBnAYYAyQBnAZIAEQBn
-ATIA2QBnATIAGQCwBaUA4QABBqoA6QAYBq8A8QAhBrUACQArBhoADABhBr8AFABvBtAAOQCCBtUA
-CQGKBtoAEQGtBuAAIQHEBjIAFADMBucAKQHfBhoACQHrBusA8QDyBvIA4QD8BnUAOQArBhIBGQBn
-ATIACAAgAGsACAAkAHAAIQBzAHAALgBbAKUBLgBjAK4BLgALABcBLgATAF8BLgAbAIgBLgAjAIgB
-LgArAIgBLgAzAF8BLgA7AI4BLgBDAIgBQABzAHAAQQBzAHAAYABzAHAAYQBzAHAAYwB7AHAAgABz
-AHAAiQCbAJgAoABzAHAAowCrAHAAqQCbAJgAwABzAHAAwQBzAHAA4ABzAHAAjQD3AAIAAQADAAQA
-BAAGAAAADAImAAAAFwImAAAAIwImAAAAOQJGAAAAsgJLAAAA1gJZAAIAAgADAAEAAwADAAIABAAF
-AAEABQAFAAIABgAHAAEABwAHAAIACQAJAAIACgALAAEACwALAAIADAANALkAyQAEgAAAAQAAABQY
-5m4AAAAAAAA7AAAABAAAAAAAAAAAAAAAAQC6AAAAAAAEAAAAAAAAAAAAAAABAMMAAAAAAAsAAAAA
-AAAAAAAAAAoA/gAAAAAACwAAAAAAAAAAAAAACgC4BQAAAAAAAAAAAQAAAAsHAAAGAAUAAAAAAAA8
-TW9kdWxlPgBTVF8yMDAzYzM2YTNiYTA0ZjAxYTA3OTI4MmYzOWY1OWVkMy5kbGwAQXJndW1lbnQA
-U1RfMjAwM2MzNmEzYmEwNGYwMWEwNzkyODJmMzlmNTllZDMAUmVzb3VyY2VzAFNUXzIwMDNjMzZh
-M2JhMDRmMDFhMDc5MjgyZjM5ZjU5ZWQzLlByb3BlcnRpZXMAU2V0dGluZ3MAU2NyaXB0TWFpbgBT
-Y3JpcHRSZXN1bHRzAG1zY29ybGliAFN5c3RlbQBPYmplY3QAU3lzdGVtLkNvbmZpZ3VyYXRpb24A
-QXBwbGljYXRpb25TZXR0aW5nc0Jhc2UATWljcm9zb2Z0LlNxbFNlcnZlci5TY3JpcHRUYXNrAE1p
-Y3Jvc29mdC5TcWxTZXJ2ZXIuRHRzLlRhc2tzLlNjcmlwdFRhc2sAVlNUQVJUU2NyaXB0T2JqZWN0
-TW9kZWxCYXNlAEVudW0ALmN0b3IAZ2V0X0ZpbGVQcmVmaXgAc2V0X0ZpbGVQcmVmaXgAZ2V0X0lu
-ZGV4UHJlZml4AHNldF9JbmRleFByZWZpeABnZXRfUGF0aABzZXRfUGF0aAA8RmlsZVByZWZpeD5r
-X19CYWNraW5nRmllbGQAPEluZGV4UHJlZml4PmtfX0JhY2tpbmdGaWVsZAA8UGF0aD5rX19CYWNr
-aW5nRmllbGQARmlsZVByZWZpeABJbmRleFByZWZpeABQYXRoAFN5c3RlbS5SZXNvdXJjZXMAUmVz
-b3VyY2VNYW5hZ2VyAHJlc291cmNlTWFuAFN5c3RlbS5HbG9iYWxpemF0aW9uAEN1bHR1cmVJbmZv
-AHJlc291cmNlQ3VsdHVyZQBnZXRfUmVzb3VyY2VNYW5hZ2VyAGdldF9DdWx0dXJlAHNldF9DdWx0
-dXJlAEN1bHR1cmUAZGVmYXVsdEluc3RhbmNlAGdldF9EZWZhdWx0AERlZmF1bHQATWFpbgBEYXRl
-VGltZQBHZXRUaW1lU3RhbXAAdmFsdWVfXwBTdWNjZXNzAEZhaWx1cmUAdmFsdWUAU3lzdGVtLlJ1
-bnRpbWUuVmVyc2lvbmluZwBUYXJnZXRGcmFtZXdvcmtBdHRyaWJ1dGUAU3lzdGVtLlJlZmxlY3Rp
-b24AQXNzZW1ibHlUaXRsZUF0dHJpYnV0ZQBBc3NlbWJseURlc2NyaXB0aW9uQXR0cmlidXRlAEFz
-c2VtYmx5Q29uZmlndXJhdGlvbkF0dHJpYnV0ZQBBc3NlbWJseUNvbXBhbnlBdHRyaWJ1dGUAQXNz
-ZW1ibHlQcm9kdWN0QXR0cmlidXRlAEFzc2VtYmx5Q29weXJpZ2h0QXR0cmlidXRlAEFzc2VtYmx5
-VHJhZGVtYXJrQXR0cmlidXRlAEFzc2VtYmx5Q3VsdHVyZUF0dHJpYnV0ZQBBc3NlbWJseVZlcnNp
-b25BdHRyaWJ1dGUAU3lzdGVtLlJ1bnRpbWUuQ29tcGlsZXJTZXJ2aWNlcwBDb21waWxhdGlvblJl
-bGF4YXRpb25zQXR0cmlidXRlAFJ1bnRpbWVDb21wYXRpYmlsaXR5QXR0cmlidXRlAENvbXBpbGVy
-R2VuZXJhdGVkQXR0cmlidXRlAFN5c3RlbS5EaWFnbm9zdGljcwBEZWJ1Z2dlck5vblVzZXJDb2Rl
-QXR0cmlidXRlAFR5cGUAUnVudGltZVR5cGVIYW5kbGUAR2V0VHlwZUZyb21IYW5kbGUAQXNzZW1i
-bHkAZ2V0X0Fzc2VtYmx5AFN5c3RlbS5Db21wb25lbnRNb2RlbABFZGl0b3JCcm93c2FibGVBdHRy
-aWJ1dGUARWRpdG9yQnJvd3NhYmxlU3RhdGUALmNjdG9yAFNTSVNTY3JpcHRUYXNrRW50cnlQb2lu
-dEF0dHJpYnV0ZQBTY3JpcHRPYmplY3RNb2RlbABnZXRfRHRzAE1pY3Jvc29mdC5TcWxTZXJ2ZXIu
-TWFuYWdlZERUUwBNaWNyb3NvZnQuU3FsU2VydmVyLkR0cy5SdW50aW1lAFZhcmlhYmxlcwBnZXRf
-VmFyaWFibGVzAFZhcmlhYmxlAGdldF9JdGVtAGdldF9WYWx1ZQBUb1N0cmluZwBTeXN0ZW0uQ29s
-bGVjdGlvbnMuR2VuZXJpYwBMaXN0YDEARW51bWVyYXRvcgBHZXRFbnVtZXJhdG9yAGdldF9DdXJy
-ZW50AFN0cmluZwBnZXRfTm93AENvbmNhdABTeXN0ZW0uSU8ARmlsZQBTdHJlYW1Xcml0ZXIAQ3Jl
-YXRlVGV4dABJRGlzcG9zYWJsZQBEaXNwb3NlAE1vdmVOZXh0AEV4Y2VwdGlvbgBnZXRfTWVzc2Fn
-ZQBGb3JtYXQAc2V0X1ZhbHVlAHNldF9UYXNrUmVzdWx0AFNUXzIwMDNjMzZhM2JhMDRmMDFhMDc5
-MjgyZjM5ZjU5ZWQzLlByb3BlcnRpZXMuUmVzb3VyY2VzLnJlc291cmNlcwAAAABxUwBUAF8AMgAw
-ADAAMwBjADMANgBhADMAYgBhADAANABmADAAMQBhADAANwA5ADIAOAAyAGYAMwA5AGYANQA5AGUA
-ZAAzAC4AUAByAG8AcABlAHIAdABpAGUAcwAuAFIAZQBzAG8AdQByAGMAZQBzAAApJABQAGEAYwBr
-AGEAZwBlADoAOgBpAG4AZABlAHgAXwBwAGEAdABoAAApVQBzAGUAcgA6ADoAaQBuAGQAZQB4AF8A
-cAByAGUAZgBpAHgAZQBzAAADXAAAAy0AAQkuAGMAcwB2AAAhUwB5AHMAdABlAG0AOgA6AFQAYQBz
-AGsATgBhAG0AZQAAL1UAcwBlAHIAOgA6AGUAeABjAGUAcAB0AGkAbwBuAF8AbQBlAHMAcwBhAGcA
-ZQAAOVQAYQBzAGsAIAA6ACAAWwB7ADAAfQBdADsAIABNAGUAcwBzAGEAZwBlADoAIABbAHsAMQB9
-AF0AAB15AHkAeQB5AE0ATQBkAGQASABIAG0AbQBzAHMAAAAheEr7+xR4TLJ9pnFpGh4CAAi3elxW
-GTTgiQiJhF3NgIDMkQYgAwEODg4DIAAOBCABAQ4CBg4DKAAOAwYSFQMGEhkDIAABBAAAEhUEAAAS
-GQUAAQESGQQIABIVBAgAEhkDBhIQBAAAEhAECAASEAUgAQ4RHQIGCAMGERgEAAAAAAQBAAAABCAB
-AQgGAAESWRFdBCAAEmEGIAIBDhJhBAcBEhUFIAEBEWkIAQACAAAAAAADAAABBCAAEnEEIAASdQUg
-ARJ5HAMgABwFFRJ9AQ4JIAAVEYCBARMABhURgIEBDgQgABMABAAAER0FAAEOHQ4GAAESgI0OAyAA
-AgYAAw4OHBwEIAEBHBoHCg4VEn0BDggODhKAjRKAlQ4VEYCBAQ4dDgQgAQ4ORwEAGi5ORVRGcmFt
-ZXdvcmssVmVyc2lvbj12NC4wAQBUDhRGcmFtZXdvcmtEaXNwbGF5TmFtZRAuTkVUIEZyYW1ld29y
-ayA0KAEAI1NUXzIwMDNjMzZhM2JhMDRmMDFhMDc5MjgyZjM5ZjU5ZWQzAAAFAQAAAAAWAQARQ29w
-eXJpZ2h0IEAgIDIwMTYAAAgBAAgAAAAAAB4BAAEAVAIWV3JhcE5vbkV4Y2VwdGlvblRocm93cwEA
-AAD8MwAAAAAAAAAAAAAeNAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEDQAAAAAAAAAAAAAAAAA
-AAAAAAAAAF9Db3JEbGxNYWluAG1zY29yZWUuZGxsAAAAAAD/JQAgABAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+C3MbAAAKDBYNB28cAAAKEwkrQRIJKB0AAAoTBAIGEQQoEAAABhMFEQUoHgAAChMGEQZyxwAAcG8f
+AAAKCBEEEQVvIAAACt4MEQYsBxEGbyEAAArcEgkoIgAACi223g4SCf4WAwAAG28hAAAK3AIoFgAA
+Cm8XAAAKcjEBAHBvGAAACghvIwAACt5UEwcCKBYAAApvFwAACnJnAQBwbxgAAApvGQAACm8aAAAK
+EwgCKBYAAApvFwAACnKJAQBwbxgAAApyuQEAcBEIEQdvJAAACiglAAAKbyMAAAoXDd4A3g0CKBYA
+AAoJbyYAAArcKgAAAAE0AAACAG8AGIcADAAAAAACAFAATp4ADgAAAAAAAEgAgckAVCYAAAECAEgA
+1x8BDQAAAAATMAQAPAAAAAMAABEcjScAAAEKBhYDogYXcvMBAHCiBhgEogYZcvcBAHCiBhoCKCcA
+AAooEQAABqIGG3L7AQBwogYoKAAACio2DwFyBQIAcCgpAAAKKh4CKCoAAAoqAAAAAAAAtAAAAM7K
+774BAAAAkQAAAGxTeXN0ZW0uUmVzb3VyY2VzLlJlc291cmNlUmVhZGVyLCBtc2NvcmxpYiwgVmVy
+c2lvbj00LjAuMC4wLCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWI3N2E1YzU2MTkz
+NGUwODkjU3lzdGVtLlJlc291cmNlcy5SdW50aW1lUmVzb3VyY2VTZXQCAAAAAAAAAAAAAABQQURQ
+QURQtAAAAEJTSkIBAAEAAAAAAAwAAAB2NC4wLjMwMzE5AAAAAAUAbAAAAKAFAAAjfgAADAYAAJwH
+AAAjU3RyaW5ncwAAAACoDQAAJAIAACNVUwDMDwAAEAAAACNHVUlEAAAA3A8AAPABAAAjQmxvYgAA
+AAAAAAACAAABVx2iCQkDAAAA+iUzABYAAAEAAAAnAAAABgAAAAkAAAASAAAACgAAACoAAAACAAAA
+GAAAAAMAAAADAAAABgAAAAoAAAADAAAAAQAAAAQAAAABAAAAAQAAAAAACgABAAAAAAAGAMoAwwAK
+AOYA0QAOAEYBHQEGAGIBwwAGADkCKAIGAGoCVQIGAO8CwwAGAFYDPAMGAIEDbwMGAJgDbwMGALUD
+bwMGANQDbwMGAO0DbwMGAAYEbwMGACEEbwMGADwEbwMGAFUEbwMGAI4EbgQGAK4EbgQGAMwEbgQG
+APoE5wQGABcFwwAGABwFwwAGAEAFbwMKAGwFVgUKAIUFVgUOAKEFHQEOAMMFHQESABwG/AUSADQG
+/AUGAHQGWQYGAHsGWQZ/AIgGAAAGALcGrQYGALwGrQYGANQGrQYGAO0GwwAGABQHwwAGACoHwwAA
+AAAAAQAAAAAAAQABAAEBEAAyADsABQABAAEAAAAQAF8AaQAFAAQACAAAARAAmABpAAkABgAMAAEA
+EAChADsADQAHAA8AAwEAAKwAAAARAAcAEwABAL0BIwABANkBIwABAPYBIwARAEkCKgARAHYCLgAR
+ALoCUAAGBgUDagBWgA0DbQBWgBUDbQBQIAAAAACGGGcBEwABAG0gAAAAAIYIbQEaAAQAdSAAAAAA
+hgh8AR4ABAB+IAAAAACGCIsBGgAFAIYgAAAAAIYImwEeAAUAjyAAAAAAhgirARoABgCXIAAAAACG
+CLQBHgAGAKAgAAAAAIMYZwEyAAcAqCAAAAAAkwiGAjYABwDhIAAAAACTCJoCOwAHAOggAAAAAJMI
+pgJAAAcA8CAAAAAAlgjKAlQACAADIQAAAACGGGcBMgAIAPcgAAAAAJEYmgWnAAgADCEAAAAAhgDe
+AjIACAB8IgAAAACBAOMCXgAIAMQiAAAAAIEA+AJkAAoA0iIAAAAAhhhnATIACwAAAAEADAIAAAIA
+FwIAAAMAIwIAAAEAHQMAAAEAHQMAAAEAHQMAAAEAHQMAAAEAIwMAAAIAMAMAAAEAHQNBAGcBHgBJ
+AGcBHgBRAGcBHgBZAGcBHgBhAGcBHgBpAGcBHgBxAGcBHgB5AGcBHgCBAGcBHgCJAGcBHgCRAGcB
+ewCZAGcBMgAJAGcBMgChAGcBMgCpAGcBMgCxAC4FgACxAEkFhwApAGcBjADJAGcBmAARAGcBMgDZ
+AGcBMgAZANUFqwDhACYGsADpAD0GtQDxAEYGuwAJAFAGGgAUAGcBMgAMAJMGzQAcAKEG3gARAckG
+4wAhAd8GHgAUAOkG6gApAfkGMgAcAAEH8gDxAAoH9gAxAR4HGgA5ATEH+wDhADgHewA5AEcHIgE5
+AU8HJwE5AFAGMgEZAGcBMgAIACAAcQAIACQAdgAhAHMAdgAuAFsAxQEuAGMAzgEuAAsANwEuABMA
+fwEuABsAqAEuACMAqAEuACsAqAEuADMAfwEuADsArgEuAEMAqAFAAHMAdgBBAHMAdgBgAHMAdgBh
+AHMAdgBjAHsAdgCAAHMAdgCJAJsAngCgAHMAdgCjAKsAdgCpAJsAngDAAHMAdgDBAHMAdgDgAHMA
+dgCTAAIBLQECAAEAAwAEAAQABgAAAAwCJgAAABcCJgAAACMCJgAAADkCRgAAALICSwAAANYCWQAC
+AAIAAwABAAMAAwACAAQABQABAAUABQACAAYABwABAAcABwACAAkACQACAAoACwABAAsACwACAAwA
+DQC/AMUA1wAEgAAAAQAAABUYBmAAAAAAAAA7AAAABAAAAAAAAAAAAAAAAQC6AAAAAAAEAAAAAAAA
+AAAAAAABAMMAAAAAAAsAAAAAAAAAAAAAAAoA/gAAAAAACwAAAAAAAAAAAAAACgDdBQAAAAAAAAAA
+AQAAAFYHAAAGAAUAAAAAAAA8TW9kdWxlPgBTVF8yMDAzYzM2YTNiYTA0ZjAxYTA3OTI4MmYzOWY1
+OWVkMy5kbGwAQXJndW1lbnQAU1RfMjAwM2MzNmEzYmEwNGYwMWEwNzkyODJmMzlmNTllZDMAUmVz
+b3VyY2VzAFNUXzIwMDNjMzZhM2JhMDRmMDFhMDc5MjgyZjM5ZjU5ZWQzLlByb3BlcnRpZXMAU2V0
+dGluZ3MAU2NyaXB0TWFpbgBTY3JpcHRSZXN1bHRzAG1zY29ybGliAFN5c3RlbQBPYmplY3QAU3lz
+dGVtLkNvbmZpZ3VyYXRpb24AQXBwbGljYXRpb25TZXR0aW5nc0Jhc2UATWljcm9zb2Z0LlNxbFNl
+cnZlci5TY3JpcHRUYXNrAE1pY3Jvc29mdC5TcWxTZXJ2ZXIuRHRzLlRhc2tzLlNjcmlwdFRhc2sA
+VlNUQVJUU2NyaXB0T2JqZWN0TW9kZWxCYXNlAEVudW0ALmN0b3IAZ2V0X0ZpbGVQcmVmaXgAc2V0
+X0ZpbGVQcmVmaXgAZ2V0X0luZGV4UHJlZml4AHNldF9JbmRleFByZWZpeABnZXRfUGF0aABzZXRf
+UGF0aAA8RmlsZVByZWZpeD5rX19CYWNraW5nRmllbGQAPEluZGV4UHJlZml4PmtfX0JhY2tpbmdG
+aWVsZAA8UGF0aD5rX19CYWNraW5nRmllbGQARmlsZVByZWZpeABJbmRleFByZWZpeABQYXRoAFN5
+c3RlbS5SZXNvdXJjZXMAUmVzb3VyY2VNYW5hZ2VyAHJlc291cmNlTWFuAFN5c3RlbS5HbG9iYWxp
+emF0aW9uAEN1bHR1cmVJbmZvAHJlc291cmNlQ3VsdHVyZQBnZXRfUmVzb3VyY2VNYW5hZ2VyAGdl
+dF9DdWx0dXJlAHNldF9DdWx0dXJlAEN1bHR1cmUAZGVmYXVsdEluc3RhbmNlAGdldF9EZWZhdWx0
+AERlZmF1bHQATWFpbgBHZXRGdWxsUGF0aABEYXRlVGltZQBHZXRUaW1lU3RhbXAAdmFsdWVfXwBT
+dWNjZXNzAEZhaWx1cmUAdmFsdWUAcGFydGlhbF9wYXRoAGZpbGVfcHJlZml4AFN5c3RlbS5SdW50
+aW1lLlZlcnNpb25pbmcAVGFyZ2V0RnJhbWV3b3JrQXR0cmlidXRlAFN5c3RlbS5SZWZsZWN0aW9u
+AEFzc2VtYmx5VGl0bGVBdHRyaWJ1dGUAQXNzZW1ibHlEZXNjcmlwdGlvbkF0dHJpYnV0ZQBBc3Nl
+bWJseUNvbmZpZ3VyYXRpb25BdHRyaWJ1dGUAQXNzZW1ibHlDb21wYW55QXR0cmlidXRlAEFzc2Vt
+Ymx5UHJvZHVjdEF0dHJpYnV0ZQBBc3NlbWJseUNvcHlyaWdodEF0dHJpYnV0ZQBBc3NlbWJseVRy
+YWRlbWFya0F0dHJpYnV0ZQBBc3NlbWJseUN1bHR1cmVBdHRyaWJ1dGUAQXNzZW1ibHlWZXJzaW9u
+QXR0cmlidXRlAFN5c3RlbS5SdW50aW1lLkNvbXBpbGVyU2VydmljZXMAQ29tcGlsYXRpb25SZWxh
+eGF0aW9uc0F0dHJpYnV0ZQBSdW50aW1lQ29tcGF0aWJpbGl0eUF0dHJpYnV0ZQBDb21waWxlckdl
+bmVyYXRlZEF0dHJpYnV0ZQBTeXN0ZW0uRGlhZ25vc3RpY3MARGVidWdnZXJOb25Vc2VyQ29kZUF0
+dHJpYnV0ZQBUeXBlAFJ1bnRpbWVUeXBlSGFuZGxlAEdldFR5cGVGcm9tSGFuZGxlAEFzc2VtYmx5
+AGdldF9Bc3NlbWJseQBTeXN0ZW0uQ29tcG9uZW50TW9kZWwARWRpdG9yQnJvd3NhYmxlQXR0cmli
+dXRlAEVkaXRvckJyb3dzYWJsZVN0YXRlAC5jY3RvcgBTU0lTU2NyaXB0VGFza0VudHJ5UG9pbnRB
+dHRyaWJ1dGUAU2NyaXB0T2JqZWN0TW9kZWwAZ2V0X0R0cwBNaWNyb3NvZnQuU3FsU2VydmVyLk1h
+bmFnZWREVFMATWljcm9zb2Z0LlNxbFNlcnZlci5EdHMuUnVudGltZQBWYXJpYWJsZXMAZ2V0X1Zh
+cmlhYmxlcwBWYXJpYWJsZQBnZXRfSXRlbQBnZXRfVmFsdWUAVG9TdHJpbmcAU3lzdGVtLkNvbGxl
+Y3Rpb25zLkdlbmVyaWMATGlzdGAxAERpY3Rpb25hcnlgMgBFbnVtZXJhdG9yAEdldEVudW1lcmF0
+b3IAZ2V0X0N1cnJlbnQAU3lzdGVtLklPAEZpbGUAU3RyZWFtV3JpdGVyAENyZWF0ZVRleHQAVGV4
+dFdyaXRlcgBXcml0ZUxpbmUAQWRkAElEaXNwb3NhYmxlAERpc3Bvc2UATW92ZU5leHQAc2V0X1Zh
+bHVlAEV4Y2VwdGlvbgBnZXRfTWVzc2FnZQBTdHJpbmcARm9ybWF0AHNldF9UYXNrUmVzdWx0AGdl
+dF9Ob3cAQ29uY2F0AFNUXzIwMDNjMzZhM2JhMDRmMDFhMDc5MjgyZjM5ZjU5ZWQzLlByb3BlcnRp
+ZXMuUmVzb3VyY2VzLnJlc291cmNlcwAAAAAAcVMAVABfADIAMAAwADMAYwAzADYAYQAzAGIAYQAw
+ADQAZgAwADEAYQAwADcAOQAyADgAMgBmADMAOQBmADUAOQBlAGQAMwAuAFAAcgBvAHAAZQByAHQA
+aQBlAHMALgBSAGUAcwBvAHUAcgBjAGUAcwAAKSQAUABhAGMAawBhAGcAZQA6ADoAaQBuAGQAZQB4
+AF8AcABhAHQAaAAAKVUAcwBlAHIAOgA6AGkAbgBkAGUAeABfAHAAcgBlAGYAaQB4AGUAcwAAaUMA
+QQBTAEUAXwBOAFUATQBCAEUAUgB8AE0ARQBNAEIARQBSAF8ASQBEAHwARgBVAEwATABGAEkATABN
+AEUATgBUAF8ARABBAFQARQB8AE0AQQBOAEkARgBFAFMAVABfAE4AQQBNAEUAADVVAHMAZQByADoA
+OgBuAGUAdwBfAGkAbgBkAGUAeABfAGYAdQBsAGwAXwBwAGEAdABoAHMAACFTAHkAcwB0AGUAbQA6
+ADoAVABhAHMAawBOAGEAbQBlAAAvVQBzAGUAcgA6ADoAZQB4AGMAZQBwAHQAaQBvAG4AXwBtAGUA
+cwBzAGEAZwBlAAA5VABhAHMAawAgADoAIABbAHsAMAB9AF0AOwAgAE0AZQBzAHMAYQBnAGUAOgAg
+AFsAewAxAH0AXQAAA1wAAAMtAAEJLgBjAHMAdgAAHXkAeQB5AHkATQBNAGQAZABIAEgAbQBtAHMA
+cwAAADsN4sFmFxNEq8iSjkIsgBoACLd6XFYZNOCJCImEXc2AgMyRBiADAQ4ODgMgAA4EIAEBDgIG
+DgMoAA4DBhIVAwYSGQMgAAEEAAASFQQAABIZBQABARIZBAgAEhUECAASGQMGEhAEAAASEAQIABIQ
+BSACDg4OBSABDhEdAgYIAwYRGAQAAAAABAEAAAAEIAEBCAYAARJZEV0EIAASYQYgAgEOEmEEBwES
+FQUgAQERaQgBAAIAAAAAAAMAAAEEIAAScQQgABJ1BSABEnkcAyAAHAUVEn0BDgcVEoCBAg4OCSAA
+FRGAhQETAAYVEYCFAQ4EIAATAAYAARKAjQ4HIAIBEwATAQMgAAIEIAEBHAYAAw4OHBwfBwoOFRJ9
+AQ4VEoCBAg4OCA4OEoCNEoCZDhURgIUBDgQAABEdBQABDh0OBAcBHQ4EIAEODkcBABouTkVURnJh
+bWV3b3JrLFZlcnNpb249djQuMAEAVA4URnJhbWV3b3JrRGlzcGxheU5hbWUQLk5FVCBGcmFtZXdv
+cmsgNCgBACNTVF8yMDAzYzM2YTNiYTA0ZjAxYTA3OTI4MmYzOWY1OWVkMwAABQEAAAAAFgEAEUNv
+cHlyaWdodCBAICAyMDE2AAAIAQAIAAAAAAAeAQABAFQCFldyYXBOb25FeGNlcHRpb25UaHJvd3MB
+AAAAjDUAAAAAAAAAAAAArjUAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAKA1AAAAAAAAAAAAAAAA
+AAAAAAAAAABfQ29yRGxsTWFpbgBtc2NvcmVlLmRsbAAAAAAA/yUAIAAQAAAAAAAAAAAAAAAAAAAA
 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 AAABABAAAAAYAACAAAAAAAAAAAAAAAAAAAABAAEAAAAwAACAAAAAAAAAAAAAAAAAAAABAAAAAABI
 AAAAWEAAALADAAAAAAAAAAAAALADNAAAAFYAUwBfAFYARQBSAFMASQBPAE4AXwBJAE4ARgBPAAAA
-AAC9BO/+AAABAAAAAQDmbhQYAAABAOZuFBg/AAAAAAAAAAQAAAACAAAAAAAAAAAAAAAAAAAARAAA
+AAC9BO/+AAABAAAAAQAGYBUYAAABAAZgFRg/AAAAAAAAAAQAAAACAAAAAAAAAAAAAAAAAAAARAAA
 AAEAVgBhAHIARgBpAGwAZQBJAG4AZgBvAAAAAAAkAAQAAABUAHIAYQBuAHMAbABhAHQAaQBvAG4A
 AAAAAAAAsAQQAwAAAQBTAHQAcgBpAG4AZwBGAGkAbABlAEkAbgBmAG8AAADsAgAAAQAwADAAMAAw
 ADAANABiADAAAABwACQAAQBGAGkAbABlAEQAZQBzAGMAcgBpAHAAdABpAG8AbgAAAAAAUwBUAF8A
 MgAwADAAMwBjADMANgBhADMAYgBhADAANABmADAAMQBhADAANwA5ADIAOAAyAGYAMwA5AGYANQA5
-AGUAZAAzAAAAQAAPAAEARgBpAGwAZQBWAGUAcgBzAGkAbwBuAAAAAAAxAC4AMAAuADYAMQA2ADQA
-LgAyADgAMwA5ADAAAAAAAHAAKAABAEkAbgB0AGUAcgBuAGEAbABOAGEAbQBlAAAAUwBUAF8AMgAw
+AGUAZAAzAAAAQAAPAAEARgBpAGwAZQBWAGUAcgBzAGkAbwBuAAAAAAAxAC4AMAAuADYAMQA2ADUA
+LgAyADQANQA4ADIAAAAAAHAAKAABAEkAbgB0AGUAcgBuAGEAbABOAGEAbQBlAAAAUwBUAF8AMgAw
 ADAAMwBjADMANgBhADMAYgBhADAANABmADAAMQBhADAANwA5ADIAOAAyAGYAMwA5AGYANQA5AGUA
 ZAAzAC4AZABsAGwAAABIABIAAQBMAGUAZwBhAGwAQwBvAHAAeQByAGkAZwBoAHQAAABDAG8AcAB5
 AHIAaQBnAGgAdAAgAEAAIAAgADIAMAAxADYAAAB4ACgAAQBPAHIAaQBnAGkAbgBhAGwARgBpAGwA
@@ -1545,8 +2178,8 @@ ZQBuAGEAbQBlAAAAUwBUAF8AMgAwADAAMwBjADMANgBhADMAYgBhADAANABmADAAMQBhADAANwA5
 ADIAOAAyAGYAMwA5AGYANQA5AGUAZAAzAC4AZABsAGwAAABoACQAAQBQAHIAbwBkAHUAYwB0AE4A
 YQBtAGUAAAAAAFMAVABfADIAMAAwADMAYwAzADYAYQAzAGIAYQAwADQAZgAwADEAYQAwADcAOQAy
 ADgAMgBmADMAOQBmADUAOQBlAGQAMwAAAEQADwABAFAAcgBvAGQAdQBjAHQAVgBlAHIAcwBpAG8A
-bgAAADEALgAwAC4ANgAxADYANAAuADIAOAAzADkAMAAAAAAASAAPAAEAQQBzAHMAZQBtAGIAbAB5
-ACAAVgBlAHIAcwBpAG8AbgAAADEALgAwAC4ANgAxADYANAAuADIAOAAzADkAMAAAAAAAAAAAAAAA
+bgAAADEALgAwAC4ANgAxADYANQAuADIANAA1ADgAMgAAAAAASAAPAAEAQQBzAHMAZQBtAGIAbAB5
+ACAAVgBlAHIAcwBpAG8AbgAAADEALgAwAC4ANgAxADYANQAuADIANAA1ADgAMgAAAAAAAAAAAAAA
 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
@@ -1555,7 +2188,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADAAAAwAAAAwNAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADAAAAwAAADANQAAAAAA
 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
@@ -2068,18 +2701,18 @@ namespace ST_4fdbaf3ce9d84afeb160b40b867ea522
                 Encoding="UTF16LE"><![CDATA[<?xml version="1.0" encoding="UTF-16" standalone="yes"?>
 <c:Project xmlns:c="http://schemas.microsoft.com/codeprojectml/2010/08/main" xmlns:msb="http://schemas.microsoft.com/developer/msbuild/2003" runtimeVersion="3.0" schemaVersion="1.0">
 	<msb:PropertyGroup>
-		<msb:Language>msBuild</msb:Language>
 		<msb:CodeName>ST_4fdbaf3ce9d84afeb160b40b867ea522</msb:CodeName>
+		<msb:Language>msBuild</msb:Language>
 		<msb:DisplayName>ST_4fdbaf3ce9d84afeb160b40b867ea522</msb:DisplayName>
 		<msb:ProjectId>{F3366BAD-25B7-4DDC-BCF9-D1AE339070CC}</msb:ProjectId>
 	</msb:PropertyGroup>
 	<msb:ItemGroup>
 		<msb:Project Include="ST_4fdbaf3ce9d84afeb160b40b867ea522.csproj"/>
-		<msb:File Include="Properties\Settings.settings"/>
 		<msb:File Include="Properties\AssemblyInfo.cs"/>
+		<msb:File Include="Properties\Settings.settings"/>
 		<msb:File Include="Properties\Resources.resx"/>
-		<msb:File Include="Properties\Resources.Designer.cs"/>
 		<msb:File Include="MedhokDataContext.cs"/>
+		<msb:File Include="Properties\Resources.Designer.cs"/>
 		<msb:File Include="Properties\Settings.Designer.cs"/>
 		<msb:File Include="ScriptMain.cs"/>
 		<msb:File Include="FileType.cs"/>
@@ -2197,7 +2830,7 @@ namespace ST_4fdbaf3ce9d84afeb160b40b867ea522.Properties {
               <BinaryItem
                 Name="ST_4fdbaf3ce9d84afeb160b40b867ea522.dll">TVqQAAMAAAAEAAAA//8AALgAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 AAAAgAAAAA4fug4AtAnNIbgBTM0hVGhpcyBwcm9ncmFtIGNhbm5vdCBiZSBydW4gaW4gRE9TIG1v
-ZGUuDQ0KJAAAAAAAAABQRQAATAEDAGSyLFgAAAAAAAAAAOAAAiELAQsAACQAAAAIAAAAAAAAzkIA
+ZGUuDQ0KJAAAAAAAAABQRQAATAEDADmdLVgAAAAAAAAAAOAAAiELAQsAACQAAAAIAAAAAAAAzkIA
 AAAgAAAAYAAAAAAAEAAgAAAAAgAABAAAAAAAAAAEAAAAAAAAAACgAAAAAgAAAAAAAAMAQIUAABAA
 ABAAAAAAEAAAEAAAAAAAABAAAAAAAAAAAAAAAIBCAABLAAAAAGAAAAgEAAAAAAAAAAAAAAAAAAAA
 AAAAAIAAAAwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
@@ -2273,7 +2906,7 @@ ywCGACEBgwCGAEEBgwCGAEMBcwCGAGEBiwAQAQECcwCGAIAC2wCGAIEC0wClAaEC0wClAcEC0wCl
 AQAD2wCGACAD2wCGAEAD2wCGAEkB0AEAAhMCqgMCAAEABgAEAAcABgAKAAcAAABUAiYAAABfAiYA
 AABrAiYAAAAEA2UAAAB9A2oAAAChA3gAAABUAo8BAABfApQBAABrApkBAgACAAMAAQADAAMAAgAE
 AAUAAQAFAAUAAgAGAAcAAQAHAAcAAgAMAAkAAgANAAsAAQAOAAsAAgAPAA0AAgAVAA8AAgAWABEA
-AgAXABMArgHAAcoBzQHWAfAB+AGPAkcDVANrAwSAAAABAAAAFBhSbAAAAAAAADsAAAAEAAAAAAAA
+AgAXABMArgHAAcoBzQHWAfAB+AGPAkcDVANrAwSAAAABAAAAFRj8OAAAAAAAADsAAAAEAAAAAAAA
 AAAAAAABAOUAAAAAAAQAAAAAAAAAAAAAAAEA/AAAAAAABAAAAAAAAAAAAAAAAQDuAAAAAAALAAAA
 AAAAAAAAAAAKAEYBAAAAAAsAAAAAAAAAAAAAAAoA5gcAAAAABAAAAAAAAAAAAAAAAQBZCAAAAAAE
 AAAAAAAAAAAAAAABAKUKAAAAAAAAAAABAAAA5goAAAkACAAAAAAAFADBBgEAAAAUANUGAgAAABQA
@@ -2337,7 +2970,7 @@ bgBkAGUAeABfAHAAcgBlAGYAaQB4AGUAcwAAS1UAcwBlAHIAOgA6AHAAcgBlAGYAaQB4AGUAcwBf
 AGEAbgBkAF8AZABlAHMAdABpAG4AYQB0AGkAbwBuAHMAXwBwAGEAdABoAHMAACFTAHkAcwB0AGUA
 bQA6ADoAVABhAHMAawBOAGEAbQBlAAAvVQBzAGUAcgA6ADoAZQB4AGMAZQBwAHQAaQBvAG4AXwBt
 AGUAcwBzAGEAZwBlAAA5VABhAHMAawAgADoAIABbAHsAMAB9AF0AOwAgAE0AZQBzAHMAYQBnAGUA
-OgAgAFsAewAxAH0AXQAAAAAAOmz4YG0TG0yadOeYs3Ah9QAIt3pcVhk04IkIiYRdzYCAzJEGIAMB
+OgAgAFsAewAxAH0AXQAAAAAA8Ncxbe0DbUO8D++38OS4kAAIt3pcVhk04IkIiYRdzYCAzJEGIAMB
 Dg4OAyAADgQgAQEOAgYOAygADgIGCAcGFRIZARIQAyAAAQMGEgwHBhUSHQESEAcGFRIdARIMAwYS
 IQMGEiUEAAASIQQAABIlBQABARIlBAgAEiEECAASJQMGEhwEAAASHAQIABIcAwYRJAQAAAAABAEA
 AAAEIAEBCCkBAAEAVA4ETmFtZR1NZWRob2suTWFpbGluZ19EYXRhX0ZpbGVfRGVzdBQBAAEAVAIM
@@ -2368,13 +3001,13 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAEAAA
 ABgAAIAAAAAAAAAAAAAAAAAAAAEAAQAAADAAAIAAAAAAAAAAAAAAAAAAAAEAAAAAAEgAAABYYAAA
 sAMAAAAAAAAAAAAAsAM0AAAAVgBTAF8AVgBFAFIAUwBJAE8ATgBfAEkATgBGAE8AAAAAAL0E7/4A
-AAEAAAABAFJsFBgAAAEAUmwUGD8AAAAAAAAABAAAAAIAAAAAAAAAAAAAAAAAAABEAAAAAQBWAGEA
+AAEAAAABAPw4FRgAAAEA/DgVGD8AAAAAAAAABAAAAAIAAAAAAAAAAAAAAAAAAABEAAAAAQBWAGEA
 cgBGAGkAbABlAEkAbgBmAG8AAAAAACQABAAAAFQAcgBhAG4AcwBsAGEAdABpAG8AbgAAAAAAAACw
 BBADAAABAFMAdAByAGkAbgBnAEYAaQBsAGUASQBuAGYAbwAAAOwCAAABADAAMAAwADAAMAA0AGIA
 MAAAAHAAJAABAEYAaQBsAGUARABlAHMAYwByAGkAcAB0AGkAbwBuAAAAAABTAFQAXwA0AGYAZABi
 AGEAZgAzAGMAZQA5AGQAOAA0AGEAZgBlAGIAMQA2ADAAYgA0ADAAYgA4ADYANwBlAGEANQAyADIA
-AABAAA8AAQBGAGkAbABlAFYAZQByAHMAaQBvAG4AAAAAADEALgAwAC4ANgAxADYANAAuADIANwA3
-ADMAMAAAAAAAcAAoAAEASQBuAHQAZQByAG4AYQBsAE4AYQBtAGUAAABTAFQAXwA0AGYAZABiAGEA
+AABAAA8AAQBGAGkAbABlAFYAZQByAHMAaQBvAG4AAAAAADEALgAwAC4ANgAxADYANQAuADEANAA1
+ADgAOAAAAAAAcAAoAAEASQBuAHQAZQByAG4AYQBsAE4AYQBtAGUAAABTAFQAXwA0AGYAZABiAGEA
 ZgAzAGMAZQA5AGQAOAA0AGEAZgBlAGIAMQA2ADAAYgA0ADAAYgA4ADYANwBlAGEANQAyADIALgBk
 AGwAbAAAAEgAEgABAEwAZQBnAGEAbABDAG8AcAB5AHIAaQBnAGgAdAAAAEMAbwBwAHkAcgBpAGcA
 aAB0ACAAQAAgACAAMgAwADEANgAAAHgAKAABAE8AcgBpAGcAaQBuAGEAbABGAGkAbABlAG4AYQBt
@@ -2382,8 +3015,8 @@ AGUAAABTAFQAXwA0AGYAZABiAGEAZgAzAGMAZQA5AGQAOAA0AGEAZgBlAGIAMQA2ADAAYgA0ADAA
 YgA4ADYANwBlAGEANQAyADIALgBkAGwAbAAAAGgAJAABAFAAcgBvAGQAdQBjAHQATgBhAG0AZQAA
 AAAAUwBUAF8ANABmAGQAYgBhAGYAMwBjAGUAOQBkADgANABhAGYAZQBiADEANgAwAGIANAAwAGIA
 OAA2ADcAZQBhADUAMgAyAAAARAAPAAEAUAByAG8AZAB1AGMAdABWAGUAcgBzAGkAbwBuAAAAMQAu
-ADAALgA2ADEANgA0AC4AMgA3ADcAMwAwAAAAAABIAA8AAQBBAHMAcwBlAG0AYgBsAHkAIABWAGUA
-cgBzAGkAbwBuAAAAMQAuADAALgA2ADEANgA0AC4AMgA3ADcAMwAwAAAAAAAAAAAAAAAAAAAAAAAA
+ADAALgA2ADEANgA1AC4AMQA0ADUAOAA4AAAAAABIAA8AAQBBAHMAcwBlAG0AYgBsAHkAIABWAGUA
+cgBzAGkAbwBuAAAAMQAuADAALgA2ADEANgA1AC4AMQA0ADUAOAA4AAAAAAAAAAAAAAAAAAAAAAAA
 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
@@ -2499,16 +3132,42 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==</BinaryItem>
           Id="Package\SEQC - Index Generation\FELC - Iterate Index Directory for clean up"
           TopLeft="42.8444458144052,20.9777791715136" />
         <NodeLayout
-          Size="132.8,41.6"
-          Id="Package\SEQC - Index Generation\FELC - Iterate the manifest directory\Script Task"
-          TopLeft="76.4244928821529,20.3899227934314" />
+          Size="184,41.6"
+          Id="Package\SEQC - Index Generation\FELC - Iterate the manifest directory\SCR - Get index specs"
+          TopLeft="64.9959212589541,21.2638723855201" />
+        <NodeLayout
+          Size="252.8,41.6"
+          Id="Package\SEQC - Index Generation\FELC - Iterate the manifest directory\DFT - Write manifest data into index"
+          TopLeft="32.342859478386,99.583200349492" />
+        <EdgeLayout
+          Id="Package\SEQC - Index Generation\FELC - Iterate the manifest directory.PrecedenceConstraints[Constraint]"
+          TopLeft="157.86939036867,62.8638723855201">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,36.7193279639719"
+              Start="0,0"
+              End="0,29.2193279639719">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,29.2193279639719" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
         <ContainerLayout
           HeaderHeight="43"
           IsExpanded="True"
-          PanelSize="280,116.8"
-          Size="280,160"
+          PanelSize="497.6,196"
+          Size="497.6,239.2"
           Id="Package\SEQC - Index Generation\FELC - Iterate the manifest directory"
-          TopLeft="58.0897976978178,362.924375917672" />
+          TopLeft="49.9265322526758,363.798325509761" />
         <NodeLayout
           Size="276.8,41.6"
           Id="Package\SEQC - Index Generation\SCR - Create new index files"
@@ -2517,6 +3176,10 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==</BinaryItem>
           Size="276.8,41.6"
           Id="Package\SEQC - Index Generation\SCR - Get prefixes and destination paths"
           TopLeft="64.3142875997386,193.78991932935" />
+        <NodeLayout
+          Size="180.8,41.6"
+          Id="Package\SEQC - Index Generation\SQL - Save exception"
+          TopLeft="473.600008855547,243.596643362078" />
         <EdgeLayout
           Id="Package\SEQC - Index Generation.PrecedenceConstraints[Constraint]"
           TopLeft="201.779366707072,157.777779171514">
@@ -2563,18 +3226,30 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==</BinaryItem>
         </EdgeLayout>
         <EdgeLayout
           Id="Package\SEQC - Index Generation.PrecedenceConstraints[Constraint 2]"
-          TopLeft="200.402042648778,320.849304173197">
+          TopLeft="202.714287599739,320.849304173197">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,42.075071744475"
+              EndConnector="96.0122446529372,42.9490213365637"
               Start="0,0"
-              End="0,34.575071744475">
+              End="96.0122446529372,35.4490213365637">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,34.575071744475" />
+                    End="0,17.4745106682819" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,17.4745106682819"
+                    Point2="0,21.4745106682819"
+                    Point3="4,21.4745106682819" />
+                  <mssgle:LineSegment
+                    End="92.0122446529372,21.4745106682819" />
+                  <mssgle:CubicBezierSegment
+                    Point1="92.0122446529372,21.4745106682819"
+                    Point2="96.0122446529372,21.4745106682819"
+                    Point3="96.0122446529372,25.4745106682819" />
+                  <mssgle:LineSegment
+                    End="96.0122446529372,35.4490213365637" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -2583,10 +3258,6 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==</BinaryItem>
             <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
-        <NodeLayout
-          Size="180.8,41.6"
-          Id="Package\SEQC - Index Generation\SQL - Save exception"
-          TopLeft="473.600008855547,243.596643362078" />
         <EdgeLayout
           Id="Package\SEQC - Index Generation.PrecedenceConstraints[Constraint 3]"
           TopLeft="341.114287599739,214.58991932935">
@@ -2662,12 +3333,76 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==</BinaryItem>
         <ContainerLayout
           HeaderHeight="43"
           IsExpanded="True"
-          PanelSize="728,577.6"
-          Size="728,620.8"
+          PanelSize="728,656.8"
+          Size="728,700"
           Id="Package\SEQC - Index Generation"
           TopLeft="46.2857150739553,49.0771248712948" />
       </GraphLayout>
     </LayoutInfo>
   </Package>
+  <TaskHost
+    design-time-name="Package\SEQC - Index Generation\FELC - Iterate the manifest directory\DFT - Write manifest data into index">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="217.6,41.6"
+          Id="Package\SEQC - Index Generation\FELC - Iterate the manifest directory\DFT - Write manifest data into index\FF_SRC - Manifest file"
+          TopLeft="40.6095239879323,41.6000005834243" />
+        <NodeLayout
+          Size="217.6,41.6"
+          Id="Package\SEQC - Index Generation\FELC - Iterate the manifest directory\DFT - Write manifest data into index\DER - Add manifest name"
+          TopLeft="40.6095239879323,126.4" />
+        <EdgeLayout
+          Id="Package\SEQC - Index Generation\FELC - Iterate the manifest directory\DFT - Write manifest data into index.Paths[Flat File Source Output]"
+          TopLeft="149.409523987932,83.2000005834243">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,43.1999994165757"
+              Start="0,0"
+              End="0,35.6999994165757">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,35.6999994165757" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="217.6,41.6"
+          Id="Package\SEQC - Index Generation\FELC - Iterate the manifest directory\DFT - Write manifest data into index\FF_DST - Write data to index"
+          TopLeft="40.6095239879323,224" />
+        <EdgeLayout
+          Id="Package\SEQC - Index Generation\FELC - Iterate the manifest directory\DFT - Write manifest data into index.Paths[Derived Column Output]"
+          TopLeft="149.409523987932,168">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,56"
+              Start="0,0"
+              End="0,48.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,48.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
 </Objects>]]></DTS:DesignTimeProperties>
 </DTS:Executable>
