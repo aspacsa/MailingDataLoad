@@ -11,8 +11,8 @@
   DTS:LocaleID="1033"
   DTS:ObjectName="ETL_Mailing_Data_File_Indexing"
   DTS:PackageType="5"
-  DTS:VersionBuild="100"
-  DTS:VersionGUID="{8A3513FF-62E8-4657-BEB0-7B7612590CB7}">
+  DTS:VersionBuild="106"
+  DTS:VersionGUID="{633A9470-9400-41E9-BBAC-09CB3401EC01}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">6</DTS:Property>
   <DTS:ConnectionManagers>
@@ -176,7 +176,7 @@
           <DTS:Password
             DTS:Name="Password"
             Sensitive="1"
-            Encrypted="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAPXQ7jZTnV0GKV9nuEcqtfwAAAAAIAAAARABUAFMAAAAQZgAAAAEAACAAAACFYfPyUvWodGG30Ks/X2hgKpcImDMS5QN/+JyPpdtH4wAAAAAOgAAAAAIAACAAAABicxV/b8tYi5M2mWzCLtWxjpk/IvjXqBGuMoqR0MoSPxAAAAD6iGjWPr559FtMpw/jH6tVQAAAAEmWafHtJenUoB3q8P9PmNUtLBWdFRPEkACTZzGEd1AiScReb1spExUsDbWOTkXObIrI2RD3fgOID5K+yJ76prs</DTS:Password>
+            Encrypted="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAPXQ7jZTnV0GKV9nuEcqtfwAAAAAIAAAARABUAFMAAAAQZgAAAAEAACAAAABqjRdT9e+bfCTE7kWYUBN2AFHP1pqKxmT3iHnA3+lacAAAAAAOgAAAAAIAACAAAADUNba4QMtXSHFTysiJitqGfYm35olUgMdvkAlRy0AebRAAAAA9Tl6Bb45LniIV4MxX7YP8QAAAAKIBb8gPGHruxs32bHziq7HBVARUD/aKlGMENsuTBhpKCX5pzGGscd18g+GGzPM+Eu/zWXVDai+KAjgvBHlIhyk</DTS:Password>
         </DTS:ConnectionManager>
       </DTS:ObjectData>
     </DTS:ConnectionManager>
@@ -457,6 +457,33 @@
                           refId="Package\SEQC - Index Generation\FELC - Iterate the manifest directory\DFT - Write manifest data into index\DER - Add manifest name.Inputs[Derived Column Input]"
                           description="Input to the Derived Column Transformation"
                           name="Derived Column Input">
+                          <inputColumns>
+                            <inputColumn
+                              refId="Package\SEQC - Index Generation\FELC - Iterate the manifest directory\DFT - Write manifest data into index\DER - Add manifest name.Inputs[Derived Column Input].Columns[Case#]"
+                              cachedCodepage="1252"
+                              cachedDataType="str"
+                              cachedLength="50"
+                              cachedName="Case#"
+                              errorOrTruncationOperation="Computation"
+                              errorRowDisposition="FailComponent"
+                              lineageId="Package\SEQC - Index Generation\FELC - Iterate the manifest directory\DFT - Write manifest data into index\FF_SRC - Manifest file.Outputs[Flat File Source Output].Columns[Case#]"
+                              truncationRowDisposition="FailComponent"
+                              usageType="readWrite">
+                              <properties>
+                                <property
+                                  containsID="true"
+                                  dataType="System.String"
+                                  description="Derived Column Expression"
+                                  name="Expression">(#{Package\SEQC - Index Generation\FELC - Iterate the manifest directory\DFT - Write manifest data into index\FF_SRC - Manifest file.Outputs[Flat File Source Output].Columns[Case#]} == "NULL" || #{Package\SEQC - Index Generation\FELC - Iterate the manifest directory\DFT - Write manifest data into index\FF_SRC - Manifest file.Outputs[Flat File Source Output].Columns[Case#]} == "\"NULL\"") ? "" : #{Package\SEQC - Index Generation\FELC - Iterate the manifest directory\DFT - Write manifest data into index\FF_SRC - Manifest file.Outputs[Flat File Source Output].Columns[Case#]}</property>
+                                <property
+                                  containsID="true"
+                                  dataType="System.String"
+                                  description="Derived Column Friendly Expression"
+                                  expressionType="Notify"
+                                  name="FriendlyExpression">(Case# == "NULL" || Case# == "\"NULL\"") ? "" : Case#</property>
+                              </properties>
+                            </inputColumn>
+                          </inputColumns>
                           <externalMetadataColumns />
                         </input>
                       </inputs>
@@ -1072,24 +1099,24 @@ namespace ST_0189a9b6e7394e689eb9e69765fb2632
             List<Tuple<string, string, string>> args = 
                 (List<Tuple<string, string, string>>)Dts.Variables["User::prefixes_and_destinations_paths"].Value;      //Get arguments for index file
             Dictionary<string, string> new_index_full_paths =
-                (Dictionary<string, string>)Dts.Variables["User::new_index_full_paths"].Value;                          //Get indexes full paths
+                (Dictionary<string, string>)Dts.Variables["User::new_index_full_paths"].Value;                          //Get indexes full paths from collection
             string file_name = Dts.Variables["User::file_name"].Value.ToString();                                       //Get full path of current file
             file_name = Path.GetFileName(file_name);                                                                    //Get rid of the path and leave file name
             string[] tokens = file_name.Split('_');                                                                     //Tokenize file name to get prefix
             string curr_file_prefix = tokens[0];                                                                        //Get file prefix
 
             Tuple<string, string, string> arg = null;
-            arg = args.Find(x => x.Item1 == curr_file_prefix);                                                          //Using current file prefix get arguments
+            arg = args.Find(x => x.Item1 == curr_file_prefix);                                                          //Using current file (manifest) prefix get arguments
                                                                                                                         //for index file.
             if (arg != null)
             {
                 string new_index_full_path;
-                if (new_index_full_paths.TryGetValue(arg.Item2, out new_index_full_path))
+                if (new_index_full_paths.TryGetValue(arg.Item2, out new_index_full_path))                               //If prefix (BH,CM,PA,RX,etc.) of index found
                 {
-                    Dts.Variables["User::current_file_name"].Value = file_name;                                             //Name of current manifest
-                    Dts.Variables["User::current_index_prefix"].Value = arg.Item2;
-                    Dts.Variables["User::current_index_destination"].Value = arg.Item3;
-                    Dts.Variables["User::new_index_full_path"].Value = new_index_full_path;
+                    Dts.Variables["User::current_file_name"].Value = file_name;                                         //Name of current manifest
+                    //Dts.Variables["User::current_index_prefix"].Value = arg.Item2;
+                    //Dts.Variables["User::current_index_destination"].Value = arg.Item3;
+                    Dts.Variables["User::new_index_full_path"].Value = new_index_full_path;                             //Set the current index (full) path
                     result = (int)ScriptResults.Success;
                 }
             }
@@ -1330,121 +1357,112 @@ using System.Runtime.CompilerServices;
                   <BinaryItem
                     Name="ST_0189a9b6e7394e689eb9e69765fb2632.dll">TVqQAAMAAAAEAAAA//8AALgAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 AAAAgAAAAA4fug4AtAnNIbgBTM0hVGhpcyBwcm9ncmFtIGNhbm5vdCBiZSBydW4gaW4gRE9TIG1v
-ZGUuDQ0KJAAAAAAAAABQRQAATAEDAH75LVgAAAAAAAAAAOAAAiELAQsAABQAAAAIAAAAAAAArjIA
+ZGUuDQ0KJAAAAAAAAABQRQAATAEDAD9gL1gAAAAAAAAAAOAAAiELAQsAABIAAAAIAAAAAAAA7jEA
 AAAgAAAAQAAAAAAAEAAgAAAAAgAABAAAAAAAAAAEAAAAAAAAAACAAAAAAgAAAAAAAAMAQIUAABAA
-ABAAAAAAEAAAEAAAAAAAABAAAAAAAAAAAAAAAFwyAABPAAAAAEAAAAgEAAAAAAAAAAAAAAAAAAAA
+ABAAAAAAEAAAEAAAAAAAABAAAAAAAAAAAAAAAJQxAABXAAAAAEAAAAgEAAAAAAAAAAAAAAAAAAAA
 AAAAAGAAAAwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAIAAACAAAAAAAAAAAAAAACCAAAEgAAAAAAAAAAAAAAC50ZXh0AAAAtBIAAAAgAAAAFAAAAAIA
-AAAAAAAAAAAAAAAAACAAAGAucnNyYwAAAAgEAAAAQAAAAAYAAAAWAAAAAAAAAAAAAAAAAABAAABA
-LnJlbG9jAAAMAAAAAGAAAAACAAAAHAAAAAAAAAAAAAAAAAAAQAAAQgAAAAAAAAAAAAAAAAAAAACQ
-MgAAAAAAAEgAAAACAAUA8CIAAGwPAAABAAAAAAAAADgiAAC4AAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAIAAACAAAAAAAAAAAAAAACCAAAEgAAAAAAAAAAAAAAC50ZXh0AAAA9BEAAAAgAAAAEgAAAAIA
+AAAAAAAAAAAAAAAAACAAAGAucnNyYwAAAAgEAAAAQAAAAAYAAAAUAAAAAAAAAAAAAAAAAABAAABA
+LnJlbG9jAAAMAAAAAGAAAAACAAAAGgAAAAAAAAAAAAAAAAAAQAAAQgAAAAAAAAAAAAAAAAAAAADQ
+MQAAAAAAAEgAAAACAAUAsCIAAOQOAAABAAAAAAAAAPghAAC4AAAAAAAAAAAAAAAAAAAAAAAAAAAA
 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAB4CKA4AAAoqEzACAC0AAAABAAARfgEAAAQtIHIBAABw0AIA
 AAIoDwAACm8QAAAKcxEAAAoKBoABAAAEfgEAAAQqGn4CAAAEKh4CgAIAAAQqGn4DAAAEKi5zBgAA
-BoADAAAEKh4CKBQAAAoqHgIoDgAACipKA28WAAAKAnsHAAAEKBcAAAoqAAATMAQASwEAAAIAABFz
+BoADAAAEKh4CKBQAAAoqHgIoDgAACipKA28WAAAKAnsHAAAEKBcAAAoqAAATMAQABgEAAAIAABFz
 CgAABhMHFwoCKBgAAApvGQAACnJzAABwbxoAAApvGwAACnQCAAAbCwIoGAAACm8ZAAAKcr8AAHBv
 GgAACm8bAAAKdAMAABsMAigYAAAKbxkAAApy9QAAcG8aAAAKbxsAAApvHAAACg0JKB0AAAoNCReN
 IwAAARMIEQgWH1+dEQhvHgAAChMEEQcRBBaafQcAAAQUEwUHEQf+BgsAAAZzHwAACm8gAAAKEwUR
-BTmMAAAACBEFbyEAAAoSBm8iAAAKLHsCKBgAAApvGQAACnIVAQBwbxoAAAoJbyMAAAoCKBgAAApv
-GQAACnJFAQBwbxoAAAoRBW8hAAAKbyMAAAoCKBgAAApvGQAACnJ7AQBwbxoAAAoRBW8kAAAKbyMA
-AAoCKBgAAApvGQAACnK7AQBwbxoAAAoRBm8jAAAKFgoCKBgAAAoGbyUAAAoqHgIoJgAACioAtAAA
-AM7K774BAAAAkQAAAGxTeXN0ZW0uUmVzb3VyY2VzLlJlc291cmNlUmVhZGVyLCBtc2NvcmxpYiwg
-VmVyc2lvbj00LjAuMC4wLCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWI3N2E1YzU2
-MTkzNGUwODkjU3lzdGVtLlJlc291cmNlcy5SdW50aW1lUmVzb3VyY2VTZXQCAAAAAAAAAAAAAABQ
-QURQQURQtAAAAEJTSkIBAAEAAAAAAAwAAAB2NC4wLjMwMzE5AAAAAAUAbAAAAHAEAAAjfgAA3AQA
-AJQGAAAjU3RyaW5ncwAAAABwCwAA8AEAACNVUwBgDQAAEAAAACNHVUlEAAAAcA0AAPwBAAAjQmxv
-YgAAAAAAAAACAAABVx2iCQkDAAAA+iUzABYAAAEAAAAkAAAABgAAAAcAAAALAAAAAgAAACYAAAAC
-AAAAEAAAAAIAAAACAAAAAwAAAAQAAAAEAAAAAQAAAAQAAAABAAAAAgAAAAAACgABAAAAAAAGAMEA
-ugAKAN0AyAAOAD0BFAEGAFkBugAGAG8BXgEGAKABiwEGAFcCPQIGAIICcAIGAJkCcAIGALYCcAIG
-ANUCcAIGAO4CcAIGAAcDcAIGACIDcAIGAD0DcAIGAFYDcAIGAI8DbwMGAK8DbwMGAOADzQMGAP0D
-ugAGAAIEugAGACYEcAIKAFIEPAQKAGsEPAQGAIAEbwMOAKIEFAEGAOgEugAGAAcFugAOABoFFAES
-AHMFUwUSAIsFUwUGAMIFpwUGAMkFpwUGAOkF3wUGAPoFugAGAAUGugAAAAAAAQAAAAAAAQABAAAA
-EAAyADwABQABAAEAAAEQAGsAPAAJAAMABQABABAAdAB/AA0ABAAIAAMBAACjAAAAEQAEAAoAAwEQ
-AMQEAAAFAAcACgARAH8BEwARAKwBFwARAPYBOQAGBh8CRwBWgCcCSgBWgC8CSgAGANcEjQBQIAAA
-AACDGLwBGwABAFggAAAAAJMIwgEfAAEAkSAAAAAAkwjWASQAAQCYIAAAAACTCOIBKQABAKAgAAAA
-AJYIBgI9AAIAsyAAAAAAhhi8ARsAAgCnIAAAAACRGJsEiQACANggAAAAAIYAGgIbAAIALyIAAAAA
-hhi8ARsAAgC7IAAAAACGGLwBGwACAMMgAAAAAIYA8ASQAAIAAAABADcCAAABAPsEOQC8AVgAQQC8
-AVgASQC8AVgAUQC8AVgAWQC8AVgAYQC8AVgAaQC8AVgAcQC8AVgAeQC8AVgAgQC8AVgAiQC8AV0A
-kQC8ARsAmQC8ARsACQC8ARsAoQAUBGIAoQAvBGkAKQC8AW4AuQC8AXoAyQC8ARsAEQC8ARsA0QC8
-ARsADAD9BKMA4QAOBagAGQAsBa4A6QB9BbMA8QCUBbgA+QCdBb4ACQDWBdcAEQHuBdsA4QD/BeAA
-JAC8AfQAFAARBvoADAAWBgYBHAAgBgsB+QAsBhQBDAA2BhkB6QBABl0AGQC8ARsACAAUAE4ACAAY
-AFMAKQCTAIAALgATAIwBLgAbALUBLgAjALUBLgBjANsBLgALAEQBLgAzAIwBLgBbANIBLgArALUB
-LgA7ALsBLgBDALUBQwBrAFMASQCTAIAAYQCbAFMAgwCrAFMAwwCbAFMAdQAeAQIAAQADAAMAAABv
-AS8AAADuATQAAAASAkIAAgACAAMAAgADAAUAAQAEAAUAAgAFAAcAmwDCAM8A5wAEgAAAAQAAABUY
-H2cAAAAAAAB/AAAABAAAAAAAAAAAAAAAAQCxAAAAAAAEAAAAAAAAAAAAAAABALoAAAAAAAsAAAAA
-AAAAAAAAAAoA9QAAAAAACwAAAAAAAAAAAAAACgA0BQAAAAAAAAAAAQAAAE8GAAAFAAQABgAEAAAA
-ADxNb2R1bGU+AFNUXzAxODlhOWI2ZTczOTRlNjg5ZWI5ZTY5NzY1ZmIyNjMyLmRsbABSZXNvdXJj
-ZXMAU1RfMDE4OWE5YjZlNzM5NGU2ODllYjllNjk3NjVmYjI2MzIuUHJvcGVydGllcwBTZXR0aW5n
-cwBTY3JpcHRNYWluAFNUXzAxODlhOWI2ZTczOTRlNjg5ZWI5ZTY5NzY1ZmIyNjMyAFNjcmlwdFJl
-c3VsdHMAbXNjb3JsaWIAU3lzdGVtAE9iamVjdABTeXN0ZW0uQ29uZmlndXJhdGlvbgBBcHBsaWNh
-dGlvblNldHRpbmdzQmFzZQBNaWNyb3NvZnQuU3FsU2VydmVyLlNjcmlwdFRhc2sATWljcm9zb2Z0
-LlNxbFNlcnZlci5EdHMuVGFza3MuU2NyaXB0VGFzawBWU1RBUlRTY3JpcHRPYmplY3RNb2RlbEJh
-c2UARW51bQBTeXN0ZW0uUmVzb3VyY2VzAFJlc291cmNlTWFuYWdlcgByZXNvdXJjZU1hbgBTeXN0
-ZW0uR2xvYmFsaXphdGlvbgBDdWx0dXJlSW5mbwByZXNvdXJjZUN1bHR1cmUALmN0b3IAZ2V0X1Jl
-c291cmNlTWFuYWdlcgBnZXRfQ3VsdHVyZQBzZXRfQ3VsdHVyZQBDdWx0dXJlAGRlZmF1bHRJbnN0
-YW5jZQBnZXRfRGVmYXVsdABEZWZhdWx0AE1haW4AdmFsdWVfXwBTdWNjZXNzAEZhaWx1cmUAdmFs
-dWUAU3lzdGVtLlJ1bnRpbWUuVmVyc2lvbmluZwBUYXJnZXRGcmFtZXdvcmtBdHRyaWJ1dGUAU3lz
-dGVtLlJlZmxlY3Rpb24AQXNzZW1ibHlUaXRsZUF0dHJpYnV0ZQBBc3NlbWJseURlc2NyaXB0aW9u
-QXR0cmlidXRlAEFzc2VtYmx5Q29uZmlndXJhdGlvbkF0dHJpYnV0ZQBBc3NlbWJseUNvbXBhbnlB
-dHRyaWJ1dGUAQXNzZW1ibHlQcm9kdWN0QXR0cmlidXRlAEFzc2VtYmx5Q29weXJpZ2h0QXR0cmli
-dXRlAEFzc2VtYmx5VHJhZGVtYXJrQXR0cmlidXRlAEFzc2VtYmx5Q3VsdHVyZUF0dHJpYnV0ZQBB
-c3NlbWJseVZlcnNpb25BdHRyaWJ1dGUAU3lzdGVtLlJ1bnRpbWUuQ29tcGlsZXJTZXJ2aWNlcwBD
-b21waWxhdGlvblJlbGF4YXRpb25zQXR0cmlidXRlAFJ1bnRpbWVDb21wYXRpYmlsaXR5QXR0cmli
-dXRlAFN5c3RlbS5EaWFnbm9zdGljcwBEZWJ1Z2dlck5vblVzZXJDb2RlQXR0cmlidXRlAFR5cGUA
-UnVudGltZVR5cGVIYW5kbGUAR2V0VHlwZUZyb21IYW5kbGUAQXNzZW1ibHkAZ2V0X0Fzc2VtYmx5
-AFN5c3RlbS5Db21wb25lbnRNb2RlbABFZGl0b3JCcm93c2FibGVBdHRyaWJ1dGUARWRpdG9yQnJv
-d3NhYmxlU3RhdGUAQ29tcGlsZXJHZW5lcmF0ZWRBdHRyaWJ1dGUALmNjdG9yAFNTSVNTY3JpcHRU
-YXNrRW50cnlQb2ludEF0dHJpYnV0ZQA8PmNfX0Rpc3BsYXlDbGFzczEAY3Vycl9maWxlX3ByZWZp
-eABUdXBsZWAzADxNYWluPmJfXzAAeABnZXRfSXRlbTEAU3RyaW5nAG9wX0VxdWFsaXR5AFNjcmlw
-dE9iamVjdE1vZGVsAGdldF9EdHMATWljcm9zb2Z0LlNxbFNlcnZlci5NYW5hZ2VkRFRTAE1pY3Jv
-c29mdC5TcWxTZXJ2ZXIuRHRzLlJ1bnRpbWUAVmFyaWFibGVzAGdldF9WYXJpYWJsZXMAVmFyaWFi
-bGUAZ2V0X0l0ZW0AZ2V0X1ZhbHVlAFN5c3RlbS5Db2xsZWN0aW9ucy5HZW5lcmljAExpc3RgMQBE
-aWN0aW9uYXJ5YDIAVG9TdHJpbmcAU3lzdGVtLklPAFBhdGgAR2V0RmlsZU5hbWUAQ2hhcgBTcGxp
-dABQcmVkaWNhdGVgMQBGaW5kAGdldF9JdGVtMgBUcnlHZXRWYWx1ZQBzZXRfVmFsdWUAZ2V0X0l0
-ZW0zAHNldF9UYXNrUmVzdWx0AFNUXzAxODlhOWI2ZTczOTRlNjg5ZWI5ZTY5NzY1ZmIyNjMyLlBy
-b3BlcnRpZXMuUmVzb3VyY2VzLnJlc291cmNlcwAAAABxUwBUAF8AMAAxADgAOQBhADkAYgA2AGUA
-NwAzADkANABlADYAOAA5AGUAYgA5AGUANgA5ADcANgA1AGYAYgAyADYAMwAyAC4AUAByAG8AcABl
-AHIAdABpAGUAcwAuAFIAZQBzAG8AdQByAGMAZQBzAABLVQBzAGUAcgA6ADoAcAByAGUAZgBpAHgA
-ZQBzAF8AYQBuAGQAXwBkAGUAcwB0AGkAbgBhAHQAaQBvAG4AcwBfAHAAYQB0AGgAcwAANVUAcwBl
-AHIAOgA6AG4AZQB3AF8AaQBuAGQAZQB4AF8AZgB1AGwAbABfAHAAYQB0AGgAcwAAH1UAcwBlAHIA
-OgA6AGYAaQBsAGUAXwBuAGEAbQBlAAAvVQBzAGUAcgA6ADoAYwB1AHIAcgBlAG4AdABfAGYAaQBs
-AGUAXwBuAGEAbQBlAAA1VQBzAGUAcgA6ADoAYwB1AHIAcgBlAG4AdABfAGkAbgBkAGUAeABfAHAA
-cgBlAGYAaQB4AAA/VQBzAGUAcgA6ADoAYwB1AHIAcgBlAG4AdABfAGkAbgBkAGUAeABfAGQAZQBz
-AHQAaQBuAGEAdABpAG8AbgAAM1UAcwBlAHIAOgA6AG4AZQB3AF8AaQBuAGQAZQB4AF8AZgB1AGwA
-bABfAHAAYQB0AGgAAAB7LLWxrQFHQ5+d0x2lSAUaAAi3elxWGTTgiQiJhF3NgIDMkQMGEhUDBhIZ
-AyAAAQQAABIVBAAAEhkFAAEBEhkECAASFQQIABIZAwYSDAQAABIMBAgAEgwCBggDBhEUBAAAAAAE
-AQAAAAQgAQEOBCABAQgGAAESURFVBCAAElkGIAIBDhJZBAcBEhUFIAEBEWEIAQACAAAAAAADAAAB
-AgYOCiABAhUSbQMODg4HFRJtAw4ODgQgABMABQACAg4OBCAAEnUEIAASeQUgARJ9HAMgABwMFRKA
-gQEVEm0DDg4OBxUSgIUCDg4DIAAOBAABDg4GIAEdDh0DDBUSgJEBFRJtAw4ODgUgAgEcGAsgARMA
-FRKAkQETAAQgABMBCCACAhMAEBMBBCABARwEIAATAiUHCQgVEoCBARUSbQMODg4VEoCFAg4ODh0O
-FRJtAw4ODg4SGB0DRwEAGi5ORVRGcmFtZXdvcmssVmVyc2lvbj12NC4wAQBUDhRGcmFtZXdvcmtE
-aXNwbGF5TmFtZRAuTkVUIEZyYW1ld29yayA0KAEAI1NUXzAxODlhOWI2ZTczOTRlNjg5ZWI5ZTY5
-NzY1ZmIyNjMyAAAFAQAAAAAWAQARQ29weXJpZ2h0IEAgIDIwMTYAAAgBAAgAAAAAAB4BAAEAVAIW
-V3JhcE5vbkV4Y2VwdGlvblRocm93cwEAAIQyAAAAAAAAAAAAAJ4yAAAAIAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAACQMgAAAAAAAAAAAAAAAF9Db3JEbGxNYWluAG1zY29yZWUuZGxsAAAAAAD/JQAgABAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAQAQAAAAGAAAgAAAAAAAAAAAAAAAAAAAAQABAAAAMAAAgAAAAAAAAAAAAAAAAAAAAQAAAAAA
-SAAAAFhAAACwAwAAAAAAAAAAAACwAzQAAABWAFMAXwBWAEUAUgBTAEkATwBOAF8ASQBOAEYATwAA
-AAAAvQTv/gAAAQAAAAEAH2cVGAAAAQAfZxUYPwAAAAAAAAAEAAAAAgAAAAAAAAAAAAAAAAAAAEQA
-AAABAFYAYQByAEYAaQBsAGUASQBuAGYAbwAAAAAAJAAEAAAAVAByAGEAbgBzAGwAYQB0AGkAbwBu
-AAAAAAAAALAEEAMAAAEAUwB0AHIAaQBuAGcARgBpAGwAZQBJAG4AZgBvAAAA7AIAAAEAMAAwADAA
-MAAwADQAYgAwAAAAcAAkAAEARgBpAGwAZQBEAGUAcwBjAHIAaQBwAHQAaQBvAG4AAAAAAFMAVABf
-ADAAMQA4ADkAYQA5AGIANgBlADcAMwA5ADQAZQA2ADgAOQBlAGIAOQBlADYAOQA3ADYANQBmAGIA
-MgA2ADMAMgAAAEAADwABAEYAaQBsAGUAVgBlAHIAcwBpAG8AbgAAAAAAMQAuADAALgA2ADEANgA1
-AC4AMgA2ADMAOQA5AAAAAABwACgAAQBJAG4AdABlAHIAbgBhAGwATgBhAG0AZQAAAFMAVABfADAA
-MQA4ADkAYQA5AGIANgBlADcAMwA5ADQAZQA2ADgAOQBlAGIAOQBlADYAOQA3ADYANQBmAGIAMgA2
-ADMAMgAuAGQAbABsAAAASAASAAEATABlAGcAYQBsAEMAbwBwAHkAcgBpAGcAaAB0AAAAQwBvAHAA
-eQByAGkAZwBoAHQAIABAACAAIAAyADAAMQA2AAAAeAAoAAEATwByAGkAZwBpAG4AYQBsAEYAaQBs
-AGUAbgBhAG0AZQAAAFMAVABfADAAMQA4ADkAYQA5AGIANgBlADcAMwA5ADQAZQA2ADgAOQBlAGIA
-OQBlADYAOQA3ADYANQBmAGIAMgA2ADMAMgAuAGQAbABsAAAAaAAkAAEAUAByAG8AZAB1AGMAdABO
-AGEAbQBlAAAAAABTAFQAXwAwADEAOAA5AGEAOQBiADYAZQA3ADMAOQA0AGUANgA4ADkAZQBiADkA
-ZQA2ADkANwA2ADUAZgBiADIANgAzADIAAABEAA8AAQBQAHIAbwBkAHUAYwB0AFYAZQByAHMAaQBv
-AG4AAAAxAC4AMAAuADYAMQA2ADUALgAyADYAMwA5ADkAAAAAAEgADwABAEEAcwBzAGUAbQBiAGwA
-eQAgAFYAZQByAHMAaQBvAG4AAAAxAC4AMAAuADYAMQA2ADUALgAyADYAMwA5ADkAAAAAAAAAAAAA
+BSxKCBEFbyEAAAoSBm8iAAAKLDkCKBgAAApvGQAACnIVAQBwbxoAAAoJbyMAAAoCKBgAAApvGQAA
+CnJFAQBwbxoAAAoRBm8jAAAKFgoCKBgAAAoGbyQAAAoqHgIoJQAACioAAAAAAAC0AAAAzsrvvgEA
+AACRAAAAbFN5c3RlbS5SZXNvdXJjZXMuUmVzb3VyY2VSZWFkZXIsIG1zY29ybGliLCBWZXJzaW9u
+PTQuMC4wLjAsIEN1bHR1cmU9bmV1dHJhbCwgUHVibGljS2V5VG9rZW49Yjc3YTVjNTYxOTM0ZTA4
+OSNTeXN0ZW0uUmVzb3VyY2VzLlJ1bnRpbWVSZXNvdXJjZVNldAIAAAAAAAAAAAAAAFBBRFBBRFC0
+AAAAQlNKQgEAAQAAAAAADAAAAHY0LjAuMzAzMTkAAAAABQBsAAAAbAQAACN+AADYBAAAiAYAACNT
+dHJpbmdzAAAAAGALAAB8AQAAI1VTANwMAAAQAAAAI0dVSUQAAADsDAAA+AEAACNCbG9iAAAAAAAA
+AAIAAAFXHaIJCQMAAAD6JTMAFgAAAQAAACQAAAAGAAAABwAAAAsAAAACAAAAJQAAAAIAAAAQAAAA
+AgAAAAIAAAADAAAABAAAAAQAAAABAAAABAAAAAEAAAACAAAAAAAKAAEAAAAAAAYAwQC6AAoA3QDI
+AA4APQEUAQYAWQG6AAYAbwFeAQYAoAGLAQYAVwI9AgYAggJwAgYAmQJwAgYAtgJwAgYA1QJwAgYA
+7gJwAgYABwNwAgYAIgNwAgYAPQNwAgYAVgNwAgYAjwNvAwYArwNvAwYA4APNAwYA/QO6AAYAAgS6
+AAYAJgRwAgoAUgQ8BAoAawQ8BAYAgARvAw4AogQUAQYA6AS6AAYABwW6AA4AGgUUARIAcwVTBRIA
+iwVTBQYAwgWnBQYAyQWnBQYA6QXfBQYA+gW6AAYABQa6AAAAAAABAAAAAAABAAEAAAAQADIAPAAF
+AAEAAQAAARAAawA8AAkAAwAFAAEAEAB0AH8ADQAEAAgAAwEAAKMAAAARAAQACgADARAAxAQAAAUA
+BwAKABEAfwETABEArAEXABEA9gE5AAYGHwJHAFaAJwJKAFaALwJKAAYA1wSNAFAgAAAAAIMYvAEb
+AAEAWCAAAAAAkwjCAR8AAQCRIAAAAACTCNYBJAABAJggAAAAAJMI4gEpAAEAoCAAAAAAlggGAj0A
+AgCzIAAAAACGGLwBGwACAKcgAAAAAJEYmwSJAAIA2CAAAAAAhgAaAhsAAgDqIQAAAACGGLwBGwAC
+ALsgAAAAAIYYvAEbAAIAwyAAAAAAhgDwBJAAAgAAAAEANwIAAAEA+wQ5ALwBWABBALwBWABJALwB
+WABRALwBWABZALwBWABhALwBWABpALwBWABxALwBWAB5ALwBWACBALwBWACJALwBXQCRALwBGwCZ
+ALwBGwAJALwBGwChABQEYgChAC8EaQApALwBbgC5ALwBegDJALwBGwARALwBGwDRALwBGwAMAP0E
+owDhAA4FqAAZACwFrgDpAH0FswDxAJQFuAD5AJ0FvgAJANYF1wARAe4F2wDhAP8F4AAkALwB9AAU
+ABEG+gAMABYGBgEcACAGCwH5ACwGFAHpADYGXQAZALwBGwAIABQATgAIABgAUwApAJMAgAAuABMA
+hwEuABsAsAEuACMAsAEuAGMA1gEuAAsAPwEuADMAhwEuAFsAzQEuACsAsAEuADsAtgEuAEMAsAFD
+AGsAUwBJAJMAgABhAJsAUwCDAKsAUwDDAJsAUwB1ABkBAgABAAMAAwAAAG8BLwAAAO4BNAAAABIC
+QgACAAIAAwACAAMABQABAAQABQACAAUABwCbAMIAzwDnAASAAAABAAAAFhi/cQAAAAAAAH8AAAAE
+AAAAAAAAAAAAAAABALEAAAAAAAQAAAAAAAAAAAAAAAEAugAAAAAACwAAAAAAAAAAAAAACgD1AAAA
+AAALAAAAAAAAAAAAAAAKADQFAAAAAAAAAAABAAAARQYAAAUABAAGAAQAAAAAAAA8TW9kdWxlPgBT
+VF8wMTg5YTliNmU3Mzk0ZTY4OWViOWU2OTc2NWZiMjYzMi5kbGwAUmVzb3VyY2VzAFNUXzAxODlh
+OWI2ZTczOTRlNjg5ZWI5ZTY5NzY1ZmIyNjMyLlByb3BlcnRpZXMAU2V0dGluZ3MAU2NyaXB0TWFp
+bgBTVF8wMTg5YTliNmU3Mzk0ZTY4OWViOWU2OTc2NWZiMjYzMgBTY3JpcHRSZXN1bHRzAG1zY29y
+bGliAFN5c3RlbQBPYmplY3QAU3lzdGVtLkNvbmZpZ3VyYXRpb24AQXBwbGljYXRpb25TZXR0aW5n
+c0Jhc2UATWljcm9zb2Z0LlNxbFNlcnZlci5TY3JpcHRUYXNrAE1pY3Jvc29mdC5TcWxTZXJ2ZXIu
+RHRzLlRhc2tzLlNjcmlwdFRhc2sAVlNUQVJUU2NyaXB0T2JqZWN0TW9kZWxCYXNlAEVudW0AU3lz
+dGVtLlJlc291cmNlcwBSZXNvdXJjZU1hbmFnZXIAcmVzb3VyY2VNYW4AU3lzdGVtLkdsb2JhbGl6
+YXRpb24AQ3VsdHVyZUluZm8AcmVzb3VyY2VDdWx0dXJlAC5jdG9yAGdldF9SZXNvdXJjZU1hbmFn
+ZXIAZ2V0X0N1bHR1cmUAc2V0X0N1bHR1cmUAQ3VsdHVyZQBkZWZhdWx0SW5zdGFuY2UAZ2V0X0Rl
+ZmF1bHQARGVmYXVsdABNYWluAHZhbHVlX18AU3VjY2VzcwBGYWlsdXJlAHZhbHVlAFN5c3RlbS5S
+dW50aW1lLlZlcnNpb25pbmcAVGFyZ2V0RnJhbWV3b3JrQXR0cmlidXRlAFN5c3RlbS5SZWZsZWN0
+aW9uAEFzc2VtYmx5VGl0bGVBdHRyaWJ1dGUAQXNzZW1ibHlEZXNjcmlwdGlvbkF0dHJpYnV0ZQBB
+c3NlbWJseUNvbmZpZ3VyYXRpb25BdHRyaWJ1dGUAQXNzZW1ibHlDb21wYW55QXR0cmlidXRlAEFz
+c2VtYmx5UHJvZHVjdEF0dHJpYnV0ZQBBc3NlbWJseUNvcHlyaWdodEF0dHJpYnV0ZQBBc3NlbWJs
+eVRyYWRlbWFya0F0dHJpYnV0ZQBBc3NlbWJseUN1bHR1cmVBdHRyaWJ1dGUAQXNzZW1ibHlWZXJz
+aW9uQXR0cmlidXRlAFN5c3RlbS5SdW50aW1lLkNvbXBpbGVyU2VydmljZXMAQ29tcGlsYXRpb25S
+ZWxheGF0aW9uc0F0dHJpYnV0ZQBSdW50aW1lQ29tcGF0aWJpbGl0eUF0dHJpYnV0ZQBTeXN0ZW0u
+RGlhZ25vc3RpY3MARGVidWdnZXJOb25Vc2VyQ29kZUF0dHJpYnV0ZQBUeXBlAFJ1bnRpbWVUeXBl
+SGFuZGxlAEdldFR5cGVGcm9tSGFuZGxlAEFzc2VtYmx5AGdldF9Bc3NlbWJseQBTeXN0ZW0uQ29t
+cG9uZW50TW9kZWwARWRpdG9yQnJvd3NhYmxlQXR0cmlidXRlAEVkaXRvckJyb3dzYWJsZVN0YXRl
+AENvbXBpbGVyR2VuZXJhdGVkQXR0cmlidXRlAC5jY3RvcgBTU0lTU2NyaXB0VGFza0VudHJ5UG9p
+bnRBdHRyaWJ1dGUAPD5jX19EaXNwbGF5Q2xhc3MxAGN1cnJfZmlsZV9wcmVmaXgAVHVwbGVgMwA8
+TWFpbj5iX18wAHgAZ2V0X0l0ZW0xAFN0cmluZwBvcF9FcXVhbGl0eQBTY3JpcHRPYmplY3RNb2Rl
+bABnZXRfRHRzAE1pY3Jvc29mdC5TcWxTZXJ2ZXIuTWFuYWdlZERUUwBNaWNyb3NvZnQuU3FsU2Vy
+dmVyLkR0cy5SdW50aW1lAFZhcmlhYmxlcwBnZXRfVmFyaWFibGVzAFZhcmlhYmxlAGdldF9JdGVt
+AGdldF9WYWx1ZQBTeXN0ZW0uQ29sbGVjdGlvbnMuR2VuZXJpYwBMaXN0YDEARGljdGlvbmFyeWAy
+AFRvU3RyaW5nAFN5c3RlbS5JTwBQYXRoAEdldEZpbGVOYW1lAENoYXIAU3BsaXQAUHJlZGljYXRl
+YDEARmluZABnZXRfSXRlbTIAVHJ5R2V0VmFsdWUAc2V0X1ZhbHVlAHNldF9UYXNrUmVzdWx0AFNU
+XzAxODlhOWI2ZTczOTRlNjg5ZWI5ZTY5NzY1ZmIyNjMyLlByb3BlcnRpZXMuUmVzb3VyY2VzLnJl
+c291cmNlcwAAcVMAVABfADAAMQA4ADkAYQA5AGIANgBlADcAMwA5ADQAZQA2ADgAOQBlAGIAOQBl
+ADYAOQA3ADYANQBmAGIAMgA2ADMAMgAuAFAAcgBvAHAAZQByAHQAaQBlAHMALgBSAGUAcwBvAHUA
+cgBjAGUAcwAAS1UAcwBlAHIAOgA6AHAAcgBlAGYAaQB4AGUAcwBfAGEAbgBkAF8AZABlAHMAdABp
+AG4AYQB0AGkAbwBuAHMAXwBwAGEAdABoAHMAADVVAHMAZQByADoAOgBuAGUAdwBfAGkAbgBkAGUA
+eABfAGYAdQBsAGwAXwBwAGEAdABoAHMAAB9VAHMAZQByADoAOgBmAGkAbABlAF8AbgBhAG0AZQAA
+L1UAcwBlAHIAOgA6AGMAdQByAHIAZQBuAHQAXwBmAGkAbABlAF8AbgBhAG0AZQAAM1UAcwBlAHIA
+OgA6AG4AZQB3AF8AaQBuAGQAZQB4AF8AZgB1AGwAbABfAHAAYQB0AGgAAAAAAEQrBdnTGUpOolaP
+pBglnAkACLd6XFYZNOCJCImEXc2AgMyRAwYSFQMGEhkDIAABBAAAEhUEAAASGQUAAQESGQQIABIV
+BAgAEhkDBhIMBAAAEgwECAASDAIGCAMGERQEAAAAAAQBAAAABCABAQ4EIAEBCAYAARJREVUEIAAS
+WQYgAgEOElkEBwESFQUgAQERYQgBAAIAAAAAAAMAAAECBg4KIAECFRJtAw4ODgcVEm0DDg4OBCAA
+EwAFAAICDg4EIAASdQQgABJ5BSABEn0cAyAAHAwVEoCBARUSbQMODg4HFRKAhQIODgMgAA4EAAEO
+DgYgAR0OHQMMFRKAkQEVEm0DDg4OBSACARwYCyABEwAVEoCRARMABCAAEwEIIAICEwAQEwEEIAEB
+HCUHCQgVEoCBARUSbQMODg4VEoCFAg4ODh0OFRJtAw4ODg4SGB0DRwEAGi5ORVRGcmFtZXdvcmss
+VmVyc2lvbj12NC4wAQBUDhRGcmFtZXdvcmtEaXNwbGF5TmFtZRAuTkVUIEZyYW1ld29yayA0KAEA
+I1NUXzAxODlhOWI2ZTczOTRlNjg5ZWI5ZTY5NzY1ZmIyNjMyAAAFAQAAAAAWAQARQ29weXJpZ2h0
+IEAgIDIwMTYAAAgBAAgAAAAAAB4BAAEAVAIWV3JhcE5vbkV4Y2VwdGlvblRocm93cwEAAAC8MQAA
+AAAAAAAAAADeMQAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA0DEAAAAAAAAAAAAAAAAAAAAAAAAA
+AF9Db3JEbGxNYWluAG1zY29yZWUuZGxsAAAAAAD/JQAgABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAEAEAAAABgAAIAAAAAAAAAAAAAAAAAAAAEAAQAAADAAAIAAAAAAAAAAAAAAAAAAAAEAAAAA
+AEgAAABYQAAAsAMAAAAAAAAAAAAAsAM0AAAAVgBTAF8AVgBFAFIAUwBJAE8ATgBfAEkATgBGAE8A
+AAAAAL0E7/4AAAEAAAABAL9xFhgAAAEAv3EWGD8AAAAAAAAABAAAAAIAAAAAAAAAAAAAAAAAAABE
+AAAAAQBWAGEAcgBGAGkAbABlAEkAbgBmAG8AAAAAACQABAAAAFQAcgBhAG4AcwBsAGEAdABpAG8A
+bgAAAAAAAACwBBADAAABAFMAdAByAGkAbgBnAEYAaQBsAGUASQBuAGYAbwAAAOwCAAABADAAMAAw
+ADAAMAA0AGIAMAAAAHAAJAABAEYAaQBsAGUARABlAHMAYwByAGkAcAB0AGkAbwBuAAAAAABTAFQA
+XwAwADEAOAA5AGEAOQBiADYAZQA3ADMAOQA0AGUANgA4ADkAZQBiADkAZQA2ADkANwA2ADUAZgBi
+ADIANgAzADIAAABAAA8AAQBGAGkAbABlAFYAZQByAHMAaQBvAG4AAAAAADEALgAwAC4ANgAxADYA
+NgAuADIAOQAxADEAOQAAAAAAcAAoAAEASQBuAHQAZQByAG4AYQBsAE4AYQBtAGUAAABTAFQAXwAw
+ADEAOAA5AGEAOQBiADYAZQA3ADMAOQA0AGUANgA4ADkAZQBiADkAZQA2ADkANwA2ADUAZgBiADIA
+NgAzADIALgBkAGwAbAAAAEgAEgABAEwAZQBnAGEAbABDAG8AcAB5AHIAaQBnAGgAdAAAAEMAbwBw
+AHkAcgBpAGcAaAB0ACAAQAAgACAAMgAwADEANgAAAHgAKAABAE8AcgBpAGcAaQBuAGEAbABGAGkA
+bABlAG4AYQBtAGUAAABTAFQAXwAwADEAOAA5AGEAOQBiADYAZQA3ADMAOQA0AGUANgA4ADkAZQBi
+ADkAZQA2ADkANwA2ADUAZgBiADIANgAzADIALgBkAGwAbAAAAGgAJAABAFAAcgBvAGQAdQBjAHQA
+TgBhAG0AZQAAAAAAUwBUAF8AMAAxADgAOQBhADkAYgA2AGUANwAzADkANABlADYAOAA5AGUAYgA5
+AGUANgA5ADcANgA1AGYAYgAyADYAMwAyAAAARAAPAAEAUAByAG8AZAB1AGMAdABWAGUAcgBzAGkA
+bwBuAAAAMQAuADAALgA2ADEANgA2AC4AMgA5ADEAMQA5AAAAAABIAA8AAQBBAHMAcwBlAG0AYgBs
+AHkAIABWAGUAcgBzAGkAbwBuAAAAMQAuADAALgA2ADEANgA2AC4AMgA5ADEAMQA5AAAAAAAAAAAA
 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
@@ -1453,7 +1471,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAwAAAMAAAAsDIAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAMAAADAAAAPAxAAAA
 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
@@ -1462,8 +1480,39 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA</BinaryItem>
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==</BinaryItem>
                 </ScriptProject>
+              </DTS:ObjectData>
+            </DTS:Executable>
+            <DTS:Executable
+              DTS:refId="Package\SEQC - Index Generation\FELC - Iterate the manifest directory\SQL - Save exception"
+              DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+              DTS:Description="Execute SQL Task"
+              DTS:DTSID="{eb745d40-ff99-4271-b138-5c91b9a0b0c3}"
+              DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+              DTS:LocaleID="-1"
+              DTS:ObjectName="SQL - Save exception"
+              DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+              DTS:ThreadHint="0">
+              <DTS:Variables />
+              <DTS:ObjectData>
+                <SQLTask:SqlTaskData
+                  SQLTask:Connection="{BD28FC6D-BE54-4853-AB58-C13FB16CEE86}"
+                  SQLTask:BypassPrepare="False"
+                  SQLTask:SqlStatementSource="INSERT INTO Medhok.Mailing_Data_Load_Exception&#xA;(ExecutionLogID, Description) VALUES (?, ?);" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+                  <SQLTask:ParameterBinding
+                    SQLTask:ParameterName="0"
+                    SQLTask:DtsVariableName="$Package::execution_log_id"
+                    SQLTask:ParameterDirection="Input"
+                    SQLTask:DataType="20"
+                    SQLTask:ParameterSize="-1" />
+                  <SQLTask:ParameterBinding
+                    SQLTask:ParameterName="1"
+                    SQLTask:DtsVariableName="User::exception_message"
+                    SQLTask:ParameterDirection="Input"
+                    SQLTask:DataType="129"
+                    SQLTask:ParameterSize="-1" />
+                </SQLTask:SqlTaskData>
               </DTS:ObjectData>
             </DTS:Executable>
           </DTS:Executables>
@@ -1476,6 +1525,15 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA</BinaryItem>
               DTS:LogicalAnd="True"
               DTS:ObjectName="Constraint"
               DTS:To="Package\SEQC - Index Generation\FELC - Iterate the manifest directory\DFT - Write manifest data into index" />
+            <DTS:PrecedenceConstraint
+              DTS:refId="Package\SEQC - Index Generation\FELC - Iterate the manifest directory.PrecedenceConstraints[Constraint 1]"
+              DTS:CreationName=""
+              DTS:DTSID="{90A0B9EA-47FB-455B-978B-319896E5B617}"
+              DTS:From="Package\SEQC - Index Generation\FELC - Iterate the manifest directory\SCR - Get index specs"
+              DTS:LogicalAnd="True"
+              DTS:ObjectName="Constraint 1"
+              DTS:To="Package\SEQC - Index Generation\FELC - Iterate the manifest directory\SQL - Save exception"
+              DTS:Value="1" />
           </DTS:PrecedenceConstraints>
           <DTS:ForEachVariableMappings>
             <DTS:ForEachVariableMapping
@@ -1869,7 +1927,7 @@ namespace ST_2003c36a3ba04f01a079282f39f59ed3
                     using (StreamWriter sw = File.CreateText(full_path))                                //Create (empty) index file
                     {
                         sw.WriteLine(INDEX_HEADER);                                                     //Write header into the new index
-                        new_index_full_paths.Add(prefix, full_path);                                    //Store full path of new index file 
+                        new_index_full_paths.Add(prefix, full_path);                                    //Store full path of new index file IndexFile:(prefix, path)
                     }
                 }
                 Dts.Variables["User::new_index_full_paths"].Value = new_index_full_paths;
@@ -1930,19 +1988,19 @@ namespace ST_2003c36a3ba04f01a079282f39f59ed3
                 Encoding="UTF16LE"><![CDATA[<?xml version="1.0" encoding="UTF-16" standalone="yes"?>
 <c:Project xmlns:c="http://schemas.microsoft.com/codeprojectml/2010/08/main" xmlns:msb="http://schemas.microsoft.com/developer/msbuild/2003" runtimeVersion="3.0" schemaVersion="1.0">
 	<msb:PropertyGroup>
-		<msb:CodeName>ST_2003c36a3ba04f01a079282f39f59ed3</msb:CodeName>
 		<msb:Language>msBuild</msb:Language>
+		<msb:CodeName>ST_2003c36a3ba04f01a079282f39f59ed3</msb:CodeName>
 		<msb:DisplayName>ST_2003c36a3ba04f01a079282f39f59ed3</msb:DisplayName>
 		<msb:ProjectId>{1335D4F0-90B2-410E-9033-4C6AE7DF2418}</msb:ProjectId>
 	</msb:PropertyGroup>
 	<msb:ItemGroup>
 		<msb:Project Include="ST_2003c36a3ba04f01a079282f39f59ed3.csproj"/>
-		<msb:File Include="Properties\AssemblyInfo.cs"/>
 		<msb:File Include="Properties\Settings.settings"/>
+		<msb:File Include="Properties\AssemblyInfo.cs"/>
 		<msb:File Include="Properties\Resources.resx"/>
 		<msb:File Include="Properties\Resources.Designer.cs"/>
-		<msb:File Include="Argument.cs"/>
 		<msb:File Include="Properties\Settings.Designer.cs"/>
+		<msb:File Include="Argument.cs"/>
 		<msb:File Include="ScriptMain.cs"/>
 	</msb:ItemGroup>
 </c:Project>]]></ProjectItem>
@@ -2056,7 +2114,7 @@ namespace ST_2003c36a3ba04f01a079282f39f59ed3.Properties {
               <BinaryItem
                 Name="ST_2003c36a3ba04f01a079282f39f59ed3.dll">TVqQAAMAAAAEAAAA//8AALgAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 AAAAgAAAAA4fug4AtAnNIbgBTM0hVGhpcyBwcm9ncmFtIGNhbm5vdCBiZSBydW4gaW4gRE9TIG1v
-ZGUuDQ0KJAAAAAAAAABQRQAATAEDAE3rLVgAAAAAAAAAAOAAAiELAQsAABYAAAAIAAAAAAAAvjUA
+ZGUuDQ0KJAAAAAAAAABQRQAATAEDABgYL1gAAAAAAAAAAOAAAiELAQsAABYAAAAIAAAAAAAAvjUA
 AAAgAAAAQAAAAAAAEAAgAAAAAgAABAAAAAAAAAAEAAAAAAAAAACAAAAAAgAAAAAAAAMAQIUAABAA
 ABAAAAAAEAAAEAAAAAAAABAAAAAAAAAAAAAAAGQ1AABXAAAAAEAAAAgEAAAAAAAAAAAAAAAAAAAA
 AAAAAGAAAAwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
@@ -2104,7 +2162,7 @@ fwEuABsAqAEuACMAqAEuACsAqAEuADMAfwEuADsArgEuAEMAqAFAAHMAdgBBAHMAdgBgAHMAdgBh
 AHMAdgBjAHsAdgCAAHMAdgCJAJsAngCgAHMAdgCjAKsAdgCpAJsAngDAAHMAdgDBAHMAdgDgAHMA
 dgCTAAIBLQECAAEAAwAEAAQABgAAAAwCJgAAABcCJgAAACMCJgAAADkCRgAAALICSwAAANYCWQAC
 AAIAAwABAAMAAwACAAQABQABAAUABQACAAYABwABAAcABwACAAkACQACAAoACwABAAsACwACAAwA
-DQC/AMUA1wAEgAAAAQAAABUYBmAAAAAAAAA7AAAABAAAAAAAAAAAAAAAAQC6AAAAAAAEAAAAAAAA
+DQC/AMUA1wAEgAAAAQAAABYYrE0AAAAAAAA7AAAABAAAAAAAAAAAAAAAAQC6AAAAAAAEAAAAAAAA
 AAAAAAABAMMAAAAAAAsAAAAAAAAAAAAAAAoA/gAAAAAACwAAAAAAAAAAAAAACgDdBQAAAAAAAAAA
 AQAAAFYHAAAGAAUAAAAAAAA8TW9kdWxlPgBTVF8yMDAzYzM2YTNiYTA0ZjAxYTA3OTI4MmYzOWY1
 OWVkMy5kbGwAQXJndW1lbnQAU1RfMjAwM2MzNmEzYmEwNGYwMWEwNzkyODJmMzlmNTllZDMAUmVz
@@ -2150,7 +2208,7 @@ OgBuAGUAdwBfAGkAbgBkAGUAeABfAGYAdQBsAGwAXwBwAGEAdABoAHMAACFTAHkAcwB0AGUAbQA6
 ADoAVABhAHMAawBOAGEAbQBlAAAvVQBzAGUAcgA6ADoAZQB4AGMAZQBwAHQAaQBvAG4AXwBtAGUA
 cwBzAGEAZwBlAAA5VABhAHMAawAgADoAIABbAHsAMAB9AF0AOwAgAE0AZQBzAHMAYQBnAGUAOgAg
 AFsAewAxAH0AXQAAA1wAAAMtAAEJLgBjAHMAdgAAHXkAeQB5AHkATQBNAGQAZABIAEgAbQBtAHMA
-cwAAADsN4sFmFxNEq8iSjkIsgBoACLd6XFYZNOCJCImEXc2AgMyRBiADAQ4ODgMgAA4EIAEBDgIG
+cwAAAFEIZAGV0EpAuOm6uu9vMYYACLd6XFYZNOCJCImEXc2AgMyRBiADAQ4ODgMgAA4EIAEBDgIG
 DgMoAA4DBhIVAwYSGQMgAAEEAAASFQQAABIZBQABARIZBAgAEhUECAASGQMGEhAEAAASEAQIABIQ
 BSACDg4OBSABDhEdAgYIAwYRGAQAAAAABAEAAAAEIAEBCAYAARJZEV0EIAASYQYgAgEOEmEEBwES
 FQUgAQERaQgBAAIAAAAAAAMAAAEEIAAScQQgABJ1BSABEnkcAyAAHAUVEn0BDgcVEoCBAg4OCSAA
@@ -2164,13 +2222,13 @@ AAAAAAAAAABfQ29yRGxsTWFpbgBtc2NvcmVlLmRsbAAAAAAA/yUAIAAQAAAAAAAAAAAAAAAAAAAA
 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 AAABABAAAAAYAACAAAAAAAAAAAAAAAAAAAABAAEAAAAwAACAAAAAAAAAAAAAAAAAAAABAAAAAABI
 AAAAWEAAALADAAAAAAAAAAAAALADNAAAAFYAUwBfAFYARQBSAFMASQBPAE4AXwBJAE4ARgBPAAAA
-AAC9BO/+AAABAAAAAQAGYBUYAAABAAZgFRg/AAAAAAAAAAQAAAACAAAAAAAAAAAAAAAAAAAARAAA
+AAC9BO/+AAABAAAAAQCsTRYYAAABAKxNFhg/AAAAAAAAAAQAAAACAAAAAAAAAAAAAAAAAAAARAAA
 AAEAVgBhAHIARgBpAGwAZQBJAG4AZgBvAAAAAAAkAAQAAABUAHIAYQBuAHMAbABhAHQAaQBvAG4A
 AAAAAAAAsAQQAwAAAQBTAHQAcgBpAG4AZwBGAGkAbABlAEkAbgBmAG8AAADsAgAAAQAwADAAMAAw
 ADAANABiADAAAABwACQAAQBGAGkAbABlAEQAZQBzAGMAcgBpAHAAdABpAG8AbgAAAAAAUwBUAF8A
 MgAwADAAMwBjADMANgBhADMAYgBhADAANABmADAAMQBhADAANwA5ADIAOAAyAGYAMwA5AGYANQA5
-AGUAZAAzAAAAQAAPAAEARgBpAGwAZQBWAGUAcgBzAGkAbwBuAAAAAAAxAC4AMAAuADYAMQA2ADUA
-LgAyADQANQA4ADIAAAAAAHAAKAABAEkAbgB0AGUAcgBuAGEAbABOAGEAbQBlAAAAUwBUAF8AMgAw
+AGUAZAAzAAAAQAAPAAEARgBpAGwAZQBWAGUAcgBzAGkAbwBuAAAAAAAxAC4AMAAuADYAMQA2ADYA
+LgAxADkAOAA4ADQAAAAAAHAAKAABAEkAbgB0AGUAcgBuAGEAbABOAGEAbQBlAAAAUwBUAF8AMgAw
 ADAAMwBjADMANgBhADMAYgBhADAANABmADAAMQBhADAANwA5ADIAOAAyAGYAMwA5AGYANQA5AGUA
 ZAAzAC4AZABsAGwAAABIABIAAQBMAGUAZwBhAGwAQwBvAHAAeQByAGkAZwBoAHQAAABDAG8AcAB5
 AHIAaQBnAGgAdAAgAEAAIAAgADIAMAAxADYAAAB4ACgAAQBPAHIAaQBnAGkAbgBhAGwARgBpAGwA
@@ -2178,8 +2236,8 @@ ZQBuAGEAbQBlAAAAUwBUAF8AMgAwADAAMwBjADMANgBhADMAYgBhADAANABmADAAMQBhADAANwA5
 ADIAOAAyAGYAMwA5AGYANQA5AGUAZAAzAC4AZABsAGwAAABoACQAAQBQAHIAbwBkAHUAYwB0AE4A
 YQBtAGUAAAAAAFMAVABfADIAMAAwADMAYwAzADYAYQAzAGIAYQAwADQAZgAwADEAYQAwADcAOQAy
 ADgAMgBmADMAOQBmADUAOQBlAGQAMwAAAEQADwABAFAAcgBvAGQAdQBjAHQAVgBlAHIAcwBpAG8A
-bgAAADEALgAwAC4ANgAxADYANQAuADIANAA1ADgAMgAAAAAASAAPAAEAQQBzAHMAZQBtAGIAbAB5
-ACAAVgBlAHIAcwBpAG8AbgAAADEALgAwAC4ANgAxADYANQAuADIANAA1ADgAMgAAAAAAAAAAAAAA
+bgAAADEALgAwAC4ANgAxADYANgAuADEAOQA4ADgANAAAAAAASAAPAAEAQQBzAHMAZQBtAGIAbAB5
+ACAAVgBlAHIAcwBpAG8AbgAAADEALgAwAC4ANgAxADYANgAuADEAOQA4ADgANAAAAAAAAAAAAAAA
 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
@@ -2219,6 +2277,200 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
               Language="CSharp"
               ReadOnlyVariables="System::TaskName,$Package::connection_string"
               ReadWriteVariables="User::exception_message,User::index_prefixes,User::prefixes_and_destinations_paths">
+              <ProjectItem
+                Name="Properties\AssemblyInfo.cs"
+                Encoding="UTF8"><![CDATA[using System.Reflection;
+using System.Runtime.CompilerServices;
+
+//
+// General Information about an assembly is controlled through the following 
+// set of attributes. Change these attribute values to modify the information
+// associated with an assembly.
+//
+[assembly: AssemblyTitle("ST_4fdbaf3ce9d84afeb160b40b867ea522")]
+[assembly: AssemblyDescription("")]
+[assembly: AssemblyConfiguration("")]
+[assembly: AssemblyCompany("")]
+[assembly: AssemblyProduct("ST_4fdbaf3ce9d84afeb160b40b867ea522")]
+[assembly: AssemblyCopyright("Copyright @  2016")]
+[assembly: AssemblyTrademark("")]
+[assembly: AssemblyCulture("")]
+//
+// Version information for an assembly consists of the following four values:
+//
+//      Major Version
+//      Minor Version 
+//      Build Number
+//      Revision
+//
+// You can specify all the values or you can default the Revision and Build Numbers 
+// by using the '*' as shown below:
+
+[assembly: AssemblyVersion("1.0.*")]]]></ProjectItem>
+              <ProjectItem
+                Name="Properties\Resources.resx"
+                Encoding="UTF8"><![CDATA[<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+</root>]]></ProjectItem>
+              <ProjectItem
+                Name="Argument.cs"
+                Encoding="UTF8"><![CDATA[using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+
+namespace ST_4fdbaf3ce9d84afeb160b40b867ea522
+{
+    public sealed class Argument
+    {
+        public Argument(string FilePrefix, string IndexPrefix, string Path)
+        {
+            this.FilePrefix = FilePrefix;
+            this.IndexPrefix = IndexPrefix;
+            this.Path = Path;
+        }
+
+        public string FilePrefix { get; set; }
+        public string IndexPrefix { get; set; }
+        public string Path { get; set; }
+    }
+}]]></ProjectItem>
+              <ProjectItem
+                Name="MedhokDataContext.cs"
+                Encoding="UTF8"><![CDATA[using System.Data.Linq;
+
+namespace ST_4fdbaf3ce9d84afeb160b40b867ea522
+{
+    public sealed class MedhokDataContext : DataContext
+    {
+        public Table<FileType> FileTypes;
+        public Table<FileDestination> FileDestinations;
+        public MedhokDataContext(string connection) : base(connection) { }
+    }
+}]]></ProjectItem>
+              <ProjectItem
+                Name="Properties\Settings.settings"
+                Encoding="UTF8"><![CDATA[<?xml version='1.0' encoding='iso-8859-1'?>
+<SettingsFile xmlns="uri:settings" CurrentProfile="(Default)">
+  <Profiles>
+    <Profile Name="(Default)" />
+  </Profiles>
+  <Settings />
+</SettingsFile>]]></ProjectItem>
               <ProjectItem
                 Name="ScriptMain.cs"
                 Encoding="UTF8"><![CDATA[#region Help:  Introduction to the script task
@@ -2377,147 +2629,75 @@ namespace ST_4fdbaf3ce9d84afeb160b40b867ea522
 	}
 }]]></ProjectItem>
               <ProjectItem
-                Name="Properties\Resources.resx"
-                Encoding="UTF8"><![CDATA[<?xml version="1.0" encoding="utf-8"?>
-<root>
-  <!-- 
-    Microsoft ResX Schema 
-    
-    Version 2.0
-    
-    The primary goals of this format is to allow a simple XML format 
-    that is mostly human readable. The generation and parsing of the 
-    various data types are done through the TypeConverter classes 
-    associated with the data types.
-    
-    Example:
-    
-    ... ado.net/XML headers & schema ...
-    <resheader name="resmimetype">text/microsoft-resx</resheader>
-    <resheader name="version">2.0</resheader>
-    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
-    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
-    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
-    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
-    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
-        <value>[base64 mime encoded serialized .NET Framework object]</value>
-    </data>
-    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
-        <comment>This is a comment</comment>
-    </data>
-                
-    There are any number of "resheader" rows that contain simple 
-    name/value pairs.
-    
-    Each data row contains a name, and value. The row also contains a 
-    type or mimetype. Type corresponds to a .NET class that support 
-    text/value conversion through the TypeConverter architecture. 
-    Classes that don't support this are serialized and stored with the 
-    mimetype set.
-    
-    The mimetype is used for serialized objects, and tells the 
-    ResXResourceReader how to depersist the object. This is currently not 
-    extensible. For a given mimetype the value must be set accordingly:
-    
-    Note - application/x-microsoft.net.object.binary.base64 is the format 
-    that the ResXResourceWriter will generate, however the reader can 
-    read any of the formats listed below.
-    
-    mimetype: application/x-microsoft.net.object.binary.base64
-    value   : The object must be serialized with 
-            : System.Serialization.Formatters.Binary.BinaryFormatter
-            : and then encoded with base64 encoding.
-    
-    mimetype: application/x-microsoft.net.object.soap.base64
-    value   : The object must be serialized with 
-            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
-            : and then encoded with base64 encoding.
-
-    mimetype: application/x-microsoft.net.object.bytearray.base64
-    value   : The object must be serialized into a byte array 
-            : using a System.ComponentModel.TypeConverter
-            : and then encoded with base64 encoding.
-    -->
-  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
-    <xsd:element name="root" msdata:IsDataSet="true">
-      <xsd:complexType>
-        <xsd:choice maxOccurs="unbounded">
-          <xsd:element name="metadata">
-            <xsd:complexType>
-              <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" />
-              </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" />
-              <xsd:attribute name="type" type="xsd:string" />
-              <xsd:attribute name="mimetype" type="xsd:string" />
-            </xsd:complexType>
-          </xsd:element>
-          <xsd:element name="assembly">
-            <xsd:complexType>
-              <xsd:attribute name="alias" type="xsd:string" />
-              <xsd:attribute name="name" type="xsd:string" />
-            </xsd:complexType>
-          </xsd:element>
-          <xsd:element name="data">
-            <xsd:complexType>
-              <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
-                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
-              </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" msdata:Ordinal="1" />
-              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
-              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
-            </xsd:complexType>
-          </xsd:element>
-          <xsd:element name="resheader">
-            <xsd:complexType>
-              <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
-              </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" use="required" />
-            </xsd:complexType>
-          </xsd:element>
-        </xsd:choice>
-      </xsd:complexType>
-    </xsd:element>
-  </xsd:schema>
-  <resheader name="resmimetype">
-    <value>text/microsoft-resx</value>
-  </resheader>
-  <resheader name="version">
-    <value>2.0</value>
-  </resheader>
-  <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </resheader>
-  <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </resheader>
-</root>]]></ProjectItem>
-              <ProjectItem
-                Name="Argument.cs"
-                Encoding="UTF8"><![CDATA[using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+                Name="FileType.cs"
+                Encoding="UTF8"><![CDATA[using System.Data.Linq.Mapping;
 
 namespace ST_4fdbaf3ce9d84afeb160b40b867ea522
 {
-    public sealed class Argument
+    [Table(Name="Medhok.Mailing_Data_File_Type")]
+    public sealed class FileType
     {
-        public Argument(string FilePrefix, string IndexPrefix, string Path)
-        {
-            this.FilePrefix = FilePrefix;
-            this.IndexPrefix = IndexPrefix;
-            this.Path = Path;
-        }
+        [Column(IsPrimaryKey=true)]
+        public int ID;
 
-        public string FilePrefix { get; set; }
-        public string IndexPrefix { get; set; }
-        public string Path { get; set; }
+        [Column]
+        public string FileTypePrefix;
+
+        [Column]
+        public int DestID;
+
+        [Association(ThisKey = "DestID", IsForeignKey = true)]
+        public FileDestination Destination;
+
     }
 }]]></ProjectItem>
+              <ProjectItem
+                Name="FileDestination.cs"
+                Encoding="UTF8"><![CDATA[using System.Collections.Generic;
+using System.Data.Linq.Mapping;
+
+namespace ST_4fdbaf3ce9d84afeb160b40b867ea522
+{
+    [Table(Name="Medhok.Mailing_Data_File_Dest")]
+    public sealed class FileDestination
+    {
+        [Column(IsPrimaryKey=true)]
+        public int ID;
+
+        [Column]
+        public string DestPath;
+
+        [Column]
+        public string IndexFilePrefix;
+
+        [Association(OtherKey = "DestID")]
+        public List<FileType> FileTypes;
+    }
+}]]></ProjectItem>
+              <ProjectItem
+                Name="Project"
+                Encoding="UTF16LE"><![CDATA[<?xml version="1.0" encoding="UTF-16" standalone="yes"?>
+<c:Project xmlns:c="http://schemas.microsoft.com/codeprojectml/2010/08/main" xmlns:msb="http://schemas.microsoft.com/developer/msbuild/2003" runtimeVersion="3.0" schemaVersion="1.0">
+	<msb:PropertyGroup>
+		<msb:CodeName>ST_4fdbaf3ce9d84afeb160b40b867ea522</msb:CodeName>
+		<msb:Language>msBuild</msb:Language>
+		<msb:DisplayName>ST_4fdbaf3ce9d84afeb160b40b867ea522</msb:DisplayName>
+		<msb:ProjectId>{F3366BAD-25B7-4DDC-BCF9-D1AE339070CC}</msb:ProjectId>
+	</msb:PropertyGroup>
+	<msb:ItemGroup>
+		<msb:Project Include="ST_4fdbaf3ce9d84afeb160b40b867ea522.csproj"/>
+		<msb:File Include="Properties\AssemblyInfo.cs"/>
+		<msb:File Include="Properties\Settings.settings"/>
+		<msb:File Include="Properties\Resources.resx"/>
+		<msb:File Include="MedhokDataContext.cs"/>
+		<msb:File Include="Properties\Resources.Designer.cs"/>
+		<msb:File Include="Properties\Settings.Designer.cs"/>
+		<msb:File Include="ScriptMain.cs"/>
+		<msb:File Include="FileType.cs"/>
+		<msb:File Include="FileDestination.cs"/>
+		<msb:File Include="Argument.cs"/>
+	</msb:ItemGroup>
+</c:Project>]]></ProjectItem>
               <ProjectItem
                 Name="Properties\Settings.Designer.cs"
                 Encoding="UTF8"><![CDATA[//------------------------------------------------------------------------------
@@ -2545,19 +2725,6 @@ namespace ST_4fdbaf3ce9d84afeb160b40b867ea522.Properties {
                 return defaultInstance;
             }
         }
-    }
-}]]></ProjectItem>
-              <ProjectItem
-                Name="MedhokDataContext.cs"
-                Encoding="UTF8"><![CDATA[using System.Data.Linq;
-
-namespace ST_4fdbaf3ce9d84afeb160b40b867ea522
-{
-    public sealed class MedhokDataContext : DataContext
-    {
-        public Table<FileType> FileTypes;
-        public Table<FileDestination> FileDestinations;
-        public MedhokDataContext(string connection) : base(connection) { }
     }
 }]]></ProjectItem>
               <ProjectItem
@@ -2650,115 +2817,6 @@ namespace ST_4fdbaf3ce9d84afeb160b40b867ea522
     </VisualStudio>
   </ProjectExtensions>
 </Project>]]></ProjectItem>
-              <ProjectItem
-                Name="FileType.cs"
-                Encoding="UTF8"><![CDATA[using System.Data.Linq.Mapping;
-
-namespace ST_4fdbaf3ce9d84afeb160b40b867ea522
-{
-    [Table(Name="Medhok.Mailing_Data_File_Type")]
-    public sealed class FileType
-    {
-        [Column(IsPrimaryKey=true)]
-        public int ID;
-
-        [Column]
-        public string FileTypePrefix;
-
-        [Column]
-        public int DestID;
-
-        [Association(ThisKey = "DestID", IsForeignKey = true)]
-        public FileDestination Destination;
-
-    }
-}]]></ProjectItem>
-              <ProjectItem
-                Name="FileDestination.cs"
-                Encoding="UTF8"><![CDATA[using System.Collections.Generic;
-using System.Data.Linq.Mapping;
-
-namespace ST_4fdbaf3ce9d84afeb160b40b867ea522
-{
-    [Table(Name="Medhok.Mailing_Data_File_Dest")]
-    public sealed class FileDestination
-    {
-        [Column(IsPrimaryKey=true)]
-        public int ID;
-
-        [Column]
-        public string DestPath;
-
-        [Column]
-        public string IndexFilePrefix;
-
-        [Association(OtherKey = "DestID")]
-        public List<FileType> FileTypes;
-    }
-}]]></ProjectItem>
-              <ProjectItem
-                Name="Project"
-                Encoding="UTF16LE"><![CDATA[<?xml version="1.0" encoding="UTF-16" standalone="yes"?>
-<c:Project xmlns:c="http://schemas.microsoft.com/codeprojectml/2010/08/main" xmlns:msb="http://schemas.microsoft.com/developer/msbuild/2003" runtimeVersion="3.0" schemaVersion="1.0">
-	<msb:PropertyGroup>
-		<msb:CodeName>ST_4fdbaf3ce9d84afeb160b40b867ea522</msb:CodeName>
-		<msb:Language>msBuild</msb:Language>
-		<msb:DisplayName>ST_4fdbaf3ce9d84afeb160b40b867ea522</msb:DisplayName>
-		<msb:ProjectId>{F3366BAD-25B7-4DDC-BCF9-D1AE339070CC}</msb:ProjectId>
-	</msb:PropertyGroup>
-	<msb:ItemGroup>
-		<msb:Project Include="ST_4fdbaf3ce9d84afeb160b40b867ea522.csproj"/>
-		<msb:File Include="Properties\AssemblyInfo.cs"/>
-		<msb:File Include="Properties\Settings.settings"/>
-		<msb:File Include="Properties\Resources.resx"/>
-		<msb:File Include="MedhokDataContext.cs"/>
-		<msb:File Include="Properties\Resources.Designer.cs"/>
-		<msb:File Include="Properties\Settings.Designer.cs"/>
-		<msb:File Include="ScriptMain.cs"/>
-		<msb:File Include="FileType.cs"/>
-		<msb:File Include="FileDestination.cs"/>
-		<msb:File Include="Argument.cs"/>
-	</msb:ItemGroup>
-</c:Project>]]></ProjectItem>
-              <ProjectItem
-                Name="Properties\AssemblyInfo.cs"
-                Encoding="UTF8"><![CDATA[using System.Reflection;
-using System.Runtime.CompilerServices;
-
-//
-// General Information about an assembly is controlled through the following 
-// set of attributes. Change these attribute values to modify the information
-// associated with an assembly.
-//
-[assembly: AssemblyTitle("ST_4fdbaf3ce9d84afeb160b40b867ea522")]
-[assembly: AssemblyDescription("")]
-[assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("ST_4fdbaf3ce9d84afeb160b40b867ea522")]
-[assembly: AssemblyCopyright("Copyright @  2016")]
-[assembly: AssemblyTrademark("")]
-[assembly: AssemblyCulture("")]
-//
-// Version information for an assembly consists of the following four values:
-//
-//      Major Version
-//      Minor Version 
-//      Build Number
-//      Revision
-//
-// You can specify all the values or you can default the Revision and Build Numbers 
-// by using the '*' as shown below:
-
-[assembly: AssemblyVersion("1.0.*")]]]></ProjectItem>
-              <ProjectItem
-                Name="Properties\Settings.settings"
-                Encoding="UTF8"><![CDATA[<?xml version='1.0' encoding='iso-8859-1'?>
-<SettingsFile xmlns="uri:settings" CurrentProfile="(Default)">
-  <Profiles>
-    <Profile Name="(Default)" />
-  </Profiles>
-  <Settings />
-</SettingsFile>]]></ProjectItem>
               <ProjectItem
                 Name="Properties\Resources.Designer.cs"
                 Encoding="UTF8"><![CDATA[//------------------------------------------------------------------------------
@@ -3055,10 +3113,16 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==</BinaryItem>
               SQLTask:BypassPrepare="False"
               SQLTask:SqlStatementSource="INSERT INTO Medhok.Mailing_Data_Load_Exception&#xA;(ExecutionLogID, Description) VALUES (?, ?);" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
               <SQLTask:ParameterBinding
-                SQLTask:ParameterName="NewParameterName"
-                SQLTask:DtsVariableName="$Package::connection_string"
+                SQLTask:ParameterName="0"
+                SQLTask:DtsVariableName="$Package::execution_log_id"
                 SQLTask:ParameterDirection="Input"
-                SQLTask:DataType="3"
+                SQLTask:DataType="20"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="1"
+                SQLTask:DtsVariableName="User::exception_message"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="129"
                 SQLTask:ParameterSize="-1" />
             </SQLTask:SqlTaskData>
           </DTS:ObjectData>
@@ -3119,7 +3183,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==</BinaryItem>
     design-time-name="Package">
     <LayoutInfo>
       <GraphLayout
-        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        Capacity="32" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
           Size="163.2,41.6"
           Id="Package\SEQC - Index Generation\FELC - Iterate Index Directory for clean up\FSYS - Delete File"
@@ -3132,13 +3196,13 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==</BinaryItem>
           Id="Package\SEQC - Index Generation\FELC - Iterate Index Directory for clean up"
           TopLeft="42.8444458144052,20.9777791715136" />
         <NodeLayout
-          Size="184,41.6"
-          Id="Package\SEQC - Index Generation\FELC - Iterate the manifest directory\SCR - Get index specs"
-          TopLeft="64.9959212589541,21.2638723855201" />
-        <NodeLayout
           Size="252.8,41.6"
           Id="Package\SEQC - Index Generation\FELC - Iterate the manifest directory\DFT - Write manifest data into index"
           TopLeft="32.342859478386,99.583200349492" />
+        <NodeLayout
+          Size="184,41.6"
+          Id="Package\SEQC - Index Generation\FELC - Iterate the manifest directory\SCR - Get index specs"
+          TopLeft="64.9959212589541,21.2638723855201" />
         <EdgeLayout
           Id="Package\SEQC - Index Generation\FELC - Iterate the manifest directory.PrecedenceConstraints[Constraint]"
           TopLeft="157.86939036867,62.8638723855201">
@@ -3159,6 +3223,34 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==</BinaryItem>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="180.8,41.6"
+          Id="Package\SEQC - Index Generation\FELC - Iterate the manifest directory\SQL - Save exception"
+          TopLeft="296.38095906316,26.760789390089" />
+        <EdgeLayout
+          Id="Package\SEQC - Index Generation\FELC - Iterate the manifest directory.PrecedenceConstraints[Constraint 1]"
+          TopLeft="248.995921258954,44.8123308878045">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="47.3850378042062,0"
+              Start="0,0"
+              End="39.8850378042062,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="39.8850378042062,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="4.70117124585309,5,30.4826953125,9.7490234375"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <ContainerLayout
@@ -3230,26 +3322,26 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==</BinaryItem>
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="96.0122446529372,42.9490213365637"
+              EndConnector="96.0122446529372,42.9490213365639"
               Start="0,0"
-              End="96.0122446529372,35.4490213365637">
+              End="96.0122446529372,35.4490213365639">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,17.4745106682819" />
+                    End="0,17.474510668282" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,17.4745106682819"
-                    Point2="0,21.4745106682819"
-                    Point3="4,21.4745106682819" />
+                    Point1="0,17.474510668282"
+                    Point2="0,21.474510668282"
+                    Point3="4,21.474510668282" />
                   <mssgle:LineSegment
-                    End="92.0122446529372,21.4745106682819" />
+                    End="92.0122446529372,21.474510668282" />
                   <mssgle:CubicBezierSegment
-                    Point1="92.0122446529372,21.4745106682819"
-                    Point2="96.0122446529372,21.4745106682819"
-                    Point3="96.0122446529372,25.4745106682819" />
+                    Point1="92.0122446529372,21.474510668282"
+                    Point2="96.0122446529372,21.474510668282"
+                    Point3="96.0122446529372,25.474510668282" />
                   <mssgle:LineSegment
-                    End="96.0122446529372,35.4490213365637" />
+                    End="96.0122446529372,35.4490213365639" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -3333,8 +3425,8 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==</BinaryItem>
         <ContainerLayout
           HeaderHeight="43"
           IsExpanded="True"
-          PanelSize="728,656.8"
-          Size="728,700"
+          PanelSize="728,759.2"
+          Size="728,802.4"
           Id="Package\SEQC - Index Generation"
           TopLeft="46.2857150739553,49.0771248712948" />
       </GraphLayout>
@@ -3345,6 +3437,10 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==</BinaryItem>
     <LayoutInfo>
       <GraphLayout
         Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="217.6,41.6"
+          Id="Package\SEQC - Index Generation\FELC - Iterate the manifest directory\DFT - Write manifest data into index\FF_DST - Write data to index"
+          TopLeft="40.6095239879323,224" />
         <NodeLayout
           Size="217.6,41.6"
           Id="Package\SEQC - Index Generation\FELC - Iterate the manifest directory\DFT - Write manifest data into index\FF_SRC - Manifest file"
@@ -3375,10 +3471,6 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==</BinaryItem>
             <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
-        <NodeLayout
-          Size="217.6,41.6"
-          Id="Package\SEQC - Index Generation\FELC - Iterate the manifest directory\DFT - Write manifest data into index\FF_DST - Write data to index"
-          TopLeft="40.6095239879323,224" />
         <EdgeLayout
           Id="Package\SEQC - Index Generation\FELC - Iterate the manifest directory\DFT - Write manifest data into index.Paths[Derived Column Output]"
           TopLeft="149.409523987932,168">
