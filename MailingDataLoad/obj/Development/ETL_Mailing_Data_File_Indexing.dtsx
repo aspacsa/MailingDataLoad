@@ -11,8 +11,8 @@
   DTS:LocaleID="1033"
   DTS:ObjectName="ETL_Mailing_Data_File_Indexing"
   DTS:PackageType="5"
-  DTS:VersionBuild="106"
-  DTS:VersionGUID="{633A9470-9400-41E9-BBAC-09CB3401EC01}">
+  DTS:VersionBuild="123"
+  DTS:VersionGUID="{F6557A56-D462-467B-8D97-902E5F0CAB9F}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">6</DTS:Property>
   <DTS:ConnectionManagers>
@@ -176,7 +176,7 @@
           <DTS:Password
             DTS:Name="Password"
             Sensitive="1"
-            Encrypted="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAPXQ7jZTnV0GKV9nuEcqtfwAAAAAIAAAARABUAFMAAAAQZgAAAAEAACAAAACNyqlh1pGlB24nbOEY/CfYqWAgA/DttCltHegRMuNcFAAAAAAOgAAAAAIAACAAAAArJAFIb+0GUqB1zdulFWLZ6scTZYy81b1OCQxUWRImaBAAAADKiyo1pgAJ/pbFMCaU9jb9QAAAALoh8EjOprQ57D7F3zOAS4fcAEXTg1JtLv5+BAi4qIzEUEaoRmHXITkWBGnvq7jzC9ujqOHacTKeJaMM2TOPpT0</DTS:Password>
+            Encrypted="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAX9XdPvmdoUu0R3QXETu/wQAAAAAIAAAARABUAFMAAAAQZgAAAAEAACAAAAB/TpVD0QP148Sl/wWxTbS6Ih7zq73JiZHxTjRjgv8bTwAAAAAOgAAAAAIAACAAAACzSJnWzK5h4YQLdtJbxWV9GBk9ZPkzbPVJ2io2Z5K0gxAAAAAqcl/d4U5zTdJxlA86cX4rQAAAALJVc9Dh/f294g1lzms1WjU+xhghjpBWwFsp8KtlawTdM5F2EV5phioT7y4/1NC+TKmgMlDX5HRqo+AdfI2cZ2o</DTS:Password>
         </DTS:ConnectionManager>
       </DTS:ObjectData>
     </DTS:ConnectionManager>
@@ -198,8 +198,7 @@
       DTS:ObjectName="execution_log_id">
       <DTS:Property
         DTS:DataType="8"
-        DTS:Name="ParameterValue"
-        xml:space="preserve"></DTS:Property>
+        DTS:Name="ParameterValue">9999336</DTS:Property>
     </DTS:PackageParameter>
     <DTS:PackageParameter
       DTS:CreationName=""
@@ -843,6 +842,29 @@
               DTS:ObjectName="SCR - Get index specs"
               DTS:ThreadHint="0">
               <DTS:Variables />
+              <DTS:EventHandlers>
+                <DTS:EventHandler
+                  DTS:refId="Package\SEQC - Index Generation\FELC - Iterate the manifest directory\SCR - Get index specs.EventHandlers[OnError]"
+                  DTS:CreationName="OnError"
+                  DTS:DTSID="{3A202337-F539-4682-9A92-0A6EF7E43224}"
+                  DTS:EventID="310562168"
+                  DTS:EventName="OnError"
+                  DTS:LocaleID="-1">
+                  <DTS:Variables>
+                    <DTS:Variable
+                      DTS:CreationName=""
+                      DTS:Description="The propagate property of the event"
+                      DTS:DTSID="{8B2936C4-CEA1-4B14-960F-7EC13083E2CF}"
+                      DTS:IncludeInDebugDump="6789"
+                      DTS:Namespace="System"
+                      DTS:ObjectName="Propagate">
+                      <DTS:VariableValue
+                        DTS:DataType="11">-1</DTS:VariableValue>
+                    </DTS:Variable>
+                  </DTS:Variables>
+                  <DTS:Executables />
+                </DTS:EventHandler>
+              </DTS:EventHandlers>
               <DTS:ObjectData>
                 <ScriptProject
                   Name="ST_0189a9b6e7394e689eb9e69765fb2632"
@@ -852,14 +874,35 @@
                   ReadOnlyVariables="User::file_name,User::new_index_full_paths,User::prefixes_and_destinations_paths"
                   ReadWriteVariables="User::current_file_name,User::current_index_destination,User::current_index_prefix,User::new_index_full_path">
                   <ProjectItem
-                    Name="Properties\Settings.settings"
-                    Encoding="UTF8"><![CDATA[<?xml version='1.0' encoding='iso-8859-1'?>
-<SettingsFile xmlns="uri:settings" CurrentProfile="(Default)">
-  <Profiles>
-    <Profile Name="(Default)" />
-  </Profiles>
-  <Settings />
-</SettingsFile>]]></ProjectItem>
+                    Name="Properties\AssemblyInfo.cs"
+                    Encoding="UTF8"><![CDATA[using System.Reflection;
+using System.Runtime.CompilerServices;
+
+//
+// General Information about an assembly is controlled through the following 
+// set of attributes. Change these attribute values to modify the information
+// associated with an assembly.
+//
+[assembly: AssemblyTitle("ST_0189a9b6e7394e689eb9e69765fb2632")]
+[assembly: AssemblyDescription("")]
+[assembly: AssemblyConfiguration("")]
+[assembly: AssemblyCompany("")]
+[assembly: AssemblyProduct("ST_0189a9b6e7394e689eb9e69765fb2632")]
+[assembly: AssemblyCopyright("Copyright @  2016")]
+[assembly: AssemblyTrademark("")]
+[assembly: AssemblyCulture("")]
+//
+// Version information for an assembly consists of the following four values:
+//
+//      Major Version
+//      Minor Version 
+//      Build Number
+//      Revision
+//
+// You can specify all the values or you can default the Revision and Build Numbers 
+// by using the '*' as shown below:
+
+[assembly: AssemblyVersion("1.0.*")]]]></ProjectItem>
                   <ProjectItem
                     Name="Properties\Resources.resx"
                     Encoding="UTF8"><![CDATA[<?xml version="1.0" encoding="utf-8"?>
@@ -1123,6 +1166,132 @@ namespace ST_0189a9b6e7394e689eb9e69765fb2632
 	}
 }]]></ProjectItem>
                   <ProjectItem
+                    Name="Properties\Resources.Designer.cs"
+                    Encoding="UTF8"><![CDATA[//------------------------------------------------------------------------------
+// <auto-generated>
+//     This code was generated by a tool.
+//
+//     Changes to this file may cause incorrect behavior and will be lost if
+//     the code is regenerated.
+// </auto-generated>
+//------------------------------------------------------------------------------
+
+[assembly: global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Scope="member", Target="ST_0189a9b6e7394e689eb9e69765fb2632.Properties.Resources.get_ResourceManager():System.Resources.Resou" +
+    "rceManager")]
+[assembly: global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Scope="member", Target="ST_0189a9b6e7394e689eb9e69765fb2632.Properties.Resources.get_Culture():System.Globalization.CultureIn" +
+    "fo")]
+[assembly: global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Scope="member", Target="ST_0189a9b6e7394e689eb9e69765fb2632.Properties.Resources.set_Culture(System.Globalization.CultureInfo" +
+    "):Void")]
+
+namespace ST_0189a9b6e7394e689eb9e69765fb2632.Properties {
+    
+    
+    /// <summary>
+    ///   A strongly-typed resource class, for looking up localized strings, etc.
+    /// </summary>
+    // This class was auto-generated by the StronglyTypedResourceBuilder
+    // class via a tool like ResGen or Visual Studio.
+    // To add or remove a member, edit your .ResX file then rerun ResGen
+    // with the /str option, or rebuild your VS project.
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+    internal class Resources {
+        
+        private static global::System.Resources.ResourceManager resourceMan;
+        
+        private static global::System.Globalization.CultureInfo resourceCulture;
+        
+        [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
+        internal Resources() {
+        }
+        
+        /// <summary>
+        ///   Returns the cached ResourceManager instance used by this class.
+        /// </summary>
+        [global::System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        internal static global::System.Resources.ResourceManager ResourceManager {
+            get {
+                if ((resourceMan == null)) {
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("ST_0189a9b6e7394e689eb9e69765fb2632.Properties.Resources", typeof(Resources).Assembly);
+                    resourceMan = temp;
+                }
+                return resourceMan;
+            }
+        }
+        
+        /// <summary>
+        ///   Overrides the current thread's CurrentUICulture property for all
+        ///   resource lookups using this strongly typed resource class.
+        /// </summary>
+        [global::System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        internal static global::System.Globalization.CultureInfo Culture {
+            get {
+                return resourceCulture;
+            }
+            set {
+                resourceCulture = value;
+            }
+        }
+    }
+}]]></ProjectItem>
+                  <ProjectItem
+                    Name="Project"
+                    Encoding="UTF16LE"><![CDATA[<?xml version="1.0" encoding="UTF-16" standalone="yes"?>
+<c:Project xmlns:c="http://schemas.microsoft.com/codeprojectml/2010/08/main" xmlns:msb="http://schemas.microsoft.com/developer/msbuild/2003" runtimeVersion="3.0" schemaVersion="1.0">
+	<msb:PropertyGroup>
+		<msb:Language>msBuild</msb:Language>
+		<msb:CodeName>ST_0189a9b6e7394e689eb9e69765fb2632</msb:CodeName>
+		<msb:DisplayName>ST_0189a9b6e7394e689eb9e69765fb2632</msb:DisplayName>
+		<msb:ProjectId>{6E0A308F-7B50-4680-8DE4-82AF0B537A03}</msb:ProjectId>
+	</msb:PropertyGroup>
+	<msb:ItemGroup>
+		<msb:Project Include="ST_0189a9b6e7394e689eb9e69765fb2632.csproj"/>
+		<msb:File Include="Properties\Settings.settings"/>
+		<msb:File Include="Properties\AssemblyInfo.cs"/>
+		<msb:File Include="Properties\Resources.resx"/>
+		<msb:File Include="Properties\Resources.Designer.cs"/>
+		<msb:File Include="Properties\Settings.Designer.cs"/>
+		<msb:File Include="ScriptMain.cs"/>
+	</msb:ItemGroup>
+</c:Project>]]></ProjectItem>
+                  <ProjectItem
+                    Name="Properties\Settings.Designer.cs"
+                    Encoding="UTF8"><![CDATA[//------------------------------------------------------------------------------
+// <auto-generated>
+//     This code was generated by a tool.
+//
+//     Changes to this file may cause incorrect behavior and will be lost if
+//     the code is regenerated.
+// </auto-generated>
+//------------------------------------------------------------------------------
+
+[assembly: global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Scope="member", Target="ST_0189a9b6e7394e689eb9e69765fb2632.Properties.Settings.get_Default():ST_0189a9b6e7394e689eb9e69765fb2632.Properties.Sett" +
+    "ings")]
+
+namespace ST_0189a9b6e7394e689eb9e69765fb2632.Properties {
+    
+    
+    internal sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase {
+        
+        [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
+        private static Settings defaultInstance = new Settings();
+        
+        public static Settings Default {
+            get {
+                return defaultInstance;
+            }
+        }
+    }
+}]]></ProjectItem>
+                  <ProjectItem
+                    Name="Properties\Settings.settings"
+                    Encoding="UTF8"><![CDATA[<?xml version='1.0' encoding='iso-8859-1'?>
+<SettingsFile xmlns="uri:settings" CurrentProfile="(Default)">
+  <Profiles>
+    <Profile Name="(Default)" />
+  </Profiles>
+  <Settings />
+</SettingsFile>]]></ProjectItem>
+                  <ProjectItem
                     Name="ST_0189a9b6e7394e689eb9e69765fb2632.csproj"
                     Encoding="UTF8"><![CDATA[<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
@@ -1207,153 +1376,6 @@ namespace ST_0189a9b6e7394e689eb9e69765fb2632
     </VisualStudio>
   </ProjectExtensions>
 </Project>]]></ProjectItem>
-                  <ProjectItem
-                    Name="Project"
-                    Encoding="UTF16LE"><![CDATA[<?xml version="1.0" encoding="UTF-16" standalone="yes"?>
-<c:Project xmlns:c="http://schemas.microsoft.com/codeprojectml/2010/08/main" xmlns:msb="http://schemas.microsoft.com/developer/msbuild/2003" runtimeVersion="3.0" schemaVersion="1.0">
-	<msb:PropertyGroup>
-		<msb:Language>msBuild</msb:Language>
-		<msb:CodeName>ST_0189a9b6e7394e689eb9e69765fb2632</msb:CodeName>
-		<msb:DisplayName>ST_0189a9b6e7394e689eb9e69765fb2632</msb:DisplayName>
-		<msb:ProjectId>{6E0A308F-7B50-4680-8DE4-82AF0B537A03}</msb:ProjectId>
-	</msb:PropertyGroup>
-	<msb:ItemGroup>
-		<msb:Project Include="ST_0189a9b6e7394e689eb9e69765fb2632.csproj"/>
-		<msb:File Include="Properties\Settings.settings"/>
-		<msb:File Include="Properties\AssemblyInfo.cs"/>
-		<msb:File Include="Properties\Resources.resx"/>
-		<msb:File Include="Properties\Resources.Designer.cs"/>
-		<msb:File Include="Properties\Settings.Designer.cs"/>
-		<msb:File Include="ScriptMain.cs"/>
-	</msb:ItemGroup>
-</c:Project>]]></ProjectItem>
-                  <ProjectItem
-                    Name="Properties\Settings.Designer.cs"
-                    Encoding="UTF8"><![CDATA[//------------------------------------------------------------------------------
-// <auto-generated>
-//     This code was generated by a tool.
-//
-//     Changes to this file may cause incorrect behavior and will be lost if
-//     the code is regenerated.
-// </auto-generated>
-//------------------------------------------------------------------------------
-
-[assembly: global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Scope="member", Target="ST_0189a9b6e7394e689eb9e69765fb2632.Properties.Settings.get_Default():ST_0189a9b6e7394e689eb9e69765fb2632.Properties.Sett" +
-    "ings")]
-
-namespace ST_0189a9b6e7394e689eb9e69765fb2632.Properties {
-    
-    
-    internal sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase {
-        
-        [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-        private static Settings defaultInstance = new Settings();
-        
-        public static Settings Default {
-            get {
-                return defaultInstance;
-            }
-        }
-    }
-}]]></ProjectItem>
-                  <ProjectItem
-                    Name="Properties\AssemblyInfo.cs"
-                    Encoding="UTF8"><![CDATA[using System.Reflection;
-using System.Runtime.CompilerServices;
-
-//
-// General Information about an assembly is controlled through the following 
-// set of attributes. Change these attribute values to modify the information
-// associated with an assembly.
-//
-[assembly: AssemblyTitle("ST_0189a9b6e7394e689eb9e69765fb2632")]
-[assembly: AssemblyDescription("")]
-[assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("ST_0189a9b6e7394e689eb9e69765fb2632")]
-[assembly: AssemblyCopyright("Copyright @  2016")]
-[assembly: AssemblyTrademark("")]
-[assembly: AssemblyCulture("")]
-//
-// Version information for an assembly consists of the following four values:
-//
-//      Major Version
-//      Minor Version 
-//      Build Number
-//      Revision
-//
-// You can specify all the values or you can default the Revision and Build Numbers 
-// by using the '*' as shown below:
-
-[assembly: AssemblyVersion("1.0.*")]]]></ProjectItem>
-                  <ProjectItem
-                    Name="Properties\Resources.Designer.cs"
-                    Encoding="UTF8"><![CDATA[//------------------------------------------------------------------------------
-// <auto-generated>
-//     This code was generated by a tool.
-//
-//     Changes to this file may cause incorrect behavior and will be lost if
-//     the code is regenerated.
-// </auto-generated>
-//------------------------------------------------------------------------------
-
-[assembly: global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Scope="member", Target="ST_0189a9b6e7394e689eb9e69765fb2632.Properties.Resources.get_ResourceManager():System.Resources.Resou" +
-    "rceManager")]
-[assembly: global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Scope="member", Target="ST_0189a9b6e7394e689eb9e69765fb2632.Properties.Resources.get_Culture():System.Globalization.CultureIn" +
-    "fo")]
-[assembly: global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Scope="member", Target="ST_0189a9b6e7394e689eb9e69765fb2632.Properties.Resources.set_Culture(System.Globalization.CultureInfo" +
-    "):Void")]
-
-namespace ST_0189a9b6e7394e689eb9e69765fb2632.Properties {
-    
-    
-    /// <summary>
-    ///   A strongly-typed resource class, for looking up localized strings, etc.
-    /// </summary>
-    // This class was auto-generated by the StronglyTypedResourceBuilder
-    // class via a tool like ResGen or Visual Studio.
-    // To add or remove a member, edit your .ResX file then rerun ResGen
-    // with the /str option, or rebuild your VS project.
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-    internal class Resources {
-        
-        private static global::System.Resources.ResourceManager resourceMan;
-        
-        private static global::System.Globalization.CultureInfo resourceCulture;
-        
-        [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal Resources() {
-        }
-        
-        /// <summary>
-        ///   Returns the cached ResourceManager instance used by this class.
-        /// </summary>
-        [global::System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Resources.ResourceManager ResourceManager {
-            get {
-                if ((resourceMan == null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("ST_0189a9b6e7394e689eb9e69765fb2632.Properties.Resources", typeof(Resources).Assembly);
-                    resourceMan = temp;
-                }
-                return resourceMan;
-            }
-        }
-        
-        /// <summary>
-        ///   Overrides the current thread's CurrentUICulture property for all
-        ///   resource lookups using this strongly typed resource class.
-        /// </summary>
-        [global::System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Globalization.CultureInfo Culture {
-            get {
-                return resourceCulture;
-            }
-            set {
-                resourceCulture = value;
-            }
-        }
-    }
-}]]></ProjectItem>
                   <BinaryItem
                     Name="ST_0189a9b6e7394e689eb9e69765fb2632.dll">TVqQAAMAAAAEAAAA//8AALgAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 AAAAgAAAAA4fug4AtAnNIbgBTM0hVGhpcyBwcm9ncmFtIGNhbm5vdCBiZSBydW4gaW4gRE9TIG1v
@@ -1554,6 +1576,29 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==</BinaryItem>
           DTS:ObjectName="SCR - Create new index files"
           DTS:ThreadHint="0">
           <DTS:Variables />
+          <DTS:EventHandlers>
+            <DTS:EventHandler
+              DTS:refId="Package\SEQC - Index Generation\SCR - Create new index files.EventHandlers[OnError]"
+              DTS:CreationName="OnError"
+              DTS:DTSID="{C1B6C4E8-A268-49EF-9E22-CD2385153F05}"
+              DTS:EventID="310561128"
+              DTS:EventName="OnError"
+              DTS:LocaleID="-1">
+              <DTS:Variables>
+                <DTS:Variable
+                  DTS:CreationName=""
+                  DTS:Description="The propagate property of the event"
+                  DTS:DTSID="{5DECE8E1-7E0B-45D9-A209-D6C0F9C726F9}"
+                  DTS:IncludeInDebugDump="6789"
+                  DTS:Namespace="System"
+                  DTS:ObjectName="Propagate">
+                  <DTS:VariableValue
+                    DTS:DataType="11">-1</DTS:VariableValue>
+                </DTS:Variable>
+              </DTS:Variables>
+              <DTS:Executables />
+            </DTS:EventHandler>
+          </DTS:EventHandlers>
           <DTS:ObjectData>
             <ScriptProject
               Name="ST_2003c36a3ba04f01a079282f39f59ed3"
@@ -1968,19 +2013,19 @@ namespace ST_2003c36a3ba04f01a079282f39f59ed3
                 Encoding="UTF16LE"><![CDATA[<?xml version="1.0" encoding="UTF-16" standalone="yes"?>
 <c:Project xmlns:c="http://schemas.microsoft.com/codeprojectml/2010/08/main" xmlns:msb="http://schemas.microsoft.com/developer/msbuild/2003" runtimeVersion="3.0" schemaVersion="1.0">
 	<msb:PropertyGroup>
-		<msb:Language>msBuild</msb:Language>
 		<msb:CodeName>ST_2003c36a3ba04f01a079282f39f59ed3</msb:CodeName>
+		<msb:Language>msBuild</msb:Language>
 		<msb:DisplayName>ST_2003c36a3ba04f01a079282f39f59ed3</msb:DisplayName>
 		<msb:ProjectId>{1335D4F0-90B2-410E-9033-4C6AE7DF2418}</msb:ProjectId>
 	</msb:PropertyGroup>
 	<msb:ItemGroup>
 		<msb:Project Include="ST_2003c36a3ba04f01a079282f39f59ed3.csproj"/>
-		<msb:File Include="Properties\Settings.settings"/>
 		<msb:File Include="Properties\AssemblyInfo.cs"/>
+		<msb:File Include="Properties\Settings.settings"/>
 		<msb:File Include="Properties\Resources.resx"/>
 		<msb:File Include="Properties\Resources.Designer.cs"/>
-		<msb:File Include="Properties\Settings.Designer.cs"/>
 		<msb:File Include="Argument.cs"/>
+		<msb:File Include="Properties\Settings.Designer.cs"/>
 		<msb:File Include="ScriptMain.cs"/>
 	</msb:ItemGroup>
 </c:Project>]]></ProjectItem>
@@ -2114,7 +2159,7 @@ namespace ST_2003c36a3ba04f01a079282f39f59ed3.Properties {
               <BinaryItem
                 Name="ST_2003c36a3ba04f01a079282f39f59ed3.dll">TVqQAAMAAAAEAAAA//8AALgAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 AAAAgAAAAA4fug4AtAnNIbgBTM0hVGhpcyBwcm9ncmFtIGNhbm5vdCBiZSBydW4gaW4gRE9TIG1v
-ZGUuDQ0KJAAAAAAAAABQRQAATAEDABgYL1gAAAAAAAAAAOAAAiELAQsAABYAAAAIAAAAAAAAvjUA
+ZGUuDQ0KJAAAAAAAAABQRQAATAEDAOhOM1gAAAAAAAAAAOAAAiELAQsAABYAAAAIAAAAAAAAvjUA
 AAAgAAAAQAAAAAAAEAAgAAAAAgAABAAAAAAAAAAEAAAAAAAAAACAAAAAAgAAAAAAAAMAQIUAABAA
 ABAAAAAAEAAAEAAAAAAAABAAAAAAAAAAAAAAAGQ1AABXAAAAAEAAAAgEAAAAAAAAAAAAAAAAAAAA
 AAAAAGAAAAwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
@@ -2162,7 +2207,7 @@ fwEuABsAqAEuACMAqAEuACsAqAEuADMAfwEuADsArgEuAEMAqAFAAHMAdgBBAHMAdgBgAHMAdgBh
 AHMAdgBjAHsAdgCAAHMAdgCJAJsAngCgAHMAdgCjAKsAdgCpAJsAngDAAHMAdgDBAHMAdgDgAHMA
 dgCTAAIBLQECAAEAAwAEAAQABgAAAAwCJgAAABcCJgAAACMCJgAAADkCRgAAALICSwAAANYCWQAC
 AAIAAwABAAMAAwACAAQABQABAAUABQACAAYABwABAAcABwACAAkACQACAAoACwABAAsACwACAAwA
-DQC/AMUA1wAEgAAAAQAAABYYrE0AAAAAAAA7AAAABAAAAAAAAAAAAAAAAQC6AAAAAAAEAAAAAAAA
+DQC/AMUA1wAEgAAAAQAAABkY1G4AAAAAAAA7AAAABAAAAAAAAAAAAAAAAQC6AAAAAAAEAAAAAAAA
 AAAAAAABAMMAAAAAAAsAAAAAAAAAAAAAAAoA/gAAAAAACwAAAAAAAAAAAAAACgDdBQAAAAAAAAAA
 AQAAAFYHAAAGAAUAAAAAAAA8TW9kdWxlPgBTVF8yMDAzYzM2YTNiYTA0ZjAxYTA3OTI4MmYzOWY1
 OWVkMy5kbGwAQXJndW1lbnQAU1RfMjAwM2MzNmEzYmEwNGYwMWEwNzkyODJmMzlmNTllZDMAUmVz
@@ -2208,7 +2253,7 @@ OgBuAGUAdwBfAGkAbgBkAGUAeABfAGYAdQBsAGwAXwBwAGEAdABoAHMAACFTAHkAcwB0AGUAbQA6
 ADoAVABhAHMAawBOAGEAbQBlAAAvVQBzAGUAcgA6ADoAZQB4AGMAZQBwAHQAaQBvAG4AXwBtAGUA
 cwBzAGEAZwBlAAA5VABhAHMAawAgADoAIABbAHsAMAB9AF0AOwAgAE0AZQBzAHMAYQBnAGUAOgAg
 AFsAewAxAH0AXQAAA1wAAAMtAAEJLgBjAHMAdgAAHXkAeQB5AHkATQBNAGQAZABIAEgAbQBtAHMA
-cwAAAFEIZAGV0EpAuOm6uu9vMYYACLd6XFYZNOCJCImEXc2AgMyRBiADAQ4ODgMgAA4EIAEBDgIG
+cwAAAAbQOkdbZNtGqRDb+26uQf4ACLd6XFYZNOCJCImEXc2AgMyRBiADAQ4ODgMgAA4EIAEBDgIG
 DgMoAA4DBhIVAwYSGQMgAAEEAAASFQQAABIZBQABARIZBAgAEhUECAASGQMGEhAEAAASEAQIABIQ
 BSACDg4OBSABDhEdAgYIAwYRGAQAAAAABAEAAAAEIAEBCAYAARJZEV0EIAASYQYgAgEOEmEEBwES
 FQUgAQERaQgBAAIAAAAAAAMAAAEEIAAScQQgABJ1BSABEnkcAyAAHAUVEn0BDgcVEoCBAg4OCSAA
@@ -2222,13 +2267,13 @@ AAAAAAAAAABfQ29yRGxsTWFpbgBtc2NvcmVlLmRsbAAAAAAA/yUAIAAQAAAAAAAAAAAAAAAAAAAA
 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 AAABABAAAAAYAACAAAAAAAAAAAAAAAAAAAABAAEAAAAwAACAAAAAAAAAAAAAAAAAAAABAAAAAABI
 AAAAWEAAALADAAAAAAAAAAAAALADNAAAAFYAUwBfAFYARQBSAFMASQBPAE4AXwBJAE4ARgBPAAAA
-AAC9BO/+AAABAAAAAQCsTRYYAAABAKxNFhg/AAAAAAAAAAQAAAACAAAAAAAAAAAAAAAAAAAARAAA
+AAC9BO/+AAABAAAAAQDUbhkYAAABANRuGRg/AAAAAAAAAAQAAAACAAAAAAAAAAAAAAAAAAAARAAA
 AAEAVgBhAHIARgBpAGwAZQBJAG4AZgBvAAAAAAAkAAQAAABUAHIAYQBuAHMAbABhAHQAaQBvAG4A
 AAAAAAAAsAQQAwAAAQBTAHQAcgBpAG4AZwBGAGkAbABlAEkAbgBmAG8AAADsAgAAAQAwADAAMAAw
 ADAANABiADAAAABwACQAAQBGAGkAbABlAEQAZQBzAGMAcgBpAHAAdABpAG8AbgAAAAAAUwBUAF8A
 MgAwADAAMwBjADMANgBhADMAYgBhADAANABmADAAMQBhADAANwA5ADIAOAAyAGYAMwA5AGYANQA5
-AGUAZAAzAAAAQAAPAAEARgBpAGwAZQBWAGUAcgBzAGkAbwBuAAAAAAAxAC4AMAAuADYAMQA2ADYA
-LgAxADkAOAA4ADQAAAAAAHAAKAABAEkAbgB0AGUAcgBuAGEAbABOAGEAbQBlAAAAUwBUAF8AMgAw
+AGUAZAAzAAAAQAAPAAEARgBpAGwAZQBWAGUAcgBzAGkAbwBuAAAAAAAxAC4AMAAuADYAMQA2ADkA
+LgAyADgAMwA3ADIAAAAAAHAAKAABAEkAbgB0AGUAcgBuAGEAbABOAGEAbQBlAAAAUwBUAF8AMgAw
 ADAAMwBjADMANgBhADMAYgBhADAANABmADAAMQBhADAANwA5ADIAOAAyAGYAMwA5AGYANQA5AGUA
 ZAAzAC4AZABsAGwAAABIABIAAQBMAGUAZwBhAGwAQwBvAHAAeQByAGkAZwBoAHQAAABDAG8AcAB5
 AHIAaQBnAGgAdAAgAEAAIAAgADIAMAAxADYAAAB4ACgAAQBPAHIAaQBnAGkAbgBhAGwARgBpAGwA
@@ -2236,8 +2281,8 @@ ZQBuAGEAbQBlAAAAUwBUAF8AMgAwADAAMwBjADMANgBhADMAYgBhADAANABmADAAMQBhADAANwA5
 ADIAOAAyAGYAMwA5AGYANQA5AGUAZAAzAC4AZABsAGwAAABoACQAAQBQAHIAbwBkAHUAYwB0AE4A
 YQBtAGUAAAAAAFMAVABfADIAMAAwADMAYwAzADYAYQAzAGIAYQAwADQAZgAwADEAYQAwADcAOQAy
 ADgAMgBmADMAOQBmADUAOQBlAGQAMwAAAEQADwABAFAAcgBvAGQAdQBjAHQAVgBlAHIAcwBpAG8A
-bgAAADEALgAwAC4ANgAxADYANgAuADEAOQA4ADgANAAAAAAASAAPAAEAQQBzAHMAZQBtAGIAbAB5
-ACAAVgBlAHIAcwBpAG8AbgAAADEALgAwAC4ANgAxADYANgAuADEAOQA4ADgANAAAAAAAAAAAAAAA
+bgAAADEALgAwAC4ANgAxADYAOQAuADIAOAAzADcAMgAAAAAASAAPAAEAQQBzAHMAZQBtAGIAbAB5
+ACAAVgBlAHIAcwBpAG8AbgAAADEALgAwAC4ANgAxADYAOQAuADIAOAAzADcAMgAAAAAAAAAAAAAA
 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
@@ -2269,6 +2314,29 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
           DTS:ObjectName="SCR - Get prefixes and destination paths"
           DTS:ThreadHint="0">
           <DTS:Variables />
+          <DTS:EventHandlers>
+            <DTS:EventHandler
+              DTS:refId="Package\SEQC - Index Generation\SCR - Get prefixes and destination paths.EventHandlers[OnError]"
+              DTS:CreationName="OnError"
+              DTS:DTSID="{E7386D19-8F3B-4902-B8B8-26691A3C1A0C}"
+              DTS:EventID="292767228"
+              DTS:EventName="OnError"
+              DTS:LocaleID="-1">
+              <DTS:Variables>
+                <DTS:Variable
+                  DTS:CreationName=""
+                  DTS:Description="The propagate property of the event"
+                  DTS:DTSID="{B540F15F-7D54-4098-860C-173B839999CD}"
+                  DTS:IncludeInDebugDump="6789"
+                  DTS:Namespace="System"
+                  DTS:ObjectName="Propagate">
+                  <DTS:VariableValue
+                    DTS:DataType="11">-1</DTS:VariableValue>
+                </DTS:Variable>
+              </DTS:Variables>
+              <DTS:Executables />
+            </DTS:EventHandler>
+          </DTS:EventHandlers>
           <DTS:ObjectData>
             <ScriptProject
               Name="ST_4fdbaf3ce9d84afeb160b40b867ea522"
@@ -2277,6 +2345,15 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
               Language="CSharp"
               ReadOnlyVariables="System::TaskName,$Package::connection_string"
               ReadWriteVariables="User::exception_message,User::index_prefixes,User::prefixes_and_destinations_paths">
+              <ProjectItem
+                Name="Properties\Settings.settings"
+                Encoding="UTF8"><![CDATA[<?xml version='1.0' encoding='iso-8859-1'?>
+<SettingsFile xmlns="uri:settings" CurrentProfile="(Default)">
+  <Profiles>
+    <Profile Name="(Default)" />
+  </Profiles>
+  <Settings />
+</SettingsFile>]]></ProjectItem>
               <ProjectItem
                 Name="Properties\Resources.resx"
                 Encoding="UTF8"><![CDATA[<?xml version="1.0" encoding="utf-8"?>
@@ -2420,35 +2497,6 @@ namespace ST_4fdbaf3ce9d84afeb160b40b867ea522
     }
 }]]></ProjectItem>
               <ProjectItem
-                Name="Properties\Settings.Designer.cs"
-                Encoding="UTF8"><![CDATA[//------------------------------------------------------------------------------
-// <auto-generated>
-//     This code was generated by a tool.
-//
-//     Changes to this file may cause incorrect behavior and will be lost if
-//     the code is regenerated.
-// </auto-generated>
-//------------------------------------------------------------------------------
-
-[assembly: global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Scope="member", Target="ST_4fdbaf3ce9d84afeb160b40b867ea522.Properties.Settings.get_Default():ST_4fdbaf3ce9d84afeb160b40b867ea522.Properties.Sett" +
-    "ings")]
-
-namespace ST_4fdbaf3ce9d84afeb160b40b867ea522.Properties {
-    
-    
-    internal sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase {
-        
-        [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-        private static Settings defaultInstance = new Settings();
-        
-        public static Settings Default {
-            get {
-                return defaultInstance;
-            }
-        }
-    }
-}]]></ProjectItem>
-              <ProjectItem
                 Name="MedhokDataContext.cs"
                 Encoding="UTF8"><![CDATA[using System.Data.Linq;
 
@@ -2551,6 +2599,76 @@ namespace ST_4fdbaf3ce9d84afeb160b40b867ea522
     </VisualStudio>
   </ProjectExtensions>
 </Project>]]></ProjectItem>
+              <ProjectItem
+                Name="FileType.cs"
+                Encoding="UTF8"><![CDATA[using System.Data.Linq.Mapping;
+
+namespace ST_4fdbaf3ce9d84afeb160b40b867ea522
+{
+    [Table(Name="Medhok.Mailing_Data_File_Type")]
+    public sealed class FileType
+    {
+        [Column(IsPrimaryKey=true)]
+        public int ID;
+
+        [Column]
+        public string FileTypePrefix;
+
+        [Column]
+        public int DestID;
+
+        [Association(ThisKey = "DestID", IsForeignKey = true)]
+        public FileDestination Destination;
+
+    }
+}]]></ProjectItem>
+              <ProjectItem
+                Name="Project"
+                Encoding="UTF16LE"><![CDATA[<?xml version="1.0" encoding="UTF-16" standalone="yes"?>
+<c:Project xmlns:c="http://schemas.microsoft.com/codeprojectml/2010/08/main" xmlns:msb="http://schemas.microsoft.com/developer/msbuild/2003" runtimeVersion="3.0" schemaVersion="1.0">
+	<msb:PropertyGroup>
+		<msb:CodeName>ST_4fdbaf3ce9d84afeb160b40b867ea522</msb:CodeName>
+		<msb:Language>msBuild</msb:Language>
+		<msb:DisplayName>ST_4fdbaf3ce9d84afeb160b40b867ea522</msb:DisplayName>
+		<msb:ProjectId>{F3366BAD-25B7-4DDC-BCF9-D1AE339070CC}</msb:ProjectId>
+	</msb:PropertyGroup>
+	<msb:ItemGroup>
+		<msb:Project Include="ST_4fdbaf3ce9d84afeb160b40b867ea522.csproj"/>
+		<msb:File Include="Properties\AssemblyInfo.cs"/>
+		<msb:File Include="Properties\Settings.settings"/>
+		<msb:File Include="Properties\Resources.resx"/>
+		<msb:File Include="MedhokDataContext.cs"/>
+		<msb:File Include="Properties\Resources.Designer.cs"/>
+		<msb:File Include="Properties\Settings.Designer.cs"/>
+		<msb:File Include="ScriptMain.cs"/>
+		<msb:File Include="FileType.cs"/>
+		<msb:File Include="FileDestination.cs"/>
+		<msb:File Include="Argument.cs"/>
+	</msb:ItemGroup>
+</c:Project>]]></ProjectItem>
+              <ProjectItem
+                Name="FileDestination.cs"
+                Encoding="UTF8"><![CDATA[using System.Collections.Generic;
+using System.Data.Linq.Mapping;
+
+namespace ST_4fdbaf3ce9d84afeb160b40b867ea522
+{
+    [Table(Name="Medhok.Mailing_Data_File_Dest")]
+    public sealed class FileDestination
+    {
+        [Column(IsPrimaryKey=true)]
+        public int ID;
+
+        [Column]
+        public string DestPath;
+
+        [Column]
+        public string IndexFilePrefix;
+
+        [Association(OtherKey = "DestID")]
+        public List<FileType> FileTypes;
+    }
+}]]></ProjectItem>
               <ProjectItem
                 Name="ScriptMain.cs"
                 Encoding="UTF8"><![CDATA[#region Help:  Introduction to the script task
@@ -2709,75 +2827,34 @@ namespace ST_4fdbaf3ce9d84afeb160b40b867ea522
 	}
 }]]></ProjectItem>
               <ProjectItem
-                Name="FileType.cs"
-                Encoding="UTF8"><![CDATA[using System.Data.Linq.Mapping;
+                Name="Properties\Settings.Designer.cs"
+                Encoding="UTF8"><![CDATA[//------------------------------------------------------------------------------
+// <auto-generated>
+//     This code was generated by a tool.
+//
+//     Changes to this file may cause incorrect behavior and will be lost if
+//     the code is regenerated.
+// </auto-generated>
+//------------------------------------------------------------------------------
 
-namespace ST_4fdbaf3ce9d84afeb160b40b867ea522
-{
-    [Table(Name="Medhok.Mailing_Data_File_Type")]
-    public sealed class FileType
-    {
-        [Column(IsPrimaryKey=true)]
-        public int ID;
+[assembly: global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Scope="member", Target="ST_4fdbaf3ce9d84afeb160b40b867ea522.Properties.Settings.get_Default():ST_4fdbaf3ce9d84afeb160b40b867ea522.Properties.Sett" +
+    "ings")]
 
-        [Column]
-        public string FileTypePrefix;
-
-        [Column]
-        public int DestID;
-
-        [Association(ThisKey = "DestID", IsForeignKey = true)]
-        public FileDestination Destination;
-
+namespace ST_4fdbaf3ce9d84afeb160b40b867ea522.Properties {
+    
+    
+    internal sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase {
+        
+        [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
+        private static Settings defaultInstance = new Settings();
+        
+        public static Settings Default {
+            get {
+                return defaultInstance;
+            }
+        }
     }
 }]]></ProjectItem>
-              <ProjectItem
-                Name="FileDestination.cs"
-                Encoding="UTF8"><![CDATA[using System.Collections.Generic;
-using System.Data.Linq.Mapping;
-
-namespace ST_4fdbaf3ce9d84afeb160b40b867ea522
-{
-    [Table(Name="Medhok.Mailing_Data_File_Dest")]
-    public sealed class FileDestination
-    {
-        [Column(IsPrimaryKey=true)]
-        public int ID;
-
-        [Column]
-        public string DestPath;
-
-        [Column]
-        public string IndexFilePrefix;
-
-        [Association(OtherKey = "DestID")]
-        public List<FileType> FileTypes;
-    }
-}]]></ProjectItem>
-              <ProjectItem
-                Name="Project"
-                Encoding="UTF16LE"><![CDATA[<?xml version="1.0" encoding="UTF-16" standalone="yes"?>
-<c:Project xmlns:c="http://schemas.microsoft.com/codeprojectml/2010/08/main" xmlns:msb="http://schemas.microsoft.com/developer/msbuild/2003" runtimeVersion="3.0" schemaVersion="1.0">
-	<msb:PropertyGroup>
-		<msb:CodeName>ST_4fdbaf3ce9d84afeb160b40b867ea522</msb:CodeName>
-		<msb:Language>msBuild</msb:Language>
-		<msb:DisplayName>ST_4fdbaf3ce9d84afeb160b40b867ea522</msb:DisplayName>
-		<msb:ProjectId>{F3366BAD-25B7-4DDC-BCF9-D1AE339070CC}</msb:ProjectId>
-	</msb:PropertyGroup>
-	<msb:ItemGroup>
-		<msb:Project Include="ST_4fdbaf3ce9d84afeb160b40b867ea522.csproj"/>
-		<msb:File Include="Properties\AssemblyInfo.cs"/>
-		<msb:File Include="Properties\Settings.settings"/>
-		<msb:File Include="Properties\Resources.resx"/>
-		<msb:File Include="MedhokDataContext.cs"/>
-		<msb:File Include="Properties\Resources.Designer.cs"/>
-		<msb:File Include="Properties\Settings.Designer.cs"/>
-		<msb:File Include="ScriptMain.cs"/>
-		<msb:File Include="FileType.cs"/>
-		<msb:File Include="FileDestination.cs"/>
-		<msb:File Include="Argument.cs"/>
-	</msb:ItemGroup>
-</c:Project>]]></ProjectItem>
               <ProjectItem
                 Name="Properties\AssemblyInfo.cs"
                 Encoding="UTF8"><![CDATA[using System.Reflection;
@@ -2808,15 +2885,6 @@ using System.Runtime.CompilerServices;
 // by using the '*' as shown below:
 
 [assembly: AssemblyVersion("1.0.*")]]]></ProjectItem>
-              <ProjectItem
-                Name="Properties\Settings.settings"
-                Encoding="UTF8"><![CDATA[<?xml version='1.0' encoding='iso-8859-1'?>
-<SettingsFile xmlns="uri:settings" CurrentProfile="(Default)">
-  <Profiles>
-    <Profile Name="(Default)" />
-  </Profiles>
-  <Settings />
-</SettingsFile>]]></ProjectItem>
               <ProjectItem
                 Name="Properties\Resources.Designer.cs"
                 Encoding="UTF8"><![CDATA[//------------------------------------------------------------------------------
@@ -3203,6 +3271,10 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==</BinaryItem>
           Size="184,41.6"
           Id="Package\SEQC - Index Generation\FELC - Iterate the manifest directory\SCR - Get index specs"
           TopLeft="64.9959212589541,21.2638723855201" />
+        <NodeLayout
+          Size="180.8,41.6"
+          Id="Package\SEQC - Index Generation\FELC - Iterate the manifest directory\SQL - Save exception"
+          TopLeft="296.38095906316,26.760789390089" />
         <EdgeLayout
           Id="Package\SEQC - Index Generation\FELC - Iterate the manifest directory.PrecedenceConstraints[Constraint]"
           TopLeft="157.86939036867,62.8638723855201">
@@ -3225,10 +3297,6 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==</BinaryItem>
             <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
-        <NodeLayout
-          Size="180.8,41.6"
-          Id="Package\SEQC - Index Generation\FELC - Iterate the manifest directory\SQL - Save exception"
-          TopLeft="296.38095906316,26.760789390089" />
         <EdgeLayout
           Id="Package\SEQC - Index Generation\FELC - Iterate the manifest directory.PrecedenceConstraints[Constraint 1]"
           TopLeft="248.995921258954,44.8123308878045">
@@ -3425,10 +3493,10 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==</BinaryItem>
         <ContainerLayout
           HeaderHeight="43"
           IsExpanded="True"
-          PanelSize="728,759.2"
-          Size="728,802.4"
+          PanelSize="712.8,639.2"
+          Size="712.8,682.4"
           Id="Package\SEQC - Index Generation"
-          TopLeft="46.2857150739553,49.0771248712948" />
+          TopLeft="98.7619064438099,24.0846809894846" />
       </GraphLayout>
     </LayoutInfo>
   </Package>
@@ -3439,16 +3507,16 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==</BinaryItem>
         Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
           Size="217.6,41.6"
-          Id="Package\SEQC - Index Generation\FELC - Iterate the manifest directory\DFT - Write manifest data into index\FF_DST - Write data to index"
-          TopLeft="40.6095239879323,224" />
-        <NodeLayout
-          Size="217.6,41.6"
           Id="Package\SEQC - Index Generation\FELC - Iterate the manifest directory\DFT - Write manifest data into index\FF_SRC - Manifest file"
           TopLeft="40.6095239879323,41.6000005834243" />
         <NodeLayout
           Size="217.6,41.6"
           Id="Package\SEQC - Index Generation\FELC - Iterate the manifest directory\DFT - Write manifest data into index\DER - Add manifest name"
           TopLeft="40.6095239879323,126.4" />
+        <NodeLayout
+          Size="217.6,41.6"
+          Id="Package\SEQC - Index Generation\FELC - Iterate the manifest directory\DFT - Write manifest data into index\FF_DST - Write data to index"
+          TopLeft="40.6095239879323,224" />
         <EdgeLayout
           Id="Package\SEQC - Index Generation\FELC - Iterate the manifest directory\DFT - Write manifest data into index.Paths[Flat File Source Output]"
           TopLeft="149.409523987932,83.2000005834243">

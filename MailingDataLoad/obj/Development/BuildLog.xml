@@ -2,33 +2,38 @@
 <BuildLog xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <ProjectInfo>
     <Name>MailingDataLoad</Name>
-    <LastWriteTime>2016-11-18T18:13:02.7050406Z</LastWriteTime>
+    <LastWriteTime>2016-11-22T20:06:32.0458806Z</LastWriteTime>
     <LastKnownProtectionLevel>EncryptSensitiveWithUserKey</LastKnownProtectionLevel>
   </ProjectInfo>
   <LastBuildInfos>
     <ProjectBuildItemInfo>
       <Name>ETL_Letter_Mailing_Data_Load.dtsx</Name>
-      <LastWriteTime>2016-11-16T18:59:24.5123113Z</LastWriteTime>
+      <LastWriteTime>2016-11-21T20:04:24.8967319Z</LastWriteTime>
       <LastKnownProtectionLevel>EncryptSensitiveWithUserKey</LastKnownProtectionLevel>
     </ProjectBuildItemInfo>
     <ProjectBuildItemInfo>
       <Name>ETL_Mailing_Data_Adjudicator.dtsx</Name>
-      <LastWriteTime>2016-10-27T20:05:42.6056556Z</LastWriteTime>
+      <LastWriteTime>2016-11-21T20:07:29.1229958Z</LastWriteTime>
       <LastKnownProtectionLevel>EncryptSensitiveWithUserKey</LastKnownProtectionLevel>
     </ProjectBuildItemInfo>
     <ProjectBuildItemInfo>
       <Name>ETL_Mailing_File_Life_Span_Check.dtsx</Name>
-      <LastWriteTime>2016-10-27T20:01:02.2377641Z</LastWriteTime>
+      <LastWriteTime>2016-11-21T20:19:38.6511741Z</LastWriteTime>
       <LastKnownProtectionLevel>EncryptSensitiveWithUserKey</LastKnownProtectionLevel>
     </ProjectBuildItemInfo>
     <ProjectBuildItemInfo>
       <Name>ETL_Mailing_Data_File_Segregator.dtsx</Name>
-      <LastWriteTime>2016-11-07T14:32:49.6171471Z</LastWriteTime>
+      <LastWriteTime>2016-11-21T20:00:18.5298385Z</LastWriteTime>
       <LastKnownProtectionLevel>EncryptSensitiveWithUserKey</LastKnownProtectionLevel>
     </ProjectBuildItemInfo>
     <ProjectBuildItemInfo>
       <Name>ETL_Mailing_Data_File_Indexing.dtsx</Name>
-      <LastWriteTime>2016-11-18T20:33:24.8108669Z</LastWriteTime>
+      <LastWriteTime>2016-11-21T20:32:14.7906464Z</LastWriteTime>
+      <LastKnownProtectionLevel>EncryptSensitiveWithUserKey</LastKnownProtectionLevel>
+    </ProjectBuildItemInfo>
+    <ProjectBuildItemInfo>
+      <Name>ETL_Mailing_Data_Distributor.dtsx</Name>
+      <LastWriteTime>2016-11-22T20:07:28.898432Z</LastWriteTime>
       <LastKnownProtectionLevel>EncryptSensitiveWithUserKey</LastKnownProtectionLevel>
     </ProjectBuildItemInfo>
   </LastBuildInfos>
