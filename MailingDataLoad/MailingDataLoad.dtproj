@@ -26,7 +26,7 @@
           <SSIS:Property SSIS:Name="CreatorComputerName">WINDOWSDEV</SSIS:Property>
           <SSIS:Property SSIS:Name="Description">
           </SSIS:Property>
-          <SSIS:Property SSIS:Name="PasswordVerifier" SSIS:Sensitive="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAX9XdPvmdoUu0R3QXETu/wQAAAAACAAAAAAAQZgAAAAEAACAAAAB/ptTHOKzO99ohHnUVDxeWwQES9llRqXtuExbyqvigOgAAAAAOgAAAAAIAACAAAADjsWEKQ/6G+G5G4wT/F8xJdHptoCVTTtHrBV3an2LNdpAAAAD08YBqg+oGzGLkJEr1zwuSaKleSq6sc8HjJOL4d3eNnctgGBBGdFjLQtufUNIlMwG5ZwAMnvgBtfmYdaIVjtnpasE1u+D/D8eJLy6f0affyk+TsNK/6plpJjTX8M2UeNqKyz78obcVaWnkpm7KCqtrSNLrMyVCfp9qsXeWua/d56p9HBxL7EzEKn/9lmvPwctAAAAA5zHLUCVL4UKzxg2P5Tfv6H+mxAMdhxVyqqAdqOfnpQCMKyr74YdRo7sQgO+k6g99d7i9ksM7vm3paReq/EFbNg==</SSIS:Property>
+          <SSIS:Property SSIS:Name="PasswordVerifier" SSIS:Sensitive="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAX9XdPvmdoUu0R3QXETu/wQAAAAACAAAAAAAQZgAAAAEAACAAAACJB+JrkhDMYIHyGdiIE9O7EV7NQ7J6BhxcpZTcP8gkwAAAAAAOgAAAAAIAACAAAADl7IkKIcLn/C0zGqVmOnhAeQa/pbNswOQLGH5rcGoUf5AAAAChB0ZrjnR+Pr90sw0aK8+8jr/Dh5WeQrQu37sSbun3wA22mCJyQDUhPwJ6+99EW2XPU2bAH5/HyrKjR5I9NtvPpHBEBaRYR7Wn6xzCXZVhKJJblVCM28EyzAXNW59kyu1kI+9QYdDL6zffi4UcChaERsGMlqSdfTYgak4sAeeisb/jXmwF0YFdOmeMcto4dkBAAAAAVv0OeZJQ66IPMSBmc1cRgSytmSRU48NIdhvmLK83iokaDeQgNYKp5fEGU7+B1Tn1cKjq5immWNYkEJTi51TeOw==</SSIS:Property>
           <SSIS:Property SSIS:Name="FormatVersion">1</SSIS:Property>
         </SSIS:Properties>
         <SSIS:Packages>
@@ -1360,10 +1360,10 @@
                 <SSIS:Property SSIS:Name="Name">ETL_Mailing_Data_Distributor</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMajor">1</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMinor">0</SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionBuild">60</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionBuild">83</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionComments">
                 </SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionGUID">{909570FD-CCED-4465-BBFE-1EDBB9DB5420}</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionGUID">{EFAED35C-CE9B-41E6-9364-207E4405E57D}</SSIS:Property>
                 <SSIS:Property SSIS:Name="PackageFormatVersion">6</SSIS:Property>
                 <SSIS:Property SSIS:Name="Description">
                 </SSIS:Property>
@@ -1381,6 +1381,19 @@
                     <SSIS:Property SSIS:Name="Required">0</SSIS:Property>
                     <SSIS:Property SSIS:Name="Sensitive">0</SSIS:Property>
                     <SSIS:Property SSIS:Name="Value">Data Source=MSSQLSERVER; User ID=sa; Password=sa; Initial Catalog=testdb; Connection Timeout=60;</SSIS:Property>
+                    <SSIS:Property SSIS:Name="DataType">18</SSIS:Property>
+                  </SSIS:Properties>
+                </SSIS:Parameter>
+                <SSIS:Parameter SSIS:Name="destination_onbase">
+                  <SSIS:Properties>
+                    <SSIS:Property SSIS:Name="ID">{3DEAFCD6-43AA-4A1A-856B-5F9BE490E1CF}</SSIS:Property>
+                    <SSIS:Property SSIS:Name="CreationName">
+                    </SSIS:Property>
+                    <SSIS:Property SSIS:Name="Description">This should be the server where files will be deposited for onbase process.</SSIS:Property>
+                    <SSIS:Property SSIS:Name="IncludeInDebugDump">0</SSIS:Property>
+                    <SSIS:Property SSIS:Name="Required">0</SSIS:Property>
+                    <SSIS:Property SSIS:Name="Sensitive">0</SSIS:Property>
+                    <SSIS:Property SSIS:Name="Value">C:\Users\Ernesto Rodriguez\Projects\SampleData\LettersMailingData\OnBase</SSIS:Property>
                     <SSIS:Property SSIS:Name="DataType">18</SSIS:Property>
                   </SSIS:Properties>
                 </SSIS:Parameter>
