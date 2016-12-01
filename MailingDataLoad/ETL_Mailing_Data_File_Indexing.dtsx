@@ -11,8 +11,8 @@
   DTS:LocaleID="1033"
   DTS:ObjectName="ETL_Mailing_Data_File_Indexing"
   DTS:PackageType="5"
-  DTS:VersionBuild="130"
-  DTS:VersionGUID="{B4739F4A-00A4-4E4A-A25C-7A666C391C4A}">
+  DTS:VersionBuild="133"
+  DTS:VersionGUID="{A5B7BB72-CFD9-4ED5-B959-209E0F61E3AA}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">6</DTS:Property>
   <DTS:ConnectionManagers>
@@ -176,7 +176,7 @@
           <DTS:Password
             DTS:Name="Password"
             Sensitive="1"
-            Encrypted="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAX9XdPvmdoUu0R3QXETu/wQAAAAAIAAAARABUAFMAAAAQZgAAAAEAACAAAACsb1JfozRSmr9NYgQMEJLDPxGDN2Fjmh76oxzXQm3dvQAAAAAOgAAAAAIAACAAAADLMDj5/lVqJtItqygIL5RIinq43Lqd9n9ryRuF0/AOhBAAAAAf14GhDjRKN9qwX8ewhEwcQAAAAMkzMC3kFEcGXm2SayFm0CH8RA/b2Zx1giFTps6E5T25RH3ltCHJjmf2HQvlDitPwUQheIg4077N5sah2T7WbUo</DTS:Password>
+            Encrypted="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAX9XdPvmdoUu0R3QXETu/wQAAAAAIAAAARABUAFMAAAAQZgAAAAEAACAAAABQR9K8vjm6sBsCA5WhzPqLsPqWvcOLhUC0KHe+6/hIBQAAAAAOgAAAAAIAACAAAACOZPtdz7vpnjQ625SpJ5EbfudcROLhiy7GBsxOwyEQQhAAAADQHCd4lP+HmuI3UQWPB3XVQAAAAFU4F181bUIVrkNfDtD4MHMN4JEbEN5j/3MeICMMDqCgqWpsMGIZP9TWiEqqB3YtxE/Z2/eB5bvXC0MB1RYsSbI</DTS:Password>
         </DTS:ConnectionManager>
       </DTS:ObjectData>
     </DTS:ConnectionManager>
@@ -198,7 +198,7 @@
       DTS:ObjectName="execution_log_id">
       <DTS:Property
         DTS:DataType="8"
-        DTS:Name="ParameterValue">9999336</DTS:Property>
+        DTS:Name="ParameterValue">9999342</DTS:Property>
     </DTS:PackageParameter>
     <DTS:PackageParameter
       DTS:CreationName=""
