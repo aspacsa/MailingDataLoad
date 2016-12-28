@@ -1,3 +1,4 @@
+
 CREATE TABLE Medhok.Batch_Process_Event
 (
     ID INT IDENTITY(1,1) NOT NULL
@@ -27,6 +28,8 @@ CREATE TABLE Medhok.Mailing_Data_File
     TotalRecordsExcluded INT NOT NULL DEFAULT 0
 );
 
+USE testdb;
+GO
 CREATE TABLE Medhok.Mailing_Data_File_Cache
 (
     ParentID INT NOT NULL,
@@ -36,6 +39,8 @@ CREATE TABLE Medhok.Mailing_Data_File_Cache
 );
 GO
 
+USE testdb;
+GO
 CREATE TABLE Medhok.Mailing_Data_Exception
 (
     ID INT IDENTiTY(1,1) NOT NULL
@@ -56,6 +61,8 @@ CREATE TABLE Medhok.Mailing_Data_Load_Exception
     Description VARCHAR(1024)
 );
 
+USE testdb;
+GO
 CREATE TABLE Medhok.Mailing_Data_Buffer
 (
     LetterID INT NOT NULL
@@ -66,6 +73,8 @@ CREATE TABLE Medhok.Mailing_Data_Buffer
 );
 GO
 
+USE testdb;
+GO
 CREATE TABLE Medhok.Mailing_Data_NoMatch
 (
     ID INT IDENTITY(1,1) NOT NULL
@@ -77,6 +86,8 @@ CREATE TABLE Medhok.Mailing_Data_NoMatch
 );
 GO
 
+USE testdb;
+GO
 CREATE TABLE Medhok.Mailing_Data_Row_Error
 (
     ID INT IDENTITY(1,1) NOT NULL
@@ -91,6 +102,8 @@ CREATE TABLE Medhok.Mailing_Data_Row_Error
 );
 GO
 
+USE testdb;
+GO
 CREATE TABLE Medhok.Mailing_Data_File_Error
 (
     ID INT IDENTITY(1,1) NOT NULL
@@ -100,7 +113,6 @@ CREATE TABLE Medhok.Mailing_Data_File_Error
     ErrorCode INT DEFAULT 0,
     ErrorColumn INT DEFAULT 0,
     ExecutionLogID INT DEFAULT 0,
-    --FileName NVARCHAR(254) DEFAULT 'Unknown',
     ParentID INT DEFAULT 0
 );
 GO
@@ -113,16 +125,19 @@ CREATE TABLE Medhok.Mailing_Data_File_Dest
     DestPath VARCHAR(750) NOT NULL,
       CONSTRAINT unq___mailing_data_file_dest__destpath
       UNIQUE (DestPath),
-    IndexFilePrefix VARCHAR(15) NOT NULL
+    IndexFilePrefix VARCHAR(15) NOT NULL,
+    IntermidiateFolder VARCHAR(750) NOT NULL
+      CONSTRAINT unq___mailing_data_file_dest__interfolder
+      UNIQUE (IntermidiateFolder)
 );
 GO
 
 INSERT INTO  Medhok.Mailing_Data_File_Dest
     VALUES
-      ('\DIP\MEDHOK\BH_Mailing_Data', 'BHMD'),
-      ('\DIP\MEDHOK\CM_Mailing_Data', 'CMMD'),
-      ('\DIP\MEDHOK\PA_Mailing_Data', 'PAMD'),
-      ('\DIP\MEDHOK\RX_Mailing_Data', 'RXMD')
+      ('\DIP\MEDHOK\BH_Mailing_Data', 'BH', 'BH_Buffer'),
+      ('\DIP\MEDHOK\CM_Mailing_Data', 'CM', 'CM_Buffer'),
+      ('\DIP\MEDHOK\PA_Mailing_Data', 'PA', 'PA_Buffer'),
+      ('\DIP\MEDHOK\RX_Mailing_Data', 'RX', 'RX_Buffer')
 ;
 GO
 
@@ -173,6 +188,7 @@ INSERT INTO Medhok.Mailing_Data_File_Type
       ('RXREJECTS', 4)
 ;
 GO
+
 
 ALTER TABLE
   Medhok.Letter
